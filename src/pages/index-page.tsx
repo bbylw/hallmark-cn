@@ -38,10 +38,11 @@ export function IndexPage() {
         style={{ maxWidth: 'var(--page-max)' }}
       >
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          {/* 左栏：固定工作台，工效紧凑，杜绝视口内部嵌套滚动条 */}
+          {/* 左栏：独立滚动工作台（保留工效嵌套滚动条，作为完整工作台体验） */}
           <div className="pt-8 lg:col-span-5 lg:pt-10">
             <motion.div
-              className="lg:sticky lg:top-16 lg:self-start lg:pb-10 lg:pr-4"
+              className="lg:sticky lg:top-20 lg:max-h-[calc(100dvh-6rem)] lg:overflow-y-auto lg:pb-12 lg:pr-6"
+              style={{ scrollbarWidth: 'thin' }}
               initial={reduce ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}

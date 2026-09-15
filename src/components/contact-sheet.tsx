@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
-import { MagnifyingGlass, X } from '@phosphor-icons/react'
 import { themePages } from '../data/pages'
 import { genres, themes, type GenreId } from '../data/themes'
 
@@ -149,72 +148,19 @@ function ThemeOrnament({ themeId }: { themeId: string }) {
 
 export function ContactSheet() {
   const [filter, setFilter] = useState<Filter>('all')
-  const [search, setSearch] = useState('')
 
-  const query = search.trim().toLowerCase()
-  const list = themes.filter((t) => {
-    const matchesGenre = filter === 'all' || t.genre === filter
-    if (!matchesGenre) return false
-    if (!query) return true
-    const page = themePages.find((p) => p.theme === t.id)
-    return (
-      t.name.toLowerCase().includes(query) ||
-      t.zh.toLowerCase().includes(query) ||
-      t.id.toLowerCase().includes(query) ||
-      t.accentName.toLowerCase().includes(query) ||
-      (page?.brand?.toLowerCase().includes(query) ?? false) ||
-      (page?.macroZh?.toLowerCase().includes(query) ?? false) ||
-      (page?.discipline?.toLowerCase().includes(query) ?? false) ||
-      (page?.title?.toLowerCase().includes(query) ?? false) ||
-      (page?.items?.some(
-        (it) =>
-          it.k.toLowerCase().includes(query) ||
-          it.v.toLowerCase().includes(query) ||
-          (it.d?.toLowerCase().includes(query) ?? false),
-      ) ?? false) ||
-      t.displayFace.toLowerCase().includes(query) ||
-      t.displayStyle.toLowerCase().includes(query) ||
-      t.note.toLowerCase().includes(query)
-    )
-  })
+  const list = filter === 'all' ? themes : themes.filter((t) => t.genre === filter)
 
   return (
     <div id="main">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <div className="meta text-muted">打样台 · 21 主题 + 2 独立分支</div>
-          <h2
-            className="display mt-1 text-ink"
-            style={{ fontSize: 'var(--text-xl)' }}
-          >
-            真实小样流
-          </h2>
-        </div>
-
-        {/* 快速搜索栏 */}
-        <div className="relative w-full sm:w-60">
-          <input
-            type="search"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="搜索小样（如黑胶、报纸、终端）..."
-            className="w-full rounded-lg px-3 py-1.5 pl-8 pr-7 text-xs font-mono bg-paper-2 border border-rule text-ink placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-accent-line transition-all"
-          />
-          <MagnifyingGlass
-            size={13}
-            className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
-          />
-          {search ? (
-            <button
-              type="button"
-              onClick={() => setSearch('')}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-muted hover:text-ink p-0.5"
-              aria-label="清空搜索"
-            >
-              <X size={12} weight="bold" />
-            </button>
-          ) : null}
-        </div>
+      <div>
+        <div className="meta text-muted">打样台 · 21 主题 + 2 独立分支</div>
+        <h2
+          className="display mt-1 text-ink"
+          style={{ fontSize: 'var(--text-xl)' }}
+        >
+          真实小样流
+        </h2>
       </div>
 
       {/* 体裁筛选标签行 */}
@@ -250,31 +196,10 @@ export function ContactSheet() {
         每张小样都是一整页独立实现。卡片的底色、字体、圆角与色相严格渲染该主题自身的设计令牌，点击即刻进入全尺寸交互装置。
       </p>
 
-      {list.length === 0 ? (
-        <div className="mt-12 rounded-lg border border-dashed border-rule p-8 text-center bg-paper-2">
-          <div className="meta text-muted font-mono">NO RESULTS</div>
-          <div className="display mt-1 text-lg text-ink font-bold">
-            未找到与 &quot;{search}&quot; 匹配的主题
-          </div>
-          <p className="mt-2 text-xs text-muted">
-            可以尝试搜索流派（如“编辑体”）、展示字体（如“Playfair”）或物态关键词（如“黑胶”、“报纸”）。
-          </p>
-          <button
-            type="button"
-            onClick={() => {
-              setSearch('')
-              setFilter('all')
-            }}
-            className="btn mt-4 px-3 py-1.5 text-xs font-mono"
-          >
-            清空搜索条件
-          </button>
-        </div>
-      ) : (
-        <div
-          className="mt-8 gap-4 sm:columns-2 xl:columns-3"
-          style={{ columnGap: '1rem' }}
-        >
+      <div
+        className="mt-8 gap-4 sm:columns-2 xl:columns-3"
+        style={{ columnGap: '1rem' }}
+      >
           {list.map((t, i) => {
             const page = themePages.find((p) => p.theme === t.id)
             const tall = BAND[i % BAND.length] === '12rem'
@@ -389,7 +314,7 @@ export function ContactSheet() {
             )
           })}
 
-          {filter === 'all' && !search
+          {filter === 'all'
             ? STATIC.map((p) => (
                 <Link
                   key={p.to}
@@ -449,10 +374,9 @@ export function ContactSheet() {
               ))
             : null}
         </div>
-      )}
-    </div>
-  )
-}
+      </div>
+    )
+  }
 
 function Chip({
   children,
