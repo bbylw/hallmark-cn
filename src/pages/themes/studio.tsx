@@ -265,7 +265,7 @@ export function StudioPage({ page }: { page: ThemePage }) {
         >
           <div
             className={`overflow-hidden ${
-              size === 'lg' ? 'aspect-[4/3]' : 'aspect-video'
+              size === 'lg' ? 'aspect-4/3' : 'aspect-video'
             }`}
           >
             <Img slug={shotOf(w.slot) ?? ''} alt={w.client} variant="fill" />

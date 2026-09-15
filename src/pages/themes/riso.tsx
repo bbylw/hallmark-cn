@@ -1171,8 +1171,8 @@ export function RisoPage({ page }: { page: ThemePage }) {
 
                 {/* 齿孔虚线分割线 (Perforated tear line) */}
                 <div className="relative hidden md:flex flex-col items-center justify-between border-l-2 border-dashed border-ink/40 py-2 -ml-px">
-                  <div className="absolute -top-3.5 -left-3.5 h-7 w-7 rounded-full bg-(--hm-paper) border-2 border-ink" />
-                  <div className="absolute -bottom-3.5 -left-3.5 h-7 w-7 rounded-full bg-(--hm-paper) border-2 border-ink" />
+                  <div className="absolute -top-3.5 -left-3.5 h-7 w-7 rounded-full bg-paper border-2 border-ink" />
+                  <div className="absolute -bottom-3.5 -left-3.5 h-7 w-7 rounded-full bg-paper border-2 border-ink" />
                 </div>
 
                 {/* 票券副联 / 存根 (4列) */}

@@ -234,7 +234,7 @@ export function AtelierPage({ page }: { page: ThemePage }) {
                 slug={hero}
                 eager
                 wide
-                ratio="aspect-[3/2]"
+                ratio="aspect-3/2"
                 alt="清晨的玻璃温室里，两位模特穿着廓形羊毛大衣站在盆栽之间"
               />
             </div>
@@ -301,7 +301,7 @@ export function AtelierPage({ page }: { page: ThemePage }) {
                   <Shot
                     slug={l.slug!}
                     wide={false}
-                    ratio="aspect-[2/3]"
+                    ratio="aspect-2/3"
                     alt={l.alt}
                   />
                   <figcaption className="mt-3 flex flex-wrap items-baseline justify-between gap-3">
@@ -586,7 +586,7 @@ export function AtelierPage({ page }: { page: ThemePage }) {
               <Shot
                 slug={detail}
                 wide
-                ratio="aspect-[3/2]"
+                ratio="aspect-3/2"
                 alt="旧木工作台上叠放的羊毛与羊绒面料，能看到手工缝线"
               />
             </div>

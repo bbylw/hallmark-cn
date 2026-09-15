@@ -309,7 +309,7 @@ export function SportPage({ page }: { page: ThemePage }) {
                   type="button"
                   onClick={() => setSelectedLane(p.lane)}
                   className={`flex w-full flex-wrap items-center gap-x-4 gap-y-2 py-4 text-left transition-all border-b border-rule ${
-                    isSelected ? 'bg-ink/[0.04] px-2' : 'hover:bg-ink/[0.01]'
+                    isSelected ? 'bg-ink/4 px-2' : 'hover:bg-ink/1'
                   }`}
                   aria-pressed={isSelected}
                   aria-label={`道次 ${p.lane}：${p.label}`}
