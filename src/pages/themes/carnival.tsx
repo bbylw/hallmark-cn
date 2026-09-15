@@ -3,12 +3,62 @@ import { Img } from '../../components/archetypes'
 import type { ThemePage } from '../../data/pages'
 import { Cta } from './cta'
 
-/** 唱片颜色按风格走，不是随便给的色相 */
-const HUE: Record<string, number> = {
-  后摇: 25,
-  民谣: 95,
-  电子: 200,
-  工业: 330,
+/**
+ * 厂牌独立流派调色盘
+ * 摒弃杂乱刺眼的荧光马卡龙色系，回归独立唱片厂牌（4AD / Factory / Blue Note）经典暖调实体质感：
+ * - 后摇：浓郁深酒红 (Oxblood Burgundy) · 呼应 Carnival 2px 酒红描边
+ * - 民谣：暖调芥末金 (Mustard Gold) · 呼应实体唱片标贴与按键黄
+ * - 工业：180g 重磅胶黑炭素 (Vinyl Carbon) · 沉稳冷峻的高密度 PVC 质感
+ * - 电子：复古模拟电路/真空管暖琥珀 (Tube Amber) · 摒弃廉价冷电光青，呈现电子管偶次谐波暖色
+ */
+const GENRE_STYLES: Record<
+  string,
+  {
+    name: string
+    badgeBg: string
+    badgeText: string
+    badgeBorder: string
+    dotColor: string
+    accentColor: string
+    labelBg: string
+  }
+> = {
+  后摇: {
+    name: '后摇',
+    badgeBg: 'oklch(40% 0.18 25 / 0.08)',
+    badgeText: 'oklch(36% 0.18 25)',
+    badgeBorder: 'oklch(40% 0.18 25 / 0.25)',
+    dotColor: 'oklch(40% 0.18 25)',
+    accentColor: 'oklch(40% 0.18 25)',
+    labelBg: 'oklch(88% 0.06 30)',
+  },
+  民谣: {
+    name: '民谣',
+    badgeBg: 'oklch(86% 0.18 95 / 0.22)',
+    badgeText: 'oklch(34% 0.14 75)',
+    badgeBorder: 'oklch(50% 0.15 85 / 0.35)',
+    dotColor: 'oklch(50% 0.16 85)',
+    accentColor: 'oklch(45% 0.15 85)',
+    labelBg: 'oklch(86% 0.18 95)',
+  },
+  工业: {
+    name: '工业',
+    badgeBg: 'oklch(18% 0.08 20 / 0.07)',
+    badgeText: 'oklch(22% 0.04 25)',
+    badgeBorder: 'oklch(18% 0.08 20 / 0.25)',
+    dotColor: 'oklch(22% 0.04 25)',
+    accentColor: 'oklch(22% 0.04 25)',
+    labelBg: 'oklch(88% 0.02 25)',
+  },
+  电子: {
+    name: '电子',
+    badgeBg: 'oklch(52% 0.16 50 / 0.10)',
+    badgeText: 'oklch(38% 0.16 48)',
+    badgeBorder: 'oklch(50% 0.16 50 / 0.30)',
+    dotColor: 'oklch(50% 0.16 50)',
+    accentColor: 'oklch(46% 0.16 48)',
+    labelBg: 'oklch(88% 0.09 52)',
+  },
 }
 
 const AXES = [
@@ -88,29 +138,40 @@ export function CarnivalPage({ page }: { page: ThemePage }) {
     }
   }
 
-  const Row = ({ r }: { r: (typeof rel)[number] }) => (
-    <li
-      className="flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3.5 transition-colors hover:bg-ink/[0.02] px-2 rounded"
-      style={{ borderBottom: '1px solid var(--hm-rule)' }}
-    >
-      <span className="w-10 shrink-0 font-mono text-xs font-bold text-accent-line">
-        {r.month} 月
-      </span>
-      <span className="display text-xl font-bold text-ink">{r.title}</span>
-      <span className="ml-auto shrink-0 text-xs text-muted font-mono">
-        <span
-          className="inline-block px-1.5 py-0.5 rounded mr-2 font-semibold"
-          style={{
-            backgroundColor: `oklch(90% 0.08 ${HUE[r.genre] ?? 0})`,
-            color: `oklch(35% 0.15 ${HUE[r.genre] ?? 0})`,
-          }}
-        >
-          {r.genre}
-        </span>
-        {r.artist}
-      </span>
-    </li>
-  )
+  const Row = ({ r }: { r: (typeof rel)[number] }) => {
+    const gStyle = GENRE_STYLES[r.genre] ?? GENRE_STYLES['后摇']
+    return (
+      <li
+        className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-3.5 transition-colors hover:bg-ink/[0.03] px-3 rounded-lg"
+        style={{ borderBottom: '1px solid var(--hm-rule)' }}
+      >
+        <div className="flex items-baseline gap-4 min-w-0">
+          <span className="w-10 shrink-0 font-mono text-xs font-bold text-accent-line">
+            {r.month} 月
+          </span>
+          <span className="display text-xl font-bold text-ink tracking-tight">{r.title}</span>
+        </div>
+        <div className="flex items-center gap-3 shrink-0 text-xs font-mono">
+          <span
+            className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-bold tracking-wider"
+            style={{
+              backgroundColor: gStyle.badgeBg,
+              color: gStyle.badgeText,
+              border: `1px solid ${gStyle.badgeBorder}`,
+            }}
+          >
+            <span
+              className="size-1.5 rounded-full shrink-0"
+              style={{ backgroundColor: gStyle.dotColor }}
+              aria-hidden
+            />
+            {r.genre}
+          </span>
+          <span className="text-muted font-medium">{r.artist}</span>
+        </div>
+      </li>
+    )
+  }
 
   return (
     <main id="main" className="px-[var(--page-gutter)] pb-28 pt-8 sm:pt-14">
@@ -242,31 +303,36 @@ export function CarnivalPage({ page }: { page: ThemePage }) {
               {/* 转盘外底座 */}
               <div className="absolute inset-0 rounded-full border-4 border-rule-2 bg-paper-3 shadow-inner" />
               
-              {/* 唱片盘身 */}
+              {/* 唱片盘身：真实 180g 重磅原生黑胶质感，具有精密同心声槽 */}
               <div
-                className={`relative size-full rounded-full transition-transform duration-700 shadow-xl ${
+                className={`relative size-full rounded-full transition-transform duration-700 shadow-2xl ${
                   isPlaying ? 'animate-spin' : ''
                 }`}
                 style={{
                   animationDuration: rpm === '33' ? '3.5s' : '2.4s',
-                  background: `repeating-radial-gradient(circle at 50% 50%, oklch(14% 0.03 ${HUE[currentPlaying?.genre] ?? 0}) 0 2px, oklch(24% 0.06 ${HUE[currentPlaying?.genre] ?? 0}) 2px 4.5px)`,
+                  background: `
+                    radial-gradient(circle at 50% 50%, transparent 0 25.5%, oklch(14% 0.015 25) 26%),
+                    repeating-radial-gradient(circle at 50% 50%, oklch(13% 0.012 25) 0 1.5px, oklch(22% 0.018 25) 1.5px 3.5px)
+                  `,
                 }}
               >
-                {/* 唱片中心标贴纸 */}
+                {/* 唱片中心纸质标贴纸：流派专属暖调标贴与印制字样 */}
                 <div
                   className="absolute inset-0 grid place-items-center"
                   style={{
                     borderRadius: '50%',
-                    background: `radial-gradient(circle at 50% 50%, oklch(86% 0.18 ${HUE[currentPlaying?.genre] ?? 0}) 0 26%, transparent 26.5%)`,
+                    background: `radial-gradient(circle at 50% 50%, ${
+                      GENRE_STYLES[currentPlaying?.genre]?.labelBg ?? 'var(--hm-accent)'
+                    } 0 26%, transparent 26.5%)`,
                   }}
                 >
-                  <div className="text-center font-mono text-[9px] font-bold text-black/80 leading-tight">
-                    <div>SIDE {side}</div>
-                    <div className="text-[8px] opacity-75">{currentPlaying?.month} 月</div>
+                  <div className="text-center font-mono text-[9px] font-bold text-ink leading-tight">
+                    <div className="tracking-wider">SIDE {side}</div>
+                    <div className="text-[8px] opacity-80 mt-0.5">{currentPlaying?.month} 月 · {currentPlaying?.genre}</div>
                   </div>
                 </div>
                 {/* 轴心金属孔 */}
-                <div className="absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-paper border border-ink shadow" />
+                <div className="absolute left-1/2 top-1/2 size-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-paper border-2 border-ink shadow" />
               </div>
 
               {/* 模拟拾音唱臂 (Tonearm) */}
@@ -305,11 +371,11 @@ export function CarnivalPage({ page }: { page: ThemePage }) {
                 {[35, 70, 50, 95, 65, 30, 85, 45, 90, 75, 40, 80, 55, 65, 40, 60, 85, 70, 50].map((h, i) => (
                   <span
                     key={i}
-                    className="flex-1 rounded-sm bg-accent-line transition-all duration-200"
+                    className="flex-1 rounded-sm transition-all duration-200"
                     style={{
                       height: isPlaying ? `${Math.max(15, (h * ((i % 3) + 1)) % 100)}%` : '15%',
-                      opacity: isPlaying ? 0.9 : 0.25,
-                      backgroundColor: `oklch(50% 0.16 ${HUE[currentPlaying?.genre] ?? 0})`,
+                      opacity: isPlaying ? 0.95 : 0.3,
+                      backgroundColor: GENRE_STYLES[currentPlaying?.genre]?.accentColor ?? 'var(--hm-accent-line)',
                     }}
                   />
                 ))}
@@ -360,7 +426,7 @@ export function CarnivalPage({ page }: { page: ThemePage }) {
                       className="absolute inset-0"
                       style={{
                         borderRadius: '50%',
-                        background: `repeating-radial-gradient(circle at 50% 50%, oklch(16% 0.03 ${HUE[r.genre] ?? 0}) 0 1.5px, oklch(24% 0.05 ${HUE[r.genre] ?? 0}) 1.5px 3px)`,
+                        background: `repeating-radial-gradient(circle at 50% 50%, oklch(14% 0.015 25) 0 1.2px, oklch(22% 0.018 25) 1.2px 2.8px)`,
                         animation:
                           spin === i || (isCurrent && isPlaying)
                             ? 'spin-disc 2.6s linear infinite'
@@ -372,15 +438,18 @@ export function CarnivalPage({ page }: { page: ThemePage }) {
                       className="absolute inset-0 grid place-items-center"
                       style={{
                         borderRadius: '50%',
-                        background: `radial-gradient(circle at 50% 50%, oklch(88% 0.17 ${HUE[r.genre] ?? 0}) 0 16%, transparent 16.6%)`,
+                        background: `radial-gradient(circle at 50% 50%, ${
+                          GENRE_STYLES[r.genre]?.labelBg ?? 'var(--hm-accent)'
+                        } 0 18%, transparent 18.5%)`,
                       }}
                     />
                     <span
                       aria-hidden
-                      className="absolute left-1/2 top-1/2 size-2 -translate-x-1/2 -translate-y-1/2"
+                      className="absolute left-1/2 top-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2"
                       style={{
                         borderRadius: '50%',
                         backgroundColor: 'var(--hm-paper)',
+                        border: '1px solid var(--hm-ink)',
                       }}
                     />
                   </span>
@@ -455,34 +524,44 @@ export function CarnivalPage({ page }: { page: ThemePage }) {
 
             {axis === 'genre' && (
               <div className="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
-                {genres.map((g) => (
-                  <div key={g.key} className="rounded-lg border border-rule bg-paper p-4 shadow-sm">
-                    <div
-                      className="flex items-baseline justify-between gap-3 pb-2.5"
-                      style={{ borderBottom: '2px solid var(--hm-rule)' }}
-                    >
-                      <span
-                        className="display font-bold text-xl"
-                        style={{ color: `oklch(44% 0.16 ${HUE[g.key] ?? 0})` }}
+                {genres.map((g) => {
+                  const gStyle = GENRE_STYLES[g.key] ?? GENRE_STYLES['后摇']
+                  return (
+                    <div key={g.key} className="rounded-lg border border-rule bg-paper p-4 shadow-sm">
+                      <div
+                        className="flex items-baseline justify-between gap-3 pb-2.5"
+                        style={{ borderBottom: '2px solid var(--hm-rule)' }}
                       >
-                        {g.key}
-                      </span>
-                      <span className="meta font-mono text-muted text-xs">
-                        {g.list.length} 张发行
-                      </span>
-                    </div>
-                    <ul className="mt-3 space-y-3">
-                      {g.list.map((r) => (
-                        <li key={r.title} className="text-sm text-ink-2">
-                          <span className="font-bold text-ink block">{r.title}</span>
-                          <span className="mt-0.5 block text-xs text-muted font-mono">
-                            {r.artist} · {r.month} 月
+                        <div className="flex items-center gap-2">
+                          <span
+                            className="size-2 rounded-full shrink-0"
+                            style={{ backgroundColor: gStyle.dotColor }}
+                            aria-hidden
+                          />
+                          <span
+                            className="display font-bold text-xl"
+                            style={{ color: gStyle.accentColor }}
+                          >
+                            {g.key}
                           </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+                        </div>
+                        <span className="meta font-mono text-muted text-xs">
+                          {g.list.length} 张发行
+                        </span>
+                      </div>
+                      <ul className="mt-3 space-y-3">
+                        {g.list.map((r) => (
+                          <li key={r.title} className="text-sm text-ink-2">
+                            <span className="font-bold text-ink block">{r.title}</span>
+                            <span className="mt-0.5 block text-xs text-muted font-mono">
+                              {r.artist} · {r.month} 月
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )
+                })}
               </div>
             )}
 
