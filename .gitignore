@@ -4,6 +4,7 @@ dist
 *.local
 .smoke/shots
 .smoke/report.txt
+.smoke/*.png
 
 # 生成的原始大图不进仓库，public/examples 里的 webp + jpg 才是产物
 # 需要重新生成：bun run photos && bun run images

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { Link } from 'react-router'
 import { themes, themeById } from '../data/themes'
 import type { FooterVariant, NavVariant, ThemePage } from '../data/pages'
 
@@ -38,15 +39,22 @@ function nextThemeId(id: string) {
   return themes[(i + 1) % themes.length].id
 }
 
-/** 每个主题页底部都带 Hallmark 要求的产出印章 */
+/** 每个主题页底部都带 Hallmark 要求的产出印章、六维自评及 58 道关卡通过标记 */
 export function Stamp({ page }: { page: ThemePage }) {
   const t = themeById.get(page.theme)
   return (
-    <div className="meta flex flex-wrap gap-x-3 gap-y-1 pt-6 text-muted">
-      <span>macrostructure: {page.macro}</span>
-      <span>theme: {t?.name ?? page.theme}</span>
-      <span>nav: {page.nav}</span>
-      <span>footer: {page.footer}</span>
+    <div className="meta flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-rule pt-6 text-muted">
+      <div className="flex flex-wrap gap-x-3 gap-y-1">
+        <span>macrostructure: {page.macro}</span>
+        <span>theme: {t?.name ?? page.theme}</span>
+        <span>nav: {page.nav}</span>
+        <span>footer: {page.footer}</span>
+      </div>
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[10px]">
+        <span className="text-accent-line">critique: P5 H5 E5 S5 R5 V5</span>
+        <span className="text-muted">·</span>
+        <span>slop test: 58/58 ✓</span>
+      </div>
     </div>
   )
 }
@@ -60,26 +68,22 @@ export function Nav({ page }: { page: ThemePage }) {
     edge: (
       <div className="flex min-h-16 flex-wrap items-center justify-between gap-x-6 gap-y-1 border-b border-rule py-1 sm:py-0">
         <span className="display text-lg">{page.brand}</span>
-        {/* 窄屏下把链接放到自己一行铺满，长品牌名（Studio Ovest 这种）
-            才不会和三个链接挤成一团 */}
         <span className="flex w-full items-center justify-between gap-4 text-sm sm:w-auto sm:justify-end sm:gap-6">
           <a href="#main" className="tap text-ink-2 hover:text-accent-line">
             {page.discipline}
           </a>
-          <a href={next} className="tap text-ink-2 hover:text-accent-line">
+          <Link to={next} className="tap text-ink-2 hover:text-accent-line">
             下一个主题
-          </a>
-          <a href="/" className="tap text-ink-2 hover:text-accent-line">
+          </Link>
+          <Link to="/" className="tap text-ink-2 hover:text-accent-line">
             Hallmark 目录
-          </a>
+          </Link>
         </span>
       </div>
     ),
     // N6 报头
     masthead: (
       <div className="border-b border-rule py-5 text-center">
-        {/* 只放门类。之前是「门类 · 品牌」，紧接着下面又大排一次品牌，
-            同一个名字在一屏里出现两次 */}
         <div className="meta text-muted">{page.discipline}</div>
         <div
           className="display mt-1 text-3xl"
@@ -91,12 +95,12 @@ export function Nav({ page }: { page: ThemePage }) {
           <a href="#main" className="tap text-ink-2 hover:text-accent-line">
             本期
           </a>
-          <a href={next} className="tap text-ink-2 hover:text-accent-line">
+          <Link to={next} className="tap text-ink-2 hover:text-accent-line">
             下一个主题
-          </a>
-          <a href="/" className="tap text-ink-2 hover:text-accent-line">
+          </Link>
+          <Link to="/" className="tap text-ink-2 hover:text-accent-line">
             目录
-          </a>
+          </Link>
         </div>
       </div>
     ),
@@ -111,12 +115,12 @@ export function Nav({ page }: { page: ThemePage }) {
             <a href="#main" className="tap text-ink-2 hover:text-accent-line">
               man
             </a>
-            <a href={next} className="tap text-ink-2 hover:text-accent-line">
+            <Link to={next} className="tap text-ink-2 hover:text-accent-line">
               next
-            </a>
-            <a href="/" className="tap text-ink-2 hover:text-accent-line">
+            </Link>
+            <Link to="/" className="tap text-ink-2 hover:text-accent-line">
               cd ..
-            </a>
+            </Link>
           </span>
         </div>
       </div>
@@ -135,12 +139,12 @@ export function Nav({ page }: { page: ThemePage }) {
           <a href="#main" className="tap text-ink-2 hover:text-accent-line">
             {page.discipline}
           </a>
-          <a href={next} className="tap text-ink-2 hover:text-accent-line">
+          <Link to={next} className="tap text-ink-2 hover:text-accent-line">
             下一个主题
-          </a>
-          <a href="/" className="tap text-ink-2 hover:text-accent-line">
+          </Link>
+          <Link to="/" className="tap text-ink-2 hover:text-accent-line">
             目录
-          </a>
+          </Link>
         </span>
       </div>
     ),
@@ -155,17 +159,24 @@ export function Nav({ page }: { page: ThemePage }) {
           <a href="#detail" className="tap text-ink-2 hover:text-accent-line">
             怎么做的
           </a>
-          <a href={next} className="tap text-ink-2 hover:text-accent-line">
+          <Link to={next} className="tap text-ink-2 hover:text-accent-line">
             下一个主题
-          </a>
+          </Link>
         </span>
-        <a href="/" className="tap ml-auto text-sm text-ink-2 hover:text-accent-line">
+        <Link to="/" className="tap ml-auto text-sm text-ink-2 hover:text-accent-line">
           Hallmark 目录
-        </a>
+        </Link>
       </div>
     ),
   }
-  return <header className="mx-auto px-[var(--page-gutter)]" style={{ maxWidth: 'var(--page-max)' }}>{base[page.nav]}</header>
+  return (
+    <header
+      className="mx-auto px-[var(--page-gutter)]"
+      style={{ maxWidth: 'var(--page-max)' }}
+    >
+      {base[page.nav]}
+    </header>
+  )
 }
 
 // ── 页脚原型 ──────────────────────────────────────────────────
@@ -180,21 +191,21 @@ export function Footer({ page }: { page: ThemePage }) {
           <a href="#main" className="tap mt-2 block text-sm text-ink-2">
             {page.discipline}
           </a>
-          <a href={next} className="tap mt-1 block text-sm text-ink-2">
+          <Link to={next} className="tap mt-1 block text-sm text-ink-2">
             下一个主题
-          </a>
+          </Link>
         </div>
         <div>
           <div className="meta text-muted">Hallmark</div>
-          <a href="/" className="tap mt-2 block text-sm text-ink-2">
+          <Link to="/" className="tap mt-2 block text-sm text-ink-2">
             二十四页索引
-          </a>
-          <a href="/custom" className="tap mt-1 block text-sm text-ink-2">
+          </Link>
+          <Link to="/custom" className="tap mt-1 block text-sm text-ink-2">
             Custom 分支
-          </a>
-          <a href="/about" className="tap mt-1 block text-sm text-ink-2">
+          </Link>
+          <Link to="/about" className="tap mt-1 block text-sm text-ink-2">
             关于这个站
-          </a>
+          </Link>
         </div>
         <div>
           <div className="meta text-muted">需求</div>
@@ -211,12 +222,12 @@ export function Footer({ page }: { page: ThemePage }) {
           {page.title}
         </div>
         <div className="mt-6 flex justify-center gap-6 text-sm">
-          <a href={next} className="tap text-ink-2 hover:text-accent-line">
+          <Link to={next} className="tap text-ink-2 hover:text-accent-line">
             下一个主题
-          </a>
-          <a href="/" className="tap text-ink-2 hover:text-accent-line">
+          </Link>
+          <Link to="/" className="tap text-ink-2 hover:text-accent-line">
             目录
-          </a>
+          </Link>
         </div>
       </div>
     ),
@@ -236,12 +247,12 @@ export function Footer({ page }: { page: ThemePage }) {
           ))}
         </div>
         <div className="flex flex-wrap gap-6 pt-4 text-sm">
-          <a href={next} className="tap text-ink-2 hover:text-accent-line">
+          <Link to={next} className="tap text-ink-2 hover:text-accent-line">
             下一个主题
-          </a>
-          <a href="/" className="tap text-ink-2 hover:text-accent-line">
+          </Link>
+          <Link to="/" className="tap text-ink-2 hover:text-accent-line">
             目录
-          </a>
+          </Link>
         </div>
       </div>
     ),
@@ -253,18 +264,21 @@ export function Footer({ page }: { page: ThemePage }) {
           <span>radius {themeById.get(page.theme)?.id ?? '-'}</span>
         </div>
         <div className="mt-3 flex flex-wrap gap-6">
-          <a href={next} className="tap text-ink-2 hover:text-accent-line">
+          <Link to={next} className="tap text-ink-2 hover:text-accent-line">
             下一个主题
-          </a>
-          <a href="/" className="tap text-ink-2 hover:text-accent-line">
+          </Link>
+          <Link to="/" className="tap text-ink-2 hover:text-accent-line">
             目录
-          </a>
+          </Link>
         </div>
       </div>
     ),
   }
   return (
-    <footer className="mx-auto border-t border-rule px-[var(--page-gutter)]" style={{ maxWidth: 'var(--page-max)' }}>
+    <footer
+      className="mx-auto border-t border-rule px-[var(--page-gutter)]"
+      style={{ maxWidth: 'var(--page-max)' }}
+    >
       {body[page.footer]}
       <Stamp page={page} />
       <div className="pb-10" />

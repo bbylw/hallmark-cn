@@ -596,6 +596,14 @@
   --hm-rule-card: 1px;
   --hm-shadow-card: none;
   --hm-grain: 0.06;
+
+  --ink-cyan: oklch(58% 0.17 220);
+  --ink-pink: oklch(65% 0.24 25);
+  --ink-yellow: oklch(88% 0.19 90);
+  --ink-mint: oklch(72% 0.16 155);
+  --ink-red: oklch(55% 0.22 35);
+  --ink-gold: oklch(72% 0.14 75);
+  --ink-black: oklch(22% 0.02 240);
 }
 
 /* ────────────────────────────────────────────────────────────

@@ -10,7 +10,7 @@
   <img src="https://raw.githubusercontent.com/Nutlope/hallmark/main/site/OG-hallmark.png" alt="Hallmark，一个拒绝看起来像 AI 产物的设计 skill" />
 </p>
 
-Hallmark 会为需求（brief）挑选一个宏观结构（macrostructure），套上二十一种主题中的一种，运行五十七道 slop-test 检验关卡，再加一次发布前的自我批判，并拒绝每个 LLM 都被训练出的「分布内」默认套路。同一个 Hallmark 为两个不同需求生成的两页，看起来像两个完全不同的站点，而不是同一套模板换了个配色。
+Hallmark 会为需求（brief）挑选一个宏观结构（macrostructure），套上二十一种主题中的一种，运行五十八道 slop-test 检验关卡，再加一次发布前的自我批判，并拒绝每个 LLM 都被训练出的「分布内」默认套路。同一个 Hallmark 为两个不同需求生成的两页，看起来像两个完全不同的站点，而不是同一套模板换了个配色。
 
 ---
 
@@ -74,7 +74,7 @@ Hallmark 会为需求（brief）挑选一个宏观结构（macrostructure），�
 
 ## Custom（自定义） <sup>NEW</sup>
 
-当某个需求带有现有目录主题都无法匹配的创意意图时，Hallmark 会切换到 **Custom**，从零设计页面：量身定制的调色板、字体与版式。同样经过 57 道 slop-test 关卡，底下没有任何模板。
+当某个需求带有现有目录主题都无法匹配的创意意图时，Hallmark 会切换到 **Custom**，从零设计页面：量身定制的调色板、字体与版式。同样经过 58 道 slop-test 关卡，底下没有任何模板。
 
 <table>
   <tr>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { ThemePage } from '../../data/pages'
+import { CopyButton } from '../../components/ui/copy-button'
 import { Cta } from './cta'
 
 /**
@@ -52,14 +53,14 @@ const FILES = [
 ]
 
 const FLAGS = [
-  ['-t, --type <glob>', '只搜这几类文件'],
-  ['-i, --ignore-case', '忽略大小写'],
-  ['-w, --word', '只匹配完整词'],
-  ['-r, --replace', '替换前先给你看 diff'],
-  ['    --no-ignore', '连 gitignore 也一起搜'],
+  ['-t, --type <glob>', '只搜这几类文件扩展名'],
+  ['-i, --ignore-case', '忽略大小写敏感匹配'],
+  ['-w, --word', '只匹配完整单词词界'],
+  ['-r, --replace', '替换前先交互式预览 Unified Diff'],
+  ['    --no-ignore', '连 .gitignore 排除的文件也一同检索'],
 ]
 
-/** 命中换前景色加粗，不铺底色：一屏里命中多时反白块会连成斑马线 */
+/** 命中换前景色加粗，不铺底色 */
 function Mark({ text, q }: { text: string; q: string }) {
   if (!q) return <>{text}</>
   const i = text.toLowerCase().indexOf(q.toLowerCase())
@@ -78,7 +79,7 @@ function Mark({ text, q }: { text: string; q: string }) {
 /**
  * 命令行工具。整页是一个终端会话：
  * 每一段都由一行命令开头，后面跟着这条命令的输出。
- * 中间那个提示符是真能敲的：↑↓ 选行，回车展开上下文，esc 清空。
+ * 中间那个提示符是真能敲的：↑↓ 选行，回车或点击展开上下文，esc 清空。
  */
 export function TerminalPage({ page }: { page: ThemePage }) {
   const [q, setQ] = useState('theme')
@@ -99,6 +100,10 @@ export function TerminalPage({ page }: { page: ThemePage }) {
   const pick = Math.min(sel, Math.max(hits.length - 1, 0))
   const cur = hits[pick]
 
+  const toggleRow = (k: string) => {
+    setOpen((o) => (o.includes(k) ? o.filter((x) => x !== k) : [...o, k]))
+  }
+
   function onKey(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === 'ArrowDown') {
       e.preventDefault()
@@ -109,8 +114,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
     } else if (e.key === 'Enter') {
       if (!cur) return
       e.preventDefault()
-      const k = keyOf(cur)
-      setOpen((o) => (o.includes(k) ? o.filter((x) => x !== k) : [...o, k]))
+      toggleRow(keyOf(cur))
     } else if (e.key === 'Escape') {
       setQ('')
     }
@@ -120,19 +124,20 @@ export function TerminalPage({ page }: { page: ThemePage }) {
   const rest = (page.items ?? []).slice(1)
 
   return (
-    <main id="main" className="px-[var(--page-gutter)] pb-24 pt-10">
+    <main id="main" className="px-[var(--page-gutter)] pb-24 pt-10 sm:pt-14">
       <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}>
+        
         {/* $ rgr --about */}
         <div className="font-mono text-sm text-accent-line">
           <span className="text-muted">$ </span>rgr --about
         </div>
         <div className="mt-4">
           <span className="font-mono text-xs text-muted">
-            {page.discipline} · {page.brand}
+            {page.discipline} · {page.brand} · v2.4.0-release
           </span>
           <h1
-            className="display mt-3 text-ink"
-            style={{ fontSize: 'clamp(1.9rem, 4.6vw, 3.25rem)', lineHeight: 1.1 }}
+            className="display mt-3 text-ink font-bold"
+            style={{ fontSize: 'clamp(1.9rem, 4.6vw, 3.25rem)', lineHeight: 1.12 }}
           >
             {page.title}
           </h1>
@@ -144,8 +149,31 @@ export function TerminalPage({ page }: { page: ThemePage }) {
           </p>
         </div>
 
-        {/* 提示符：这一行就是命令本身，真能敲 */}
+        {/* 提示符：终端命令真机模拟器 */}
         <div className="mt-12">
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-2">
+            <span className="font-mono text-xs text-muted">
+              INTERACTIVE CLI SHELL · 实时正则全文检索
+            </span>
+            <div className="flex items-center gap-1.5 font-mono text-xs">
+              <span className="text-muted text-[11px]">快捷预设:</span>
+              {['theme', 'tokens', 'pages', 'dataset'].map((preset) => (
+                <button
+                  key={preset}
+                  type="button"
+                  onClick={() => setQ(preset)}
+                  className={`rounded border px-2 py-0.5 text-[11px] ${
+                    q === preset
+                      ? 'border-ink bg-ink text-paper'
+                      : 'border-rule text-muted hover:border-ink hover:text-ink'
+                  }`}
+                >
+                  {preset}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <label className="block">
             <span className="sr-only">搜索关键字</span>
             <span
@@ -154,13 +182,12 @@ export function TerminalPage({ page }: { page: ThemePage }) {
                 border: '1px solid var(--hm-rule-2)',
                 backgroundColor: 'var(--hm-paper-2)',
                 minHeight: '2.75rem',
+                borderRadius: 'var(--hm-radius-input)',
               }}
             >
-              <span aria-hidden className="shrink-0 text-accent-line">
+              <span aria-hidden className="shrink-0 text-accent-line font-bold">
                 {page.brand} &quot;
               </span>
-              {/* 输入框跟着内容伸缩，和收尾的引号同一个单元，
-                  引号才会紧贴关键字，而不是被推到容器最右边 */}
               <span className="flex min-w-0 items-baseline">
                 <input
                   value={q}
@@ -173,27 +200,30 @@ export function TerminalPage({ page }: { page: ThemePage }) {
                     maxWidth: '100%',
                     padding: 0,
                   }}
-                  placeholder="试试 theme / pages / tokens"
-                  aria-label="搜索关键字。上下键选行，回车展开上下文，esc 清空"
+                  placeholder="输入搜索词..."
+                  aria-label="搜索关键字。上下键选行，回车或点击展开上下文，esc 清空"
                 />
-                <span aria-hidden className="shrink-0 text-accent-line">
+                <span aria-hidden className="shrink-0 text-accent-line font-bold">
                   &quot;
                 </span>
               </span>
               <span
                 aria-hidden
-                className="ml-auto shrink-0 pl-3 text-xs text-muted"
+                className="ml-auto shrink-0 pl-3 text-xs text-muted font-mono"
               >
-                ↑↓ ⏎ esc
+                ↑↓ 换行 · ⏎ 展开 · esc 清空
               </span>
             </span>
           </label>
 
-          {/* 输出。标记单独占一列，换行的续行才不会顶到最左边 */}
-          <div className="mt-4" style={{ border: '1px solid var(--hm-rule)' }}>
+          {/* 输出列表 */}
+          <div
+            className="mt-4 overflow-hidden rounded-lg"
+            style={{ border: '1px solid var(--hm-rule)' }}
+          >
             {hits.length === 0 ? (
-              <div className="px-3 py-3 font-mono text-xs text-muted">
-                没有命中。试试 theme、pages、tokens。
+              <div className="px-3 py-4 font-mono text-xs text-muted">
+                没有命中结果。可尝试点击上方快捷预设标签。
               </div>
             ) : (
               hits.map((f, i) => {
@@ -202,11 +232,15 @@ export function TerminalPage({ page }: { page: ThemePage }) {
                 return (
                   <div
                     key={keyOf(f)}
-                    className="px-3 py-2 font-mono text-xs"
+                    onClick={() => toggleRow(keyOf(f))}
+                    className="cursor-pointer px-3 py-2.5 font-mono text-xs transition-colors"
                     style={{
                       borderTop: i === 0 ? undefined : '1px solid var(--hm-rule)',
                       backgroundColor: on ? 'var(--hm-paper-3)' : undefined,
                     }}
+                    role="button"
+                    tabIndex={0}
+                    aria-expanded={expanded}
                   >
                     <div className="grid grid-cols-[0.75rem_1fr] gap-x-1">
                       <span
@@ -215,8 +249,8 @@ export function TerminalPage({ page }: { page: ThemePage }) {
                       >
                         {on ? '▸' : ''}
                       </span>
-                      <span className="min-w-0">
-                        <span className="text-ink">
+                      <span className="min-w-0 break-all">
+                        <span className="text-ink font-semibold">
                           <Mark text={f.path} q={q} />
                         </span>
                         <span className="text-muted">:{f.line}:</span>{' '}
@@ -228,16 +262,16 @@ export function TerminalPage({ page }: { page: ThemePage }) {
 
                     {expanded && (
                       <div
-                        className="mt-1 ml-[1rem] pl-3 text-muted"
-                        style={{ borderLeft: '1px solid var(--hm-rule-2)' }}
+                        className="mt-2 ml-[1rem] pl-3 text-muted text-[11px] space-y-0.5"
+                        style={{ borderLeft: '2px solid var(--hm-accent-line)' }}
                       >
-                        <div>
+                        <div className="opacity-70">
                           {f.path}-{f.line - 1}-{f.before}
                         </div>
-                        <div className="text-ink-2">
+                        <div className="text-ink font-bold bg-accent-line/10 px-1 rounded">
                           {f.path}:{f.line}:{f.text}
                         </div>
-                        <div>
+                        <div className="opacity-70">
                           {f.path}-{f.line + 1}-{f.after}
                         </div>
                       </div>
@@ -255,20 +289,17 @@ export function TerminalPage({ page }: { page: ThemePage }) {
               }}
             >
               <span aria-live="polite">
-                {hits.length} 处命中 · 共 {FILES.length} 个文件
+                {hits.length} 处匹配 · 共 {FILES.length} 个代码文件
               </span>
-              <span>↑↓ 换一条 · ⏎ 展开上下文 · esc 清空</span>
+              <span>点击单行或按回车切换三行上下文</span>
             </div>
           </div>
         </div>
 
         {/* $ rgr --help */}
         <div className="mt-16">
-          <h2 className="font-mono text-sm text-accent-line">
-            <span className="sr-only">常用参数</span>
-            <span aria-hidden>
-              <span className="text-muted">$ </span>rgr --help
-            </span>
+          <h2 className="font-mono text-sm text-accent-line font-bold">
+            <span className="text-muted">$ </span>rgr --help
           </h2>
 
           <div className="mt-4">
@@ -278,17 +309,17 @@ export function TerminalPage({ page }: { page: ThemePage }) {
                 className="grid gap-x-6 gap-y-1 py-2 font-mono text-xs sm:grid-cols-[13rem_1fr]"
                 style={{ borderTop: '1px solid var(--hm-rule)' }}
               >
-                <span className="text-ink">{k}</span>
+                <span className="text-ink font-semibold">{k}</span>
                 <span className="text-muted">{d}</span>
               </div>
             ))}
           </div>
 
           <div className="mt-10">
-            <span className="font-mono text-xs text-muted">默认行为</span>
+            <span className="font-mono text-xs font-bold text-muted">默认行为与设计原则</span>
             <p
               className="mt-3 text-sm text-ink-2"
-              style={{ maxWidth: '44ch', lineHeight: 'var(--lh-relaxed)' }}
+              style={{ maxWidth: '48ch', lineHeight: 'var(--lh-relaxed)' }}
             >
               {page.code?.out}
             </p>
@@ -296,11 +327,11 @@ export function TerminalPage({ page }: { page: ThemePage }) {
               {rest.map((it) => (
                 <div
                   key={it.v}
-                  className="grid gap-x-6 gap-y-1 py-2 font-mono text-xs sm:grid-cols-[5rem_11rem_1fr]"
+                  className="grid gap-x-6 gap-y-1 py-2 font-mono text-xs sm:grid-cols-[6rem_12rem_1fr]"
                   style={{ borderTop: '1px solid var(--hm-rule)' }}
                 >
                   <span className="text-muted">{it.k}</span>
-                  <span className="text-ink">{it.v}</span>
+                  <span className="text-ink font-medium">{it.v}</span>
                   <span className="text-muted">{it.d}</span>
                 </div>
               ))}
@@ -309,13 +340,20 @@ export function TerminalPage({ page }: { page: ThemePage }) {
         </div>
 
         {/* $ brew install rgr */}
-        <div className="mt-16">
-          <div className="font-mono text-sm text-accent-line">
-            <span className="text-muted">$ </span>
-            {install?.v ?? 'brew install rgr'}
+        <div className="mt-16 rounded-lg border border-rule bg-paper/60 p-5">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="font-mono text-sm text-accent-line font-bold">
+              <span className="text-muted">$ </span>
+              {install?.v ?? 'brew install rgr'}
+            </div>
+            <CopyButton
+              value={install?.v ?? 'brew install rgr'}
+              ariaLabel="复制安装命令"
+              className="btn-ghost px-3 py-1 text-xs font-mono"
+            />
           </div>
-          <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-4">
-            <Cta label={page.cta} done="装好了" />
+          <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-4">
+            <Cta label={page.cta} done="二进制已放入 /usr/local/bin" />
             <span className="font-mono text-xs text-muted">{install?.d}</span>
           </div>
         </div>

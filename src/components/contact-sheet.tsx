@@ -9,7 +9,7 @@ const STATIC = [
 ]
 
 /** 预览区高度分三档，让打样台高低错落，而不是齐平的一排 */
-const BAND = ['12rem', '8rem', '5.5rem', '8rem', '5.5rem', '12rem']
+const BAND = ['12rem', '8.5rem', '6rem', '8.5rem', '6rem', '12rem']
 
 const SEPS = [
   'var(--hm-paper-3)',
@@ -27,13 +27,16 @@ export function ContactSheet() {
   return (
     <div id="main">
       <div className="flex flex-wrap items-end justify-between gap-4">
-        <h2
-          className="display text-ink"
-          style={{ fontSize: 'var(--text-xl)' }}
-        >
-          打样台
-        </h2>
-        <div className="flex flex-wrap gap-2">
+        <div>
+          <div className="meta text-muted">打样台 · 21 主题 + 2 独立分支</div>
+          <h2
+            className="display mt-1 text-ink"
+            style={{ fontSize: 'var(--text-xl)' }}
+          >
+            真实小样流
+          </h2>
+        </div>
+        <div className="flex flex-wrap gap-1.5" role="tablist" aria-label="主题体裁筛选">
           <Chip active={filter === 'all'} onClick={() => setFilter('all')}>
             全部 {themes.length}
           </Chip>
@@ -44,17 +47,16 @@ export function ContactSheet() {
               onClick={() => setFilter(g.id)}
               title={g.blurb}
             >
-              {/* 角标现场数出来，不读手写的 count——手写数迟早和过滤结果漂移 */}
               {g.zh} {themes.filter((t) => t.genre === g.id).length}
             </Chip>
           ))}
         </div>
       </div>
       <p
-        className="mt-3 max-w-[52ch] text-sm text-ink-2"
+        className="mt-3 max-w-[54ch] text-sm text-ink-2"
         style={{ lineHeight: 'var(--lh-relaxed)' }}
       >
-        每张小样都是一整页。卡片的底色、字体、圆角就是那套主题自己的值，点开是同一套的全尺寸版本。
+        每张小样都是一整页独立实现。卡片的底色、字体、圆角与色相严格渲染该主题自身的设计令牌，点击即刻进入全尺寸交互装置。
       </p>
 
       <div
@@ -64,12 +66,13 @@ export function ContactSheet() {
         {list.map((t, i) => {
           const page = themePages.find((p) => p.theme === t.id)
           const tall = BAND[i % BAND.length] === '12rem'
+          const genreObj = genres.find((g) => g.id === t.genre)
           return (
             <Link
               key={t.id}
               to={`/themes/${t.id}`}
               data-theme={t.id}
-              className="group mb-4 block break-inside-avoid overflow-hidden transition-transform duration-300 hover:-translate-y-1"
+              className="group mb-4 block break-inside-avoid overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hm-focus)]"
               style={{
                 border: 'var(--hm-rule-card) solid var(--hm-rule)',
                 borderRadius: 'var(--hm-radius-card)',
@@ -83,6 +86,26 @@ export function ContactSheet() {
                   backgroundColor: 'var(--hm-paper-2)',
                 }}
               >
+                {/* 顶部元数据标签：体裁 + 纸色 */}
+                <span className="absolute left-3 top-3 flex items-center gap-1.5 z-10">
+                  <span
+                    className="meta rounded px-1.5 py-0.5 text-[9px] font-mono"
+                    style={{
+                      backgroundColor: 'var(--hm-paper)',
+                      color: 'var(--hm-ink-2)',
+                      border: '1px solid var(--hm-rule)',
+                    }}
+                  >
+                    {genreObj?.zh}
+                  </span>
+                  <span
+                    className="meta rounded px-1 py-0.5 text-[9px] font-mono text-muted"
+                    style={{ backgroundColor: 'var(--hm-paper-3)' }}
+                  >
+                    {t.band}纸
+                  </span>
+                </span>
+
                 <span
                   className="display absolute inset-x-4 bottom-4 text-ink"
                   style={{
@@ -95,18 +118,22 @@ export function ContactSheet() {
                 >
                   {t.name}
                 </span>
+
                 {tall ? (
                   <span
                     aria-hidden
                     className="absolute right-4 top-4"
                     style={{
-                      width: '0.7rem',
-                      height: '0.7rem',
+                      width: '0.75rem',
+                      height: '0.75rem',
                       backgroundColor: 'var(--hm-accent)',
                       borderRadius: 'var(--hm-radius-input)',
+                      boxShadow: '0 0 0 2px var(--hm-paper)',
                     }}
                   />
                 ) : null}
+
+                {/* 底部四色分割发丝条 */}
                 <span aria-hidden className="absolute inset-x-0 bottom-0 flex">
                   {SEPS.map((c, k) => (
                     <span
@@ -132,12 +159,12 @@ export function ContactSheet() {
                   >
                     {page?.brand ?? t.zh}
                   </span>
-                  <span className="meta shrink-0 text-muted">
+                  <span className="meta shrink-0 text-accent-line">
                     {page?.macroZh ?? ''}
                   </span>
                 </span>
                 <span className="meta mt-1.5 block text-muted">
-                  {t.zh} · {t.displayFace}
+                  {t.zh} · {t.displayFace} ({t.displayStyle})
                 </span>
               </span>
             </Link>
@@ -149,7 +176,7 @@ export function ContactSheet() {
               <Link
                 key={p.to}
                 to={p.to}
-                className="group mb-4 block break-inside-avoid overflow-hidden transition-transform duration-300 hover:-translate-y-1"
+                className="group mb-4 block break-inside-avoid overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hm-focus)]"
                 style={{
                   border: 'var(--hm-rule-card) solid var(--hm-rule)',
                   borderRadius: 'var(--hm-radius-card)',
@@ -159,7 +186,7 @@ export function ContactSheet() {
                 <span
                   className="relative block overflow-hidden"
                   style={{
-                    height: '5.5rem',
+                    height: '6rem',
                     backgroundColor: 'var(--hm-paper-2)',
                   }}
                 >
@@ -220,14 +247,16 @@ function Chip({
   return (
     <button
       type="button"
+      role="tab"
+      aria-selected={active}
       onClick={onClick}
-      aria-pressed={active}
       title={title}
-      className="btn px-3 py-1.5 text-sm"
+      className="btn tap px-3 py-1.5 text-xs transition-all duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hm-focus)]"
       style={{
         backgroundColor: active ? 'var(--hm-cta-bg)' : 'transparent',
         color: active ? 'var(--hm-cta-fg)' : 'var(--hm-ink-2)',
         borderColor: active ? 'var(--hm-cta-bg)' : 'var(--hm-rule)',
+        fontWeight: active ? 600 : 400,
       }}
     >
       {children}

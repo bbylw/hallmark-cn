@@ -1,52 +1,46 @@
 import { useState } from 'react'
 import { Img } from '../../components/archetypes'
 import type { ThemePage } from '../../data/pages'
+import { CopyButton } from '../../components/ui/copy-button'
 import { Cta } from './cta'
 
 type Role = 'h1' | 'h2' | 'p' | 'table' | 'figure' | 'footnote'
 
-/**
- * 一块内容 = 左边文档里的一段真实正文 + 右边 JSON 里的一行。
- * 两边都从这一个数组渲染，所以永远对得上，不会各说各的。
- */
-const BLOCKS: {
+interface BlockItem {
   role: Role
   text: string
   conf: number
   box: [number, number, number, number]
-}[] = [
-  {
-    role: 'h1',
-    text: '季度报告 · 二〇二六年第三季度',
-    conf: 0.99,
-    box: [72, 48, 412, 26],
+}
+
+const SAMPLES: Record<string, { name: string; file: string; pages: number; tables: number; blocks: BlockItem[] }> = {
+  report: {
+    name: '季度财务报告',
+    file: 'quarterly-report-2026.pdf · 第 12 页',
+    pages: 24,
+    tables: 6,
+    blocks: [
+      { role: 'h1', text: '季度报告 · 二〇二六年第三季度', conf: 0.99, box: [72, 48, 412, 26] },
+      { role: 'h2', text: '营业收入', conf: 0.98, box: [72, 212, 260, 24] },
+      { role: 'p', text: '本季度营业收入 4,820 万元，同比增长 18%。其中订阅收入占 61%。', conf: 0.97, box: [72, 256, 588, 42] },
+      { role: 'table', text: '项目 / 本季 / 上季 财务指标汇总', conf: 0.96, box: [72, 322, 420, 168] },
+      { role: 'figure', text: '图 1 分渠道收入构成条形图', conf: 0.71, box: [72, 512, 240, 132] },
+      { role: 'footnote', text: '注 1 本表数据未经审计，单位：万元。', conf: 0.62, box: [72, 668, 452, 20] },
+    ],
   },
-  { role: 'h2', text: '营业收入', conf: 0.98, box: [72, 212, 260, 24] },
-  {
-    role: 'p',
-    text: '本季度营业收入 4,820 万元，同比增长 18%。',
-    conf: 0.97,
-    box: [72, 256, 588, 42],
+  contract: {
+    name: '技术委托合同',
+    file: 'master-service-agreement.pdf · 第 3 页',
+    pages: 18,
+    tables: 2,
+    blocks: [
+      { role: 'h1', text: '服务等级协议 (SLA) 补充条款', conf: 0.99, box: [72, 50, 380, 24] },
+      { role: 'h2', text: '可用性与补偿标准', conf: 0.96, box: [72, 180, 220, 22] },
+      { role: 'p', text: '乙方承诺月度服务可用性不低于 99.95%，如发生单次持续 15 分钟以上不可用，按对应月费 10% 抵扣。', conf: 0.95, box: [72, 220, 560, 36] },
+      { role: 'footnote', text: '注 2 计划内停机维护不计入故障时间，须提前 72 小时书面通知。', conf: 0.68, box: [72, 420, 480, 20] },
+    ],
   },
-  {
-    role: 'table',
-    text: '项目 / 本季 / 上季',
-    conf: 0.96,
-    box: [72, 322, 420, 168],
-  },
-  {
-    role: 'figure',
-    text: '图 1 分渠道收入构成',
-    conf: 0.71,
-    box: [72, 512, 240, 132],
-  },
-  {
-    role: 'footnote',
-    text: '注 1 本表数据未经审计，单位万元。',
-    conf: 0.62,
-    box: [72, 668, 452, 20],
-  },
-]
+}
 
 /** 低于这个置信度的块，页面上要看得出来「需要人工复核」 */
 const LOW = 0.8
@@ -71,9 +65,13 @@ const CHANNELS = [
  * 点任何一边的任意一块，另一边对应的那一行跟着亮。
  */
 export function CobaltPage({ page }: { page: ThemePage }) {
-  const [pick, setPick] = useState(3)
-  const cur = BLOCKS[pick]
-  const lowCount = BLOCKS.filter((b) => b.conf < LOW).length
+  const [sampleKey, setSampleKey] = useState<'report' | 'contract'>('report')
+  const [pick, setPick] = useState(2)
+
+  const activeDoc = SAMPLES[sampleKey]
+  const blocks = activeDoc.blocks
+  const cur = blocks[pick] ?? blocks[0]
+  const lowCount = blocks.filter((b) => b.conf < LOW).length
 
   const [req, res] = (page.code?.src ?? '').split('\n\n')
   const pane = (raw: string) => {
@@ -83,62 +81,112 @@ export function CobaltPage({ page }: { page: ThemePage }) {
   const reqPane = pane(req)
   const resPane = pane(res)
 
+  const jsonString = JSON.stringify(
+    {
+      pages: activeDoc.pages,
+      tables: activeDoc.tables,
+      blocks: blocks.map((b) => ({
+        role: b.role,
+        text: b.text,
+        box: b.box,
+        confidence: b.conf,
+        needs_review: b.conf < LOW,
+      })),
+    },
+    null,
+    2,
+  )
+
   return (
-    <main id="main" className="px-[var(--page-gutter)] pb-24 pt-12">
+    <main id="main" className="px-[var(--page-gutter)] pb-24 pt-10 sm:pt-14">
       <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}>
+        
         {/* 抬头 */}
-        <span className="meta text-accent-line">{page.discipline}</span>
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-rule pb-4">
+          <span className="meta font-mono font-bold text-accent-line">
+            {page.discipline} · COBALT DOCUMENT PARSER
+          </span>
+          <div className="flex items-center gap-1.5 font-mono text-xs">
+            <span className="text-muted text-[11px]">测试样本:</span>
+            <button
+              type="button"
+              onClick={() => {
+                setSampleKey('report')
+                setPick(2)
+              }}
+              className={`rounded border px-2.5 py-0.5 text-xs ${
+                sampleKey === 'report'
+                  ? 'border-ink bg-ink text-paper font-bold'
+                  : 'border-rule text-muted hover:border-ink'
+              }`}
+            >
+              季度财报
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setSampleKey('contract')
+                setPick(1)
+              }}
+              className={`rounded border px-2.5 py-0.5 text-xs ${
+                sampleKey === 'contract'
+                  ? 'border-ink bg-ink text-paper font-bold'
+                  : 'border-rule text-muted hover:border-ink'
+              }`}
+            >
+              SLA 合同
+            </button>
+          </div>
+        </div>
+
         <h1
-          className="display mt-3 text-ink"
-          style={{ fontSize: 'clamp(1.85rem, 3.9vw, 3rem)', lineHeight: 1.08 }}
+          className="display mt-6 text-ink font-bold"
+          style={{ fontSize: 'clamp(1.85rem, 3.9vw, 3rem)', lineHeight: 1.1 }}
         >
           {page.title}
         </h1>
         <p
-          className="mt-5 text-md text-ink-2"
-          style={{ maxWidth: '40ch', lineHeight: 'var(--lh-relaxed)' }}
+          className="mt-4 text-md text-ink-2"
+          style={{ maxWidth: '44ch', lineHeight: 'var(--lh-relaxed)' }}
         >
           {page.standfirst}
         </p>
 
         {/* ── 工作台 ─────────────────────────────────────── */}
         <div
-          className="mt-12 overflow-hidden"
+          className="mt-12 overflow-hidden rounded-lg"
           style={{
             border: '1px solid var(--hm-rule-2)',
-            borderRadius: 'var(--hm-radius-card)',
             backgroundColor: 'var(--hm-paper-2)',
           }}
         >
           <div
-            className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 px-5 py-3"
-            style={{ borderBottom: '1px solid var(--hm-rule-2)' }}
+            className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 px-5 py-3 border-b border-rule-2"
           >
-            <span className="meta text-ink">
-              quarterly-report.pdf · 第 12 页
+            <span className="meta font-mono font-bold text-ink">
+              {activeDoc.file}
             </span>
-            <span className="meta text-muted">
-              24 页 · 6 个表格 · {lowCount} 处待复核
+            <span className="meta font-mono text-xs text-muted">
+              {activeDoc.pages} 页 · {activeDoc.tables} 表格 · {lowCount} 处待人工复核
             </span>
           </div>
 
           <div className="grid lg:grid-cols-2">
             {/* 左：原页 */}
             <div
-              className="px-5 py-8 lg:border-r"
-              style={{ borderColor: 'var(--hm-rule-2)' }}
+              className="px-5 py-8 lg:border-r border-rule-2"
             >
               <div
                 className="relative mx-auto w-full"
                 style={{
-                  maxWidth: '30rem',
+                  maxWidth: '32rem',
                   backgroundColor: 'var(--hm-paper)',
                   border: '1px solid var(--hm-rule-2)',
                   borderRadius: 'var(--hm-radius-card)',
                   padding: '2rem 1.5rem 2rem 4.5rem',
                 }}
               >
-                {BLOCKS.map((b, i) => {
+                {blocks.map((b, i) => {
                   const on = i === pick
                   const low = b.conf < LOW
                   return (
@@ -156,17 +204,17 @@ export function CobaltPage({ page }: { page: ThemePage }) {
                         outlineOffset: '6px',
                         borderRadius: '3px',
                         backgroundColor: on
-                          ? 'color-mix(in oklab, var(--hm-accent) 6%, transparent)'
+                          ? 'color-mix(in oklab, var(--hm-accent) 8%, transparent)'
                           : undefined,
-                        transition: 'background-color 200ms ease-out',
+                        transition: 'background-color 150ms ease-out',
                       }}
                     >
-                      {/* 角色标在左侧批注栏里：永远不会和相邻区域撞在一起 */}
+                      {/* 角色标在左侧批注栏里 */}
                       <span
                         aria-hidden
-                        className="absolute top-1 font-mono text-[11px] tracking-wide"
+                        className="absolute top-1 font-mono text-[11px] font-bold tracking-wide"
                         style={{
-                          left: '-3.5rem',
+                          left: '-3.75rem',
                           color: on
                             ? 'var(--hm-accent-line)'
                             : low
@@ -178,29 +226,24 @@ export function CobaltPage({ page }: { page: ThemePage }) {
                         {b.role}
                       </span>
 
-                      <span className="block py-3">
+                      <span className="block py-2.5">
                         {b.role === 'h1' ? (
-                          <>
-                            <span
-                              className="display block text-ink"
-                              style={{ fontSize: '1.3rem', lineHeight: 1.2 }}
-                            >
-                              季度报告
-                            </span>
-                            <span className="mt-1 block text-xs text-muted">
-                              二〇二六年第三季度
-                            </span>
-                          </>
+                          <span
+                            className="display block text-ink font-bold"
+                            style={{ fontSize: '1.25rem', lineHeight: 1.2 }}
+                          >
+                            {b.text}
+                          </span>
                         ) : b.role === 'h2' ? (
                           <span
-                            className="display block text-ink"
-                            style={{ fontSize: '1rem' }}
+                            className="display block text-ink font-semibold"
+                            style={{ fontSize: '1.05rem' }}
                           >
-                            营业收入
+                            {b.text}
                           </span>
                         ) : b.role === 'p' ? (
-                          <span className="block text-sm text-ink-2">
-                            本季度营业收入 4,820 万元，同比增长 18%。其中订阅收入占 61%。
+                          <span className="block text-sm text-ink-2" style={{ lineHeight: 'var(--lh-relaxed)' }}>
+                            {b.text}
                           </span>
                         ) : b.role === 'table' ? (
                           <span className="block font-mono text-xs">
@@ -246,7 +289,7 @@ export function CobaltPage({ page }: { page: ThemePage }) {
                                     style={{
                                       width: `${v}%`,
                                       backgroundColor: 'var(--hm-accent)',
-                                      opacity: 0.55,
+                                      opacity: 0.65,
                                     }}
                                   />
                                   <span className="font-mono text-[11px] text-muted">
@@ -256,12 +299,12 @@ export function CobaltPage({ page }: { page: ThemePage }) {
                               ))}
                             </span>
                             <span className="mt-2 block text-[11px] text-muted">
-                              图 1　分渠道收入构成
+                              {b.text}
                             </span>
                           </>
                         ) : (
                           <span className="block text-[11px] text-muted">
-                            注 1　本表数据未经审计，单位：万元。
+                            {b.text}
                           </span>
                         )}
                       </span>
@@ -273,27 +316,31 @@ export function CobaltPage({ page }: { page: ThemePage }) {
 
             {/* 右：提取结果 */}
             <div className="px-5 py-8">
-              <div className="meta text-muted">POST /v1/extract</div>
+              <div className="flex items-center justify-between">
+                <span className="meta font-mono font-bold text-muted">POST /v1/extract · RESP</span>
+                <CopyButton
+                  value={jsonString}
+                  ariaLabel="复制提取的完整 JSON"
+                  className="btn-ghost px-2.5 py-1 text-xs font-mono"
+                />
+              </div>
+
               <div className="mt-4 font-mono text-[11px] leading-relaxed">
                 <div className="text-ink-2">{'{'}</div>
                 <div className="pl-4 text-ink-2">
                   <span style={{ color: 'var(--hm-accent-line)' }}>"pages"</span>
-                  {': 24,'}
+                  {`: ${activeDoc.pages},`}
                 </div>
                 <div className="pl-4 text-ink-2">
-                  <span style={{ color: 'var(--hm-accent-line)' }}>
-                    "tables"
-                  </span>
-                  {': 6,'}
+                  <span style={{ color: 'var(--hm-accent-line)' }}>"tables"</span>
+                  {`: ${activeDoc.tables},`}
                 </div>
                 <div className="pl-4 text-ink-2">
-                  <span style={{ color: 'var(--hm-accent-line)' }}>
-                    "blocks"
-                  </span>
+                  <span style={{ color: 'var(--hm-accent-line)' }}>"blocks"</span>
                   {': ['}
                 </div>
 
-                {BLOCKS.map((b, i) => {
+                {blocks.map((b, i) => {
                   const on = i === pick
                   const low = b.conf < LOW
                   return (
@@ -302,51 +349,35 @@ export function CobaltPage({ page }: { page: ThemePage }) {
                       type="button"
                       onClick={() => setPick(i)}
                       aria-pressed={on}
-                      className="block w-full pr-2 text-left transition-colors duration-200"
+                      className="block w-full pr-2 text-left transition-colors duration-150"
                       style={{
                         backgroundColor: on
-                          ? 'color-mix(in oklab, var(--hm-accent) 10%, transparent)'
+                          ? 'color-mix(in oklab, var(--hm-accent) 12%, transparent)'
                           : undefined,
                         boxShadow: on
-                          ? 'inset 2px 0 0 var(--hm-accent-line)'
+                          ? 'inset 3px 0 0 var(--hm-accent-line)'
                           : undefined,
                       }}
                     >
                       <span className="block pl-8 text-ink-2" style={{ textIndent: '-1.6rem' }}>
                         {`    { `}
-                        <span style={{ color: 'var(--hm-accent-line)' }}>
-                          "role"
-                        </span>
+                        <span style={{ color: 'var(--hm-accent-line)' }}>"role"</span>
                         {': '}
-                        <span className={on ? 'text-ink' : 'text-ink-2'}>
+                        <span className={on ? 'text-ink font-bold' : 'text-ink-2'}>
                           "{b.role}"
                         </span>
                         {', '}
-                        <span style={{ color: 'var(--hm-accent-line)' }}>
-                          "text"
-                        </span>
-                        {': "'}
-                        <span className="text-ink">{b.text}</span>
-                        {'", '}
-                        <span style={{ color: 'var(--hm-accent-line)' }}>
-                          "box"
-                        </span>
-                        {`: [${b.box.join(', ')}], `}
-                        <span style={{ color: 'var(--hm-accent-line)' }}>
-                          "confidence"
-                        </span>
+                        <span style={{ color: 'var(--hm-accent-line)' }}>"confidence"</span>
                         {': '}
                         <span
                           style={{
                             color: low ? 'var(--hm-muted)' : 'var(--hm-ink)',
-                            borderBottom: low
-                              ? '1px dotted var(--hm-muted)'
-                              : undefined,
+                            fontWeight: on ? 'bold' : 'normal',
                           }}
                         >
                           {b.conf.toFixed(2)}
                         </span>
-                        {low ? '  ← 待复核' : ''}
+                        {low ? ' ⚠️' : ''}
                         {' },'}
                       </span>
                     </button>
@@ -359,25 +390,24 @@ export function CobaltPage({ page }: { page: ThemePage }) {
             </div>
           </div>
 
-          {/* 读数条：两个面板共用一条，说明此刻选中的是哪一块 */}
+          {/* 底部联动读数条 */}
           <div
-            className="flex flex-wrap items-baseline gap-x-5 gap-y-1 px-5 py-3 font-mono text-xs"
-            style={{ borderTop: '1px solid var(--hm-rule-2)' }}
+            className="flex flex-wrap items-baseline gap-x-5 gap-y-1 px-5 py-3 font-mono text-xs border-t border-rule-2 bg-paper/40"
           >
-            <span className="text-accent-line">{cur.role}</span>
-            <span className="text-ink">{cur.text}</span>
+            <span className="font-bold text-accent-line">{cur.role.toUpperCase()}</span>
+            <span className="truncate text-ink font-medium max-w-[20rem]">{cur.text}</span>
             <span className="text-muted">
               box [{cur.box.join(', ')}]
             </span>
-            <span className="ml-auto text-muted">
+            <span className="ml-auto font-bold text-muted">
               置信度 {cur.conf.toFixed(2)}
-              {cur.conf < LOW ? ' · 待复核' : ''}
+              {cur.conf < LOW ? ' · 需人工复核' : ' · 确定性解析'}
             </span>
           </div>
         </div>
 
-        <p className="mt-3 text-xs text-muted">
-          点左边的任意一块，或右边任意一行，两边会一起亮。
+        <p className="mt-3 text-xs text-muted font-mono">
+          双向互联：点击左侧任一视觉切片，或点击右侧任一 JSON 字段，两端将同步锁定对应锚点。
         </p>
 
         {/* ── 四个阶段 ───────────────────────────────────── */}
@@ -388,21 +418,20 @@ export function CobaltPage({ page }: { page: ThemePage }) {
               className="pt-3"
               style={{ borderTop: '2px solid var(--hm-ink)' }}
             >
-              <span className="font-mono text-xs text-accent-line">
+              <span className="font-mono text-xs font-bold text-accent-line">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <div className="display mt-1 text-md text-ink">{pl.t}</div>
-              <p className="mt-1 text-sm text-muted">{pl.d}</p>
+              <div className="display mt-1 text-md font-bold text-ink">{pl.t}</div>
+              <p className="mt-1 text-sm text-muted" style={{ lineHeight: 'var(--lh-relaxed)' }}>{pl.d}</p>
             </div>
           ))}
         </div>
 
-        {/* ── 官方示例：这是 Hallmark 自己生成的页，不是本站的界面，
-               图注必须说清楚，不能拿它冒充本页的产品截图 ───────── */}
         {page.images?.length ? (
           <figure className="mt-16 grid gap-x-12 gap-y-6 lg:grid-cols-[18rem_1fr]">
             <figcaption>
-              <span className="meta text-muted">官方示例</span>
+              <span className="meta text-accent-line">官方用例打样</span>
+              <h3 className="display mt-1 text-lg font-bold text-ink">Distil Web 提取器示例</h3>
               <p
                 className="mt-3 text-sm text-ink-2"
                 style={{ lineHeight: 'var(--lh-relaxed)' }}
@@ -412,7 +441,7 @@ export function CobaltPage({ page }: { page: ThemePage }) {
               </p>
             </figcaption>
             <div
-              className="overflow-hidden"
+              className="overflow-hidden min-w-0"
               style={{
                 border: '1px solid var(--hm-rule-2)',
                 borderRadius: 'var(--hm-radius-card)',
@@ -425,22 +454,22 @@ export function CobaltPage({ page }: { page: ThemePage }) {
 
         {/* ── 接口 ───────────────────────────────────────── */}
         <div
-          className="mt-16 grid gap-px lg:grid-cols-2"
+          className="mt-16 grid gap-px overflow-hidden rounded-lg lg:grid-cols-2"
           style={{ backgroundColor: 'var(--hm-rule-2)' }}
         >
           {[
-            { t: '请求', p: reqPane },
-            { t: '响应', p: resPane },
+            { t: '请求端示例', p: reqPane },
+            { t: '解析响应体', p: resPane },
           ].map((b) => (
             <div
               key={b.t}
               className="p-6"
               style={{ backgroundColor: 'var(--hm-paper)' }}
             >
-              <div className="flex flex-wrap items-baseline justify-between gap-3">
-                <span className="meta text-muted">{b.t}</span>
+              <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule pb-2">
+                <span className="meta font-mono font-bold text-muted">{b.t}</span>
                 <span
-                  className="font-mono text-xs"
+                  className="font-mono text-xs font-semibold"
                   style={{ color: 'var(--hm-accent-line)' }}
                 >
                   {b.p.head}
@@ -452,12 +481,9 @@ export function CobaltPage({ page }: { page: ThemePage }) {
             </div>
           ))}
         </div>
-        <p className="mt-4 text-sm text-muted" style={{ maxWidth: '52ch' }}>
-          {page.code?.out}
-        </p>
 
         <div className="mt-12">
-          <Cta label={page.cta} done="key 已发邮箱" />
+          <Cta label={page.cta} done="API Key 已发送至预留邮箱" />
         </div>
       </div>
     </main>
