@@ -1,7 +1,10 @@
 import { useState } from 'react'
+import { motion, useReducedMotion } from 'motion/react'
 import { gateGroups, totalGates } from '../data/gates'
 
 const CITED = [15, 19, 34, 41, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
+
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 /**
  * 58 道关卡刻度尺：
@@ -11,6 +14,7 @@ const CITED = [15, 19, 34, 41, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
  */
 export function GateScale() {
   const [selectedId, setSelectedId] = useState<string>('variety')
+  const reduce = useReducedMotion()
   const currentGroup = gateGroups.find((g) => g.id === selectedId) ?? gateGroups[0]
 
   return (
@@ -34,7 +38,7 @@ export function GateScale() {
             <span
               key={n}
               title={`Gate ${n}${on ? ' (核心关注)' : ''}`}
-              className="flex-1 transition-all duration-200"
+              className="flex-1 origin-bottom cursor-help transition-transform duration-200 hover:scale-y-110"
               style={{
                 height: on ? '100%' : n % 10 === 0 ? '70%' : '38%',
                 backgroundColor: on
@@ -76,8 +80,12 @@ export function GateScale() {
         })}
       </div>
 
-      {/* 当前选中族群的判据卡片 */}
-      <div
+      {/* 当前选中族群的判据卡片：切换时轻微上浮过渡 */}
+      <motion.div
+        key={currentGroup.id}
+        initial={reduce ? false : { opacity: 0, y: 4 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.2, ease: EASE }}
         className="mt-2.5 rounded-lg p-2.5 text-xs"
         style={{
           backgroundColor: 'var(--hm-paper-2)',
@@ -101,7 +109,7 @@ export function GateScale() {
             </li>
           ))}
         </ul>
-      </div>
+      </motion.div>
 
       <p
         className="mt-2 text-[11px] text-muted font-mono"

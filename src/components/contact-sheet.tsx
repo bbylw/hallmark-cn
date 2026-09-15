@@ -244,6 +244,323 @@ function ThemeOrnament({ themeId }: { themeId: string }) {
   }
 }
 
+/* ──────────────────────────────────────────────────────────
+   宏观结构蓝图：在卡片预览区底层绘制该页 macrostructure 线框。
+   全部用主题自身令牌着色（ink 13% / accent 45%），像制图底稿——
+   21 页 21 种结构互不重复，这才是 Hallmark 的核心卖点。
+   ────────────────────────────────────────────────────────── */
+const BP_INK = 'color-mix(in oklab, var(--hm-ink) 13%, transparent)'
+const BP_SOFT = 'color-mix(in oklab, var(--hm-ink) 24%, transparent)'
+const BP_ACC = 'color-mix(in oklab, var(--hm-accent) 45%, transparent)'
+
+type MiniBox = { l: number; t: number; w: number; h: number; c?: string }
+const mbx = (l: number, t: number, w: number, h: number, c?: string): MiniBox => ({
+  l,
+  t,
+  w,
+  h,
+  c,
+})
+
+function MiniMacro({ macro }: { macro?: string }) {
+  if (!macro) return null
+
+  const boxes = (list: MiniBox[]) =>
+    list.map((b, i) => (
+      <span
+        key={i}
+        className="absolute rounded-[1.5px]"
+        style={{
+          left: `${b.l}%`,
+          top: `${b.t}%`,
+          width: `${b.w}%`,
+          height: `${b.h}%`,
+          backgroundColor: b.c ?? BP_INK,
+        }}
+      />
+    ))
+
+  let body: React.ReactNode
+  switch (macro) {
+    case 'Bento Grid':
+      body = boxes([
+        mbx(0, 0, 47, 56),
+        mbx(51, 0, 49, 26),
+        mbx(51, 30, 49, 26, BP_ACC),
+        mbx(0, 60, 100, 40),
+      ])
+      break
+    case 'Long Document':
+      body = boxes([
+        mbx(20, 8, 60, 7),
+        mbx(20, 27, 60, 7),
+        mbx(20, 46, 60, 7),
+        mbx(20, 65, 60, 7),
+        mbx(20, 84, 38, 7),
+      ])
+      break
+    case 'Marquee Hero':
+      body = boxes([
+        mbx(0, 10, 100, 34, BP_ACC),
+        mbx(0, 56, 64, 9),
+        mbx(0, 73, 42, 9),
+      ])
+      break
+    case 'Stat-Led':
+      body = boxes([
+        mbx(0, 16, 44, 58, BP_ACC),
+        mbx(48, 16, 52, 27),
+        mbx(48, 47, 52, 27),
+      ])
+      break
+    case 'Workbench':
+      body = boxes([
+        mbx(0, 8, 28, 84),
+        mbx(32, 8, 68, 52),
+        mbx(32, 64, 68, 28, BP_ACC),
+      ])
+      break
+    case 'Conversational FAQ':
+      body = boxes([
+        mbx(0, 10, 58, 14),
+        mbx(42, 32, 58, 14, BP_ACC),
+        mbx(0, 54, 58, 14),
+        mbx(42, 76, 58, 14),
+      ])
+      break
+    case 'Manifesto':
+      body = boxes([
+        mbx(0, 6, 100, 44),
+        mbx(0, 60, 54, 12, BP_ACC),
+        mbx(0, 80, 30, 8),
+      ])
+      break
+    case 'Photographic':
+      body = boxes([
+        mbx(0, 0, 58, 100),
+        mbx(62, 0, 38, 31),
+        mbx(62, 34.5, 38, 31, BP_ACC),
+        mbx(62, 69, 38, 31),
+      ])
+      break
+    case 'Quote-Led':
+      body = boxes([
+        mbx(4, 8, 13, 13, BP_ACC),
+        mbx(4, 30, 84, 12),
+        mbx(4, 50, 66, 12),
+        mbx(4, 72, 30, 8, BP_SOFT),
+      ])
+      break
+    case 'Specimen':
+      body = boxes([
+        mbx(4, 10, 28, 62),
+        mbx(38, 14, 58, 7),
+        mbx(38, 30, 48, 7),
+        mbx(38, 46, 58, 7),
+        mbx(38, 62, 34, 7),
+        mbx(4, 82, 92, 2.5, BP_SOFT),
+      ])
+      break
+    case 'Catalogue':
+      body = boxes([
+        mbx(0, 10, 9, 12, BP_ACC),
+        mbx(13, 12, 70, 8),
+        mbx(0, 34, 9, 12),
+        mbx(13, 36, 62, 8),
+        mbx(0, 58, 9, 12),
+        mbx(13, 60, 70, 8),
+        mbx(0, 82, 9, 12),
+        mbx(13, 84, 56, 8),
+      ])
+      break
+    case 'Letter':
+      body = boxes([
+        mbx(0, 6, 34, 8, BP_SOFT),
+        mbx(0, 26, 100, 7),
+        mbx(0, 42, 100, 7),
+        mbx(0, 58, 100, 7),
+        mbx(58, 76, 42, 7, BP_SOFT),
+        mbx(0, 90, 18, 5, BP_ACC),
+      ])
+      break
+    case 'Index-First':
+      body = boxes([
+        mbx(0, 10, 3, 10, BP_ACC),
+        mbx(7, 11, 64, 8),
+        mbx(0, 32, 3, 10, BP_ACC),
+        mbx(7, 33, 56, 8),
+        mbx(0, 54, 3, 10, BP_ACC),
+        mbx(7, 55, 64, 8),
+        mbx(0, 76, 3, 10, BP_ACC),
+        mbx(7, 77, 48, 8),
+      ])
+      break
+    case 'Narrative Workflow':
+      body = (
+        <>
+          <span
+            className="absolute"
+            style={{
+              left: '5%',
+              top: '10%',
+              width: '2px',
+              height: '80%',
+              backgroundColor: BP_INK,
+            }}
+          />
+          {[12, 44, 76].map((t, i) => (
+            <span key={i}>
+              <span
+                className="absolute rounded-full"
+                style={{
+                  left: '2.8%',
+                  top: `${t}%`,
+                  width: '9px',
+                  height: '9px',
+                  backgroundColor: i === 2 ? BP_ACC : BP_SOFT,
+                }}
+              />
+              <span
+                className="absolute rounded-[1.5px]"
+                style={{
+                  left: '14%',
+                  top: `${t + 1}%`,
+                  width: '66%',
+                  height: '8%',
+                  backgroundColor: BP_INK,
+                }}
+              />
+            </span>
+          ))}
+        </>
+      )
+      break
+    case 'Split Studio':
+      body = boxes([
+        mbx(0, 0, 38, 100),
+        mbx(42, 0, 58, 60),
+        mbx(42, 64, 58, 36, BP_ACC),
+      ])
+      break
+    case 'Feature Stack':
+      body = boxes([
+        mbx(0, 8, 100, 22),
+        mbx(0, 39, 100, 22, BP_ACC),
+        mbx(0, 70, 100, 22),
+      ])
+      break
+    case 'Type Specimen':
+      body = (
+        <span
+          className="display absolute left-0 top-1/2 -translate-y-1/2 select-none"
+          style={{
+            fontSize: '3.4rem',
+            lineHeight: 1,
+            color: BP_INK,
+            letterSpacing: 'var(--hm-tracking-display)',
+          }}
+        >
+          Aa
+        </span>
+      )
+      break
+    case 'Portfolio Grid':
+      body = boxes([
+        mbx(0, 8, 31, 36),
+        mbx(34.5, 8, 31, 36, BP_ACC),
+        mbx(69, 8, 31, 36),
+        mbx(0, 56, 31, 36),
+        mbx(34.5, 56, 31, 36),
+        mbx(69, 56, 31, 36),
+      ])
+      break
+    case 'Map / Diagram':
+      body = (
+        <>
+          <span
+            className="absolute"
+            style={{
+              left: '16%',
+              top: '46%',
+              width: '64%',
+              height: '1.5px',
+              backgroundColor: BP_INK,
+              transform: 'rotate(-22deg)',
+              transformOrigin: '0 50%',
+            }}
+          />
+          <span
+            className="absolute rounded-full"
+            style={{
+              left: '10%',
+              top: '58%',
+              width: '10px',
+              height: '10px',
+              backgroundColor: BP_ACC,
+            }}
+          />
+          <span
+            className="absolute rounded-full"
+            style={{
+              left: '76%',
+              top: '16%',
+              width: '10px',
+              height: '10px',
+              backgroundColor: BP_SOFT,
+            }}
+          />
+        </>
+      )
+      break
+    case 'Ecosystem Index':
+      body = boxes([
+        mbx(0, 8, 31, 26),
+        mbx(34.5, 8, 31, 26, BP_ACC),
+        mbx(69, 8, 31, 26),
+        mbx(0, 48, 84, 8),
+        mbx(0, 64, 70, 8),
+        mbx(0, 80, 56, 8, BP_SOFT),
+      ])
+      break
+    case 'Component Playground':
+      body = (
+        <span
+          className="absolute rounded-[3px]"
+          style={{
+            left: '8%',
+            top: '14%',
+            width: '84%',
+            height: '72%',
+            border: `1.5px solid ${BP_SOFT}`,
+          }}
+        >
+          <span
+            className="absolute rounded-[1px]"
+            style={{ left: '9%', top: '22%', width: '36%', height: '6%', backgroundColor: BP_ACC }}
+          />
+          <span
+            className="absolute rounded-[1px]"
+            style={{ left: '9%', top: '44%', width: '62%', height: '6%', backgroundColor: BP_INK }}
+          />
+          <span
+            className="absolute rounded-[1px]"
+            style={{ left: '9%', top: '66%', width: '50%', height: '6%', backgroundColor: BP_INK }}
+          />
+        </span>
+      )
+      break
+    default:
+      body = null
+  }
+
+  if (!body) return null
+  return (
+    <span aria-hidden className="pointer-events-none absolute inset-3">
+      {body}
+    </span>
+  )
+}
+
 export function ContactSheet() {
   const [filter, setFilter] = useState<Filter>('all')
 
@@ -264,9 +581,23 @@ export function ContactSheet() {
             真实小样流
           </h2>
         </div>
-        <div className="hidden sm:block text-right">
+        <div className="hidden sm:flex flex-col items-end gap-2">
           <span className="font-mono text-[11px] text-muted">
             OKLCH 色彩空间 · 4 大体裁覆盖
+          </span>
+          {/* 21 色速览：每个色点都是该主题自己的强调色，点击直达 */}
+          <span className="flex items-center gap-[3px]" aria-label="21 套主题强调色速览">
+            {themes.map((t) => (
+              <Link
+                key={t.id}
+                to={`/themes/${t.id}`}
+                data-theme={t.id}
+                title={`${t.name} · ${t.zh}`}
+                aria-label={`查看 ${t.name} 主题`}
+                className="size-2.5 rounded-[1px] transition-transform duration-150 hover:scale-[1.6]"
+                style={{ backgroundColor: 'var(--hm-accent)' }}
+              />
+            ))}
           </span>
         </div>
       </div>
@@ -331,6 +662,9 @@ export function ContactSheet() {
                     backgroundColor: 'var(--hm-paper-2)',
                   }}
                 >
+                  {/* 宏观结构蓝图底稿：21 页 21 种结构 */}
+                  <MiniMacro macro={page?.macro} />
+
                   {/* 顶部元数据标签：体裁 + 纸色 */}
                   <span className="absolute left-3 top-3 flex items-center gap-1.5 z-10">
                     <span
@@ -523,6 +857,7 @@ function Chip({
   title?: string
   count?: number
 }) {
+  const reduce = useReducedMotion()
   return (
     <button
       type="button"
@@ -530,19 +865,27 @@ function Chip({
       aria-selected={active}
       onClick={onClick}
       title={title}
-      className={`btn tap px-2.5 py-1 text-xs rounded-lg transition-all duration-150 focus-visible:outline-2 focus-visible:outline-focus flex items-center gap-1.5 ${
-        active ? 'shadow-xs font-semibold' : 'hover:bg-paper-2'
+      className={`btn tap relative px-2.5 py-1 text-xs rounded-lg transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-focus flex items-center gap-1.5 ${
+        active ? 'font-semibold' : 'hover:bg-paper-2'
       }`}
       style={{
-        backgroundColor: active ? 'var(--hm-ink)' : 'transparent',
         color: active ? 'var(--hm-paper)' : 'var(--hm-ink-2)',
         borderColor: active ? 'var(--hm-ink)' : 'var(--hm-rule)',
       }}
     >
-      <span>{children}</span>
+      {active ? (
+        <motion.span
+          layoutId="genre-chip-pill"
+          aria-hidden
+          className="absolute inset-0 rounded-lg shadow-xs"
+          style={{ backgroundColor: 'var(--hm-ink)' }}
+          transition={reduce ? { duration: 0 } : { duration: 0.22, ease: EASE }}
+        />
+      ) : null}
+      <span className="relative">{children}</span>
       {count !== undefined ? (
         <span
-          className={`font-mono text-[10px] rounded px-1 py-0.5 leading-none ${
+          className={`relative font-mono text-[10px] rounded px-1 py-0.5 leading-none ${
             active ? 'bg-paper/25 text-paper' : 'bg-paper-3 text-muted'
           }`}
         >
