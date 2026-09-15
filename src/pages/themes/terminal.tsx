@@ -325,7 +325,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
     phosphor: {
       accent: 'oklch(78% 0.19 138)',
       glow: '0 0 12px oklch(78% 0.19 138 / 0.35)',
-      paper: 'oklch(11% 0.018 145)',
+      paper: 'var(--hm-paper)',
     },
     amber: {
       accent: 'oklch(78% 0.18 68)',
@@ -366,34 +366,34 @@ export function TerminalPage({ page }: { page: ThemePage }) {
       <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}>
         
         {/* 顶部控制台标题栏与仿真信号指示 */}
-        <header className="rounded-t-lg border border-b-0 border-rule bg-paper-2/90 px-4 py-3 flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+        <header className="rounded-none border border-b-0 border-rule bg-paper-2/90 px-4 py-3 flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
           <div className="flex items-center gap-2">
-            <span className="inline-block h-3 w-3 rounded-full bg-red-500/80 cursor-pointer hover:opacity-100 transition-opacity" title="关闭会话" />
-            <span className="inline-block h-3 w-3 rounded-full bg-yellow-500/80 cursor-pointer hover:opacity-100 transition-opacity" title="挂起后台" />
-            <span className="inline-block h-3 w-3 rounded-full bg-green-500/80 cursor-pointer hover:opacity-100 transition-opacity" title="最大化视口" />
+            <button type="button" aria-label="关闭会话" title="关闭会话" className="inline-block h-3 w-3 rounded-none bg-accent/80 hover:opacity-100 transition-opacity" />
+            <button type="button" aria-label="挂起后台" title="挂起后台" className="inline-block h-3 w-3 rounded-none bg-accent/80 hover:opacity-100 transition-opacity" />
+            <button type="button" aria-label="最大化视口" title="最大化视口" className="inline-block h-3 w-3 rounded-none bg-accent/80 hover:opacity-100 transition-opacity" />
             <span className="ml-2 text-ink font-semibold">kernel@rgr-simd-box:~ (ttyS0)</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-3 text-muted text-[11px]">
             <span className="flex items-center gap-1.5">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span aria-hidden="true" className="h-2 w-2 rounded-none bg-accent animate-pulse" />
               <span>PID: 40921 · 64-bit AVX-512</span>
             </span>
 
             {/* CRT 显像管着色器切换器 */}
-            <div className="flex items-center gap-1 bg-paper px-2 py-0.5 rounded border border-rule">
+            <div className="flex items-center gap-1 bg-paper px-2 py-0.5 rounded-none border border-rule">
               <span className="text-muted text-[10px]">显像色:</span>
               {(['phosphor', 'amber', 'cyan', 'obsidian'] as const).map((m) => (
                 <button
                   key={m}
                   type="button"
                   onClick={() => setCrtMode(m)}
-                  className={`px-1.5 py-0.5 rounded text-[10px] uppercase font-bold transition-colors ${
+                  className={`px-1.5 py-0.5 rounded-none text-[10px] uppercase font-bold transition-colors ${
                     crtMode === m
                       ? 'bg-ink text-paper'
                       : 'text-muted hover:text-ink'
                   }`}
-                  style={{ minHeight: '24px' }}
+                  style={{ minHeight: '44px' }}
                 >
                   {m === 'phosphor' ? '绿磷' : m === 'amber' ? '琥珀' : m === 'cyan' ? '青蓝' : '黑曜'}
                 </button>
@@ -401,10 +401,10 @@ export function TerminalPage({ page }: { page: ThemePage }) {
               <button
                 type="button"
                 onClick={() => setScanlines(!scanlines)}
-                className={`ml-1 px-1.5 py-0.5 rounded text-[10px] border ${
+                className={`ml-1 px-1.5 py-0.5 rounded-none text-[10px] border ${
                   scanlines ? 'border-accent-line text-accent-line' : 'border-rule text-muted'
                 }`}
-                style={{ minHeight: '24px' }}
+                style={{ minHeight: '44px' }}
                 title="开启/关闭 CRT 扫描线显像管模拟"
               >
                 扫描线: {scanlines ? 'ON' : 'OFF'}
@@ -415,8 +415,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
 
         {/* 终端主容器 */}
         <div
-          className="rounded-b-lg border border-rule bg-paper/95 p-4 sm:p-7 shadow-2xl transition-colors"
-          style={{ textShadow: crtStyles.glow }}
+          className="rounded-none border border-rule bg-paper/95 p-4 sm:p-7 transition-colors"
         >
           {/* 主标题区：严格保留唯一 <h1> */}
           <div className="font-mono text-xs text-accent-line flex items-center gap-2">
@@ -427,7 +426,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
 
           <div className="mt-4">
             <h1
-              className="display text-ink font-bold tracking-tight"
+              className="display text-ink tracking-tight"
               style={{
                 fontSize: 'clamp(1.9rem, 4.6vw, 3.25rem)',
                 lineHeight: 1.12,
@@ -445,16 +444,16 @@ export function TerminalPage({ page }: { page: ThemePage }) {
           </div>
 
           {/* 实时命令预览与管道拼接 */}
-          <div className="mt-8 rounded-lg border border-rule-2 bg-paper-2/80 p-3 sm:p-4 font-mono text-xs sm:text-sm">
+          <div className="mt-8 rounded-none border border-rule-2 bg-paper-2/80 p-3 sm:p-4 font-mono text-xs sm:text-sm">
             <div className="text-muted text-[11px] mb-1">REAL-TIME COMMAND PIPELINE:</div>
             <div className="flex flex-wrap items-center gap-2 text-ink">
               <span className="text-accent-line font-bold">$</span>
               <span className="text-ink font-bold">rgr</span>
-              {caseInsensitive && <span className="bg-paper px-1.5 py-0.5 rounded text-accent-line border border-rule">-i</span>}
-              {wordBound && <span className="bg-paper px-1.5 py-0.5 rounded text-accent-line border border-rule">-w</span>}
-              {invertMatch && <span className="bg-paper px-1.5 py-0.5 rounded text-accent-line border border-rule">-v</span>}
-              {contextLines > 0 && <span className="bg-paper px-1.5 py-0.5 rounded text-accent-line border border-rule">-C {contextLines}</span>}
-              <span className="text-emerald-400 font-bold">&quot;{q}&quot;</span>
+              {caseInsensitive && <span className="bg-paper px-1.5 py-0.5 rounded-none text-accent-line border border-rule">-i</span>}
+              {wordBound && <span className="bg-paper px-1.5 py-0.5 rounded-none text-accent-line border border-rule">-w</span>}
+              {invertMatch && <span className="bg-paper px-1.5 py-0.5 rounded-none text-accent-line border border-rule">-v</span>}
+              {contextLines > 0 && <span className="bg-paper px-1.5 py-0.5 rounded-none text-accent-line border border-rule">-C {contextLines}</span>}
+              <span className="text-accent font-bold">&quot;{q}&quot;</span>
               <span className="text-muted">./src ./crates --color=always</span>
               <span className="text-muted opacity-60">| head -n 50</span>
             </div>
@@ -464,7 +463,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
           <div className="mt-8">
             <div className="flex flex-wrap items-center justify-between gap-3 pb-3">
               <span className="font-mono text-xs text-muted flex items-center gap-1.5">
-                <span className="inline-block h-2 w-2 rounded-full bg-accent-line" />
+                <span aria-hidden="true" className="inline-block h-2 w-2 rounded-none bg-accent-line" />
                 INTERACTIVE CLI SHELL · 实时正则全文检索
               </span>
 
@@ -476,9 +475,9 @@ export function TerminalPage({ page }: { page: ThemePage }) {
                     key={preset}
                     type="button"
                     onClick={() => setQ(preset)}
-                    className={`rounded border px-2.5 py-1 text-[11px] transition-all font-mono ${
+                    className={`rounded-none border px-2.5 py-1 text-[11px] transition-all font-mono ${
                       q === preset
-                        ? 'border-ink bg-ink text-paper font-bold shadow'
+                        ? 'border-ink bg-ink text-paper font-bold'
                         : 'border-rule text-muted hover:border-ink hover:text-ink'
                     }`}
                     style={{ minHeight: '44px' }}
@@ -495,7 +494,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
               <button
                 type="button"
                 onClick={() => setCaseInsensitive(!caseInsensitive)}
-                className={`px-2 py-1 rounded border text-[11px] transition-colors ${
+                className={`px-2 py-1 rounded-none border text-[11px] transition-colors ${
                   caseInsensitive ? 'border-accent-line bg-accent-line/10 text-accent-line font-bold' : 'border-rule text-muted'
                 }`}
                 style={{ minHeight: '44px' }}
@@ -505,7 +504,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
               <button
                 type="button"
                 onClick={() => setWordBound(!wordBound)}
-                className={`px-2 py-1 rounded border text-[11px] transition-colors ${
+                className={`px-2 py-1 rounded-none border text-[11px] transition-colors ${
                   wordBound ? 'border-accent-line bg-accent-line/10 text-accent-line font-bold' : 'border-rule text-muted'
                 }`}
                 style={{ minHeight: '44px' }}
@@ -515,7 +514,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
               <button
                 type="button"
                 onClick={() => setInvertMatch(!invertMatch)}
-                className={`px-2 py-1 rounded border text-[11px] transition-colors ${
+                className={`px-2 py-1 rounded-none border text-[11px] transition-colors ${
                   invertMatch ? 'border-accent-line bg-accent-line/10 text-accent-line font-bold' : 'border-rule text-muted'
                 }`}
                 style={{ minHeight: '44px' }}
@@ -525,7 +524,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
               <button
                 type="button"
                 onClick={() => setContextLines(contextLines === 1 ? 2 : 1)}
-                className="px-2 py-1 rounded border border-rule text-muted text-[11px] hover:text-ink"
+                className="px-2 py-1 rounded-none border border-rule text-muted text-[11px] hover:text-ink"
                 style={{ minHeight: '44px' }}
               >
                 -C {contextLines} (上下文辐射度)
@@ -536,7 +535,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
             <label className="block">
               <span className="sr-only">搜索关键字</span>
               <span
-                className="flex flex-wrap items-center gap-x-2 gap-y-1.5 px-3.5 py-2.5 font-mono text-sm shadow-inner"
+                className="flex flex-wrap items-center gap-x-2 gap-y-1.5 px-3.5 py-2.5 font-mono text-sm"
                 style={{
                   border: '1px solid var(--hm-rule-2)',
                   backgroundColor: 'var(--hm-paper-2)',
@@ -557,7 +556,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
                       caretColor: 'var(--hm-accent)',
                       padding: 0,
                     }}
-                    placeholder="输入搜索词，例如 tokens 或 onThemeChange..."
+                    placeholder="输入搜索词，例如 tokens 或 onThemeChange…"
                     aria-label="搜索关键字。上下键选行，回车或点击展开上下文，esc 清空"
                   />
                   <span aria-hidden className="shrink-0 text-accent-line font-bold">
@@ -575,7 +574,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
 
             {/* 关键测试契约：命中结果列表，第一条具有 role="button" 并包含 aria-expanded */}
             <div
-              className="mt-4 overflow-hidden rounded-lg"
+              className="mt-4 overflow-hidden rounded-none"
               style={{ border: '1px solid var(--hm-rule)' }}
             >
               {filteredRecords.length === 0 ? (
@@ -632,14 +631,14 @@ export function TerminalPage({ page }: { page: ThemePage }) {
                       {/* 展开的三行真实上下文与 Unified Diff */}
                       {isExpanded && (
                         <div
-                          className="mt-3 ml-4 pl-3.5 text-muted text-[11px] space-y-1 overflow-x-auto rounded bg-paper-2/60 p-2.5"
+                          className="mt-3 ml-4 pl-3.5 text-muted text-[11px] space-y-1 overflow-x-auto rounded-none bg-paper-2/60 p-2.5"
                           style={{ borderLeft: '3px solid var(--hm-accent-line)' }}
                         >
                           <div className="opacity-60 flex gap-2 font-mono">
                             <span className="w-12 select-none text-right text-muted">{item.line - 1} |</span>
                             <span>{item.before}</span>
                           </div>
-                          <div className="text-ink font-bold flex gap-2 font-mono bg-accent-line/15 py-0.5 px-1 rounded">
+                          <div className="text-ink font-bold flex gap-2 font-mono bg-accent-line/15 py-0.5 px-1 rounded-none">
                             <span className="w-12 select-none text-right text-accent-line">{item.line} &gt;</span>
                             <span>{item.text}</span>
                           </div>
@@ -690,16 +689,16 @@ export function TerminalPage({ page }: { page: ThemePage }) {
                     key={node.id}
                     type="button"
                     onClick={() => setActiveNodeId(node.id)}
-                    className={`text-left p-3.5 rounded-lg border font-mono transition-all ${
+                    className={`text-left p-3.5 rounded-none border font-mono transition-all ${
                       isActive
-                        ? 'border-accent-line bg-paper-3/80 shadow-md ring-1 ring-accent-line'
+                        ? 'border-accent-line bg-paper-3/80 ring-1 ring-accent-line'
                         : 'border-rule bg-paper-2/40 hover:border-rule-2 hover:bg-paper-2'
                     }`}
                     style={{ minHeight: '44px' }}
                   >
                     <div className="flex items-center justify-between text-xs">
                       <span className="font-bold text-ink">{node.id}</span>
-                      <span className="text-emerald-400 text-[10px] font-semibold">{node.status}</span>
+                      <span className="text-accent text-[10px] font-semibold">{node.status}</span>
                     </div>
                     <div className="text-muted text-[11px] mt-1">{node.region}</div>
                     <div className="mt-3 grid grid-cols-2 gap-2 text-[11px] pt-2 border-t border-rule/50">
@@ -718,7 +717,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
             </div>
 
             {/* 选中节点的实时控制台输出 */}
-            <div className="mt-4 rounded-lg border border-rule bg-black/80 p-4 font-mono text-xs text-emerald-400 overflow-x-auto">
+            <div className="mt-4 rounded-none border border-rule bg-black/80 p-4 font-mono text-xs text-accent overflow-x-auto">
               <div className="text-muted text-[11px] mb-2 pb-1 border-b border-rule/60 flex items-center justify-between">
                 <span>[TAIL -F] {activeClusterNode.id} 实时日志流 ({activeClusterNode.role})</span>
                 <span>吞吐: {activeClusterNode.qps}</span>
@@ -728,7 +727,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
                   <div key={idx} className="whitespace-pre">
                     <span className="text-muted opacity-80">{line.slice(0, 7)}</span>
                     <span className="text-accent-line">{line.slice(7, 20)}</span>
-                    <span className="text-neutral-200">{line.slice(20)}</span>
+                    <span className="text-ink">{line.slice(20)}</span>
                   </div>
                 ))}
               </div>
@@ -756,11 +755,11 @@ export function TerminalPage({ page }: { page: ThemePage }) {
                       {bench.speed} {bench.unit} · {bench.latency} ({bench.ratio})
                     </span>
                   </div>
-                  <div className="h-3.5 w-full bg-paper-2 rounded overflow-hidden border border-rule">
+                  <div className="h-3.5 w-full bg-paper-2 rounded-none overflow-hidden border border-rule">
                     <div
-                      className={`h-full rounded transition-all duration-500 ${
+                      className={`h-full rounded-none transition-all duration-500 ${
                         bench.highlight
-                          ? 'bg-accent-line shadow-sm'
+                          ? 'bg-accent-line'
                           : 'bg-muted/50'
                       }`}
                       style={{ width: bench.ratio }}
@@ -824,7 +823,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
           </section>
 
           {/* 关键测试契约：安装栏与 CopyButton */}
-          <section className="mt-16 rounded-lg border border-rule bg-paper-2/70 p-5 sm:p-6" aria-labelledby="install-heading">
+          <section className="mt-16 rounded-none border border-rule bg-paper-2/70 p-5 sm:p-6" aria-labelledby="install-heading">
             <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
               <h2 id="install-heading" className="font-mono text-xs text-muted font-bold">
                 DISTRIBUTION PACKAGES · 极速分发与部署
@@ -836,7 +835,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
                     key={pm}
                     type="button"
                     onClick={() => setPkgManager(pm)}
-                    className={`px-2 py-1 rounded text-[11px] uppercase transition-colors ${
+                    className={`px-2 py-1 rounded-none text-[11px] uppercase transition-colors ${
                       pkgManager === pm
                         ? 'bg-ink text-paper font-bold'
                         : 'text-muted hover:text-ink'
@@ -849,7 +848,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center justify-between gap-3 rounded bg-paper p-3 border border-rule">
+            <div className="flex flex-wrap items-center justify-between gap-3 rounded-none bg-paper p-3 border border-rule">
               <div className="font-mono text-sm text-accent-line font-bold flex items-center gap-2">
                 <span className="text-muted">$</span>
                 <span>{installCmdMap[pkgManager]}</span>

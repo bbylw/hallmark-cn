@@ -138,19 +138,19 @@ export function BloomPage({ page }: { page: ThemePage }) {
 
           <div className="mt-3 grid grid-cols-2 gap-3 font-mono text-xs sm:grid-cols-4 pt-1">
             <div>
-              <span className="text-muted block text-[10px] uppercase">第一满潮 High Tide</span>
+              <span className="text-muted block text-xs uppercase">第一满潮 High Tide</span>
               <span className="font-bold text-ink">05:42 (+1.82m)</span>
             </div>
             <div>
-              <span className="text-muted block text-[10px] uppercase">第一枯潮 Low Tide</span>
+              <span className="text-muted block text-xs uppercase">第一枯潮 Low Tide</span>
               <span className="font-bold text-ink">11:35 (+0.75m)</span>
             </div>
             <div>
-              <span className="text-muted block text-[10px] uppercase">第二极枯 Ebb Tide</span>
+              <span className="text-muted block text-xs uppercase">第二极枯 Ebb Tide</span>
               <span className="font-bold text-accent-line">15:58 (-0.64m)</span>
             </div>
             <div>
-              <span className="text-muted block text-[10px] uppercase">第二夜满 Night Tide</span>
+              <span className="text-muted block text-xs uppercase">第二夜满 Night Tide</span>
               <span className="font-bold text-ink">21:10 (+1.45m)</span>
             </div>
           </div>
@@ -169,7 +169,7 @@ export function BloomPage({ page }: { page: ThemePage }) {
 
             <h1
               id="bloom-heading"
-              className="display mt-4 font-bold tracking-tight text-ink"
+              className="display mt-4 font-semibold tracking-tight text-ink"
               style={{
                 fontSize: 'clamp(2.5rem, 5.8vw, 4.25rem)',
                 lineHeight: 1.06,
@@ -205,13 +205,13 @@ export function BloomPage({ page }: { page: ThemePage }) {
 
           {/* 右侧核心交互：24小时连续潮位波动仿真仪 */}
           <div className="lg:col-span-7">
-            <div className="rounded-3xl border border-rule bg-paper p-6 sm:p-8 shadow-sm">
+            <div className="rounded-2xl border border-rule bg-paper p-6 sm:p-8">
               <div className="flex flex-wrap items-center justify-between gap-2 border-b border-rule pb-4">
                 <div>
                   <div className="font-mono text-xs font-bold text-ink uppercase tracking-wider">
                     24H ASTRONOMICAL TIDE WAVE · 全天连续潮位仪
                   </div>
-                  <div className="font-mono text-[11px] text-muted mt-0.5">
+                  <div className="font-mono text-xs text-muted mt-0.5">
                     月球引力与近岸水文实况联动 · 点击时段联动指针
                   </div>
                 </div>
@@ -228,7 +228,7 @@ export function BloomPage({ page }: { page: ThemePage }) {
                 <div className="absolute inset-x-0 top-3/4 border-b border-dashed border-rule" />
 
                 {/* SVG 潮位波形曲线 */}
-                <svg className="absolute inset-0 h-full w-full" preserveAspectRatio="none" viewBox="0 0 400 160">
+                <svg role="img" aria-label="全天潮位正弦波形图，标注四个时段的潮高位置" className="absolute inset-0 h-full w-full" preserveAspectRatio="none" viewBox="0 0 400 160">
                   <defs>
                     <linearGradient id="tideGrad" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0%" stopColor="var(--hm-accent)" stopOpacity="0.35" />
@@ -255,7 +255,7 @@ export function BloomPage({ page }: { page: ThemePage }) {
                 </svg>
 
                 {/* 顶部标度 */}
-                <div className="relative z-10 flex justify-between font-mono text-[10px] text-muted">
+                <div className="relative z-10 flex flex-wrap justify-between gap-2 bg-paper/50 px-1 font-mono text-xs text-muted">
                   <span>00:00 (夜)</span>
                   <span>06:00 (涨潮热池)</span>
                   <span>12:00 (平潮蒸汽)</span>
@@ -264,11 +264,11 @@ export function BloomPage({ page }: { page: ThemePage }) {
                 </div>
 
                 {/* 底部当前状态指示 */}
-                <div className="relative z-10 flex items-center justify-between font-mono text-xs">
-                  <span className="rounded bg-paper/80 px-2 py-0.5 text-ink font-bold border border-rule">
+                <div className="relative z-10 flex flex-wrap items-center justify-between gap-2 pt-2 font-mono text-xs">
+                  <span className="rounded-2xl bg-paper/80 px-2 py-0.5 text-ink font-bold border border-rule">
                     潮高指示：{cur.tideHeight} ({cur.tidePercent}%)
                   </span>
-                  <span className="rounded bg-paper/80 px-2 py-0.5 text-accent-line font-bold border border-rule">
+                  <span className="rounded-2xl bg-paper/80 px-2 py-0.5 text-accent-line font-bold border border-rule">
                     水温环境：{cur.temp}
                   </span>
                 </div>
@@ -283,7 +283,7 @@ export function BloomPage({ page }: { page: ThemePage }) {
                     onClick={() => setPick(idx)}
                     className={`rounded-2xl border p-3.5 text-left transition-all min-h-11 flex flex-col justify-between ${
                       pick === idx
-                        ? 'border-accent-line bg-paper-2 shadow-sm ring-1 ring-accent-line'
+                        ? 'border-accent-line bg-paper-2 ring-1 ring-accent-line'
                         : 'border-rule hover:border-ink/60 bg-paper-2/30'
                     }`}
                     aria-pressed={pick === idx}
@@ -292,7 +292,7 @@ export function BloomPage({ page }: { page: ThemePage }) {
                       <div className="font-mono text-xs text-muted font-bold">{clock(s.h)}</div>
                       <div className="font-bold text-sm text-ink mt-1">{s.name}</div>
                     </div>
-                    <div className="mt-3 pt-2 border-t border-rule/60 flex items-center justify-between font-mono text-[11px]">
+                    <div className="mt-3 pt-2 border-t border-rule/60 flex items-center justify-between font-mono text-xs">
                       <span className="text-accent-line font-bold">{s.tidePercent}% 潮位</span>
                       <span className="text-muted">余 {s.remainingSeats}</span>
                     </div>
@@ -304,8 +304,8 @@ export function BloomPage({ page }: { page: ThemePage }) {
               <div className="mt-6 rounded-2xl border border-rule bg-paper-2/50 p-5">
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-3">
                   <div>
-                    <span className="font-mono text-[10px] text-muted uppercase">SESSION DOSSIER</span>
-                    <h3 className="display text-xl font-bold text-ink mt-0.5">
+                    <span className="font-mono text-xs text-muted uppercase">SESSION DOSSIER</span>
+                    <h3 className="display text-xl font-semibold text-ink mt-0.5">
                       {cur.name} · {cur.vessel}
                     </h3>
                   </div>
@@ -314,7 +314,7 @@ export function BloomPage({ page }: { page: ThemePage }) {
                   </span>
                 </div>
 
-                <p className="mt-3 text-sm text-ink-2 leading-relaxed">
+                <p className="mt-3 max-w-none text-sm text-ink-2 leading-relaxed">
                   {cur.note}
                 </p>
 
@@ -341,7 +341,7 @@ export function BloomPage({ page }: { page: ThemePage }) {
               <span className="font-mono text-xs font-bold tracking-wider text-accent-line uppercase">
                 HYDROTHERAPY VESSELS · 泉池物态
               </span>
-              <h2 id="vessels-heading" className="display mt-1 text-2xl sm:text-3xl font-bold text-ink">
+              <h2 id="vessels-heading" className="display mt-1 text-2xl sm:text-3xl font-semibold text-ink">
                 四座天然岩石泉池与微环境
               </h2>
             </div>
@@ -366,7 +366,7 @@ export function BloomPage({ page }: { page: ThemePage }) {
                     </span>
                   </div>
 
-                  <h3 className="display mt-4 text-xl font-bold text-ink">{slot.vessel}</h3>
+                  <h3 className="display mt-4 text-xl font-semibold text-ink">{slot.vessel}</h3>
                   <div className="font-mono text-xs text-muted mt-1">{slot.name}</div>
                   <p className="mt-3 text-xs text-ink-2 leading-relaxed">
                     {slot.note.slice(0, 75)}…
@@ -374,8 +374,8 @@ export function BloomPage({ page }: { page: ThemePage }) {
                 </div>
 
                 <div className="mt-6 pt-3 border-t border-rule font-mono text-xs space-y-1.5">
-                  <div className="text-muted text-[10px] uppercase">富集矿物成分:</div>
-                  <ul className="space-y-1 text-ink text-[11px]">
+                  <div className="text-muted text-xs uppercase">富集矿物成分:</div>
+                  <ul className="space-y-1 text-ink text-xs">
                     {slot.mineralsList.map((m) => (
                       <li key={m} className="flex items-center gap-1.5">
                         <span className="h-1.5 w-1.5 rounded-full bg-accent-line" />
@@ -383,7 +383,7 @@ export function BloomPage({ page }: { page: ThemePage }) {
                       </li>
                     ))}
                   </ul>
-                  <div className="pt-2 text-[10px] text-muted">
+                  <div className="pt-2 text-xs text-muted">
                     现场容量：{slot.cap}
                   </div>
                 </div>
@@ -395,15 +395,15 @@ export function BloomPage({ page }: { page: ThemePage }) {
         {/* ════════════════════════════════════════════════════════════
             SECTION 3: 到场之后的静息动线指南 (Visiting Protocol Flow)
             ════════════════════════════════════════════════════════════ */}
-        <section id="protocol" className="mt-24 rounded-3xl border border-rule bg-paper-2/30 p-6 sm:p-10" aria-labelledby="flow-heading">
+        <section id="protocol" className="mt-24 rounded-2xl border border-rule bg-paper-2/30 p-6 sm:p-10" aria-labelledby="flow-heading">
           <div className="max-w-3xl">
             <span className="font-mono text-xs font-bold tracking-wider text-accent-line uppercase">
               VISITING PROTOCOL · 动线与心律
             </span>
-            <h2 id="flow-heading" className="display mt-1 text-2xl sm:text-3xl font-bold text-ink">
+            <h2 id="flow-heading" className="display mt-1 text-2xl sm:text-3xl font-semibold text-ink">
               到场之后的五步节律
             </h2>
-            <p className="mt-3 text-sm text-ink-2 leading-relaxed">
+            <p className="mt-3 max-w-none text-sm text-ink-2 leading-relaxed">
               前两件在手机上完成登记，后三件从你推开松木大门、交出手机那一刻自然衔接。当前时间节点已根据上方选中的【{cur.name}】动态推演：
             </p>
           </div>
@@ -413,7 +413,7 @@ export function BloomPage({ page }: { page: ThemePage }) {
               <div key={f.t} className="relative pl-6 sm:pl-8">
                 {/* 节点圆形指示灯 */}
                 <span
-                  className="absolute -left-2.25 top-1.5 h-4 w-4 rounded-full border-2 border-paper bg-accent-line"
+                  className="absolute -left-2 top-1.5 h-4 w-4 rounded-full border-2 border-paper bg-accent-line"
                   aria-hidden
                 />
 
@@ -421,7 +421,7 @@ export function BloomPage({ page }: { page: ThemePage }) {
                   <span className="font-mono text-xs font-bold text-accent-line">
                     {f.time}
                   </span>
-                  <h3 className="display text-lg sm:text-xl font-bold text-ink">
+                  <h3 className="display text-lg sm:text-xl font-semibold text-ink">
                     <span className="font-mono text-muted mr-2">0{i + 1}.</span>
                     {f.t}
                   </h3>
@@ -443,7 +443,7 @@ export function BloomPage({ page }: { page: ThemePage }) {
             <span className="font-mono text-xs font-bold tracking-wider text-accent-line uppercase">
               RESERVATION · 潮位席位锁定
             </span>
-            <h2 id="booking-heading" className="display mt-1 text-2xl sm:text-3xl font-bold text-ink">
+            <h2 id="booking-heading" className="display mt-1 text-2xl sm:text-3xl font-semibold text-ink">
               预约今日浴场潮汐席位
             </h2>
             <p className="mt-2 text-sm text-ink-2">
@@ -451,11 +451,11 @@ export function BloomPage({ page }: { page: ThemePage }) {
             </p>
           </div>
 
-          <div className="mt-8 rounded-3xl border-2 border-ink bg-paper p-6 sm:p-8 shadow-sm">
+          <div className="mt-8 rounded-2xl border-2 border-ink bg-paper p-6 sm:p-8">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-4">
               <div>
-                <span className="font-mono text-[10px] text-muted uppercase">TIDEWELL PASS</span>
-                <div className="display text-xl font-bold text-ink">
+                <span className="font-mono text-xs text-muted uppercase">TIDEWELL PASS</span>
+                <div className="display text-xl font-semibold text-ink">
                   {cur.name} · 入场通行联
                 </div>
               </div>
@@ -465,12 +465,12 @@ export function BloomPage({ page }: { page: ThemePage }) {
             </div>
 
             <div className="mt-5 grid grid-cols-2 gap-4 font-mono text-xs">
-              <div className="rounded-xl bg-paper-2/50 p-3">
-                <span className="text-muted block text-[10px]">入场推荐时间</span>
+              <div className="rounded-2xl bg-paper-2/50 p-3">
+                <span className="text-muted block text-xs">入场推荐时间</span>
                 <span className="font-bold text-ink mt-0.5 block">{clock(cur.h)} 前 20 分钟</span>
               </div>
-              <div className="rounded-xl bg-paper-2/50 p-3">
-                <span className="text-muted block text-[10px]">泉池规格</span>
+              <div className="rounded-2xl bg-paper-2/50 p-3">
+                <span className="text-muted block text-xs">泉池规格</span>
                 <span className="font-bold text-ink mt-0.5 block">{cur.vessel}</span>
               </div>
             </div>
@@ -489,7 +489,7 @@ export function BloomPage({ page }: { page: ThemePage }) {
                     : 'bg-ink text-paper hover:bg-accent-line active:translate-y-0.5'
                 }`}
               >
-                {isBooked ? '已锁定席位与毛巾编号 ✓' : '确认锁定该时段席位 →'}
+                {isBooked ? '已锁定席位与毛巾编号' : '确认锁定该时段席位 →'}
               </button>
             </div>
           </div>
@@ -531,8 +531,8 @@ export function BloomPage({ page }: { page: ThemePage }) {
               © 2026 TIDEWELL TIDAL BATHHOUSE · HALLMARK ATMOSPHERIC HARMONY
             </div>
             <div className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-emerald-600" />
-              <span className="font-bold text-ink">slop test: 58/58 ✓</span>
+              <span className="h-2 w-2 rounded-full bg-accent-line" />
+              <span className="font-bold text-ink">slop test: 58/58</span>
             </div>
           </div>
         </footer>

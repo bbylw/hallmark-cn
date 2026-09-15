@@ -261,17 +261,17 @@ export function AuroraPage({ page }: { page: ThemePage }) {
   const triggerSimulation = () => {
     if (isSimulating) return
     setIsSimulating(true)
-    setSimStepText('当前节点已就绪：[1/4] 分配 H100 拓扑节点 (Node-04)...')
+    setSimStepText('当前节点已就绪：[1/4] 分配 H100 拓扑节点（Node-04）…')
     setQueueProgress(45)
 
     const t1 = setTimeout(() => {
       setQueueProgress(72)
-      setSimStepText('当前节点已就绪：[2/4] 载入 16 通道 VAE 潜变量，跨帧注意力解算中 (72%)...')
+      setSimStepText('当前节点已就绪：[2/4] 载入 16 通道 VAE 潜变量，跨帧注意力解算中（72%）…')
     }, 400)
 
     const t2 = setTimeout(() => {
       setQueueProgress(95)
-      setSimStepText('当前节点已就绪：[3/4] 20 步降噪收敛，写入 Apple ProRes 轨道 (95%)...')
+      setSimStepText('当前节点已就绪：[3/4] 20 步降噪收敛，写入 Apple ProRes 轨道（95%）…')
     }, 850)
 
     const t3 = setTimeout(() => {
@@ -348,8 +348,8 @@ export function AuroraPage({ page }: { page: ThemePage }) {
         {/* 顶部集群微遥测状态条 */}
         <header className="flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-3.5 text-xs font-mono">
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-accent/15 text-accent-line font-bold border border-accent/30">
-              <span className="size-2 rounded-full bg-accent-line animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-xl bg-accent/15 text-accent-line font-bold border border-accent/30">
+              <span aria-hidden="true" className="size-2 rounded-xl bg-accent-line animate-pulse" />
               DIFFUSION 4.0 · ACTIVE
             </span>
             <span className="text-muted hidden md:inline">|</span>
@@ -370,7 +370,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
               AURORA VIDEO FOUNDATION · CONVERSATIONAL WORKBENCH
             </div>
             <h1
-              className="display mt-3 text-ink font-bold"
+              className="display mt-3 text-ink"
               style={{
                 fontSize: 'clamp(2.1rem, 5.2vw, 3.8rem)',
                 lineHeight: 1.05,
@@ -386,22 +386,22 @@ export function AuroraPage({ page }: { page: ThemePage }) {
 
           {/* 实时安全与工业规格四联指标徽章 */}
           <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full md:w-auto min-w-70">
-            <div className="rounded-lg border border-rule bg-paper-2/60 p-3.5 backdrop-blur">
+            <div className="rounded-xl border border-rule bg-paper-2/60 p-3.5 backdrop-blur">
               <div className="text-[11px] font-mono text-muted uppercase">GPU Cluster Load</div>
               <div className="mt-1 font-mono text-xl font-bold text-accent-line">98.4%</div>
               <div className="text-[11px] text-ink-2 mt-0.5">全节点满载低抖动运行</div>
             </div>
-            <div className="rounded-lg border border-rule bg-paper-2/60 p-3.5 backdrop-blur">
+            <div className="rounded-xl border border-rule bg-paper-2/60 p-3.5 backdrop-blur">
               <div className="text-[11px] font-mono text-muted uppercase">Data Retention</div>
               <div className="mt-1 font-mono text-xl font-bold text-ink">0 KB 驻留</div>
               <div className="text-[11px] text-ink-2 mt-0.5">即用即焚 · 绝不摄取</div>
             </div>
-            <div className="rounded-lg border border-rule bg-paper-2/60 p-3.5 backdrop-blur">
+            <div className="rounded-xl border border-rule bg-paper-2/60 p-3.5 backdrop-blur">
               <div className="text-[11px] font-mono text-muted uppercase">IP Indemnity</div>
               <div className="mt-1 font-mono text-xl font-bold text-accent-line">$5,000,000</div>
               <div className="text-[11px] text-ink-2 mt-0.5">无条件商业侵权兜底</div>
             </div>
-            <div className="rounded-lg border border-rule bg-paper-2/60 p-3.5 backdrop-blur">
+            <div className="rounded-xl border border-rule bg-paper-2/60 p-3.5 backdrop-blur">
               <div className="text-[11px] font-mono text-muted uppercase">Master Codec</div>
               <div className="mt-1 font-mono text-xl font-bold text-ink">ProRes 422</div>
               <div className="text-[11px] text-ink-2 mt-0.5">10-Bit 广播级无损导出</div>
@@ -418,12 +418,12 @@ export function AuroraPage({ page }: { page: ThemePage }) {
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
                 DEVICE 01 · LATENT MANIFOLD SAMPLER
               </span>
-              <h2 id={`${uid}-denoise-title`} className="display text-xl sm:text-2xl font-bold text-ink mt-1">
+              <h2 id={`${uid}-denoise-title`} className="display text-xl sm:text-2xl text-ink mt-1">
                 潜空间扩散去噪采样器 · 0~20 步时空解密
               </h2>
             </div>
             <div className="font-mono text-xs text-muted flex items-center gap-2">
-              <span className="size-2 rounded-full bg-accent-line" />
+              <span aria-hidden="true" className="size-2 rounded-xl bg-accent-line" />
               <span>DPM++ 2M KARRAS · 16-CH SPATIAL VAE</span>
             </div>
           </div>
@@ -441,9 +441,10 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                   key={s.step}
                   type="button"
                   onClick={() => setStepIndex(idx)}
-                  className={`min-h-11 px-3.5 py-2 rounded-lg text-xs font-mono transition-all border ${
+                  aria-pressed={active}
+                  className={`min-h-11 px-3.5 py-2 rounded-xl text-xs font-mono transition-all border ${
                     active
-                      ? 'border-accent-line bg-accent/20 text-accent-line font-bold shadow-sm shadow-accent/10'
+                      ? 'border-accent-line bg-accent/20 text-accent-line font-bold ring-1 ring-accent-line'
                       : 'border-rule bg-paper/60 text-ink-2 hover:border-rule-2 hover:text-ink'
                   }`}
                 >
@@ -456,9 +457,9 @@ export function AuroraPage({ page }: { page: ThemePage }) {
           {/* 去噪画布与物理剖析双栏 */}
           <div className="mt-6 grid gap-6 lg:grid-cols-12 items-stretch">
             {/* 左：动态合成视觉视窗 (基于 step 渲染不同潜空间状态) */}
-            <div className="lg:col-span-7 rounded-lg border border-rule bg-black/60 p-4 relative overflow-hidden flex flex-col justify-between min-h-80">
+            <div className="lg:col-span-7 rounded-xl border border-rule bg-black/60 p-4 relative overflow-hidden flex flex-col justify-between min-h-80">
               {/* 顶部元数据 HUD */}
-              <div className="flex items-center justify-between text-[11px] font-mono text-accent-line/90 z-10">
+              <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-accent-line/90 z-10">
                 <span>STAGE: {currentStep.phase}</span>
                 <span>RESIDUAL NOISE: {currentStep.residual}</span>
               </div>
@@ -467,7 +468,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
               <div className="my-auto py-6 flex items-center justify-center relative">
                 {/* Step 0: 白噪声 */}
                 {stepIndex === 0 && (
-                  <div className="w-full h-44 rounded border border-rule/50 flex flex-col items-center justify-center relative overflow-hidden bg-linear-to-br from-cyan-950/40 via-black to-blue-950/40">
+                  <div className="w-full h-44 rounded-xl border border-rule/50 flex flex-col items-center justify-center relative overflow-hidden bg-paper">
                     <svg className="w-full h-full opacity-60 absolute inset-0" xmlns="http://www.w3.org/2000/svg">
                       <filter id="noiseFilter">
                         <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch" />
@@ -475,7 +476,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                       </filter>
                       <rect width="100%" height="100%" filter="url(#noiseFilter)" />
                     </svg>
-                    <div className="relative z-10 font-mono text-xs px-3 py-1.5 rounded bg-black/80 text-muted border border-rule">
+                    <div className="relative z-10 font-mono text-xs px-3 py-1.5 rounded-xl bg-black/80 text-muted border border-rule">
                       GAUSSIAN NOISE [μ=0, σ=1] · SEED 84719204
                     </div>
                   </div>
@@ -483,14 +484,14 @@ export function AuroraPage({ page }: { page: ThemePage }) {
 
                 {/* Step 5: 低频骨架 */}
                 {stepIndex === 1 && (
-                  <div className="w-full h-44 rounded border border-rule/50 flex flex-col items-center justify-center relative overflow-hidden bg-linear-to-b from-cyan-950/60 via-slate-950 to-black">
+                  <div className="w-full h-44 rounded-xl border border-rule/50 flex flex-col items-center justify-center relative overflow-hidden bg-paper">
                     <svg className="w-full h-full opacity-70 absolute inset-0" viewBox="0 0 400 160">
                       <path d="M 0 120 Q 100 80, 200 100 T 400 70 L 400 160 L 0 160 Z" fill="oklch(25% 0.08 200 / 0.5)" />
                       <path d="M 0 60 Q 120 30, 240 50 T 400 30" stroke="oklch(70% 0.15 190 / 0.4)" strokeWidth="4" fill="none" strokeDasharray="6 4" />
                       <circle cx="200" cy="50" r="18" fill="oklch(60% 0.14 180 / 0.3)" />
                       <line x1="20" y1="20" x2="380" y2="140" stroke="oklch(50% 0.1 200 / 0.2)" strokeWidth="1" strokeDasharray="3 3" />
                     </svg>
-                    <div className="relative z-10 font-mono text-xs px-3 py-1.5 rounded bg-black/80 text-accent-line border border-accent/40">
+                    <div className="relative z-10 font-mono text-xs px-3 py-1.5 rounded-xl bg-black/80 text-accent-line border border-accent/40">
                       OPTICAL FLOW VECTORS DETECTED · ATTENTION HEADS: 32
                     </div>
                   </div>
@@ -498,7 +499,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
 
                 {/* Step 10: 语义与深度 */}
                 {stepIndex === 2 && (
-                  <div className="w-full h-44 rounded border border-rule/50 flex flex-col items-center justify-center relative overflow-hidden bg-linear-to-b from-cyan-950/80 via-slate-900 to-black">
+                  <div className="w-full h-44 rounded-xl border border-rule/50 flex flex-col items-center justify-center relative overflow-hidden bg-paper">
                     <svg className="w-full h-full absolute inset-0" viewBox="0 0 400 160">
                       {/* 极光微光带 */}
                       <path d="M 0 45 C 80 15, 180 60, 260 25 S 360 40, 400 20" stroke="oklch(78% 0.17 175 / 0.6)" strokeWidth="16" fill="none" filter="blur(6px)" />
@@ -506,15 +507,15 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                       {/* 峡湾剪影 */}
                       <polygon points="0,160 50,110 120,130 180,95 250,125 320,85 400,120 400,160" fill="oklch(18% 0.04 200)" />
                     </svg>
-                    <div className="relative z-10 font-mono text-xs px-3 py-1.5 rounded bg-black/80 text-ink border border-rule">
-                      DEPTH ESTIMATION: 0.12m ~ 4,200m · SEMANTIC LOCK
+                    <div className="relative z-10 font-mono text-xs px-3 py-1.5 rounded-xl bg-black/80 text-ink border border-rule">
+                      DEPTH ESTIMATION: 0.12 m ~ 4 200 m · SEMANTIC LOCK
                     </div>
                   </div>
                 )}
 
                 {/* Step 15: 微表面材质 */}
                 {stepIndex === 3 && (
-                  <div className="w-full h-44 rounded border border-rule/50 flex flex-col items-center justify-center relative overflow-hidden bg-linear-to-b from-sky-950 via-slate-900 to-black">
+                  <div className="w-full h-44 rounded-xl border border-rule/50 flex flex-col items-center justify-center relative overflow-hidden bg-paper">
                     <svg className="w-full h-full absolute inset-0" viewBox="0 0 400 160">
                       {/* 双层极光柔和光幕 */}
                       <path d="M 0 35 C 100 5, 200 55, 300 20 S 380 40, 400 15" stroke="oklch(76% 0.18 160 / 0.7)" strokeWidth="24" fill="none" filter="blur(8px)" />
@@ -527,7 +528,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                       <rect x="0" y="130" width="400" height="30" fill="oklch(12% 0.05 200 / 0.6)" />
                       <line x1="50" y1="140" x2="350" y2="140" stroke="oklch(80% 0.16 190 / 0.3)" strokeWidth="2" strokeDasharray="12 8" />
                     </svg>
-                    <div className="relative z-10 font-mono text-xs px-3 py-1.5 rounded bg-black/80 text-accent-line border border-accent/40">
+                    <div className="relative z-10 font-mono text-xs px-3 py-1.5 rounded-xl bg-black/80 text-accent-line border border-accent/40">
                       SUB-SURFACE SCATTERING & FRESNEL WATER REFLECTIONS
                     </div>
                   </div>
@@ -535,7 +536,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
 
                 {/* Step 20: 4K 最终帧 */}
                 {stepIndex === 4 && (
-                  <div className="w-full h-44 rounded border border-accent-line/60 flex flex-col items-center justify-center relative overflow-hidden bg-linear-to-b from-sky-950 via-slate-900 to-black shadow-lg shadow-accent/15">
+                  <div className="w-full h-44 rounded-xl border border-accent-line/60 flex flex-col items-center justify-center relative overflow-hidden bg-paper">
                     <svg className="w-full h-full absolute inset-0" viewBox="0 0 400 160">
                       {/* 绚烂极光电离层 */}
                       <defs>
@@ -561,7 +562,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                       <rect x="0" y="125" width="400" height="35" fill="oklch(10% 0.04 210)" />
                       <path d="M 0 145 C 90 135, 190 155, 280 138 S 370 148, 400 140" stroke="url(#auroraGlow)" strokeWidth="12" fill="none" filter="blur(6px)" opacity="0.4" />
                     </svg>
-                    <div className="relative z-10 font-mono text-xs px-3.5 py-1.5 rounded bg-black/85 text-accent-line border border-accent font-bold">
+                    <div className="relative z-10 font-mono text-xs px-3.5 py-1.5 rounded-xl bg-black/85 text-accent-line border border-accent font-bold">
                       ✓ 4K CINEMATIC MASTER FRAME · READY FOR ENCODING
                     </div>
                   </div>
@@ -577,26 +578,26 @@ export function AuroraPage({ page }: { page: ThemePage }) {
             </div>
 
             {/* 右：本阶段解算原理手记 */}
-            <div className="lg:col-span-5 rounded-lg border border-rule bg-paper/60 p-5 flex flex-col justify-between">
+            <div className="lg:col-span-5 rounded-xl border border-rule bg-paper/60 p-5 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between border-b border-rule/60 pb-2">
                   <span className="font-mono text-xs font-bold text-accent-line">{currentStep.label}</span>
                   <span className="font-mono text-[11px] text-muted">DIFFUSION CORE</span>
                 </div>
-                <h3 className="display text-lg font-bold text-ink mt-3">
+                <h3 className="display text-lg text-ink mt-3">
                   {currentStep.phase}
                 </h3>
                 <p className="mt-2 text-sm text-ink-2" style={{ lineHeight: 1.6 }}>
                   {currentStep.desc}
                 </p>
-                <div className="mt-4 rounded border border-rule/80 bg-paper-2/50 p-3 text-xs font-mono text-ink-2">
+                <div className="mt-4 rounded-xl border border-rule/80 bg-paper-2/50 p-3 text-xs font-mono text-ink-2">
                   <div className="text-muted text-[10px] uppercase font-bold mb-1">物理指标分析</div>
                   <div>• {currentStep.detail}</div>
                   <div className="mt-1">• 潜变量方差收敛率：{currentStep.residual}</div>
                 </div>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-rule/60 flex items-center justify-between text-xs font-mono text-muted">
+              <div className="mt-4 pt-3 border-t border-rule/60 flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-muted">
                 <span>时空连续性评分：99.94%</span>
                 <span className="text-accent-line">无闪烁校验通过 ✓</span>
               </div>
@@ -613,7 +614,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
                 DEVICE 02 · 3D CAMERA TRAJECTORY DIRECTOR
               </span>
-              <h2 id={`${uid}-camera-title`} className="display text-xl sm:text-2xl font-bold text-ink mt-1">
+              <h2 id={`${uid}-camera-title`} className="display text-xl sm:text-2xl text-ink mt-1">
                 运镜物理动力学导播台 · 视锥体与轨迹解算
               </h2>
             </div>
@@ -635,15 +636,16 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                   key={p.id}
                   type="button"
                   onClick={() => setCameraPresetId(p.id)}
-                  className={`min-h-14 p-3 rounded-lg text-left transition-all border flex flex-col justify-between ${
+                  aria-pressed={active}
+                  className={`min-h-14 p-3 rounded-xl text-left transition-all border flex flex-col justify-between ${
                     active
-                      ? 'border-accent-line bg-accent/15 text-ink font-bold shadow-sm'
+                      ? 'border-accent-line bg-accent/15 text-ink font-bold ring-1 ring-accent-line'
                       : 'border-rule bg-paper/50 text-ink-2 hover:border-rule-2 hover:text-ink'
                   }`}
                 >
                   <div className="flex items-center justify-between w-full">
                     <span className="text-xs font-bold">{p.name}</span>
-                    <span className={`size-1.5 rounded-full ${active ? 'bg-accent-line' : 'bg-muted'}`} />
+                    <span aria-hidden="true" className={`size-1.5 rounded-xl ${active ? 'bg-accent-line' : 'bg-muted'}`} />
                   </div>
                   <span className="text-[10px] font-mono text-muted mt-1 truncate">{p.nameEn}</span>
                 </button>
@@ -654,7 +656,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
           {/* 视锥体轨迹 3D 模拟与参数细节 */}
           <div className="mt-6 grid gap-6 lg:grid-cols-12 items-stretch">
             {/* 3D 相机视锥体 SVG 视觉示意 */}
-            <div className="lg:col-span-6 rounded-lg border border-rule bg-black/50 p-5 flex flex-col justify-between min-h-65 relative overflow-hidden">
+            <div className="lg:col-span-6 rounded-xl border border-rule bg-black/50 p-5 flex flex-col justify-between min-h-65 relative overflow-hidden">
               <div className="flex items-center justify-between text-xs font-mono text-accent-line">
                 <span>CAMERA FRUSTUM · {currentPreset.focal}</span>
                 <span>SHUTTER: 180° (1/120s)</span>
@@ -684,14 +686,14 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                 </svg>
               </div>
 
-              <div className="flex items-center justify-between text-[11px] font-mono text-muted border-t border-rule/50 pt-2">
+              <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-muted border-t border-rule/50 pt-2">
                 <span>PITCH / YAW / ROLL: 0° / 35° / -14°</span>
                 <span className="text-accent-line font-bold">SMOOTH CURVATURE: BEZIER EASE</span>
               </div>
             </div>
 
             {/* 参数矩阵 */}
-            <div className="lg:col-span-6 rounded-lg border border-rule bg-paper/60 p-5 flex flex-col justify-between">
+            <div className="lg:col-span-6 rounded-xl border border-rule bg-paper/60 p-5 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between border-b border-rule/60 pb-2">
                   <span className="text-sm font-bold text-ink">{currentPreset.name}</span>
@@ -712,13 +714,13 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                   </div>
                 </div>
 
-                <div className="mt-4 rounded border border-rule/80 bg-paper-2/40 p-3 text-xs text-ink-2">
+                <div className="mt-4 rounded-xl border border-rule/80 bg-paper-2/40 p-3 text-xs text-ink-2">
                   <span className="font-mono text-[10px] text-muted uppercase font-bold block mb-1">行业导播推荐用法</span>
                   {currentPreset.cinematicUse}
                 </div>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-rule/60 flex items-center justify-between text-xs font-mono text-muted">
+              <div className="mt-4 pt-3 border-t border-rule/60 flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-muted">
                 <span>畸变矫正率：99.8%</span>
                 <span className="text-accent-line">工业镜头标定库就绪 ✓</span>
               </div>
@@ -735,7 +737,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
                 DEVICE 03 · NVLINK COMPUTE TOPOLOGY & DISPATCH
               </span>
-              <h2 id={`${uid}-cluster-title`} className="display text-xl sm:text-2xl font-bold text-ink mt-1">
+              <h2 id={`${uid}-cluster-title`} className="display text-xl sm:text-2xl text-ink mt-1">
                 8 卡 H100 集群拓扑 · 真实显存与工单估算
               </h2>
             </div>
@@ -747,25 +749,25 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                 type="button"
                 onClick={triggerSimulation}
                 disabled={isSimulating}
-                className="min-h-11 rounded-lg border border-accent/40 bg-accent/15 px-4 py-2 font-mono text-xs text-accent-line hover:bg-accent/25 hover:border-accent font-bold transition-all"
+                className="min-h-11 rounded-xl border border-accent/40 bg-accent/15 px-4 py-2 font-mono text-xs text-accent-line hover:bg-accent/25 hover:border-accent font-bold transition-all"
               >
-                {isSimulating ? '计算中...' : '测试排队演练'}
+                {isSimulating ? '计算中…' : '测试排队演练'}
               </button>
             </div>
           </div>
 
           {/* 实时进度条与状态文案（精准对应 audit_aurora.mjs 断言） */}
           <div className="mt-6">
-            <div className="flex items-center justify-between text-xs font-mono text-muted mb-2">
+            <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-muted mb-2">
               <span className="text-ink font-semibold">渲染工单全链路进度</span>
               <span>{queueProgress}%</span>
             </div>
             <div
-              className="h-2.5 w-full overflow-hidden rounded-full border border-rule"
+              className="h-2.5 w-full overflow-hidden rounded-xl border border-rule"
               style={{ backgroundColor: 'var(--hm-paper)' }}
             >
               <div
-                className="h-full transition-all duration-300 rounded-full"
+                className="h-full transition-all duration-300 rounded-xl"
                 style={{
                   width: `${queueProgress}%`,
                   backgroundColor: 'var(--hm-accent)',
@@ -781,7 +783,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
 
           {/* 8 卡 GPU 拓扑小卡片 */}
           <div className="mt-6 pt-5 border-t border-rule/70">
-            <div className="text-xs font-mono font-bold text-ink mb-3 flex items-center justify-between">
+            <div className="text-xs font-mono font-bold text-ink mb-3 flex flex-wrap items-center justify-between gap-2">
               <span>PHYSICAL ACCELERATOR NODES (8x H100 80GB SXM5)</span>
               <span className="text-muted text-[11px]">INTERCONNECT: NVLINK 4.0 900GB/S</span>
             </div>
@@ -789,19 +791,21 @@ export function AuroraPage({ page }: { page: ThemePage }) {
               {GPU_NODES.map((gpu) => (
                 <div
                   key={gpu.id}
-                  className="rounded border border-rule bg-paper/60 p-2.5 text-[11px] font-mono flex flex-col justify-between"
+                  className="rounded-xl border border-rule bg-paper/60 p-2.5 text-[11px] font-mono flex flex-col justify-between"
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-ink">{gpu.name}</span>
                     <span
-                      className={`size-1.5 rounded-full ${
+                      aria-hidden="true"
+                      className={`size-1.5 rounded-xl ${
                         gpu.status === 'active'
                           ? 'bg-accent-line'
                           : gpu.status === 'allocating'
-                          ? 'bg-yellow-400'
+                          ? 'bg-accent-line'
                           : 'bg-muted'
                       }`}
                     />
+                    <span className="sr-only">{gpu.status === 'active' ? '运行中' : gpu.status === 'allocating' ? '分配中' : '待机'}</span>
                   </div>
                   <div className="mt-2 text-muted truncate text-[10px]" title={gpu.task}>
                     {gpu.task}
@@ -816,7 +820,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
           </div>
 
           {/* 交互式工单测算器 (Resolution x Duration x Tier) */}
-          <div className="mt-8 rounded-lg border border-rule bg-paper/70 p-5">
+          <div className="mt-8 rounded-xl border border-rule bg-paper/70 p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule/60 pb-3">
               <span className="text-xs font-mono font-bold text-ink">自定义任务排期与算力秒测算</span>
               <span className="text-xs font-mono text-muted">零隐藏计费 · 所见即所得</span>
@@ -832,7 +836,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                       key={r}
                       type="button"
                       onClick={() => setResolution(r)}
-                      className={`min-h-11 rounded border text-xs font-mono transition-all ${
+                      className={`min-h-11 rounded-xl border text-xs font-mono transition-all ${
                         resolution === r
                           ? 'border-accent-line bg-accent/20 text-accent-line font-bold'
                           : 'border-rule bg-paper text-ink-2 hover:border-rule-2'
@@ -853,7 +857,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                       key={d}
                       type="button"
                       onClick={() => setVideoDuration(d)}
-                      className={`min-h-11 rounded border text-xs font-mono transition-all ${
+                      className={`min-h-11 rounded-xl border text-xs font-mono transition-all ${
                         videoDuration === d
                           ? 'border-accent-line bg-accent/20 text-accent-line font-bold'
                           : 'border-rule bg-paper text-ink-2 hover:border-rule-2'
@@ -874,7 +878,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                       key={p}
                       type="button"
                       onClick={() => setPriorityTier(p)}
-                      className={`min-h-11 rounded border text-xs font-mono transition-all ${
+                      className={`min-h-11 rounded-xl border text-xs font-mono transition-all ${
                         priorityTier === p
                           ? 'border-accent-line bg-accent/20 text-accent-line font-bold'
                           : 'border-rule bg-paper text-ink-2 hover:border-rule-2'
@@ -888,7 +892,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
             </div>
 
             {/* 实时推算结果台账 */}
-            <div className="mt-5 rounded border border-accent/30 bg-accent/10 p-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
+            <div className="mt-5 rounded-xl border border-accent/30 bg-accent/10 p-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
               <div>
                 <span className="text-muted block text-[10px] uppercase">总计算帧数</span>
                 <span className="font-bold text-ink text-sm sm:text-base">{totalFrames} 帧 (@60fps)</span>
@@ -919,7 +923,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
                 MACRO 06 · CONVERSATIONAL FAQ & LEGAL CONTRACTS
               </span>
-              <h2 id={`${uid}-faq-title`} className="display text-2xl sm:text-3xl font-bold text-ink mt-1">
+              <h2 id={`${uid}-faq-title`} className="display text-2xl sm:text-3xl text-ink mt-1">
                 问得直接点 · 核心关切与合规专栏
               </h2>
             </div>
@@ -956,7 +960,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                         onKeyDown={(e) => onQuestionKeyDown(e, i)}
                         className={`flex w-full items-baseline gap-4 py-4 text-left transition-all min-h-13 ${
                           on
-                            ? 'border-l-4 border-accent-line bg-paper-2/90 pl-4 font-semibold shadow-sm'
+                            ? 'border-l-4 border-accent-line bg-paper-2/90 pl-4 font-semibold'
                             : 'border-l-4 border-transparent pl-4 text-ink-2 hover:bg-paper-2/40 hover:text-ink'
                         }`}
                       >
@@ -994,12 +998,12 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                 id="faq-panel"
                 role="tabpanel"
                 aria-labelledby={`faq-tab-${pick}`}
-                className="rounded-xl border border-rule bg-paper-2/80 p-6 sm:p-8 shadow-sm backdrop-blur-md"
+                className="rounded-xl border border-rule bg-paper-2/80 p-6 sm:p-8 backdrop-blur-md"
               >
                 {/* 顶部条款信封 */}
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule/60 pb-3.5">
                   <div className="flex items-center gap-2">
-                    <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-accent/15 text-accent-line border border-accent/30">
+                    <span className="px-2 py-0.5 rounded-xl text-[11px] font-mono font-bold bg-accent/15 text-accent-line border border-accent/30">
                       CLAUSE {currentQA.clauseId}
                     </span>
                     <span className="font-mono text-xs text-muted">ANSWER · 第 {pick + 1} 项解答</span>
@@ -1009,7 +1013,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
 
                 {/* 核心问题大字 */}
                 <p
-                  className="display mt-5 text-ink font-bold"
+                  className="display mt-5 text-ink"
                   style={{
                     fontSize: 'clamp(1.3rem, 2.8vw, 1.85rem)',
                     lineHeight: 1.2,
@@ -1019,26 +1023,26 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                 </p>
 
                 {/* 精简高光答案 */}
-                <div className="mt-4 p-4 rounded-lg bg-paper border border-accent/30 text-ink font-medium text-base sm:text-lg leading-relaxed">
+                <div className="mt-4 p-4 rounded-xl bg-paper border border-accent/30 text-ink font-medium text-base sm:text-lg leading-relaxed">
                   {currentQA.a}
                 </div>
 
                 {/* 深度技术与合规条款正文 */}
                 <div className="mt-5 text-sm sm:text-base text-ink-2 leading-relaxed space-y-3">
-                  <p>{currentQA.fullArticle}</p>
+                  <p className="max-w-none">{currentQA.fullArticle}</p>
                 </div>
 
                 {/* 契约公证三道密码学印章 */}
                 <div className="mt-6 pt-5 border-t border-rule/70 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px] font-mono text-muted">
-                  <div className="p-2.5 rounded border border-rule/60 bg-paper/50">
+                  <div className="p-2.5 rounded-xl border border-rule/60 bg-paper/50">
                     <span className="text-ink font-bold block mb-0.5">硬件隔离</span>
                     <span>No Persistent Swap Cache</span>
                   </div>
-                  <div className="p-2.5 rounded border border-rule/60 bg-paper/50">
+                  <div className="p-2.5 rounded-xl border border-rule/60 bg-paper/50">
                     <span className="text-ink font-bold block mb-0.5">C2PA 原创签名</span>
                     <span>SHA-256 Merkle Provenance</span>
                   </div>
-                  <div className="p-2.5 rounded border border-rule/60 bg-paper/50">
+                  <div className="p-2.5 rounded-xl border border-rule/60 bg-paper/50">
                     <span className="text-ink font-bold block mb-0.5">商业无忧</span>
                     <span>Full Commercial Rights</span>
                   </div>
@@ -1047,20 +1051,20 @@ export function AuroraPage({ page }: { page: ThemePage }) {
 
               {/* 下方附加：工业级 REST API 代码切片 */}
               <div className="mt-6 rounded-xl border border-rule bg-black/70 p-5 text-xs font-mono">
-                <div className="flex items-center justify-between border-b border-rule/60 pb-3">
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-rule/60 pb-3">
                   <span className="text-accent-line font-bold flex items-center gap-1.5">
-                    <span className="size-2 rounded-full bg-accent-line" />
+                    <span aria-hidden="true" className="size-2 rounded-xl bg-accent-line" />
                     HALOGEN RENDER API · cURL SPECIMEN
                   </span>
                   <button
                     type="button"
                     onClick={handleCopyApi}
-                    className="min-h-9 px-3 py-1 rounded border border-rule bg-paper-2 text-ink hover:border-ink transition-all"
+                    className="min-h-11 px-3 py-1 rounded-xl border border-rule bg-paper-2 text-ink hover:border-ink transition-all"
                   >
                     {apiCopied ? '✓ 已复制请求' : '复制 API 请求'}
                   </button>
                 </div>
-                <pre className="mt-3 overflow-x-auto text-ink-2 p-2 bg-black/40 rounded leading-relaxed">
+                <pre className="mt-3 overflow-x-auto text-ink-2 p-2 bg-black/40 rounded-xl leading-relaxed">
                   <code>{`curl -X POST https://api.halogen.video/v1/render \\
   -H "Authorization: Bearer hal_live_9842a8" \\
   -H "Content-Type: application/json" \\

@@ -85,7 +85,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
       >
         {/* 左栏：编号索引，吸顶对齐，点击跳节 */}
         <aside className="lg:col-span-3 lg:sticky lg:top-24 lg:self-start">
-          <div className="rounded-lg border border-rule bg-paper p-4 shadow-sm">
+          <div className="border border-rule bg-paper p-4">
             <div className="meta font-mono font-bold text-accent-line">
               {page.discipline} · OATMEAL
             </div>
@@ -95,7 +95,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
                   <a
                     href={`#${s.id}`}
                     className="tap flex items-baseline gap-2.5 text-xs sm:text-sm text-ink-2 transition-colors duration-200 hover:text-accent-line font-medium"
-                    style={{ minHeight: '36px' }}
+                    style={{ minHeight: '44px' }}
                   >
                     <span className="meta w-6 shrink-0 text-accent-line font-mono font-bold">
                       {String(i + 1).padStart(2, '0')}
@@ -111,7 +111,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
             >
               <div className="meta text-muted font-mono text-xs">当前动态字重</div>
               <div
-                className="display mt-1 text-4xl text-ink font-semibold"
+                className="display mt-1 text-4xl text-ink"
                 style={{ fontVariationSettings: `"wght" ${w}` }}
               >
                 {w}
@@ -140,13 +140,13 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
           
           {/* 01 展示 */}
           <section id="sec-display" className="scroll-mt-24">
-            <header className="rounded-lg border border-rule bg-paper-2/60 px-4 py-2.5 font-mono text-xs text-muted flex flex-wrap items-center justify-between gap-2 mb-6">
+            <header className="border border-rule bg-paper-2/60 px-4 py-2.5 font-mono text-xs text-muted flex flex-wrap items-center justify-between gap-2 mb-6">
               <span>OATMEAL SERIF · TYPE SPECIMEN BOOK</span>
               <span className="text-accent-line font-bold">VARIABLE 200 ~ 900</span>
             </header>
 
             <h1
-              className="display text-ink font-bold tracking-tight"
+              className="display text-ink tracking-tight"
               style={{ fontSize: 'clamp(2.25rem, 5.4vw, 4rem)', lineHeight: 1.05 }}
             >
               {page.title}
@@ -168,7 +168,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
             </div>
             
             {/* 字重滑轨控制栏 */}
-            <div className="mt-8 rounded-lg border border-rule bg-paper p-5 shadow-sm">
+            <div className="mt-8 border border-rule bg-paper p-5">
               <label className="flex flex-wrap items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
                   <span className="meta font-mono font-bold text-ink">WEIGHT</span>
@@ -193,7 +193,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
           <section id="sec-tester" className="scroll-mt-24">
             <SectionHead no="02" name="试字台 · TYPE TESTER" />
             
-            <div className="mt-6 rounded-lg border-2 border-rule bg-paper p-5 sm:p-6 shadow-md">
+            <div className="mt-6 border-2 border-rule bg-paper p-5 sm:p-6">
               {/* 控制工具条 */}
               <div className="flex flex-wrap items-center justify-between gap-4 border-b border-rule pb-5">
                 <div className="flex flex-wrap items-center gap-5">
@@ -247,7 +247,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
                   <button
                     type="button"
                     onClick={() => setTabularNums((v) => !v)}
-                    className={`min-h-11 rounded px-3 py-1 font-mono text-xs transition-colors ${
+                    className={`min-h-11 px-3 py-1 font-mono text-xs transition-colors ${
                       tabularNums
                         ? 'bg-ink text-paper font-bold'
                         : 'border border-rule text-muted hover:border-ink hover:text-ink'
@@ -260,7 +260,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
                   <button
                     type="button"
                     onClick={() => setLiga((v) => !v)}
-                    className={`min-h-11 rounded px-3 py-1 font-mono text-xs transition-colors ${
+                    className={`min-h-11 px-3 py-1 font-mono text-xs transition-colors ${
                       liga
                         ? 'bg-ink text-paper font-bold'
                         : 'border border-rule text-muted hover:border-ink hover:text-ink'
@@ -274,7 +274,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
                   <button
                     type="button"
                     onClick={() => setTestText('天地玄黄，宇宙洪荒。日月盈昃，辰宿列张。寒来暑往，秋收冬藏。')}
-                    className="min-h-11 rounded border-2 border-rule px-3.5 py-1 font-mono text-xs font-bold text-ink hover:border-accent-line hover:text-accent-line bg-paper-2/60 transition-colors"
+                    className="min-h-11 border-2 border-rule px-3.5 py-1 font-mono text-xs font-bold text-ink hover:border-accent-line hover:text-accent-line bg-paper-2/60 transition-colors"
                   >
                     载入千字文
                   </button>
@@ -282,7 +282,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
                   <button
                     type="button"
                     onClick={() => setTestText('The quick brown fox jumps over the lazy dog 1234567890.')}
-                    className="min-h-11 rounded border border-rule px-3 py-1 font-mono text-xs text-muted hover:text-ink hover:border-ink"
+                    className="min-h-11 border border-rule px-3 py-1 font-mono text-xs text-muted hover:text-ink hover:border-ink"
                   >
                     西文全字母
                   </button>
@@ -320,7 +320,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
           <section id="sec-anatomy" className="scroll-mt-24">
             <SectionHead no="03" name="骨架 · GLYPH ANATOMY" />
             
-            <div className="mt-6 rounded-lg border border-rule bg-paper p-6 shadow-sm">
+            <div className="mt-6 border border-rule bg-paper p-6">
               <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-4">
                 <span className="font-mono text-xs text-muted">汉字与西文字腔微观几何解剖</span>
                 <div className="flex items-center gap-1.5 font-mono text-xs">
@@ -329,7 +329,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
                       key={g.char}
                       type="button"
                       onClick={() => setActiveAnatomy(idx)}
-                      className={`px-3 py-1 rounded font-bold transition-colors ${
+                      className={`px-3 py-1 font-bold transition-colors ${
                         activeAnatomy === idx
                           ? 'bg-ink text-paper'
                           : 'border border-rule text-muted hover:border-ink hover:text-ink'
@@ -344,7 +344,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
 
               <div className="mt-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                 {/* 模拟坐标系中的大字投影 */}
-                <div className="md:col-span-5 relative size-56 sm:size-64 mx-auto border-2 border-dashed border-rule bg-paper-2/40 grid place-items-center rounded">
+                <div className="md:col-span-5 relative size-56 sm:size-64 mx-auto border-2 border-dashed border-rule bg-paper-2/40 grid place-items-center">
                   {/* 参考线 */}
                   <div className="absolute top-[20%] inset-x-0 border-b border-accent-line/30 flex justify-between px-1 text-[9px] font-mono text-accent-line select-none">
                     <span>CAP HEIGHT: 700</span>
@@ -377,7 +377,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
                     <span className="font-mono text-xs text-accent-line font-bold">
                       ANATOMICAL FOCUS
                     </span>
-                    <h3 className="display text-2xl font-bold text-ink mt-0.5">
+                    <h3 className="display text-2xl text-ink mt-0.5">
                       {ANATOMY_GLYPHS[activeAnatomy].role}
                     </h3>
                   </div>
@@ -458,9 +458,9 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
           {/* 05 长文：为长文而生的字体 */}
           <section id="sec-article" className="scroll-mt-24">
             <SectionHead no="05" name="长文 · ESSAY SPECIMEN" />
-            <article className="mt-8 rounded-lg border border-rule bg-paper p-6 sm:p-8 shadow-sm max-w-[46em]">
+            <article className="mt-8 border border-rule bg-paper p-6 sm:p-8 max-w-[46em]">
               <h2
-                className="display text-ink font-bold"
+                className="display text-ink"
                 style={{
                   fontSize: 'clamp(1.75rem, 3.2vw, 2.5rem)',
                   lineHeight: 1.15,
@@ -485,7 +485,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
                 眼睛就在这点错位里歇气。
               </p>
               <blockquote
-                className="mt-8 text-ink bg-paper-2/60 p-4 rounded"
+                className="mt-8 text-ink bg-paper-2/60 p-4"
                 style={{
                   borderLeft: '4px solid var(--hm-accent)',
                   fontSize: '1.125rem',
@@ -537,7 +537,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
                 </div>
               ))}
             </div>
-            <p className="mt-4 text-sm text-muted font-mono" style={{ lineHeight: 'var(--lh-relaxed)' }}>
+            <p className="mt-4 text-sm text-muted font-mono max-w-none" style={{ lineHeight: 'var(--lh-relaxed)' }}>
               中间四档最常用。拖动上方展示或试字台的滑轨，落在此八档范围上的字重将自动高亮对齐。
             </p>
           </section>
@@ -545,7 +545,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
           {/* 07 数字 */}
           <section id="sec-figures" className="scroll-mt-24">
             <SectionHead no="07" name="数字 · TABULAR FIGURES" />
-            <div className="mt-8 space-y-4 text-right text-ink bg-paper p-6 rounded-lg border border-rule shadow-sm">
+            <div className="mt-8 space-y-4 text-right text-ink bg-paper p-6 border border-rule">
               {[24, 36, 48].map((px) => (
                 <div
                   key={px}
@@ -564,10 +564,10 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
               等宽字位：0 到 9 每一位宽度完全一致，右缘强行对齐，字号换档行距换档永不跳位。
             </p>
             <p
-              className="mt-8 text-xl text-ink-2 bg-paper-2/40 p-4 rounded border border-rule/60"
+              className="mt-8 text-xl text-ink-2 bg-paper-2/40 p-4 max-w-none border border-rule/60"
               style={{ lineHeight: 'var(--lh-relaxed)' }}
             >
-              他说：&quot;来了。&quot;她没应，转身走了。夜班从十一点半，排到凌晨四点过。
+              他说：“来了。”她没应，转身走了。夜班从十一点半，排到凌晨四点过。
             </p>
             <p className="meta mt-3 text-muted font-mono text-xs">
               标点挤压做在字体底层：行末逗号压到半角宽，引号随字面走，网页排版天然规整。
@@ -581,10 +581,10 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
               {KERNING_PAIRS.map((item) => (
                 <div
                   key={item.pair}
-                  className="rounded border border-rule bg-paper p-3 text-center space-y-1 shadow-sm"
+                  className="border border-rule bg-paper p-3 text-center space-y-1"
                 >
                   <div
-                    className="display text-4xl font-bold text-ink"
+                    className="display text-4xl text-ink"
                     style={{ fontVariationSettings: `"wght" ${w}` }}
                   >
                     {item.pair}
@@ -600,7 +600,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
           <section id="sec-language" className="scroll-mt-24">
             <SectionHead no="09" name="语言 · CHARSETS & ENCODING" />
             <p
-              className="mt-6 wrap-break-word text-lg text-ink-2 bg-paper p-5 rounded border border-rule shadow-sm"
+              className="mt-6 wrap-break-word text-lg text-ink-2 bg-paper p-5 max-w-none border border-rule"
               style={{ lineHeight: 'var(--lh-relaxed)', wordSpacing: '0.3em' }}
             >
               {GLYPHS}

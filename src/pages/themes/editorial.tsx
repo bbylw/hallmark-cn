@@ -99,7 +99,7 @@ const BINDING_SPECS = [
   },
   {
     id: 'paper',
-    name: '90g 纯质樱花内文纸 (Sakura Uncoated 90g)',
+    name: '90 g 纯质樱花内文纸 (Sakura Uncoated 90 g)',
     material: '日本进口长纤维原木无氯未涂布浆，高松厚度 1.45 cm³/g',
     durability: '中性无酸纸，百年存放不黄脆，耐墨不洇',
     experience: '象牙微暖底色，自然吸收室内环境光，长时间台灯下深度阅读双眼不疲劳、不刺眼。',
@@ -107,7 +107,7 @@ const BINDING_SPECS = [
   },
   {
     id: 'cover',
-    name: '240g 丝绒特种卡压凹 (240g Velvet Card Blind Deboss)',
+    name: '240 g 丝绒特种卡压凹 (240 g Velvet Card Blind Deboss)',
     material: '德国环保再生棉浆，表面附带天鹅绒微细触感层',
     durability: '抗刮擦、防指纹油脂渗透，边缘硬挺不起毛边',
     experience: '刊名采用 0.4mm 深度手工铜版无色深压凹，指尖抚过犹如雕刻石碑般的物理起伏感。',
@@ -128,7 +128,7 @@ const FACTS = [
   ['开本', '185 × 260 mm 黄金分割开本'],
   ['印数', '限定 3,000 册 · 独立编号'],
   ['出版', '春分 / 夏至 / 秋分 / 冬至'],
-  ['用纸', '内文 90g 樱花纸 · 封面 240g 特种卡'],
+  ['用纸', '内文 90 g 樱花纸 · 封面 240 g 特种卡'],
   ['装订', '裸脊平摊 · 跨页双版芯展开'],
 ]
 
@@ -189,7 +189,7 @@ export function EditorialPage({ page }: { page: ThemePage }) {
         {/* 顶部刊头元信息 */}
         <header className="flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-3.5 text-xs font-mono">
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-accent/15 text-accent-line font-bold border border-accent/30">
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-accent/15 text-accent-line font-bold border border-accent/30">
               <span className="size-2 rounded-full bg-accent-line" />
               QUARTERLY REVIEW · ISSUE NO. 28
             </span>
@@ -254,6 +254,7 @@ export function EditorialPage({ page }: { page: ThemePage }) {
                 <button
                   type="button"
                   onClick={() => setActiveArticle(feature.v)}
+                  aria-expanded={activeArticle === feature.v}
                   className="group block w-full py-6 text-left transition-colors cursor-pointer"
                 >
                   <span
@@ -279,14 +280,14 @@ export function EditorialPage({ page }: { page: ThemePage }) {
             {activeArticle && (
               <section
                 aria-label="文章版芯速读摘录"
-                className="my-8 rounded-xl border-2 border-accent-line/40 bg-paper-2/60 p-6 sm:p-7 shadow-sm transition-all duration-200 backdrop-blur-sm"
+                className="my-8 border-2 border-accent-line/40 bg-paper-2/60 p-6 sm:p-7 transition-all duration-200 backdrop-blur-sm"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-3.5">
                   <div className="flex items-center gap-2.5">
-                    <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-accent/20 text-accent-line border border-accent/40">
+                    <span className="font-mono text-xs font-bold px-2 py-0.5 bg-accent/20 text-accent-line border border-accent/40">
                       EXCERPT · 版芯试读
                     </span>
-                    <span className="font-bold text-sm text-ink truncate">
+                    <span className="font-bold text-sm text-ink break-words">
                       《{activeArticle}》
                     </span>
                   </div>
@@ -306,14 +307,13 @@ export function EditorialPage({ page }: { page: ThemePage }) {
                   “{activeExcerpt.lead}”
                 </blockquote>
 
-                <div className="mt-4 p-3 rounded bg-paper border border-rule text-xs font-mono text-accent-line font-bold flex items-center gap-2">
-                  <span>★</span>
+                <div className="mt-4 p-3 bg-paper border border-rule text-xs font-mono text-accent-line font-bold flex items-center gap-2">
                   <span>金句摘录：“{activeExcerpt.pullQuote}”</span>
                 </div>
 
-                <div className="mt-5 flex flex-wrap items-center justify-between gap-3 pt-3.5 border-t border-rule/80 font-mono text-[11px] text-muted">
+                <div className="mt-5 flex flex-wrap items-center justify-between gap-3 pt-3.5 border-t border-rule/80 font-mono text-xs text-muted">
                   <span>{activeExcerpt.typographicNote}</span>
-                  <span className="text-ink font-bold bg-paper-2 px-2 py-0.5 rounded border border-rule">
+                  <span className="text-ink font-bold bg-paper-2 px-2 py-0.5 border border-rule">
                     {activeExcerpt.exLibrisNo}
                   </span>
                 </div>
@@ -339,8 +339,9 @@ export function EditorialPage({ page }: { page: ThemePage }) {
                       <button
                         type="button"
                         onClick={() => setActiveArticle(it.v)}
+                        aria-pressed={isSelected}
                         className={`group flex w-full items-baseline gap-3 sm:gap-4 py-4 text-left transition-all min-h-13 ${
-                          isSelected ? 'bg-accent/10 pl-3 rounded-md font-semibold' : 'hover:pl-2'
+                          isSelected ? 'bg-accent/10 pl-2 font-semibold' : 'hover:pl-2'
                         }`}
                       >
                         <span className="meta w-7 shrink-0 font-mono text-muted text-xs">
@@ -400,10 +401,10 @@ export function EditorialPage({ page }: { page: ThemePage }) {
 
           {/* 右侧边栏：出版物态参数 + 订购入口 */}
           <aside className="lg:col-span-4 lg:col-start-9">
-            <div className="lg:sticky lg:top-24 rounded-xl border border-rule bg-paper-2/50 p-6">
+            <div className="lg:sticky lg:top-24 border border-rule bg-paper-2/50 p-6">
               <div className="flex items-center justify-between border-b border-rule pb-3">
                 <span className="meta font-mono font-bold text-ink">第 28 期出版参数</span>
-                <span className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-paper border border-rule text-muted">COLOPHON</span>
+                <span className="font-mono text-xs px-1.5 py-0.5 bg-paper border border-rule text-muted">COLOPHON</span>
               </div>
 
               <dl className="mt-4 divide-y divide-rule/60">
@@ -428,7 +429,7 @@ export function EditorialPage({ page }: { page: ThemePage }) {
         {/* ────────────────────────────────────────────────────────────
             装置 2：实体装帧与印后工艺解构台 (Binding & Finishing Lab)
             ──────────────────────────────────────────────────────────── */}
-        <section aria-labelledby={`${uid}-craft-title`} className="mt-16 rounded-xl border border-rule bg-paper-2/50 p-6 sm:p-8 backdrop-blur-md">
+        <section aria-labelledby={`${uid}-craft-title`} className="mt-16 border border-rule bg-paper-2/50 p-6 sm:p-8 backdrop-blur-md">
           <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-rule/80 pb-4">
             <div>
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
@@ -456,24 +457,25 @@ export function EditorialPage({ page }: { page: ThemePage }) {
                   key={b.id}
                   type="button"
                   onClick={() => setActiveBindingId(b.id)}
-                  className={`min-h-13 p-3 rounded-lg text-left transition-all border flex flex-col justify-between ${
+                  aria-pressed={active}
+                  className={`min-h-13 p-3 text-left transition-all border flex flex-col justify-between ${
                     active
-                      ? 'border-accent-line bg-accent/15 text-ink font-bold shadow-sm'
+                      ? 'border-accent-line bg-accent/15 text-ink font-bold'
                       : 'border-rule bg-paper/60 text-ink-2 hover:border-rule-2 hover:text-ink'
                   }`}
                 >
-                  <span className="text-xs font-bold truncate">{b.name.split('(')[0]}</span>
-                  <span className="text-[10px] font-mono text-muted mt-1 truncate">{b.tag}</span>
+                  <span className="text-xs font-bold break-words">{b.name.split('(')[0]}</span>
+                  <span className="text-xs font-mono text-muted mt-1 whitespace-normal break-words">{b.tag}</span>
                 </button>
               )
             })}
           </div>
 
           {/* 选中工艺深度解析 */}
-          <div className="mt-6 rounded-lg border border-rule bg-paper p-5 sm:p-6">
+          <div className="mt-6 border border-rule bg-paper p-5 sm:p-6">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule/60 pb-3 font-mono text-xs">
               <span className="font-bold text-ink text-sm">{activeBinding.name}</span>
-              <span className="px-2 py-0.5 rounded bg-accent/10 text-accent-line border border-accent/30 font-bold">
+              <span className="px-2 py-0.5 bg-accent/10 text-accent-line border border-accent/30 font-bold">
                 {activeBinding.tag}
               </span>
             </div>
@@ -483,12 +485,12 @@ export function EditorialPage({ page }: { page: ThemePage }) {
             </p>
 
             <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
-              <div className="p-3 rounded bg-paper-2/40 border border-rule/70">
-                <span className="text-muted block text-[10px] uppercase">材料与规格</span>
+              <div className="p-3 bg-paper-2/40 border border-rule/70">
+                <span className="text-muted block text-xs uppercase">材料与规格</span>
                 <span className="text-ink font-medium block mt-1">{activeBinding.material}</span>
               </div>
-              <div className="p-3 rounded bg-paper-2/40 border border-rule/70">
-                <span className="text-muted block text-[10px] uppercase">物理耐久度指标</span>
+              <div className="p-3 bg-paper-2/40 border border-rule/70">
+                <span className="text-muted block text-xs uppercase">物理耐久度指标</span>
                 <span className="text-accent-line font-medium block mt-1">{activeBinding.durability}</span>
               </div>
             </div>
@@ -498,7 +500,7 @@ export function EditorialPage({ page }: { page: ThemePage }) {
         {/* ────────────────────────────────────────────────────────────
             装置 3：Tschichold 经典黄金分割版心律与阅读规范标尺
             ──────────────────────────────────────────────────────────── */}
-        <section aria-labelledby={`${uid}-canon-title`} className="mt-14 rounded-xl border border-rule bg-paper-2/40 p-6 sm:p-8">
+        <section aria-labelledby={`${uid}-canon-title`} className="mt-14 border border-rule bg-paper-2/40 p-6 sm:p-8">
           <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-rule/80 pb-4">
             <div>
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
@@ -514,19 +516,19 @@ export function EditorialPage({ page }: { page: ThemePage }) {
           </div>
 
           <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
-            <div className="p-4 rounded-lg border border-rule bg-paper">
+            <div className="p-4 border border-rule bg-paper">
               <span className="text-accent-line font-bold block mb-1">01 · 汉字行长极限律</span>
               <p className="text-ink-2 leading-relaxed">
                 正文单行严格控制在 38~42 个标准汉字，杜绝视线长距离换行时的断层疲劳；行距设定为字号的 1.75 倍（28pt），留出纯净的横向呼吸空间。
               </p>
             </div>
-            <div className="p-4 rounded-lg border border-rule bg-paper">
+            <div className="p-4 border border-rule bg-paper">
               <span className="text-accent-line font-bold block mb-1">02 · 基线网格绝对对齐</span>
               <p className="text-ink-2 leading-relaxed">
                 全刊所有标题、正文、摘录与尾注严格锚定在 14pt 统一垂直节拍基线（Baseline Grid），透光反面阅读时背面墨迹与正面行行重叠，纸背无杂光。
               </p>
             </div>
-            <div className="p-4 rounded-lg border border-rule bg-paper">
+            <div className="p-4 border border-rule bg-paper">
               <span className="text-accent-line font-bold block mb-1">03 · 丝网藏书票独立编号</span>
               <p className="text-ink-2 leading-relaxed">
                 随刊附赠由作者与装帧师双签名的手工丝网藏书票（Ex-Libris），附独立 4 位序列号，采用防伪凸版压力机打制，具备纸本艺术品收藏属性。

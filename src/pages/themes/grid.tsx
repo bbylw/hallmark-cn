@@ -85,7 +85,7 @@ export function GridPage({ page }: { page: ThemePage }) {
             {Array.from({ length: 12 }).map((_, i) => (
               <div
                 key={i}
-                className="h-full border-x border-cyan-500/15 bg-cyan-500/2"
+                className="h-full border-x border-accent/20 bg-accent/5"
               />
             ))}
           </div>
@@ -97,26 +97,26 @@ export function GridPage({ page }: { page: ThemePage }) {
         {/* 顶部微状态公报条 */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-3 font-mono text-xs text-muted">
           <div className="flex items-center gap-2">
-            <span className="inline-block h-2.5 w-2.5 rounded-full bg-blue-600 animate-pulse" />
+            <span className="inline-block h-2.5 w-2.5 rounded-none bg-accent animate-pulse" />
             <span className="font-bold text-ink tracking-wider">KUNSTGEWERBEMUSEUM ZÜRICH</span>
-            <span className="text-rule-dark">/</span>
+            <span className="text-rule-2">/</span>
             <span className="text-accent-line font-semibold">SWISS POSTER TRIENNIAL 2026</span>
           </div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <span>HEIDELBERG SPEEDMASTER XL-106</span>
-            <span className="text-rule-dark">/</span>
+            <span className="text-rule-2">/</span>
             <span>175 LPI FM加网</span>
-            <span className="text-rule-dark">/</span>
+            <span className="text-rule-2">/</span>
             <span className="text-ink font-semibold">TIC ≤ 290%</span>
-            <span className="text-rule-dark">/</span>
-            <span className="rounded bg-accent/20 px-1.5 py-0.5 text-[10px] font-bold text-accent-line">
+            <span className="text-rule-2">/</span>
+            <span className="rounded-none bg-accent/20 px-1.5 py-0.5 text-[10px] font-bold text-accent-line">
               MÜLLER-BROCKMANN CANON
             </span>
           </div>
         </div>
 
         {/* 核心互动装置：CMYK 分色与 1 毫米套准错位实验台 (严格保留测试契约) */}
-        <div className="mt-8 rounded-xl border border-rule bg-paper/80 p-6 sm:p-8 shadow-sm">
+        <div className="mt-8 rounded-none border border-rule bg-paper/80 p-6 sm:p-8">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-rule/60 pb-4">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs font-bold text-accent-line uppercase tracking-wider">
@@ -130,9 +130,9 @@ export function GridPage({ page }: { page: ThemePage }) {
               <button
                 type="button"
                 onClick={() => setShowGridLines((v) => !v)}
-                className={`min-h-11 rounded-lg px-3 py-1.5 font-mono text-xs font-bold transition-all ${
+                className={`min-h-11 rounded-none px-3 py-1.5 font-mono text-xs font-bold transition-all ${
                   showGridLines
-                    ? 'border border-cyan-500 bg-cyan-500/15 text-cyan-800 dark:text-cyan-200'
+                    ? 'border border-accent-line bg-accent/15 text-accent-line'
                     : 'border border-rule bg-paper-2 text-ink-2 hover:border-ink/50'
                 }`}
                 aria-pressed={showGridLines}
@@ -144,9 +144,9 @@ export function GridPage({ page }: { page: ThemePage }) {
               <button
                 type="button"
                 onClick={() => setMisregistration((v) => !v)}
-                className={`min-h-11 rounded-lg px-4 py-1.5 font-mono text-xs font-bold transition-all ${
+                className={`min-h-11 rounded-none px-4 py-1.5 font-mono text-xs font-bold transition-all ${
                   misregistration
-                    ? 'bg-ink text-paper shadow-sm'
+                    ? 'bg-ink text-paper'
                     : 'border border-rule bg-paper-2 text-ink-2 hover:border-ink/50'
                 }`}
                 aria-pressed={misregistration}
@@ -166,7 +166,7 @@ export function GridPage({ page }: { page: ThemePage }) {
               return (
                 <div
                   key={s.code}
-                  className="h-1.5 rounded-full transition-all duration-300"
+                  className="h-1.5 rounded-none transition-all duration-300"
                   style={{
                     backgroundColor: enabled ? s.color : 'var(--hm-rule)',
                     opacity: enabled ? 0.95 : 0.2,
@@ -189,9 +189,9 @@ export function GridPage({ page }: { page: ThemePage }) {
                     key={s.code}
                     type="button"
                     onClick={() => toggleInk(s.code)}
-                    className={`flex items-center gap-2 rounded-lg border px-3 py-2 min-h-11 transition-all ${
+                    className={`flex items-center gap-2 rounded-none border px-3 py-2 min-h-11 transition-all ${
                       enabled
-                        ? 'border-rule bg-paper shadow-xs hover:border-ink/50'
+                        ? 'border-rule bg-paper hover:border-ink/50'
                         : 'border-transparent bg-paper-2/60 opacity-40 hover:opacity-70'
                     }`}
                     aria-label={`切换 ${s.name} 色通道`}
@@ -199,7 +199,7 @@ export function GridPage({ page }: { page: ThemePage }) {
                   >
                     <span
                       aria-hidden="true"
-                      className="size-3.5 rounded-full border border-black/10 transition-transform"
+                      className="size-3.5 rounded-none border border-black/10 transition-transform"
                       style={{
                         backgroundColor: s.color,
                         opacity: enabled ? 1 : 0.2,
@@ -222,8 +222,8 @@ export function GridPage({ page }: { page: ThemePage }) {
             {/* 当前总油墨量 TIC 仪表指示 */}
             <div className="flex items-center gap-3 font-mono text-xs">
               <span className="text-muted">当前 TIC 油墨总量：</span>
-              <span className={`font-bold px-2 py-0.5 rounded ${
-                currentTic <= 290 ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300' : 'bg-rose-500/15 text-rose-700'
+              <span className={`font-bold px-2 py-0.5 rounded-none ${
+                currentTic <= 290 ? 'bg-accent/15 text-accent-line' : 'bg-ink text-paper'
               }`}>
                 {currentTic}% / 290% Max
               </span>
@@ -258,8 +258,8 @@ export function GridPage({ page }: { page: ThemePage }) {
           {GRID_METRICS.map((metric, idx) => (
             <div key={idx} className="min-w-0">
               <div className="text-muted uppercase text-[11px]">{metric.label}</div>
-              <div className="mt-1 text-sm sm:text-base font-bold text-ink truncate">{metric.value}</div>
-              <div className="mt-0.5 text-[11px] text-muted truncate">{metric.note}</div>
+              <div className="mt-1 text-sm sm:text-base font-bold text-ink">{metric.value}</div>
+              <div className="mt-0.5 text-[11px] text-muted">{metric.note}</div>
             </div>
           ))}
         </div>
@@ -277,7 +277,7 @@ export function GridPage({ page }: { page: ThemePage }) {
             </p>
             
             {/* 工业印前工单 */}
-            <div className="mt-8 rounded-xl border border-rule bg-paper/60 p-5 shadow-sm">
+            <div className="mt-8 rounded-none border border-rule bg-paper/60 p-5">
               <div className="flex items-center justify-between border-b border-rule/60 pb-3">
                 <span className="font-mono text-xs font-bold text-ink">PRINT TICKET #04</span>
                 <span className="font-mono text-[10px] text-muted">SWISS GRID / CMYK OFFSET</span>
@@ -286,7 +286,7 @@ export function GridPage({ page }: { page: ThemePage }) {
                 {SPECS.map(([k, v]) => (
                   <div key={k} className="flex items-baseline justify-between py-2 text-xs">
                     <span className="text-muted shrink-0 mr-2">{k}</span>
-                    <span className="font-mono text-right text-ink-2 font-medium truncate">{v}</span>
+                    <span className="font-mono text-right text-ink-2 font-medium break-words">{v}</span>
                   </div>
                 ))}
               </div>
@@ -301,7 +301,7 @@ export function GridPage({ page }: { page: ThemePage }) {
           {/* 右：拼版展台 (Imposition Plates) */}
           <div className="lg:col-span-8 min-w-0">
             <div
-              className="grid grid-cols-2 gap-px overflow-hidden rounded-xl sm:grid-cols-4 shadow-sm"
+              className="grid grid-cols-2 gap-px overflow-hidden rounded-none sm:grid-cols-4"
               style={{
                 backgroundColor: 'var(--hm-rule)',
                 border: '1px solid var(--hm-rule)',
@@ -393,7 +393,7 @@ export function GridPage({ page }: { page: ThemePage }) {
               {page.images.slice(0, 2).map((s) => (
                 <div
                   key={s}
-                  className="overflow-hidden rounded-xl border border-rule bg-paper shadow-sm"
+                  className="overflow-hidden rounded-none border border-rule bg-paper"
                 >
                   <Img slug={s} alt={`Hallmark 生成的示例页 ${s}`} variant="fill" />
                 </div>
@@ -404,8 +404,8 @@ export function GridPage({ page }: { page: ThemePage }) {
 
         {/* Hallmark 标准 58/58 印章 */}
         <div className="mt-16 border-t border-rule pt-8 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-rule bg-paper-2 px-4 py-1.5 font-mono text-xs text-muted shadow-sm">
-            <span className="inline-block h-2 w-2 rounded-full bg-emerald-500" />
+          <div className="inline-flex items-center gap-2 rounded-none border border-rule bg-paper-2 px-4 py-1.5 font-mono text-xs text-muted">
+            <span className="inline-block h-2 w-2 rounded-none bg-accent" />
             <span className="tracking-wide">critique: P5 H5 E5 S5 R5 V5 · slop test: 58/58 ✓</span>
           </div>
         </div>

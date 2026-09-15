@@ -113,8 +113,8 @@ export function MidnightPage({ page }: { page: ThemePage }) {
         {/* 顶部状态栏与全球网络微光心跳 */}
         <header className="flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-3.5 text-xs font-mono">
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-bold border border-emerald-500/30">
-              <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-none bg-paper-2 text-ink font-bold border border-rule">
+              <span aria-hidden="true" className="size-2 rounded-none bg-ink animate-pulse" />
               NIGHTWATCH GLOBAL FABRIC · V5.8
             </span>
             <span className="text-muted hidden md:inline">|</span>
@@ -124,7 +124,7 @@ export function MidnightPage({ page }: { page: ThemePage }) {
           </div>
           <div className="flex items-center gap-4 text-ink-2">
             <span>实时入库吞吐：20.4 TB/s</span>
-            <span className="text-accent-line font-bold">写入 SLA：99.999%</span>
+            <span className="text-ink font-bold">写入 SLA：99.999%</span>
           </div>
         </header>
 
@@ -152,7 +152,7 @@ export function MidnightPage({ page }: { page: ThemePage }) {
                 aria-live="polite"
               >
                 <span>●</span>
-                <span>当前监测焦点：{cur.c} ({cur.region}) · {currentVal}ms ({cur.protocol})</span>
+                <span className="min-w-0 break-all">当前监测焦点：{cur.c} ({cur.region}) · {currentVal}ms ({cur.protocol})</span>
               </div>
             </div>
           </div>
@@ -162,15 +162,15 @@ export function MidnightPage({ page }: { page: ThemePage }) {
             <span className="font-mono text-[10px] text-muted uppercase tracking-wider">
               分位数切换 · PERCENTILE SELECTOR
             </span>
-            <div className="flex items-center gap-1.5 rounded-lg border border-rule bg-paper-2/60 p-1 font-mono text-xs shadow-xs">
+            <div className="flex items-center gap-1.5 rounded-none border border-rule bg-paper-2/60 p-1 font-mono text-xs">
               {(['p50', 'p95', 'p99', 'p999'] as Percentile[]).map((p) => (
                 <button
                   key={p}
                   type="button"
                   onClick={() => setPercentile(p)}
-                  className={`min-h-11 min-w-14 rounded px-3 py-1 font-bold transition-all cursor-pointer flex items-center justify-center ${
+                  className={`min-h-11 min-w-14 rounded-none px-3 py-1 font-bold transition-all cursor-pointer flex items-center justify-center ${
                     percentile === p
-                      ? 'bg-ink text-paper ring-1 ring-accent-line shadow-sm'
+                      ? 'bg-ink text-paper'
                       : 'text-muted hover:text-ink hover:bg-paper-2'
                   }`}
                   aria-pressed={percentile === p}
@@ -185,14 +185,14 @@ export function MidnightPage({ page }: { page: ThemePage }) {
         {/* ────────────────────────────────────────────────────────────
             装置 1：十二个边缘采集点分位数横向条形探针台
             ──────────────────────────────────────────────────────────── */}
-        <section aria-labelledby={`${uid}-points-title`} className="mt-12 rounded-xl border border-rule bg-paper-2/50 p-5 sm:p-7 shadow-xs">
+        <section aria-labelledby={`${uid}-points-title`} className="mt-12 rounded-none border border-rule bg-paper-2/50 p-5 sm:p-7">
           <div className="flex flex-wrap items-baseline justify-between gap-4 pb-3 border-b border-rule">
             <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-muted">
                 DEVICE 01 · 12-NODE EDGE TELEMETRY GRID
               </span>
               <span className="text-muted hidden sm:inline">|</span>
-              <h2 id={`${uid}-points-title`} className="display text-base font-bold text-ink">
+              <h2 id={`${uid}-points-title`} className="display text-base text-ink">
                 十二大洲际骨干中继 RTT 实时拓扑标尺
               </h2>
             </div>
@@ -207,7 +207,7 @@ export function MidnightPage({ page }: { page: ThemePage }) {
               {[0, Math.round(maxVal / 2), maxVal].map((t, i) => (
                 <span
                   key={t}
-                  className="absolute text-muted"
+                  className={`absolute text-muted ${i === 1 ? 'hidden sm:block' : ''}`}
                   style={{
                     left: `${(t / maxVal) * 100}%`,
                     transform:
@@ -235,28 +235,27 @@ export function MidnightPage({ page }: { page: ThemePage }) {
                     type="button"
                     aria-pressed={on}
                     onMouseEnter={() => setPick(i)}
-                    onFocus={() => setPick(i)}
                     onClick={() => setPick(i)}
-                    className={`flex w-full items-center gap-3 py-3 px-2 text-left transition-colors min-h-11 rounded-lg cursor-pointer ${
-                      on ? 'bg-accent/15' : 'hover:bg-paper-2/60'
+                    className={`flex w-full items-center gap-3 py-3 px-2 text-left transition-colors min-h-11 rounded-none cursor-pointer ${
+                      on ? 'bg-paper-3' : 'hover:bg-paper-2/60'
                     }`}
                   >
-                    <div className="w-24 shrink-0 truncate sm:w-36">
+                    <div className="w-24 shrink-0 sm:w-36">
                       <span className={`block font-medium text-xs sm:text-sm ${on ? 'text-ink font-bold' : 'text-ink-2'}`}>
                         {p.c}
                       </span>
-                      <span className="block font-mono text-[10px] text-muted truncate">
+                      <span className="block font-mono text-[10px] text-muted">
                         {p.region} · {p.traffic}
                       </span>
                     </div>
 
-                    <span className="flex h-3 min-w-0 flex-1 items-center bg-paper/40 rounded-full px-1">
+                    <span className="flex h-3 min-w-0 flex-1 items-center bg-rule-2/40 rounded-none px-1">
                       <span
-                        className="block h-2 rounded-full transition-all duration-300 ease-out"
+                        className="block h-2 rounded-none transition-all duration-300 ease-out"
                         style={{
                           width: `${Math.min(100, (val / maxVal) * 100)}%`,
                           backgroundColor: on
-                            ? 'var(--hm-accent)'
+                            ? 'var(--hm-ink)'
                             : 'var(--hm-rule-2)',
                           minWidth: '4px',
                         }}
@@ -266,12 +265,12 @@ export function MidnightPage({ page }: { page: ThemePage }) {
                     <div className="w-16 shrink-0 text-right sm:w-20">
                       <span
                         className={`font-mono text-xs sm:text-sm font-bold block ${
-                          on ? 'text-accent-line' : 'text-muted'
+                          on ? 'text-ink' : 'text-muted'
                         }`}
                       >
                         {val}ms
                       </span>
-                      <span className="font-mono text-[10px] text-muted block truncate">
+                      <span className="font-mono text-[10px] text-muted block">
                         {p.protocol.split(' ')[0]}
                       </span>
                     </div>
@@ -283,25 +282,25 @@ export function MidnightPage({ page }: { page: ThemePage }) {
 
           <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-rule pt-3 text-xs text-muted font-mono">
             <span>十二个骨干中继探针按实际光纤拓扑探测 · 瞬时微突发抖动平滑过滤</span>
-            <span className="text-accent-line font-bold">当前焦点采样协议：{cur.protocol}</span>
+            <span className="text-ink font-bold">当前焦点采样协议：{cur.protocol}</span>
           </div>
         </section>
 
         {/* ────────────────────────────────────────────────────────────
             装置 2：分布式调用链瀑布流 (Distributed Trace Waterfall)
             ──────────────────────────────────────────────────────────── */}
-        <section aria-labelledby={`${uid}-trace-title`} className="mt-14 rounded-xl border border-rule bg-paper-2/50 p-6 sm:p-8 backdrop-blur-md">
+        <section aria-labelledby={`${uid}-trace-title`} className="mt-14 rounded-none border border-rule bg-paper-2/50 p-6 sm:p-8 backdrop-blur-md">
           <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-rule/80 pb-4">
             <div>
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-muted">
                 DEVICE 02 · DISTRIBUTED TRACE FLAMEGRAPH & SPAN WATERFALL
               </span>
-              <h2 id={`${uid}-trace-title`} className="display text-xl sm:text-2xl font-bold text-ink mt-1">
+              <h2 id={`${uid}-trace-title`} className="display text-xl sm:text-2xl text-ink mt-1">
                 单次请求微服务调用链 · 毫秒级 Span 级联分解
               </h2>
             </div>
             <div className="flex items-center gap-2 font-mono text-xs text-muted">
-              <span>TraceID: 4bf92f3577b34da6a3ce929d0e0e4736</span>
+              <span className="min-w-0 break-all">TraceID: 4bf92f3577b34da6a3ce929d0e0e4736</span>
             </div>
           </div>
 
@@ -317,23 +316,23 @@ export function MidnightPage({ page }: { page: ThemePage }) {
                   key={sp.id}
                   type="button"
                   onClick={() => setSelectedSpanId(sp.id)}
-                  className={`w-full p-3.5 rounded-lg border text-left transition-all cursor-pointer min-h-12.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 ${
+                  className={`w-full p-3.5 rounded-none border text-left transition-all cursor-pointer min-h-12.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 ${
                     active
-                      ? 'border-accent-line bg-accent/15 text-ink shadow-sm'
+                      ? 'border-ink bg-paper-3 text-ink'
                       : 'border-rule bg-paper text-ink-2 hover:border-rule-2 hover:bg-paper-2'
                   }`}
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <span className="size-2 rounded-full bg-emerald-500 shrink-0" />
+                    <span aria-hidden="true" className="size-2 rounded-none bg-ink shrink-0" />
                     <span className="font-bold text-ink truncate">{sp.service}</span>
                     <span className="text-muted hidden md:inline truncate">{sp.operation}</span>
                   </div>
 
                   <div className="flex items-center gap-4 text-muted shrink-0">
-                    <span className="px-2 py-0.5 rounded bg-paper-2 border border-rule text-[10px] text-ink">
+                    <span className="px-2 py-0.5 rounded-none bg-paper-2 border border-rule text-[10px] text-ink">
                       {sp.status === 'cache_hit' ? 'CACHE HIT' : 'HTTP 200'}
                     </span>
-                    <span className="text-accent-line font-bold">{sp.duration}</span>
+                    <span className="text-ink font-bold">{sp.duration}</span>
                   </div>
                 </button>
               )
@@ -341,9 +340,9 @@ export function MidnightPage({ page }: { page: ThemePage }) {
           </div>
 
           {/* 选中 Span 详细元数据 */}
-          <div className="mt-5 rounded-lg border border-rule bg-paper p-4 sm:p-5 font-mono text-xs">
+          <div className="mt-5 rounded-none border border-rule bg-paper p-4 sm:p-5 font-mono text-xs">
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-rule/60 pb-2.5">
-              <span className="font-bold text-accent-line">
+              <span className="font-bold text-ink">
                 选中 SPAN 深度元数据 · {activeSpan.service}
               </span>
               <span className="text-muted text-[11px]">
@@ -369,12 +368,12 @@ export function MidnightPage({ page }: { page: ThemePage }) {
         <section aria-labelledby={`${uid}-arch-title`} className="mt-16 border-t-2 border-ink pt-10">
           <div className="grid gap-x-12 gap-y-10 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <span className="meta font-mono font-bold text-accent-line">
+              <span className="meta font-mono font-bold text-muted">
                 ARCHITECTURE SPECIFICATION
               </span>
               <h2
                 id={`${uid}-arch-title`}
-                className="display mt-2 text-ink font-bold"
+                className="display mt-2 text-ink"
                 style={{
                   fontSize: 'clamp(1.75rem, 3.4vw, 2.5rem)',
                   lineHeight: 1.12,
@@ -412,7 +411,7 @@ export function MidnightPage({ page }: { page: ThemePage }) {
               接入任意现代语言服务，三分钟内在控制台实时生成首条端到端拓扑追踪链。
             </span>
           </div>
-          <div className="text-xs text-muted px-3 py-1.5 rounded bg-paper-2 border border-rule">
+          <div className="text-xs text-muted px-3 py-1.5 rounded-none bg-paper-2 border border-rule">
             CLI: <strong className="text-ink">npx @nightwatch/agent init</strong>
           </div>
         </div>

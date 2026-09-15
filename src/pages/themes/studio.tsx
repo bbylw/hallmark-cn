@@ -20,7 +20,7 @@ const PROJECT_SPEC_DATABASE: Record<string, ProjectDetail> = {
     deliverables: '卧铺列车内饰软装选材方案 · 弱电与恒温空调微调 · 定制铜制金属铭牌与客室标识系统 · 42 周驻车测试',
     duration: '42 周完整研发周期',
     materials: '俄罗斯落叶松胶合木、低辐射双银中空降噪车窗、耐磨防滑羊毛地毯',
-    area: '1,840 ㎡ (全列共 8 节编组)',
+    area: '1,840 ㎡（全列共 8 节编组）',
     structure: '轻量化耐候不锈钢车体 + 重木内胆骨架',
     challenge: '在每小时 160 公里高速震动工况下实现零异响装配，包厢内声学降噪指标低至 38 分贝。',
   },
@@ -147,7 +147,7 @@ const MATERIAL_SWATCHES: MaterialSwatch[] = [
     id: 'rammed',
     name: '生态古法三合夯土 (Rammed Earth)',
     origin: '场址开挖深层未风化红黄粘土',
-    strength: '单轴抗压 4.5 MPa (掺 6% 无机生石灰)',
+    strength: '单轴抗压 4.5 MPa（掺 6% 无机生石灰）',
     lifespan: '60+ 年 · 热惰性极高',
     sensory: '泥土与草木的呼吸感，室内空气相对湿度天然恒定在 50%~60%',
     carbonLevel: '超低内嵌能 · 就地取材零运输',
@@ -224,7 +224,7 @@ export function StudioPage({ page }: { page: ThemePage }) {
   }) => (
     <figcaption className={size === 'lg' ? 'mt-3.5' : 'mt-2.5'}>
       <div
-        className={`display font-bold text-ink ${size === 'lg' ? 'text-lg sm:text-xl' : 'text-base'}`}
+        className={`display text-ink ${size === 'lg' ? 'text-lg sm:text-xl' : 'text-base'}`}
       >
         {w.client}
       </div>
@@ -256,7 +256,7 @@ export function StudioPage({ page }: { page: ThemePage }) {
       >
         <div
           className={`overflow-hidden transition-all duration-200 ${
-            isInspected ? 'ring-2 ring-accent-line shadow-lg' : 'hover:border-ink'
+            isInspected ? 'ring-2 ring-accent-line' : 'hover:border-ink'
           }`}
           style={{
             border: '1px solid var(--hm-rule)',
@@ -312,7 +312,7 @@ export function StudioPage({ page }: { page: ThemePage }) {
               STUDIO ARCHIVE · FRAUNCES TYPOGRAPHY & TIMBER CRAFT
             </span>
             <h1
-              className="display mt-3 text-ink font-bold"
+              className="display mt-3 text-ink"
               style={{
                 fontSize: 'clamp(2.2rem, 5.2vw, 3.8rem)',
                 lineHeight: 1.05,
@@ -369,7 +369,7 @@ export function StudioPage({ page }: { page: ThemePage }) {
         {activeProject && (
           <section
             aria-label="项目详细营造规格"
-            className="mt-10 rounded-xl border border-rule bg-paper-2/90 p-6 sm:p-8 transition-all duration-200 shadow-md backdrop-blur-md"
+            className="mt-10 rounded-md border border-rule bg-paper-2/90 p-6 sm:p-8 transition-all duration-200 backdrop-blur-md"
           >
             {(() => {
               const spec = getSpec(activeProject)
@@ -380,7 +380,7 @@ export function StudioPage({ page }: { page: ThemePage }) {
                       <span className="meta font-mono font-bold text-accent-line">
                         PROJECT SCOPE
                       </span>
-                      <span className="display font-bold text-ink text-xl sm:text-2xl">
+                      <span className="display text-ink text-xl sm:text-2xl">
                         {activeProject}
                       </span>
                       <span className="font-mono text-xs text-muted">
@@ -390,7 +390,7 @@ export function StudioPage({ page }: { page: ThemePage }) {
                     <button
                       type="button"
                       onClick={() => setActiveProject(null)}
-                      className="min-h-9 px-3 py-1 rounded border border-rule bg-paper text-xs font-mono text-ink-2 hover:text-ink hover:border-ink transition-all"
+                      className="min-h-11 px-3 py-1 rounded border border-rule bg-paper text-xs font-mono text-ink-2 hover:text-ink hover:border-ink transition-all"
                       aria-label="关闭项目详情"
                     >
                       关闭档案 ✕
@@ -438,13 +438,13 @@ export function StudioPage({ page }: { page: ThemePage }) {
         {/* ────────────────────────────────────────────────────────────
             装置 2：空间营造材料物态触感抽样台 (Material Swatches Lab)
             ──────────────────────────────────────────────────────────── */}
-        <section aria-labelledby={`${uid}-mat-title`} className="mt-14 rounded-xl border border-rule bg-paper-2/50 p-6 sm:p-8 backdrop-blur-md">
+        <section aria-labelledby={`${uid}-mat-title`} className="mt-14 rounded-md border border-rule bg-paper-2/50 p-6 sm:p-8 backdrop-blur-md">
           <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-rule/80 pb-4">
             <div>
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
                 DEVICE 02 · ARCHITECTURAL MATERIALITY & TACTILE SWATCHES
               </span>
-              <h2 id={`${uid}-mat-title`} className="display text-xl sm:text-2xl font-bold text-ink mt-1">
+              <h2 id={`${uid}-mat-title`} className="display text-xl sm:text-2xl text-ink mt-1">
                 空间营造材料样板台 · 天然触感与百年耐候指标
               </h2>
             </div>
@@ -466,21 +466,21 @@ export function StudioPage({ page }: { page: ThemePage }) {
                   key={swatch.id}
                   type="button"
                   onClick={() => setActiveSwatchId(swatch.id)}
-                  className={`min-h-14 p-3 rounded-lg text-left transition-all border flex flex-col justify-between ${
+                  className={`min-h-14 p-3 rounded-md text-left transition-all border flex flex-col justify-between ${
                     active
-                      ? 'border-accent-line bg-accent/15 text-ink font-bold shadow-sm'
+                      ? 'border-accent-line bg-accent/15 text-ink font-bold'
                       : 'border-rule bg-paper/60 text-ink-2 hover:border-rule-2 hover:text-ink'
                   }`}
                 >
-                  <span className="text-xs font-bold truncate">{swatch.name.split('(')[0]}</span>
-                  <span className="text-[10px] font-mono text-muted mt-1 truncate">{swatch.origin.split(' ')[0]}</span>
+                  <span className="text-xs font-bold">{swatch.name.split('(')[0]}</span>
+                  <span className="text-[10px] font-mono text-muted mt-1">{swatch.origin.split(' ')[0]}</span>
                 </button>
               )
             })}
           </div>
 
           {/* 选中材料深度剖析 */}
-          <div className="mt-6 rounded-lg border border-rule bg-paper p-5 sm:p-6">
+          <div className="mt-6 rounded-md border border-rule bg-paper p-5 sm:p-6">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule/60 pb-3">
               <div>
                 <span className="font-mono text-xs font-bold text-accent-line">{activeSwatch.name}</span>
@@ -491,7 +491,7 @@ export function StudioPage({ page }: { page: ThemePage }) {
               </span>
             </div>
 
-            <p className="mt-4 text-sm text-ink-2 leading-relaxed">
+            <p className="mt-4 text-sm text-ink-2 leading-relaxed max-w-none">
               {activeSwatch.desc}
             </p>
 
@@ -506,7 +506,7 @@ export function StudioPage({ page }: { page: ThemePage }) {
               </div>
               <div className="p-3 rounded border border-rule/70 bg-paper-2/40">
                 <span className="text-muted block text-[10px] uppercase">岁月触感包浆</span>
-                <span className="font-bold text-ink mt-0.5 block truncate" title={activeSwatch.sensory}>{activeSwatch.sensory}</span>
+                <span className="font-bold text-ink mt-0.5 block" title={activeSwatch.sensory}>{activeSwatch.sensory}</span>
               </div>
             </div>
           </div>
@@ -515,13 +515,13 @@ export function StudioPage({ page }: { page: ThemePage }) {
         {/* ────────────────────────────────────────────────────────────
             装置 3：2026~2027 工作室年度排期甘特表 (Studio Capacity Deck)
             ──────────────────────────────────────────────────────────── */}
-        <section aria-labelledby={`${uid}-cap-title`} className="mt-14 rounded-xl border border-rule bg-paper-2/50 p-6 sm:p-8 backdrop-blur-md">
+        <section aria-labelledby={`${uid}-cap-title`} className="mt-14 rounded-md border border-rule bg-paper-2/50 p-6 sm:p-8 backdrop-blur-md">
           <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-rule/80 pb-4">
             <div>
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
                 DEVICE 03 · CAPACITY & ANNUAL COMMISSION GANTT
               </span>
-              <h2 id={`${uid}-cap-title`} className="display text-xl sm:text-2xl font-bold text-ink mt-1">
+              <h2 id={`${uid}-cap-title`} className="display text-xl sm:text-2xl text-ink mt-1">
                 工作室年度排期与工位承载状态
               </h2>
             </div>
@@ -535,14 +535,14 @@ export function StudioPage({ page }: { page: ThemePage }) {
             <div className="rounded border border-rule bg-paper p-4">
               <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                 <div className="flex items-center gap-2">
-                  <span className="size-2 rounded-full bg-yellow-500" />
-                  <span className="font-bold text-ink">工位 A · 建筑组 (Slot A)</span>
+                  <span className="size-2 rounded-full bg-ink" />
+                  <span className="font-bold text-ink">工位 A · 建筑组（Slot A）</span>
                   <span className="text-muted">【山海潮汐观测站 · 主体结构与外立面】</span>
                 </div>
                 <span className="text-muted">锁定至 2026 年 10 月底</span>
               </div>
               <div className="h-2 w-full overflow-hidden rounded-full bg-paper-2 border border-rule">
-                <div className="h-full bg-yellow-500 rounded-full" style={{ width: '85%' }} />
+                <div className="h-full bg-ink rounded-full" style={{ width: '85%' }} />
               </div>
             </div>
 
@@ -550,14 +550,14 @@ export function StudioPage({ page }: { page: ThemePage }) {
             <div className="rounded border border-rule bg-paper p-4">
               <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                 <div className="flex items-center gap-2">
-                  <span className="size-2 rounded-full bg-emerald-500" />
-                  <span className="font-bold text-ink">工位 B · 空间组 (Slot B)</span>
+                  <span className="size-2 rounded-full bg-accent-line" />
+                  <span className="font-bold text-ink">工位 B · 空间组（Slot B）</span>
                   <span className="text-muted">【老街坊粮仓改造 · 竣工验收与布展】</span>
                 </div>
-                <span className="text-emerald-600 font-bold">即将交付释放</span>
+                <span className="text-accent-line font-bold">即将交付释放</span>
               </div>
               <div className="h-2 w-full overflow-hidden rounded-full bg-paper-2 border border-rule">
-                <div className="h-full bg-emerald-500 rounded-full" style={{ width: '96%' }} />
+                <div className="h-full bg-accent-line rounded-full" style={{ width: '96%' }} />
               </div>
             </div>
 
@@ -565,7 +565,7 @@ export function StudioPage({ page }: { page: ThemePage }) {
             <div className="rounded border-2 border-dashed border-accent-line bg-accent/5 p-4 flex flex-wrap items-center justify-between gap-3">
               <div>
                 <span className="font-bold text-accent-line block">
-                  ★ 下一空余档期：2026 Q4 (11月 ~ 次年 2 月)
+                  ★ 下一空余档期：2026 Q4（11月 ~ 次年 2 月）
                 </span>
                 <span className="text-muted mt-0.5 block">
                   适宜项目类型：独立文化建筑、书店微更新、小型林地聚落规划。

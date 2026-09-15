@@ -265,7 +265,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
               NATURAL COMB HONEY · CAPPED & UNHEATED
             </div>
             <h1
-              className="display mt-3 text-ink font-bold"
+              className="display mt-3 text-ink"
               style={{
                 fontSize: 'clamp(2.3rem, 5.4vw, 3.8rem)',
                 lineHeight: 1.06,
@@ -275,7 +275,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
               {page.title}
             </h1>
             <p
-              className="display mt-5 text-ink font-normal leading-relaxed"
+              className="display mt-5 text-ink font-normal leading-relaxed max-w-none"
               style={{ fontSize: 'clamp(1.2rem, 2.4vw, 1.45rem)' }}
             >
               {page.standfirst}
@@ -291,7 +291,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
 
             {/* 编辑体纯正大字引言 */}
             <blockquote
-              className="mt-8 border-l-3 border-accent-line pl-5 py-1 text-ink text-base sm:text-lg font-medium"
+              className="mt-8 border-l-[3px] border-accent-line pl-5 py-1 text-ink text-base sm:text-lg font-medium"
               style={{ lineHeight: '1.6', fontStyle: 'normal' }}
             >
               “蜂不喂糖，花不打药。十二个箱子放在半山背阴处，让蜜蜂自己决定什么时候采够。人只取多出来的那一小半，取的时候还必须给它们留足整个寒冬的口粮。”
@@ -299,19 +299,19 @@ export function GardenPage({ page }: { page: ThemePage }) {
 
             {/* 养蜂老工匠的三条不可动摇戒律 */}
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-6 border-t border-rule/70">
-              <div className="rounded-lg border border-rule bg-paper-2/60 p-3.5">
+              <div className="rounded-card border border-rule bg-paper-2/60 p-3.5">
                 <span className="font-mono text-xs font-bold text-accent-line block mb-1">戒律一 · 未封盖不割</span>
                 <p className="text-xs text-ink-2 leading-relaxed">
                   未自然封盖说明蜜蜂尚未鼓翼脱水完毕，水分超标容易发酵。多等十天，直到蜜蜡全封才准下刀。
                 </p>
               </div>
-              <div className="rounded-lg border border-rule bg-paper-2/60 p-3.5">
+              <div className="rounded-card border border-rule bg-paper-2/60 p-3.5">
                 <span className="font-mono text-xs font-bold text-accent-line block mb-1">戒律二 · 零度加温粗滤</span>
                 <p className="text-xs text-ink-2 leading-relaxed">
                   工业蜜为过泵机必须高温熔化，彻底破坏活性酶。我们仅用四层古法细棉纱自然重力滴滤，保留天然花粉颗粒。
                 </p>
               </div>
-              <div className="rounded-lg border border-rule bg-paper-2/60 p-3.5">
+              <div className="rounded-card border border-rule bg-paper-2/60 p-3.5">
                 <span className="font-mono text-xs font-bold text-accent-line block mb-1">戒律三 · 秋风起即封箱</span>
                 <p className="text-xs text-ink-2 leading-relaxed">
                   立秋后最后一摇结束，随即给蜂箱上双重木栓。八月后所有进蜜一克不取，全部留做全蜂群越冬储备。
@@ -322,7 +322,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
 
           {/* 侧栏：这一季的自然收获台账与即时预约 */}
           <aside className="lg:col-span-4">
-            <div className="lg:sticky lg:top-20 rounded-xl border border-rule bg-paper-2/70 p-6 backdrop-blur-md shadow-sm">
+            <div className="lg:sticky lg:top-20 rounded-card border border-rule bg-paper-2/70 p-6 backdrop-blur-md">
               <div className="flex items-center justify-between border-b border-rule pb-3">
                 <span className="font-mono text-xs font-bold text-ink uppercase tracking-wider">这一季 · HARVEST LOG</span>
                 <span className="font-mono text-[11px] text-accent-line font-semibold">2026 茬口实录</span>
@@ -332,7 +332,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
                 {(page.items ?? []).map((it) => (
                   <div key={it.k + it.v} className="py-3.5 first:pt-0">
                     <div className="text-xs font-mono text-muted">{it.k}</div>
-                    <div className="display mt-1 text-xl font-bold text-ink">{it.v}</div>
+                    <div className="display mt-1 text-xl text-ink">{it.v}</div>
                     <div className="mt-0.5 text-xs text-ink-2">{it.d}</div>
                   </div>
                 ))}
@@ -362,13 +362,13 @@ export function GardenPage({ page }: { page: ThemePage }) {
         {/* ────────────────────────────────────────────────────────────
             装置 1：蜂巢脾六角巢房显微物态观察仪 (Honeycomb Cell Inspector)
             ──────────────────────────────────────────────────────────── */}
-        <section aria-labelledby={`${uid}-cell-title`} className="mt-16 rounded-xl border border-rule bg-paper-2/60 p-6 sm:p-8 backdrop-blur-md">
+        <section aria-labelledby={`${uid}-cell-title`} className="mt-16 rounded-card border border-rule bg-paper-2/60 p-6 sm:p-8 backdrop-blur-md">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-rule/80 pb-4">
             <div>
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
                 DEVICE 01 · COMB CELL MORPHOLOGY & CAP ACCURACY
               </span>
-              <h2 id={`${uid}-cell-title`} className="display text-xl sm:text-2xl font-bold text-ink mt-1">
+              <h2 id={`${uid}-cell-title`} className="display text-xl sm:text-2xl text-ink mt-1">
                 蜂巢脾六角巢房观察台 · 封盖与自然酿造剖面
               </h2>
             </div>
@@ -378,7 +378,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
                   key={mode}
                   type="button"
                   onClick={() => setCellMode(mode)}
-                  className={`min-h-11 px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all border ${
+                  className={`min-h-11 px-3.5 py-1.5 rounded-card text-xs font-mono transition-all border ${
                     cellMode === mode
                       ? 'border-accent-line bg-accent/20 text-accent-line font-bold'
                       : 'border-rule bg-paper text-ink-2 hover:border-rule-2'
@@ -392,8 +392,8 @@ export function GardenPage({ page }: { page: ThemePage }) {
 
           <div className="mt-6 grid gap-6 lg:grid-cols-12 items-stretch">
             {/* 左侧：蜂巢脾六边形晶格与显微剖切面 SVG */}
-            <div className="lg:col-span-7 rounded-lg border border-rule bg-stone-900/90 p-5 flex flex-col justify-between min-h-75 text-stone-200 relative overflow-hidden">
-              <div className="flex items-center justify-between text-xs font-mono text-amber-300 z-10">
+            <div className="lg:col-span-7 rounded-card border border-rule bg-paper-3 p-5 flex flex-col justify-between min-h-75 text-ink-2 relative overflow-hidden">
+              <div className="flex items-center justify-between text-xs font-mono text-accent-line z-10">
                 <span>
                   {cellMode === 'capped'
                     ? '● STATE: 100% CAPPED MATURE HONEY'
@@ -406,7 +406,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
 
               {/* 六角形蜂房几何交互切面 */}
               <div className="my-auto py-4 flex items-center justify-center">
-                <svg className="w-full max-w-105 h-48" viewBox="0 0 420 180">
+                <svg aria-hidden="true" className="w-full max-w-105 h-48" viewBox="0 0 420 180">
                   <defs>
                     <pattern id="hexGrid" width="40" height="69.28" patternUnits="userSpaceOnUse" patternTransform="scale(0.8)">
                       <path
@@ -491,14 +491,14 @@ export function GardenPage({ page }: { page: ThemePage }) {
                 </svg>
               </div>
 
-              <div className="flex flex-wrap items-center justify-between gap-2 border-t border-stone-800 pt-2 text-[11px] font-mono text-stone-400">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-t border-rule pt-2 text-[11px] font-mono text-muted">
                 <span>CELL WALL THICKNESS: 0.08 mm (PURE BEESWAX)</span>
-                <span className="text-amber-300">自然成熟周期：≥ 12 天</span>
+                <span className="text-accent-line">自然成熟周期：≥ 12 天</span>
               </div>
             </div>
 
             {/* 右侧：微观物态说明书 */}
-            <div className="lg:col-span-5 rounded-lg border border-rule bg-paper p-5 flex flex-col justify-between">
+            <div className="lg:col-span-5 rounded-card border border-rule bg-paper p-5 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between border-b border-rule/60 pb-2">
                   <span className="font-mono text-xs font-bold text-accent-line">
@@ -507,7 +507,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
                   <span className="font-mono text-[11px] text-muted">HONEYCOMB LAB</span>
                 </div>
 
-                <h3 className="display text-lg font-bold text-ink mt-3">
+                <h3 className="display text-lg text-ink mt-3">
                   {cellMode === 'capped'
                     ? '蜜蜂分泌纯净天然蜡膜，标志酿造彻底完成'
                     : cellMode === 'raw'
@@ -542,13 +542,13 @@ export function GardenPage({ page }: { page: ThemePage }) {
         {/* ────────────────────────────────────────────────────────────
             装置 2：42.5°Be 光学波美度折射计试验台 (Optical Baume Refractometer)
             ──────────────────────────────────────────────────────────── */}
-        <section aria-labelledby={`${uid}-baume-title`} className="mt-14 rounded-xl border border-rule bg-paper-2/60 p-6 sm:p-8 backdrop-blur-md">
+        <section aria-labelledby={`${uid}-baume-title`} className="mt-14 rounded-card border border-rule bg-paper-2/60 p-6 sm:p-8 backdrop-blur-md">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-rule/80 pb-4">
             <div>
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
                 DEVICE 02 · OPTICAL BAUMÉ REFRACTOMETER SIMULATOR
               </span>
-              <h2 id={`${uid}-baume-title`} className="display text-xl sm:text-2xl font-bold text-ink mt-1">
+              <h2 id={`${uid}-baume-title`} className="display text-xl sm:text-2xl text-ink mt-1">
                 42.5°Be 光学波美度折射计 · 目镜明暗分界线
               </h2>
             </div>
@@ -575,7 +575,8 @@ export function GardenPage({ page }: { page: ThemePage }) {
                 step="0.1"
                 value={baume}
                 onChange={(e) => setBaume(parseFloat(e.target.value))}
-                className="w-full accent-accent cursor-pointer min-h-9"
+                className="w-full accent-accent cursor-pointer min-h-11"
+                aria-label="调整波美度"
               />
               <div className="flex justify-between text-[10px] font-mono text-muted mt-1">
                 <span>38.0°Be (水蜜/易酸败)</span>
@@ -607,34 +608,34 @@ export function GardenPage({ page }: { page: ThemePage }) {
           {/* 折射计目镜视窗与生化指标对照 */}
           <div className="mt-6 grid gap-6 lg:grid-cols-12 items-stretch">
             {/* 折射计圆形目镜视窗 */}
-            <div className="lg:col-span-5 rounded-lg border border-rule bg-stone-950 p-5 flex flex-col items-center justify-center min-h-65 relative overflow-hidden">
-              <span className="text-[11px] font-mono text-stone-400 absolute top-3 left-4">
+            <div className="lg:col-span-5 rounded-card border border-rule bg-paper-3 p-5 flex flex-col items-center justify-center min-h-65 relative overflow-hidden">
+              <span className="text-[11px] font-mono text-muted absolute top-3 left-4">
                 RETICLE EYEPIECE · REFRACTIVE VIEW
               </span>
 
               {/* 圆形光学目镜 */}
-              <div className="size-48 rounded-full border-4 border-stone-700 relative overflow-hidden shadow-inner bg-sky-500 my-4">
+              <div className="size-48 rounded-full border-4 border-rule-2 relative overflow-hidden shadow-inner bg-sky-500 my-4">
                 {/* 蓝色区域 (光线折射) 与 白色区域 (根据波美度上下移动) */}
                 <div
-                  className="w-full bg-stone-100 transition-all duration-300 absolute bottom-0 left-0"
+                  className="w-full bg-paper transition-all duration-300 absolute bottom-0 left-0"
                   style={{
                     height: `${((baume - 38.0) / 5.0) * 100}%`,
-                    borderTop: '2px solid #ef4444',
+                    borderTop: '2px solid var(--hm-accent)',
                   }}
                 />
 
                 {/* 刻度准星与标线 */}
-                <div className="absolute inset-0 flex flex-col justify-between p-2 pointer-events-none text-[9px] font-mono text-stone-800">
+                <div className="absolute inset-0 flex flex-col justify-between p-2 pointer-events-none text-[9px] font-mono text-ink-2">
                   <div className="flex justify-between">
                     <span>43°</span>
                     <span>16% 水分</span>
                   </div>
-                  <div className="w-full border-t border-stone-800/40" />
+                  <div className="w-full border-t border-ink-2/40" />
                   <div className="flex justify-between">
                     <span>41°</span>
                     <span>19% 水分</span>
                   </div>
-                  <div className="w-full border-t border-stone-800/40" />
+                  <div className="w-full border-t border-ink-2/40" />
                   <div className="flex justify-between">
                     <span>39°</span>
                     <span>23% 水分</span>
@@ -643,38 +644,38 @@ export function GardenPage({ page }: { page: ThemePage }) {
 
                 {/* 中心准星 */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-                  <div className="size-3 border border-red-500/80 rounded-full" />
+                  <div className="size-3 border border-accent/80 rounded-full" />
                 </div>
               </div>
 
-              <span className="text-xs font-mono text-amber-300 font-bold">
+              <span className="text-xs font-mono text-accent-line font-bold">
                 明暗分界线读数：{baume.toFixed(1)} °Be · 含水率 ~{moisturePct}%
               </span>
             </div>
 
             {/* 生化指标对比卡 */}
-            <div className="lg:col-span-7 rounded-lg border border-rule bg-paper p-5 flex flex-col justify-between">
+            <div className="lg:col-span-7 rounded-card border border-rule bg-paper p-5 flex flex-col justify-between">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="rounded border border-rule/70 bg-paper-2/50 p-3">
                   <span className="text-[10px] font-mono text-muted uppercase block">天然活性淀粉酶值</span>
-                  <span className="display mt-1 text-xl font-bold text-ink">{diastaseValue}</span>
+                  <span className="display mt-1 text-xl text-ink">{diastaseValue}</span>
                   <span className="text-[11px] text-muted block mt-0.5">国标 ≥4.0 · 高温加热即归零</span>
                 </div>
                 <div className="rounded border border-rule/70 bg-paper-2/50 p-3">
                   <span className="text-[10px] font-mono text-muted uppercase block">天然果糖/葡萄糖比</span>
-                  <span className="display mt-1 text-xl font-bold text-accent-line">1.32 : 1</span>
+                  <span className="display mt-1 text-xl text-accent-line">1.32 : 1</span>
                   <span className="text-[11px] text-muted block mt-0.5">深山野生荆条独特特征</span>
                 </div>
                 <div className="rounded border border-rule/70 bg-paper-2/50 p-3">
                   <span className="text-[10px] font-mono text-muted uppercase block">工业添加蔗糖</span>
-                  <span className="display mt-1 text-xl font-bold text-ink">0.00%</span>
+                  <span className="display mt-1 text-xl text-ink">0.00%</span>
                   <span className="text-[11px] text-muted block mt-0.5">未检出 · 纯净自然原蜜</span>
                 </div>
               </div>
 
               <div className="mt-4 p-3.5 rounded border border-accent/30 bg-accent/10 text-xs text-ink-2 leading-relaxed">
                 <span className="font-bold text-ink block mb-1">
-                  {isPremiumRaw ? '✓ 符合自然封盖老蜜顶峰标准' : '⚠ 未达封盖老蜜标准 · 蜂场坚决拒售'}
+                  {isPremiumRaw ? '✓ 符合自然封盖老蜜顶峰标准' : '▲ 未达封盖老蜜标准 · 蜂场坚决拒售'}
                 </span>
                 {isPremiumRaw
                   ? '波美度在 42°Be 以上，表明蜜蜂已完成了全部天然酿造环节。稠如凝脂，挑起蜜勺能拉出连续发丝般细线并回弹成宝塔纹。'
@@ -694,13 +695,13 @@ export function GardenPage({ page }: { page: ThemePage }) {
             保留原有 audit_garden.mjs 的全部选择器：
             button[aria-label*="六月"] -> text=夏初荆条
             ──────────────────────────────────────────────────────────── */}
-        <section aria-labelledby={`${uid}-cal-title`} className="mt-14 rounded-xl border border-rule bg-paper-2/60 p-6 sm:p-8 backdrop-blur-md">
+        <section aria-labelledby={`${uid}-cal-title`} className="mt-14 rounded-card border border-rule bg-paper-2/60 p-6 sm:p-8 backdrop-blur-md">
           <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-rule/80 pb-4">
             <div>
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
                 DEVICE 03 · 12-MONTH PHENOLOGY & NECTAR FLOW CALENDAR
               </span>
-              <h2 id={`${uid}-cal-title`} className="display text-xl sm:text-2xl font-bold text-ink mt-1">
+              <h2 id={`${uid}-cal-title`} className="display text-xl sm:text-2xl text-ink mt-1">
                 十二个月份，三次摇蜜 · 自然物候纪事
               </h2>
             </div>
@@ -727,7 +728,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
                   aria-pressed={isSelected}
                 >
                   <div
-                    className="h-10 w-full rounded-lg transition-all duration-200 flex items-center justify-center"
+                    className="h-10 w-full rounded-card transition-all duration-200 flex items-center justify-center"
                     style={{
                       backgroundColor: hasWork
                         ? 'var(--hm-accent)'
@@ -738,7 +739,6 @@ export function GardenPage({ page }: { page: ThemePage }) {
                         ? '2px solid var(--hm-ink)'
                         : '1px solid var(--hm-rule)',
                       transform: isHovered || isSelected ? 'translateY(-2px)' : 'translateY(0)',
-                      boxShadow: isSelected ? '0 3px 8px oklch(0% 0 0 / 0.15)' : 'none',
                     }}
                   >
                     <span
@@ -765,7 +765,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
                       fontWeight: isSelected || hasWork ? 'bold' : 'normal',
                     }}
                   >
-                    {hasWork ? '★ 摇蜜' : '休养'}
+                    {hasWork ? '● 摇蜜' : '休养'}
                   </div>
                 </button>
               )
@@ -773,18 +773,18 @@ export function GardenPage({ page }: { page: ThemePage }) {
           </div>
 
           {/* 当前月份物候详情面板 */}
-          <div className="mt-6 rounded-lg border border-rule bg-paper p-5 sm:p-6 shadow-sm">
+          <div className="mt-6 rounded-card border border-rule bg-paper p-5 sm:p-6">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule/60 pb-3">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="font-mono text-base font-bold text-ink">
                   {activeMonthData.name} · {activeMonthData.solarTerm}
                 </span>
                 {activeMonthData.crop ? (
-                  <span className="rounded bg-accent/20 px-2.5 py-1 font-mono text-xs font-bold text-accent-line border border-accent/40">
+                  <span className="rounded-card bg-accent/20 px-2.5 py-1 font-mono text-xs font-bold text-accent-line border border-accent/40">
                     {activeMonthData.crop} · {activeMonthData.action}
                   </span>
                 ) : (
-                  <span className="rounded bg-black/5 px-2.5 py-1 font-mono text-xs text-muted">
+                  <span className="rounded-card bg-paper-3 px-2.5 py-1 font-mono text-xs text-muted">
                     {activeMonthData.action}
                   </span>
                 )}
@@ -796,7 +796,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
 
             <div className="mt-4 grid gap-4 lg:grid-cols-12">
               <div className="lg:col-span-8">
-                <p className="text-base text-ink-2 leading-relaxed">
+                <p className="text-base text-ink-2 leading-relaxed max-w-none">
                   {activeMonthData.detail}
                 </p>
                 <div className="mt-3 flex items-center gap-2 text-xs font-mono text-muted">
@@ -819,13 +819,13 @@ export function GardenPage({ page }: { page: ThemePage }) {
         {/* ────────────────────────────────────────────────────────────
             装置 4：十二只杉木蜂箱真实台账 (12 Cedar Hives Roster)
             ──────────────────────────────────────────────────────────── */}
-        <section aria-labelledby={`${uid}-hives-title`} className="mt-14 rounded-xl border border-rule bg-paper-2/60 p-6 sm:p-8 backdrop-blur-md">
+        <section aria-labelledby={`${uid}-hives-title`} className="mt-14 rounded-card border border-rule bg-paper-2/60 p-6 sm:p-8 backdrop-blur-md">
           <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-rule/80 pb-4">
             <div>
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
                 DEVICE 04 · 12 NATIVE CEDAR HIVES ROSTER & FIELD LOGS
               </span>
-              <h2 id={`${uid}-hives-title`} className="display text-xl sm:text-2xl font-bold text-ink mt-1">
+              <h2 id={`${uid}-hives-title`} className="display text-xl sm:text-2xl text-ink mt-1">
                 十二只杉木蜂箱巡检台账 · 群势与留蜜盘点
               </h2>
             </div>
@@ -842,9 +842,9 @@ export function GardenPage({ page }: { page: ThemePage }) {
                   key={hive.id}
                   type="button"
                   onClick={() => setSelectedHiveId(hive.id)}
-                  className={`min-h-16 p-3 rounded-lg text-left transition-all border flex flex-col justify-between ${
+                  className={`min-h-16 p-3 rounded-card text-left transition-all border flex flex-col justify-between ${
                     active
-                      ? 'border-accent-line bg-accent/20 text-ink font-bold shadow-sm'
+                      ? 'border-accent-line bg-accent/20 text-ink font-bold'
                       : 'border-rule bg-paper text-ink-2 hover:border-rule-2 hover:text-ink'
                   }`}
                 >
@@ -859,7 +859,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
           </div>
 
           {/* 选中蜂箱详细台账 */}
-          <div className="mt-6 rounded-lg border border-rule bg-paper p-5">
+          <div className="mt-6 rounded-card border border-rule bg-paper p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule/60 pb-3">
               <div className="flex items-center gap-2">
                 <span className="font-mono text-sm font-bold text-accent-line">
@@ -896,13 +896,13 @@ export function GardenPage({ page }: { page: ThemePage }) {
         {/* ────────────────────────────────────────────────────────────
             装置 5：火漆封蜡纯正老蜜实体装瓶卡券 (Wax-Sealed Pass)
             ──────────────────────────────────────────────────────────── */}
-        <section aria-labelledby={`${uid}-pass-title`} className="mt-14 rounded-xl border border-rule bg-paper-2/60 p-6 sm:p-8 backdrop-blur-md">
+        <section aria-labelledby={`${uid}-pass-title`} className="mt-14 rounded-card border border-rule bg-paper-2/60 p-6 sm:p-8 backdrop-blur-md">
           <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-rule/80 pb-4">
             <div>
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
                 DEVICE 05 · HANDCRAFTED BOTTLING TICKET & WAX SEAL
               </span>
-              <h2 id={`${uid}-pass-title`} className="display text-xl sm:text-2xl font-bold text-ink mt-1">
+              <h2 id={`${uid}-pass-title`} className="display text-xl sm:text-2xl text-ink mt-1">
                 手作火漆封蜡装瓶凭单 · 专属留蜜锁定
               </h2>
             </div>
@@ -913,13 +913,13 @@ export function GardenPage({ page }: { page: ThemePage }) {
 
           <div className="mt-6 grid gap-6 lg:grid-cols-12 items-center">
             {/* 实体装瓶票根模拟卡 */}
-            <div className="lg:col-span-7 rounded-xl border-2 border-dashed border-rule bg-paper p-6 sm:p-8 shadow-sm relative overflow-hidden">
+            <div className="lg:col-span-7 rounded-card border-2 border-dashed border-rule bg-paper p-6 sm:p-8 relative overflow-hidden">
               <div className="flex items-start justify-between">
                 <div>
                   <div className="text-[10px] font-mono text-accent-line font-bold uppercase tracking-wider">
                     HOLLOWBACK APIARY · CERTIFICATE OF HARVEST
                   </div>
-                  <div className="display text-xl sm:text-2xl font-bold text-ink mt-1">
+                  <div className="display text-xl sm:text-2xl text-ink mt-1">
                     深山野生荆条封盖老蜜 · 500克纯装
                   </div>
                   <div className="text-xs text-muted font-mono mt-1">
@@ -928,17 +928,17 @@ export function GardenPage({ page }: { page: ThemePage }) {
                 </div>
 
                 {/* 拟物化火漆蜡印 SVG */}
-                <div className="size-16 rounded-full bg-red-800 text-amber-100 flex flex-col items-center justify-center shadow-md border-2 border-red-700/60 font-mono text-[9px] text-center select-none rotate-6 shrink-0">
+                <div className="size-14 sm:size-16 rounded-full bg-accent text-accent-ink flex flex-col items-center justify-center border-2 border-accent-line/60 font-mono text-[9px] text-center select-none rotate-3 sm:rotate-6 shrink-0">
                   <span className="font-bold">HOLLOW</span>
                   <span>BACK</span>
-                  <span className="text-[8px] text-red-300">★ 42.5° ★</span>
+                  <span className="text-[8px] text-accent-ink/80">◆ 42.5° ◆</span>
                 </div>
               </div>
 
               <div className="mt-6 grid grid-cols-3 gap-3 border-t border-b border-rule py-3 text-xs font-mono">
                 <div>
                   <span className="text-muted block text-[10px]">摇蜜日期</span>
-                  <span className="text-ink font-bold">2026.08.18</span>
+                  <span className="text-ink font-bold">2026-08-18</span>
                 </div>
                 <div>
                   <span className="text-muted block text-[10px]">实测波美度</span>
@@ -946,7 +946,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
                 </div>
                 <div>
                   <span className="text-muted block text-[10px]">出产蜂箱</span>
-                  <span className="text-ink font-bold">#08 & #12 箱</span>
+                  <span className="text-ink font-bold">＃08＆＃12箱</span>
                 </div>
               </div>
 
@@ -956,10 +956,10 @@ export function GardenPage({ page }: { page: ThemePage }) {
             </div>
 
             {/* 预约动作栏 */}
-            <div className="lg:col-span-5 rounded-lg border border-rule bg-paper p-6 flex flex-col justify-between min-h-55">
+            <div className="lg:col-span-5 rounded-card border border-rule bg-paper p-6 flex flex-col justify-between min-h-55">
               <div>
                 <span className="text-xs font-mono font-bold text-accent-line uppercase">RESERVATION PROTOCOL</span>
-                <h3 className="display text-lg font-bold text-ink mt-1">
+                <h3 className="display text-lg text-ink mt-1">
                   为自己或朋友预留一瓶天然老蜜
                 </h3>
                 <p className="mt-2 text-xs text-ink-2 leading-relaxed">
@@ -972,10 +972,10 @@ export function GardenPage({ page }: { page: ThemePage }) {
                   type="button"
                   onClick={() => setReserved(true)}
                   disabled={reserved}
-                  className={`w-full min-h-11 rounded-lg font-mono text-xs font-bold transition-all ${
+                  className={`w-full min-h-11 rounded-card font-mono text-xs font-bold transition-all ${
                     reserved
                       ? 'bg-accent/20 text-accent-line border border-accent/40'
-                      : 'bg-accent text-accent-ink hover:opacity-90 shadow'
+                      : 'bg-accent text-accent-ink hover:opacity-90'
                   }`}
                 >
                   {reserved ? '✓ 已记录留蜜需求 · 蜂场将妥善保管' : '登记预留一瓶封盖老蜜'}
