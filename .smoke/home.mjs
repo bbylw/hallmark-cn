@@ -3,9 +3,10 @@
 //   以及打样台卡片里的样字有没有被预览区裁掉。
 import { chromium } from 'playwright-core'
 
-const BASE = process.env.BASE ?? 'http://127.0.0.1:8199'
+const BASE = process.env.BASE ?? 'https://hallmark-cn.localhost'
 const browser = await chromium.launch({
   executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+  args: ['--ignore-certificate-errors', '--no-sandbox'],
 })
 
 for (const [w, h] of [
@@ -14,7 +15,11 @@ for (const [w, h] of [
   [1024, 800],
   [375, 812],
 ]) {
-  const page = await browser.newPage({ viewport: { width: w, height: h } })
+  const context = await browser.newContext({
+    ignoreHTTPSErrors: true,
+    viewport: { width: w, height: h },
+  })
+  const page = await context.newPage()
   await page.goto(BASE, { waitUntil: 'networkidle' })
   await page.waitForTimeout(400)
 

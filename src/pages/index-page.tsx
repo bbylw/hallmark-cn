@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import { Link } from 'react-router'
 import { ContactSheet } from '../components/contact-sheet'
@@ -8,7 +9,11 @@ import { VerbStack } from '../components/verb-stack'
 import { CopyButton } from '../components/ui/copy-button'
 import { useThemeAttr } from '../theme-attr'
 
-const INSTALL_CMD = 'npx skills add nutlope/hallmark'
+const PM_OPTIONS = [
+  { id: 'npx', cmd: 'npx skills add nutlope/hallmark' },
+  { id: 'bunx', cmd: 'bunx skills add nutlope/hallmark' },
+  { id: 'pnpm', cmd: 'pnpm dlx skills add nutlope/hallmark' },
+] as const
 
 /**
  * 索引页（01/24）：
@@ -20,6 +25,8 @@ const INSTALL_CMD = 'npx skills add nutlope/hallmark'
 export function IndexPage() {
   useThemeAttr('grid')
   const reduce = useReducedMotion()
+  const [activePm, setActivePm] = useState<(typeof PM_OPTIONS)[number]['id']>('npx')
+  const currentCmd = PM_OPTIONS.find((p) => p.id === activePm)?.cmd ?? PM_OPTIONS[0].cmd
 
   return (
     <div className="min-h-[100dvh] bg-paper">
@@ -31,25 +38,24 @@ export function IndexPage() {
         style={{ maxWidth: 'var(--page-max)' }}
       >
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          {/* 左栏：固定工作台 */}
-          <div className="pt-10 lg:col-span-5 lg:pt-12">
+          {/* 左栏：固定工作台，工效紧凑，杜绝视口内部嵌套滚动条 */}
+          <div className="pt-8 lg:col-span-5 lg:pt-10">
             <motion.div
-              className="lg:sticky lg:top-20 lg:max-h-[calc(100dvh-6rem)] lg:overflow-y-auto lg:pb-12 lg:pr-6"
-              style={{ scrollbarWidth: 'thin' }}
-              initial={reduce ? false : { opacity: 0, y: 20 }}
+              className="lg:sticky lg:top-16 lg:self-start lg:pb-10 lg:pr-4"
+              initial={reduce ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="meta flex items-center gap-2 text-accent-line">
-                <span className="size-1.5 rounded-full" style={{ backgroundColor: 'var(--hm-accent)' }} />
-                <span>Hallmark v1.1.0 · Anti-AI-Slop Skill</span>
+                <span className="inline-block size-2 rounded-full bg-accent animate-pulse" />
+                <span className="font-mono font-bold tracking-wide">Hallmark v1.1.0 · Anti-AI-Slop Skill</span>
               </div>
 
               <h1
-                className="display mt-3 text-ink"
+                className="display mt-2.5 text-ink tracking-tight"
                 style={{
-                  fontSize: 'clamp(2rem, 3.4vw, 3rem)',
-                  lineHeight: 1.05,
+                  fontSize: 'clamp(1.9rem, 3.2vw, 2.75rem)',
+                  lineHeight: 1.08,
                   letterSpacing: 'var(--hm-tracking-display)',
                 }}
               >
@@ -57,71 +63,100 @@ export function IndexPage() {
               </h1>
 
               <p
-                className="mt-5 text-md text-ink-2"
+                className="mt-3.5 text-sm text-ink-2"
                 style={{ lineHeight: 'var(--lh-relaxed)' }}
               >
                 专为 Claude Code、Cursor 和 Codex 打造的设计 skill。
-                它拒绝大模型被训练出的居中卡片与紫蓝渐变套路，为每个需求定制宏观结构，套用 21 套独立主题，跑完 58 道关卡才予交付。
+                它拒绝大模型默认的居中大圆角卡片与紫蓝渐变套路，为每个真实需求定制宏观骨架，严格套用 21 套独立主题与 58 道关卡。
               </p>
 
-              {/* 安装命令框 */}
+              {/* 开发者 CLI 安装命令台：支持包管理器切换、终端前缀与彻底杜绝移动端断词折行 */}
               <div
-                className="mt-7 flex flex-wrap items-center gap-3 p-3.5"
+                className="mt-5 p-3 sm:p-3.5 transition-all shadow-xs"
                 style={{
                   border: 'var(--hm-rule-card) solid var(--hm-rule)',
                   borderRadius: 'var(--hm-radius-card)',
                   backgroundColor: 'var(--hm-paper-2)',
                 }}
               >
-                <div className="min-w-0 flex-1">
-                  <div className="meta mb-1 text-[10px] text-muted">一键安装 Skill</div>
-                  <code className="block break-all font-mono text-xs text-ink sm:text-sm">
-                    {INSTALL_CMD}
-                  </code>
+                <div className="flex items-center justify-between gap-2 border-b border-rule/50 pb-2 mb-2">
+                  <div className="meta flex items-center gap-1.5 text-[10px] text-muted font-mono font-semibold">
+                    <span className="inline-block size-1.5 rounded-full bg-accent-line" />
+                    <span>INSTALL CLI</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    {PM_OPTIONS.map((pm) => (
+                      <button
+                        key={pm.id}
+                        type="button"
+                        onClick={() => setActivePm(pm.id)}
+                        className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors ${
+                          activePm === pm.id
+                            ? 'bg-ink text-paper font-bold'
+                            : 'text-muted hover:text-ink'
+                        }`}
+                      >
+                        {pm.id}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-                <CopyButton
-                  value={INSTALL_CMD}
-                  ariaLabel="复制安装命令"
-                  className="btn-primary shrink-0 px-3.5 py-1.5 text-xs font-mono"
-                />
+
+                <div className="flex items-center justify-between gap-2">
+                  <div className="min-w-0 flex-1 overflow-x-auto scrollbar-none py-0.5">
+                    <div className="flex items-center gap-2 font-mono text-xs sm:text-[13px] text-ink whitespace-nowrap">
+                      <span className="text-accent-line select-none font-bold">$</span>
+                      <code className="select-all font-semibold tracking-tight">
+                        {currentCmd}
+                      </code>
+                    </div>
+                  </div>
+                  <CopyButton
+                    value={currentCmd}
+                    ariaLabel={`复制 ${activePm} 安装命令`}
+                    className="btn-primary shrink-0 px-3 py-1.5 text-xs font-mono"
+                  />
+                </div>
               </div>
 
-              <div className="mt-9">
+              {/* 四个核心动词 */}
+              <div className="mt-6">
                 <VerbStack />
               </div>
 
-              <div className="hairline mt-9 pt-8">
+              {/* 58 道关卡标尺 */}
+              <div className="hairline mt-6 pt-5">
                 <GateScale />
               </div>
 
-              <div className="hairline mt-9 pt-6">
-                <div className="flex flex-wrap items-center gap-5 text-sm">
+              {/* 底部链接与令牌规范说明 */}
+              <div className="hairline mt-6 pt-4">
+                <div className="flex flex-wrap items-center gap-4 text-xs">
                   <Link
                     to="/custom"
-                    className="tap font-medium text-ink-2 hover:text-accent-line"
+                    className="tap font-semibold text-ink-2 hover:text-accent-line transition-colors"
                   >
                     Custom 深度定制分支 →
                   </Link>
                   <Link
                     to="/about"
-                    className="tap font-medium text-ink-2 hover:text-accent-line"
+                    className="tap font-semibold text-ink-2 hover:text-accent-line transition-colors"
                   >
                     来源与验收 →
                   </Link>
                 </div>
                 <p
-                  className="mt-3 text-xs text-muted"
-                  style={{ lineHeight: 'var(--lh-relaxed)' }}
+                  className="mt-2 text-[11px] text-muted font-mono"
+                  style={{ lineHeight: 'var(--lh-normal)' }}
                 >
-                  21 套主题的色值、字体与圆角逐条取自 Hallmark 官方 tokens.css，
-                  在 OKLCH 空间互不相邻，没有一套是凭空编造。
+                  21 套主题取自 Hallmark 官方 tokens.css，在 OKLCH 空间互不相邻。
                 </p>
               </div>
             </motion.div>
           </div>
 
           {/* 右栏：滚动的打样台 */}
-          <div className="pb-20 pt-4 lg:col-span-7 lg:pt-12">
+          <div className="pb-20 pt-4 lg:col-span-7 lg:pt-10">
             <ContactSheet />
           </div>
         </div>

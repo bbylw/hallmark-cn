@@ -48,7 +48,7 @@ export function GateScale() {
       </div>
 
       {/* 族群标签行：水平滑动或折行 */}
-      <div className="mt-4 flex flex-wrap gap-1.5">
+      <div className="mt-3 flex flex-wrap gap-1">
         {gateGroups.map((g) => {
           const isCurrent = g.id === selectedId
           return (
@@ -57,7 +57,7 @@ export function GateScale() {
               type="button"
               onClick={() => setSelectedId(g.id)}
               aria-pressed={isCurrent}
-              className="tap flex items-center gap-1.5 rounded px-2.5 py-1 text-xs transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hm-focus)]"
+              className="tap flex items-center gap-1.5 rounded px-2 py-0.5 text-[11px] transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hm-focus)]"
               style={{
                 backgroundColor: isCurrent ? 'var(--hm-paper-3)' : 'transparent',
                 color: isCurrent ? 'var(--hm-ink)' : 'var(--hm-muted)',
@@ -76,38 +76,38 @@ export function GateScale() {
         })}
       </div>
 
-      {/* 当前选中国家的判据卡片 */}
+      {/* 当前选中族群的判据卡片 */}
       <div
-        className="mt-3.5 rounded p-3 text-xs"
+        className="mt-2.5 rounded-lg p-2.5 text-xs"
         style={{
           backgroundColor: 'var(--hm-paper-2)',
           border: 'var(--hm-rule-card) solid var(--hm-rule)',
         }}
       >
-        <div className="font-medium text-ink-2" style={{ lineHeight: 'var(--lh-normal)' }}>
+        <div className="font-medium text-ink-2 text-xs" style={{ lineHeight: 'var(--lh-normal)' }}>
           {currentGroup.blurb}
         </div>
-        <ul className="mt-2.5 flex flex-col gap-1.5">
-          {currentGroup.samples.map((s, idx) => (
+        <ul className="mt-2 flex flex-col gap-1">
+          {currentGroup.samples.slice(0, 2).map((s, idx) => (
             <li key={idx} className="flex items-baseline gap-2 text-muted">
               {s.no ? (
-                <span className="font-mono font-semibold text-accent-line shrink-0">
+                <span className="font-mono text-[11px] font-bold text-accent-line shrink-0">
                   gate {s.no}
                 </span>
               ) : (
                 <span className="size-1 rounded-full shrink-0 mt-1" style={{ backgroundColor: 'var(--hm-rule-2)' }} />
               )}
-              <span style={{ lineHeight: 'var(--lh-relaxed)' }}>{s.text}</span>
+              <span className="text-[11px]" style={{ lineHeight: 'var(--lh-normal)' }}>{s.text}</span>
             </li>
           ))}
         </ul>
       </div>
 
       <p
-        className="mt-3 text-xs text-muted"
-        style={{ lineHeight: 'var(--lh-relaxed)' }}
+        className="mt-2 text-[11px] text-muted font-mono"
+        style={{ lineHeight: 'var(--lh-normal)' }}
       >
-        八族共 {totalGates} 道硬检验，交付前逐条过，任何一条判负必须推翻重改。
+        八大族群共 {totalGates} 道硬检验，交付前逐条过，任何一条判负必须推翻重改。
       </p>
     </div>
   )
