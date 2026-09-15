@@ -588,6 +588,59 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
                 <span className="font-bold text-accent-line text-xs font-mono">MEND 142</span>
               </div>
             </div>
+
+            {/* 补充专栏 1：卷帘门下共修公约四则 (The Workbench Covenant) */}
+            <div className="mt-10 border-2 border-ink bg-paper-2/30 p-5">
+              <div className="flex items-center justify-between border-b border-rule pb-2 font-mono text-xs">
+                <span className="font-bold text-ink uppercase tracking-wider text-[11px]">
+                  WORKBENCH COVENANT · 卷帘门共修公约
+                </span>
+                <span className="font-mono text-[10px] text-accent-line font-bold uppercase border border-accent-line px-1">
+                  街坊共守
+                </span>
+              </div>
+              <div className="mt-3.5 space-y-2.5 font-serif text-xs sm:text-[13px] text-ink-2 leading-relaxed">
+                <div className="flex items-start gap-2.5">
+                  <span className="font-mono font-bold text-accent-line shrink-0">[甲]</span>
+                  <span><strong>亲自动手第一步：</strong>带物件来，自己拧下第一颗螺丝。老工匠在旁指导手势，不是为你代劳，是教你掌握终身手艺。</span>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <span className="font-mono font-bold text-accent-line shrink-0">[乙]</span>
+                  <span><strong>分文不取无隐形消费：</strong>咖啡壶自愿随喜扫码，所有款项每月公开，全数用于添置焊锡、鱼鳔胶与砂纸消耗品。</span>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <span className="font-mono font-bold text-accent-line shrink-0">[丙]</span>
+                  <span><strong>无法挽回时的尊严：</strong>若核心零件断代停产，绝不强行胶封糊弄；原物清洗后奉还，或经主人同意拆解健康元器件留给邻里作备件。</span>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <span className="font-mono font-bold text-accent-line shrink-0">[丁]</span>
+                  <span><strong>手艺传递法则：</strong>在工坊修好一件东西，即承诺下次邻里有需要时，愿意伸出手帮街坊稳住烙铁或扶正木料。</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 补充专栏 2：本期口述特写纪实 (The Oral History Feature) */}
+            <div className="mt-8 border-t-2 border-double border-ink pt-6">
+              <div className="flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-muted mb-2">
+                <span className="font-bold text-ink uppercase tracking-wider text-[11px]">
+                  FEATURE · 卷帘门口述史
+                </span>
+                <span>记录员：阿光 · 独立唱片店主</span>
+              </div>
+              <h4 className="font-serif font-bold text-lg text-ink">
+                一盏 1979 年台灯，与老伴当年的结婚誓言
+              </h4>
+              <p className="mt-2.5 font-serif text-xs sm:text-[13px] text-ink-2 leading-relaxed text-justify">
+                王奶奶抱着那个锈迹斑斑的三洋台灯推开卷帘门时，双手是发抖的。底座的塑料已经发黄变脆，琴键开关按下去卡死不弹。她说：“家里年轻人都劝我扔了买新的，但这是 1979 年结婚时他排了四天队买回来的，开了四十年，他在的时候晚上看书全靠它。”
+              </p>
+              <p className="mt-2 font-serif text-xs sm:text-[13px] text-ink-2 leading-relaxed text-justify">
+                电工老周花了四十分钟，小心翼翼用无水酒精泡松油垢，换上一只新耐压滤波电容。通电点亮那一瞬，柔和暖黄的钨丝光线再次照亮老人的眼角，王奶奶轻声哭了。有些物件是不能进垃圾场的，因为里面住着一个人的前半生。
+              </p>
+              <div className="mt-3 flex items-center justify-between font-mono text-[11px] text-muted border-t border-rule/60 pt-2">
+                <span>档案对应：R-01 号修缮实录</span>
+                <span className="text-accent-line font-bold">耗时 45 分钟 · 支出电容成本 ¥1.8</span>
+              </div>
+            </div>
           </article>
 
           {/* 右栏：本月公开台账与坏件档案抽屉 (5列) */}
