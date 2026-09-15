@@ -1,0 +1,982 @@
+/*
+  Hallmark 主题令牌
+  数值取自 Hallmark 官方 site/css/tokens.css（21 个目录主题）。
+  每套主题占据 OKLCH 空间中互不相邻的一个点：纸色跨深 / 米 / 冷 / 暖，
+  展示字体跨衬线 / 无衬线 / 等宽 / 压缩体，圆角与描边重量也各不相同。
+  切换方式：<html data-theme="...">。
+*/
+
+:root {
+  --cjk-sans: "PingFang SC", "HarmonyOS Sans SC", "Source Han Sans SC",
+    "Noto Sans SC", "Microsoft YaHei";
+  --cjk-serif: "Songti SC", "Source Han Serif SC", "Noto Serif SC", "SimSun";
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 2.5rem;
+  --text-display-s: clamp(1.75rem, 2.6vw + 1rem, 3rem);
+  --text-display: clamp(2.5rem, 4.6vw + 0.9rem, 4.75rem);
+
+  --lh-tight: 1.06;
+  --lh-snug: 1.22;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.68;
+
+  --space-3xs: 0.125rem;
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  --page-max: 78rem;
+  --page-gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --measure: 60ch;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 460ms;
+}
+
+/* ────────────────────────────────────────────────────────────
+   GRID · 近白图纸 + 单一信号红 · 几何无衬线 800
+   轴：纸色 浅 · 几何无衬线 · 暖
+   ──────────────────────────────────────────────────────────── */
+:root,
+[data-theme="grid"] {
+  color-scheme: light;
+  --hm-scheme: light;
+
+  --hm-paper: oklch(99% 0.003 255);
+  --hm-paper-2: oklch(97.2% 0.003 255);
+  --hm-paper-3: oklch(94% 0.004 255);
+  --hm-rule: oklch(88% 0.004 255);
+  --hm-rule-2: oklch(76% 0.006 255);
+  --hm-muted: oklch(48% 0.006 255);
+  --hm-neutral: oklch(34% 0.008 255);
+  --hm-ink-2: oklch(26% 0.008 255);
+  --hm-ink: oklch(16% 0.01 255);
+
+  --hm-accent: oklch(55% 0.21 28);
+  --hm-accent-line: oklch(48% 0.2 28);
+  --hm-accent-ink: oklch(99% 0.002 255);
+  --hm-cta-bg: oklch(46% 0.19 28);
+  --hm-cta-fg: oklch(99% 0.002 255);
+  --hm-focus: oklch(55% 0.21 28);
+
+  --hm-display: "Archivo Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-body: "Archivo Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "Archivo Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --hm-display-weight: 800;
+  --hm-tracking-display: -0.045em;
+  --hm-tracking-label: 0.04em;
+
+  --hm-radius-card: 0px;
+  --hm-radius-pill: 0px;
+  --hm-radius-input: 0px;
+  --hm-rule-card: 1px;
+  --hm-shadow-card: none;
+  --hm-grain: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   SPECIMEN · 暖燕麦编辑台 · 高对比衬线 340
+   轴：纸色 浅 · 高对比衬线 · 暖
+   ──────────────────────────────────────────────────────────── */
+[data-theme="specimen"] {
+  color-scheme: light;
+  --hm-scheme: light;
+
+  --hm-paper: oklch(96% 0.018 80);
+  --hm-paper-2: oklch(93% 0.02 80);
+  --hm-paper-3: oklch(89% 0.022 75);
+  --hm-rule: oklch(82% 0.014 75);
+  --hm-rule-2: oklch(70% 0.012 70);
+  --hm-muted: oklch(46% 0.014 65);
+  --hm-neutral: oklch(38% 0.014 60);
+  --hm-ink-2: oklch(26% 0.014 60);
+  --hm-ink: oklch(18% 0.014 60);
+
+  --hm-accent: #fc4c02;
+  --hm-accent-line: oklch(50% 0.19 40);
+  --hm-accent-ink: oklch(98% 0.01 80);
+  --hm-cta-bg: #d13d00;
+  --hm-cta-fg: oklch(98% 0.008 80);
+  --hm-focus: #fc4c02;
+
+  --hm-display: "Fraunces Variable", var(--cjk-serif), Georgia, serif;
+  --hm-body: "Geist Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "Geist Mono", var(--cjk-sans), ui-monospace, monospace;
+  --hm-mono: "Geist Mono", ui-monospace, monospace;
+
+  --hm-display-weight: 340;
+  --hm-tracking-display: -0.025em;
+  --hm-tracking-label: 0.12em;
+
+  --hm-radius-card: 0px;
+  --hm-radius-pill: 0px;
+  --hm-radius-input: 0px;
+  --hm-rule-card: 1px;
+  --hm-shadow-card: none;
+  --hm-grain: 0.035;
+}
+
+/* ────────────────────────────────────────────────────────────
+   MIDNIGHT · 冷调深炭 · 几何无衬线 300
+   轴：纸色 深 · 几何无衬线 · 冷
+   ──────────────────────────────────────────────────────────── */
+[data-theme="midnight"] {
+  color-scheme: dark;
+  --hm-scheme: dark;
+
+  --hm-paper: oklch(15% 0.022 250);
+  --hm-paper-2: oklch(20% 0.024 250);
+  --hm-paper-3: oklch(25% 0.026 250);
+  --hm-rule: oklch(33% 0.024 245);
+  --hm-rule-2: oklch(48% 0.02 240);
+  --hm-muted: oklch(60% 0.018 240);
+  --hm-neutral: oklch(72% 0.014 235);
+  --hm-ink-2: oklch(86% 0.01 230);
+  --hm-ink: oklch(95% 0.008 230);
+
+  --hm-accent: oklch(72% 0.16 220);
+  --hm-accent-line: oklch(78% 0.15 220);
+  --hm-accent-ink: oklch(12% 0.02 250);
+  --hm-cta-bg: oklch(72% 0.16 220);
+  --hm-cta-fg: oklch(12% 0.02 250);
+  --hm-focus: oklch(72% 0.16 220);
+
+  --hm-display: "Geist Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-body: "Geist Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "Geist Mono", var(--cjk-sans), ui-monospace, monospace;
+  --hm-mono: "Geist Mono", ui-monospace, monospace;
+
+  --hm-display-weight: 300;
+  --hm-tracking-display: -0.03em;
+  --hm-tracking-label: 0.16em;
+
+  --hm-radius-card: 0px;
+  --hm-radius-pill: 0px;
+  --hm-radius-input: 0px;
+  --hm-rule-card: 1px;
+  --hm-shadow-card: none;
+  --hm-grain: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   BRUTAL · 刺白 + 重磅无衬线 + 亮红 · 2px 描边
+   轴：纸色 浅 · 重磅展示体 · 暖
+   ──────────────────────────────────────────────────────────── */
+[data-theme="brutal"] {
+  color-scheme: light;
+  --hm-scheme: light;
+
+  --hm-paper: oklch(98% 0.001 0);
+  --hm-paper-2: oklch(95% 0.002 0);
+  --hm-paper-3: oklch(91% 0.003 0);
+  --hm-rule: oklch(12% 0.005 0);
+  --hm-rule-2: oklch(8% 0.005 0);
+  --hm-muted: oklch(38% 0.005 0);
+  --hm-neutral: oklch(22% 0.005 0);
+  --hm-ink-2: oklch(12% 0.005 0);
+  --hm-ink: oklch(8% 0.005 0);
+
+  --hm-accent: #e63946;
+  --hm-accent-line: #c2262f;
+  --hm-accent-ink: oklch(99% 0.002 0);
+  --hm-cta-bg: #c2262f;
+  --hm-cta-fg: oklch(100% 0 0);
+  --hm-focus: #e63946;
+
+  --hm-display: "Albert Sans Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-body: "Albert Sans Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "JetBrains Mono Variable", ui-monospace, monospace;
+  --hm-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --hm-display-weight: 700;
+  --hm-tracking-display: -0.045em;
+  --hm-tracking-label: 0.04em;
+
+  --hm-radius-card: 0px;
+  --hm-radius-pill: 0px;
+  --hm-radius-input: 0px;
+  --hm-rule-card: 2px;
+  --hm-shadow-card: none;
+  --hm-grain: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   GARDEN · 植物园绿 · Young Serif · 10px 圆角
+   轴：纸色 浅 · 有机衬线 · 绿
+   ──────────────────────────────────────────────────────────── */
+[data-theme="garden"] {
+  color-scheme: light;
+  --hm-scheme: light;
+
+  --hm-paper: oklch(95.5% 0.022 92);
+  --hm-paper-2: oklch(92.5% 0.026 92);
+  --hm-paper-3: oklch(89% 0.03 100);
+  --hm-rule: oklch(83% 0.028 115);
+  --hm-rule-2: oklch(72% 0.032 120);
+  --hm-muted: oklch(48% 0.04 138);
+  --hm-neutral: oklch(38% 0.045 145);
+  --hm-ink-2: oklch(33% 0.05 150);
+  --hm-ink: oklch(24% 0.052 152);
+
+  --hm-accent: oklch(47% 0.13 140);
+  --hm-accent-line: oklch(40% 0.13 140);
+  --hm-accent-ink: oklch(97% 0.01 140);
+  --hm-cta-bg: oklch(40% 0.13 140);
+  --hm-cta-fg: oklch(97% 0.01 140);
+  --hm-focus: oklch(47% 0.13 140);
+
+  --hm-display: "Young Serif", var(--cjk-serif), Georgia, serif;
+  --hm-body: "Hanken Grotesk Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "Geist Mono", var(--cjk-sans), ui-monospace, monospace;
+  --hm-mono: "Geist Mono", ui-monospace, monospace;
+
+  --hm-display-weight: 400;
+  --hm-tracking-display: -0.006em;
+  --hm-tracking-label: 0.14em;
+
+  --hm-radius-card: 10px;
+  --hm-radius-pill: 8px;
+  --hm-radius-input: 8px;
+  --hm-rule-card: 1px;
+  --hm-shadow-card: none;
+  --hm-grain: 0.03;
+}
+
+/* ────────────────────────────────────────────────────────────
+   ATELIER · 画廊灰白 · Playfair Display 900
+   轴：纸色 浅 · 高对比衬线 · 中性暖褐
+   ──────────────────────────────────────────────────────────── */
+[data-theme="atelier"] {
+  color-scheme: light;
+  --hm-scheme: light;
+
+  --hm-paper: oklch(94% 0.005 60);
+  --hm-paper-2: oklch(91% 0.006 60);
+  --hm-paper-3: oklch(87% 0.008 60);
+  --hm-rule: oklch(78% 0.006 55);
+  --hm-rule-2: oklch(66% 0.008 55);
+  --hm-muted: oklch(46% 0.01 50);
+  --hm-neutral: oklch(32% 0.014 45);
+  --hm-ink-2: oklch(18% 0.02 40);
+  --hm-ink: oklch(12% 0.024 40);
+
+  --hm-accent: oklch(22% 0.06 40);
+  --hm-accent-line: oklch(22% 0.06 40);
+  --hm-accent-ink: oklch(96% 0.005 60);
+  --hm-cta-bg: oklch(18% 0.07 40);
+  --hm-cta-fg: oklch(96% 0.005 60);
+  --hm-focus: oklch(45% 0.13 60);
+
+  --hm-display: "Playfair Display", var(--cjk-serif), Georgia, serif;
+  --hm-body: "Hanken Grotesk Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "IBM Plex Mono", ui-monospace, monospace;
+  --hm-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --hm-display-weight: 900;
+  --hm-tracking-display: -0.018em;
+  --hm-tracking-label: 0.24em;
+
+  --hm-radius-card: 0px;
+  --hm-radius-pill: 0px;
+  --hm-radius-input: 0px;
+  --hm-rule-card: 1px;
+  --hm-shadow-card: none;
+  --hm-grain: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   NEWSPRINT · 报纸米黄 · Playfair + Newsreader 双衬线
+   轴：纸色 浅 · 罗马衬线 · 暖
+   ──────────────────────────────────────────────────────────── */
+[data-theme="newsprint"] {
+  color-scheme: light;
+  --hm-scheme: light;
+
+  --hm-paper: oklch(92% 0.045 50);
+  --hm-paper-2: oklch(89% 0.05 50);
+  --hm-paper-3: oklch(85% 0.055 48);
+  --hm-rule: oklch(68% 0.03 40);
+  --hm-rule-2: oklch(56% 0.032 38);
+  --hm-muted: oklch(46% 0.022 35);
+  --hm-neutral: oklch(32% 0.026 30);
+  --hm-ink-2: oklch(20% 0.03 28);
+  --hm-ink: oklch(15% 0.03 25);
+
+  --hm-accent: oklch(32% 0.1 28);
+  --hm-accent-line: oklch(32% 0.1 28);
+  --hm-accent-ink: oklch(94% 0.02 45);
+  --hm-cta-bg: oklch(26% 0.1 28);
+  --hm-cta-fg: oklch(94% 0.02 45);
+  --hm-focus: oklch(48% 0.18 30);
+
+  --hm-display: "Playfair Display", var(--cjk-serif), Georgia, serif;
+  --hm-body: "Newsreader Variable", var(--cjk-serif), Georgia, serif;
+  --hm-label: "Inter Tight Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --hm-display-weight: 700;
+  --hm-tracking-display: -0.022em;
+  --hm-tracking-label: 0.06em;
+
+  --hm-radius-card: 0px;
+  --hm-radius-pill: 0px;
+  --hm-radius-input: 0px;
+  --hm-rule-card: 1px;
+  --hm-shadow-card: none;
+  --hm-grain: 0.05;
+}
+
+/* ────────────────────────────────────────────────────────────
+   TERMINAL · 磷光绿等宽 · 全等宽
+   轴：纸色 深 · 等宽 · 磷光绿
+   ──────────────────────────────────────────────────────────── */
+[data-theme="terminal"] {
+  color-scheme: dark;
+  --hm-scheme: dark;
+
+  --hm-paper: oklch(11% 0.018 145);
+  --hm-paper-2: oklch(15% 0.022 145);
+  --hm-paper-3: oklch(19% 0.026 145);
+  --hm-rule: oklch(28% 0.03 140);
+  --hm-rule-2: oklch(42% 0.05 140);
+  --hm-muted: oklch(58% 0.09 140);
+  --hm-neutral: oklch(70% 0.11 140);
+  --hm-ink-2: oklch(78% 0.14 138);
+  --hm-ink: oklch(86% 0.16 138);
+
+  --hm-accent: oklch(78% 0.19 138);
+  --hm-accent-line: oklch(78% 0.19 138);
+  --hm-accent-ink: oklch(10% 0.02 145);
+  --hm-cta-bg: oklch(78% 0.19 138);
+  --hm-cta-fg: oklch(10% 0.02 145);
+  --hm-focus: oklch(86% 0.19 138);
+
+  --hm-display: "JetBrains Mono Variable", var(--cjk-sans), ui-monospace,
+    monospace;
+  --hm-body: "JetBrains Mono Variable", var(--cjk-sans), ui-monospace,
+    monospace;
+  --hm-label: "JetBrains Mono Variable", ui-monospace, monospace;
+  --hm-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --hm-display-weight: 500;
+  --hm-tracking-display: 0.01em;
+  --hm-tracking-label: 0.18em;
+
+  --hm-radius-card: 0px;
+  --hm-radius-pill: 0px;
+  --hm-radius-input: 0px;
+  --hm-rule-card: 1px;
+  --hm-shadow-card: none;
+  --hm-grain: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   MANIFESTO · 黑色宣言海报 · Anton 压缩体 · 2px 描边
+   轴：纸色 深 · 几何无衬线 · 暖
+   ──────────────────────────────────────────────────────────── */
+[data-theme="manifesto"] {
+  color-scheme: dark;
+  --hm-scheme: dark;
+
+  --hm-paper: oklch(10% 0.005 60);
+  --hm-paper-2: oklch(15% 0.006 60);
+  --hm-paper-3: oklch(20% 0.008 60);
+  --hm-rule: oklch(28% 0.01 60);
+  --hm-rule-2: oklch(42% 0.012 60);
+  --hm-muted: oklch(60% 0.012 65);
+  --hm-neutral: oklch(74% 0.01 70);
+  --hm-ink-2: oklch(88% 0.006 80);
+  --hm-ink: oklch(98% 0.003 90);
+
+  --hm-accent: #e51a1a;
+  --hm-accent-line: #f04444;
+  --hm-accent-ink: oklch(98% 0.003 90);
+  --hm-cta-bg: #b90f0f;
+  --hm-cta-fg: oklch(98% 0.003 90);
+  --hm-focus: #e51a1a;
+
+  --hm-display: "Anton", var(--cjk-sans), system-ui, sans-serif;
+  --hm-body: "Public Sans Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "JetBrains Mono Variable", ui-monospace, monospace;
+  --hm-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --hm-display-weight: 400;
+  --hm-tracking-display: 0.005em;
+  --hm-tracking-label: 0.1em;
+
+  --hm-radius-card: 0px;
+  --hm-radius-pill: 0px;
+  --hm-radius-input: 0px;
+  --hm-rule-card: 2px;
+  --hm-shadow-card: none;
+  --hm-grain: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   ALMANAC · 冷灰年鉴 · Hanken Grotesk 600 + IBM Plex Mono
+   轴：纸色 浅 · 怪诞无衬线 · 冷
+   ──────────────────────────────────────────────────────────── */
+[data-theme="almanac"] {
+  color-scheme: light;
+  --hm-scheme: light;
+
+  --hm-paper: oklch(94% 0.008 245);
+  --hm-paper-2: oklch(91% 0.01 245);
+  --hm-paper-3: oklch(87% 0.012 245);
+  --hm-rule: oklch(74% 0.012 240);
+  --hm-rule-2: oklch(62% 0.014 240);
+  --hm-muted: oklch(46% 0.014 245);
+  --hm-neutral: oklch(32% 0.016 245);
+  --hm-ink-2: oklch(20% 0.018 245);
+  --hm-ink: oklch(16% 0.02 245);
+
+  --hm-accent: oklch(38% 0.135 250);
+  --hm-accent-line: oklch(38% 0.135 250);
+  --hm-accent-ink: oklch(97% 0.01 250);
+  --hm-cta-bg: oklch(38% 0.135 250);
+  --hm-cta-fg: oklch(97% 0.01 250);
+  --hm-focus: oklch(38% 0.135 250);
+
+  --hm-display: "Hanken Grotesk Variable", var(--cjk-sans), system-ui,
+    sans-serif;
+  --hm-body: "Hanken Grotesk Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "IBM Plex Mono", ui-monospace, monospace;
+  --hm-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --hm-display-weight: 600;
+  --hm-tracking-display: -0.014em;
+  --hm-tracking-label: 0.06em;
+
+  --hm-radius-card: 0px;
+  --hm-radius-pill: 0px;
+  --hm-radius-input: 0px;
+  --hm-rule-card: 1px;
+  --hm-shadow-card: none;
+  --hm-grain: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   SPORT · 记分牌白 · Inter Tight 700 压缩 + 1.5px 描边
+   轴：纸色 浅 · 压缩展示体 · 暖
+   ──────────────────────────────────────────────────────────── */
+[data-theme="sport"] {
+  color-scheme: light;
+  --hm-scheme: light;
+
+  --hm-paper: oklch(98% 0.003 250);
+  --hm-paper-2: oklch(95% 0.005 250);
+  --hm-paper-3: oklch(91% 0.007 250);
+  --hm-rule: oklch(78% 0.008 250);
+  --hm-rule-2: oklch(66% 0.01 250);
+  --hm-muted: oklch(50% 0.02 250);
+  --hm-neutral: oklch(36% 0.03 255);
+  --hm-ink-2: oklch(22% 0.06 258);
+  --hm-ink: oklch(16% 0.08 260);
+
+  --hm-accent: oklch(58% 0.19 35);
+  --hm-accent-line: oklch(45% 0.19 35);
+  --hm-accent-ink: oklch(99% 0.002 35);
+  --hm-cta-bg: oklch(48% 0.19 35);
+  --hm-cta-fg: oklch(99% 0.002 35);
+  --hm-focus: oklch(58% 0.19 35);
+
+  --hm-display: "Inter Tight Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-body: "Albert Sans Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "JetBrains Mono Variable", ui-monospace, monospace;
+  --hm-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --hm-display-weight: 700;
+  --hm-tracking-display: -0.04em;
+  --hm-tracking-label: 0.1em;
+
+  --hm-radius-card: 0px;
+  --hm-radius-pill: 0px;
+  --hm-radius-input: 0px;
+  --hm-rule-card: 1.5px;
+  --hm-shadow-card: none;
+  --hm-grain: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   STUDIO · 冷白工作室 · Fraunces 400 + 叶绿
+   轴：纸色 浅 · 高对比衬线 · 绿
+   ──────────────────────────────────────────────────────────── */
+[data-theme="studio"] {
+  color-scheme: light;
+  --hm-scheme: light;
+
+  --hm-paper: oklch(96.5% 0.005 200);
+  --hm-paper-2: oklch(93.5% 0.007 200);
+  --hm-paper-3: oklch(90% 0.009 200);
+  --hm-rule: oklch(82% 0.008 200);
+  --hm-rule-2: oklch(70% 0.01 200);
+  --hm-muted: oklch(48% 0.012 205);
+  --hm-neutral: oklch(34% 0.016 205);
+  --hm-ink-2: oklch(22% 0.02 205);
+  --hm-ink: oklch(13% 0.024 205);
+
+  --hm-accent: oklch(46% 0.14 145);
+  --hm-accent-line: oklch(42% 0.14 145);
+  --hm-accent-ink: oklch(98% 0.005 200);
+  --hm-cta-bg: oklch(46% 0.14 145);
+  --hm-cta-fg: oklch(98% 0.005 200);
+  --hm-focus: oklch(46% 0.14 145);
+
+  --hm-display: "Fraunces Variable", var(--cjk-serif), Georgia, serif;
+  --hm-body: "Geist Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "Geist Mono", var(--cjk-sans), ui-monospace, monospace;
+  --hm-mono: "Geist Mono", ui-monospace, monospace;
+
+  --hm-display-weight: 400;
+  --hm-tracking-display: -0.022em;
+  --hm-tracking-label: 0.08em;
+
+  --hm-radius-card: 6px;
+  --hm-radius-pill: 4px;
+  --hm-radius-input: 4px;
+  --hm-rule-card: 1px;
+  --hm-shadow-card: 0 1px 2px oklch(20% 0.014 205 / 0.05);
+  --hm-grain: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   RISO · 孔版印刷粉纸 + 青 · Public Sans 800 / Newsreader 正文
+   轴：纸色 浅 · 孔版粗体 · 冷
+   ──────────────────────────────────────────────────────────── */
+[data-theme="riso"] {
+  color-scheme: light;
+  --hm-scheme: light;
+
+  --hm-paper: oklch(91% 0.034 30);
+  --hm-paper-2: oklch(87% 0.04 30);
+  --hm-paper-3: oklch(83% 0.046 30);
+  --hm-rule: oklch(70% 0.04 30);
+  --hm-rule-2: oklch(58% 0.05 28);
+  --hm-muted: oklch(46% 0.06 30);
+  --hm-neutral: oklch(34% 0.06 30);
+  --hm-ink-2: oklch(22% 0.06 30);
+  --hm-ink: oklch(18% 0.06 30);
+
+  --hm-accent: oklch(58% 0.17 220);
+  --hm-accent-line: oklch(46% 0.17 220);
+  --hm-accent-ink: oklch(99% 0.004 220);
+  --hm-cta-bg: oklch(46% 0.17 220);
+  --hm-cta-fg: oklch(99% 0.004 220);
+  --hm-focus: oklch(58% 0.17 220);
+
+  --hm-display: "Public Sans Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-body: "Newsreader Variable", var(--cjk-serif), Georgia, serif;
+  --hm-label: "Public Sans Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-mono: "Geist Mono", ui-monospace, monospace;
+
+  --hm-display-weight: 800;
+  --hm-tracking-display: -0.04em;
+  --hm-tracking-label: 0.06em;
+
+  --hm-radius-card: 2px;
+  --hm-radius-pill: 2px;
+  --hm-radius-input: 2px;
+  --hm-rule-card: 1px;
+  --hm-shadow-card: none;
+  --hm-grain: 0.06;
+}
+
+/* ────────────────────────────────────────────────────────────
+   BLOOM · 暖白 + 陶土 · Geist 600 + 16px 圆角
+   轴：纸色 浅 · 怪诞无衬线 · 暖
+   ──────────────────────────────────────────────────────────── */
+[data-theme="bloom"] {
+  color-scheme: light;
+  --hm-scheme: light;
+
+  --hm-paper: oklch(97% 0.01 72);
+  --hm-paper-2: oklch(94.5% 0.012 72);
+  --hm-paper-3: oklch(91% 0.014 70);
+  --hm-rule: oklch(86% 0.012 70);
+  --hm-rule-2: oklch(76% 0.014 68);
+  --hm-muted: oklch(50% 0.018 58);
+  --hm-neutral: oklch(38% 0.02 50);
+  --hm-ink-2: oklch(30% 0.022 46);
+  --hm-ink: oklch(20% 0.022 40);
+
+  --hm-accent: oklch(56% 0.13 35);
+  --hm-accent-line: oklch(45% 0.14 35);
+  --hm-accent-ink: oklch(99% 0.004 72);
+  --hm-cta-bg: oklch(45% 0.14 35);
+  --hm-cta-fg: oklch(99% 0.004 72);
+  --hm-focus: oklch(56% 0.13 35);
+
+  --hm-display: "Geist Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-body: "Geist Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "Geist Mono", var(--cjk-sans), ui-monospace, monospace;
+  --hm-mono: "Geist Mono", ui-monospace, monospace;
+
+  --hm-display-weight: 600;
+  --hm-tracking-display: -0.022em;
+  --hm-tracking-label: 0.12em;
+
+  --hm-radius-card: 16px;
+  --hm-radius-pill: 999px;
+  --hm-radius-input: 12px;
+  --hm-rule-card: 1px;
+  --hm-shadow-card: none;
+  --hm-grain: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   CORAL · 珊瑚 SaaS · Geist 600 + 8px 圆角
+   轴：纸色 浅 · 怪诞无衬线 · 暖
+   ──────────────────────────────────────────────────────────── */
+[data-theme="coral"] {
+  color-scheme: light;
+  --hm-scheme: light;
+
+  --hm-paper: oklch(96.5% 0.005 50);
+  --hm-paper-2: oklch(94% 0.006 50);
+  --hm-paper-3: oklch(91% 0.008 50);
+  --hm-rule: oklch(86% 0.008 50);
+  --hm-rule-2: oklch(76% 0.01 50);
+  --hm-muted: oklch(52% 0.012 50);
+  --hm-neutral: oklch(38% 0.012 45);
+  --hm-ink-2: oklch(26% 0.012 40);
+  --hm-ink: oklch(20% 0.01 35);
+
+  --hm-accent: oklch(64% 0.165 28);
+  --hm-accent-line: oklch(46% 0.175 28);
+  --hm-accent-ink: oklch(99% 0.004 50);
+  --hm-cta-bg: oklch(46% 0.175 28);
+  --hm-cta-fg: oklch(99% 0.004 50);
+  --hm-focus: oklch(64% 0.165 28);
+
+  --hm-display: "Geist Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-body: "Geist Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "Geist Mono", var(--cjk-sans), ui-monospace, monospace;
+  --hm-mono: "Geist Mono", ui-monospace, monospace;
+
+  --hm-display-weight: 600;
+  --hm-tracking-display: -0.025em;
+  --hm-tracking-label: 0.05em;
+
+  --hm-radius-card: 8px;
+  --hm-radius-pill: 999px;
+  --hm-radius-input: 6px;
+  --hm-rule-card: 1px;
+  --hm-shadow-card: none;
+  --hm-grain: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   COBALT · 冷工程白 + 电钴蓝 · Space Grotesk + 等宽
+   轴：纸色 浅 · 怪诞无衬线 · 冷
+   ──────────────────────────────────────────────────────────── */
+[data-theme="cobalt"] {
+  color-scheme: light;
+  --hm-scheme: light;
+
+  --hm-paper: oklch(98.5% 0.004 250);
+  --hm-paper-2: oklch(96.5% 0.005 252);
+  --hm-paper-3: oklch(93.5% 0.006 254);
+  --hm-rule: oklch(91% 0.008 255);
+  --hm-rule-2: oklch(82% 0.01 255);
+  --hm-muted: oklch(49% 0.014 255);
+  --hm-neutral: oklch(42% 0.016 256);
+  --hm-ink-2: oklch(34% 0.018 257);
+  --hm-ink: oklch(24% 0.02 258);
+
+  --hm-accent: oklch(58% 0.2 256);
+  --hm-accent-line: oklch(46% 0.2 256);
+  --hm-accent-ink: oklch(99% 0.003 252);
+  --hm-cta-bg: oklch(46% 0.2 256);
+  --hm-cta-fg: oklch(99% 0.003 252);
+  --hm-focus: oklch(58% 0.2 256);
+
+  --hm-display: "Space Grotesk Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-body: "Geist Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "JetBrains Mono Variable", ui-monospace, monospace;
+  --hm-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --hm-display-weight: 500;
+  --hm-tracking-display: -0.03em;
+  --hm-tracking-label: 0.06em;
+
+  --hm-radius-card: 10px;
+  --hm-radius-pill: 6px;
+  --hm-radius-input: 6px;
+  --hm-rule-card: 1px;
+  --hm-shadow-card: none;
+  --hm-grain: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   AURORA · 深夜青 · Geist 600 + 12px 圆角
+   轴：纸色 深 · 怪诞无衬线 · 冷
+   ──────────────────────────────────────────────────────────── */
+[data-theme="aurora"] {
+  color-scheme: dark;
+  --hm-scheme: dark;
+
+  --hm-paper: oklch(11% 0.025 200);
+  --hm-paper-2: oklch(15% 0.028 200);
+  --hm-paper-3: oklch(19% 0.03 200);
+  --hm-rule: oklch(28% 0.022 200);
+  --hm-rule-2: oklch(42% 0.024 200);
+  --hm-muted: oklch(60% 0.018 200);
+  --hm-neutral: oklch(72% 0.014 200);
+  --hm-ink-2: oklch(82% 0.012 200);
+  --hm-ink: oklch(96% 0.01 200);
+
+  --hm-accent: oklch(72% 0.17 200);
+  --hm-accent-line: oklch(78% 0.16 200);
+  --hm-accent-ink: oklch(10% 0.02 200);
+  --hm-cta-bg: oklch(72% 0.17 200);
+  --hm-cta-fg: oklch(10% 0.02 200);
+  --hm-focus: oklch(72% 0.17 200);
+
+  --hm-display: "Geist Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-body: "Geist Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "Geist Mono", var(--cjk-sans), ui-monospace, monospace;
+  --hm-mono: "Geist Mono", ui-monospace, monospace;
+
+  --hm-display-weight: 600;
+  --hm-tracking-display: -0.035em;
+  --hm-tracking-label: 0.1em;
+
+  --hm-radius-card: 12px;
+  --hm-radius-pill: 999px;
+  --hm-radius-input: 10px;
+  --hm-rule-card: 1px;
+  --hm-shadow-card: none;
+  --hm-grain: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   EDITORIAL · 杂志暖奶白 · Inter Tight 800 + 0.5px 发丝线
+   轴：纸色 浅 · 怪诞无衬线 · 暖
+   ──────────────────────────────────────────────────────────── */
+[data-theme="editorial"] {
+  color-scheme: light;
+  --hm-scheme: light;
+
+  --hm-paper: oklch(94% 0.02 75);
+  --hm-paper-2: oklch(91% 0.022 72);
+  --hm-paper-3: oklch(87% 0.024 72);
+  --hm-rule: oklch(80% 0.018 70);
+  --hm-rule-2: oklch(68% 0.02 68);
+  --hm-muted: oklch(48% 0.014 60);
+  --hm-neutral: oklch(36% 0.014 58);
+  --hm-ink-2: oklch(28% 0.014 55);
+  --hm-ink: oklch(15% 0.014 280);
+
+  --hm-accent: oklch(60% 0.16 35);
+  --hm-accent-line: oklch(47% 0.17 35);
+  --hm-accent-ink: oklch(98% 0.01 75);
+  --hm-cta-bg: oklch(47% 0.17 35);
+  --hm-cta-fg: oklch(98% 0.01 75);
+  --hm-focus: oklch(62% 0.16 35);
+
+  --hm-display: "Inter Tight Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-body: "Geist Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "Geist Mono", var(--cjk-sans), ui-monospace, monospace;
+  --hm-mono: "Geist Mono", ui-monospace, monospace;
+
+  --hm-display-weight: 800;
+  --hm-tracking-display: -0.04em;
+  --hm-tracking-label: 0.1em;
+
+  --hm-radius-card: 0px;
+  --hm-radius-pill: 0px;
+  --hm-radius-input: 0px;
+  --hm-rule-card: 0.5px;
+  --hm-shadow-card: none;
+  --hm-grain: 0.02;
+}
+
+/* ────────────────────────────────────────────────────────────
+   CARNIVAL · 粉奶油 + 芥末黄 · Big Shoulders Display · 2px 描边
+   轴：纸色 浅 · 重磅展示体 · 暖
+   ──────────────────────────────────────────────────────────── */
+[data-theme="carnival"] {
+  color-scheme: light;
+  --hm-scheme: light;
+
+  --hm-paper: oklch(92% 0.045 50);
+  --hm-paper-2: oklch(88% 0.05 45);
+  --hm-paper-3: oklch(84% 0.055 42);
+  --hm-rule: oklch(40% 0.18 25);
+  --hm-rule-2: oklch(34% 0.16 24);
+  --hm-muted: oklch(45% 0.05 30);
+  --hm-neutral: oklch(34% 0.055 25);
+  --hm-ink-2: oklch(28% 0.06 25);
+  --hm-ink: oklch(18% 0.08 20);
+
+  --hm-accent: oklch(86% 0.18 95);
+  --hm-accent-line: oklch(40% 0.18 25);
+  --hm-accent-ink: oklch(18% 0.08 20);
+  --hm-cta-bg: oklch(86% 0.18 95);
+  --hm-cta-fg: oklch(18% 0.08 20);
+  --hm-focus: oklch(40% 0.21 25);
+
+  --hm-display: "Big Shoulders Display", var(--cjk-sans), system-ui, sans-serif;
+  --hm-body: "DM Sans Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "JetBrains Mono Variable", ui-monospace, monospace;
+  --hm-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --hm-display-weight: 700;
+  --hm-tracking-display: 0.02em;
+  --hm-tracking-label: 0.18em;
+
+  --hm-radius-card: 8px;
+  --hm-radius-pill: 999px;
+  --hm-radius-input: 6px;
+  --hm-rule-card: 2px;
+  --hm-shadow-card: none;
+  --hm-grain: 0.04;
+}
+
+/* ────────────────────────────────────────────────────────────
+   LUMEN · 深夜工作室 + 熔黄铜 · Instrument Serif
+   轴：纸色 深 · 古典衬线 · 暖
+   ──────────────────────────────────────────────────────────── */
+[data-theme="lumen"] {
+  color-scheme: dark;
+  --hm-scheme: dark;
+
+  --hm-paper: oklch(13% 0.014 265);
+  --hm-paper-2: oklch(17% 0.016 265);
+  --hm-paper-3: oklch(21% 0.018 265);
+  --hm-rule: oklch(30% 0.018 265);
+  --hm-rule-2: oklch(44% 0.02 265);
+  --hm-muted: oklch(60% 0.016 263);
+  --hm-neutral: oklch(72% 0.014 262);
+  --hm-ink-2: oklch(82% 0.01 262);
+  --hm-ink: oklch(96% 0.006 262);
+
+  --hm-accent: oklch(76% 0.17 50);
+  --hm-accent-line: oklch(80% 0.16 55);
+  --hm-accent-ink: oklch(13% 0.014 265);
+  --hm-cta-bg: oklch(76% 0.17 50);
+  --hm-cta-fg: oklch(13% 0.014 265);
+  --hm-focus: oklch(76% 0.17 50);
+
+  --hm-display: "Instrument Serif", var(--cjk-serif), Georgia, serif;
+  --hm-body: "Geist Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "JetBrains Mono Variable", var(--cjk-sans), ui-monospace,
+    monospace;
+  --hm-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --hm-display-weight: 400;
+  --hm-tracking-display: -0.032em;
+  --hm-tracking-label: 0.1em;
+
+  --hm-radius-card: 10px;
+  --hm-radius-pill: 999px;
+  --hm-radius-input: 8px;
+  --hm-rule-card: 1px;
+  --hm-shadow-card: none;
+  --hm-grain: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   CUSTOM · 不在目录里的一套装。
+   演示 Custom 分支：为一个「苔藓、地衣、柔粉、草本」的需求现算的
+   OKLCH 调色板 + 字体搭配。轴：浅 / 罗马衬线 / 粉。
+   ──────────────────────────────────────────────────────────── */
+[data-theme="custom"] {
+  color-scheme: light;
+  --hm-scheme: light;
+
+  --hm-paper: oklch(95% 0.02 130);
+  --hm-paper-2: oklch(92% 0.026 128);
+  --hm-paper-3: oklch(88% 0.03 126);
+  --hm-rule: oklch(80% 0.03 125);
+  --hm-rule-2: oklch(68% 0.04 122);
+  --hm-muted: oklch(45% 0.04 130);
+  --hm-neutral: oklch(34% 0.04 128);
+  --hm-ink-2: oklch(28% 0.03 140);
+  --hm-ink: oklch(20% 0.025 145);
+
+  --hm-accent: oklch(72% 0.12 350);
+  --hm-accent-line: oklch(46% 0.14 350);
+  --hm-accent-ink: oklch(15% 0.02 145);
+  --hm-cta-bg: oklch(42% 0.1 145);
+  --hm-cta-fg: oklch(97% 0.01 140);
+  --hm-focus: oklch(48% 0.16 350);
+
+  --hm-display: "Newsreader Variable", var(--cjk-serif), Georgia, serif;
+  --hm-body: "Hanken Grotesk Variable", var(--cjk-sans), system-ui, sans-serif;
+  --hm-label: "Geist Mono", var(--cjk-sans), ui-monospace, monospace;
+  --hm-mono: "Geist Mono", ui-monospace, monospace;
+
+  --hm-display-weight: 600;
+  --hm-tracking-display: -0.018em;
+  --hm-tracking-label: 0.12em;
+
+  --hm-radius-card: 14px;
+  --hm-radius-pill: 999px;
+  --hm-radius-input: 10px;
+  --hm-rule-card: 1px;
+  --hm-shadow-card: none;
+  --hm-grain: 0.035;
+}
+
+/* ────────────────────────────────────────────────────────────
+   HUM · 奶油梨黄 · Plus Jakarta Sans 600 + 20px 圆角
+   轴：纸色 浅 · 圆润人文无衬线 · 暖
+   ──────────────────────────────────────────────────────────── */
+[data-theme="hum"] {
+  color-scheme: light;
+  --hm-scheme: light;
+
+  --hm-paper: oklch(97% 0.012 95);
+  --hm-paper-2: oklch(94% 0.016 95);
+  --hm-paper-3: oklch(90% 0.02 92);
+  --hm-rule: oklch(86% 0.014 90);
+  --hm-rule-2: oklch(76% 0.016 90);
+  --hm-muted: oklch(52% 0.014 90);
+  --hm-neutral: oklch(40% 0.014 250);
+  --hm-ink-2: oklch(28% 0.014 250);
+  --hm-ink: oklch(20% 0.012 250);
+
+  --hm-accent: oklch(86% 0.18 95);
+  --hm-accent-line: oklch(44% 0.13 90);
+  --hm-accent-ink: oklch(20% 0.012 250);
+  --hm-cta-bg: oklch(86% 0.18 95);
+  --hm-cta-fg: oklch(20% 0.012 250);
+  --hm-focus: oklch(66% 0.18 235);
+
+  --hm-display: "Plus Jakarta Sans Variable", var(--cjk-sans), system-ui,
+    sans-serif;
+  --hm-body: "Plus Jakarta Sans Variable", var(--cjk-sans), system-ui,
+    sans-serif;
+  --hm-label: "JetBrains Mono Variable", var(--cjk-sans), ui-monospace,
+    monospace;
+  --hm-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --hm-display-weight: 600;
+  --hm-tracking-display: -0.025em;
+  --hm-tracking-label: 0.1em;
+
+  --hm-radius-card: 20px;
+  --hm-radius-pill: 999px;
+  --hm-radius-input: 12px;
+  --hm-rule-card: 1px;
+  --hm-shadow-card: none;
+  --hm-grain: 0;
+}

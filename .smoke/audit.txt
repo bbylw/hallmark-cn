@@ -1,0 +1,22 @@
+
+══════ 1440×900 ══════
+
+/themes/cobalt
+  · 大块无内容 button.absolute.transition-all 438×245（确认是装饰还是漏了内容）
+  · 大块无内容 button.absolute.transition-all 438×141（确认是装饰还是漏了内容）
+  · 大块无内容 button.absolute.transition-all 155×160（确认是装饰还是漏了内容）
+
+/themes/carnival
+  · 大块无内容 span.relative.block 188×188（确认是装饰还是漏了内容）
+
+/themes/hum
+  · 文字压文字 77×14px 「Alefbefons」×「64px /600」
+  · 文字压文字 77×14px 「Alefbefons」×「40px /600」
+  · 文字压文字 77×14px 「Alefbefons」×「28px /600」
+  · 文字压文字 77×10px 「Alefbefons」×「20px /600」
+
+══════ 375×812 ══════
+
+/
+  · 触控目标 20px a.text-ink-2.hover:text-accent-line 「Custom 分支」
+  · 触控目标 20px a.text-ink-2.hover:text-accent-line 「数据来源与验收」
