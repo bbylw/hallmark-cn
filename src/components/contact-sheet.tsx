@@ -1,7 +1,32 @@
 import { useState } from 'react'
+import { motion, useReducedMotion } from 'motion/react'
 import { Link } from 'react-router'
 import { themePages } from '../data/pages'
 import { genres, themes, type GenreId } from '../data/themes'
+
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
+
+/** 卡片入场：滚动进入视口时上浮渐入，按列序错位 60ms，只播一次 */
+function Reveal({
+  children,
+  index,
+}: {
+  children: React.ReactNode
+  index: number
+}) {
+  const reduce = useReducedMotion()
+  return (
+    <motion.div
+      className="mb-4 break-inside-avoid"
+      initial={reduce ? false : { opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-24px' }}
+      transition={{ duration: 0.5, delay: (index % 3) * 0.06, ease: EASE }}
+    >
+      {children}
+    </motion.div>
+  )
+}
 
 const STATIC = [
   { to: '/custom', k: 'Custom', v: 'Custom 分支', d: '现做一套，不在目录里' },
@@ -225,7 +250,7 @@ export function ContactSheet() {
   const list = filter === 'all' ? themes : themes.filter((t) => t.genre === filter)
 
   return (
-    <div id="main">
+    <div>
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <div>
           <div className="meta flex items-center gap-1.5 text-muted">
@@ -288,11 +313,11 @@ export function ContactSheet() {
             const tall = BAND[i % BAND.length] === '12rem'
             const genreObj = genres.find((g) => g.id === t.genre)
             return (
+              <Reveal key={t.id} index={i}>
               <Link
-                key={t.id}
                 to={`/themes/${t.id}`}
                 data-theme={t.id}
-                className="group mb-4 block break-inside-avoid overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-focus"
+                className="group block overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-focus"
                 style={{
                   border: 'var(--hm-rule-card) solid var(--hm-rule)',
                   borderRadius: 'var(--hm-radius-card)',
@@ -356,12 +381,12 @@ export function ContactSheet() {
                     />
                   ) : null}
 
-                  {/* 底部四色分割发丝条 */}
+                  {/* 底部四色分割发丝条：悬停时微微隆起 */}
                   <span aria-hidden className="absolute inset-x-0 bottom-0 flex">
                     {SEPS.map((c, k) => (
                       <span
                         key={k}
-                        className="h-1 flex-1"
+                        className="h-1 flex-1 transition-all duration-300 group-hover:h-[5px]"
                         style={{ backgroundColor: c }}
                       />
                     ))}
@@ -408,15 +433,16 @@ export function ContactSheet() {
                   </p>
                 </span>
               </Link>
+              </Reveal>
             )
           })}
 
           {filter === 'all'
-            ? STATIC.map((p) => (
+            ? STATIC.map((p, si) => (
+                <Reveal key={p.to} index={list.length + si}>
                 <Link
-                  key={p.to}
                   to={p.to}
-                  className="group mb-4 block break-inside-avoid overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-focus"
+                  className="group block overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-focus"
                   style={{
                     border: 'var(--hm-rule-card) solid var(--hm-rule)',
                     borderRadius: 'var(--hm-radius-card)',
@@ -476,6 +502,7 @@ export function ContactSheet() {
                     <span className="meta mt-1.5 block text-muted">{p.d}</span>
                   </span>
                 </Link>
+                </Reveal>
               ))
             : null}
         </div>

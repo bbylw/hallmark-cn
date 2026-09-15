@@ -32,9 +32,15 @@ export function Footer() {
               href={l.href}
               target="_blank"
               rel="noreferrer"
-              className="tap text-sm text-ink-2 transition-colors duration-200 hover:text-accent-line"
+              className="tap group text-sm text-ink-2 transition-colors duration-200 hover:text-accent-line"
             >
               {l.label}
+              <span
+                aria-hidden
+                className="ml-1 inline-block text-xs opacity-0 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
+              >
+                ↗
+              </span>
             </a>
           ))}
         </nav>

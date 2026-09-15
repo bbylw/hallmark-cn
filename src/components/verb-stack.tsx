@@ -3,6 +3,8 @@ import { motion, useReducedMotion } from 'motion/react'
 import { verbs } from '../data/verbs'
 import { CopyButton } from './ui/copy-button'
 
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
+
 /**
  * 四个核心动词控制台：
  * 采用工效极佳的 4 分段工作台（Segmented Console），点击瞬时切换，
@@ -41,24 +43,28 @@ export function VerbStack() {
               aria-selected={isCurrent}
               aria-controls={`panel-verb-${item.id}`}
               onClick={() => setActiveIdx(idx)}
-              className={`tap flex-col justify-center relative rounded px-1.5 py-1.5 text-center text-xs transition-all ${
+              className={`tap flex-col justify-center relative rounded px-1.5 py-1.5 text-center text-xs transition-colors duration-150 ${
                 isCurrent
-                  ? 'bg-ink text-paper font-bold shadow-xs'
+                  ? 'text-paper font-bold'
                   : 'text-muted hover:text-ink hover:bg-paper-3/40'
               }`}
             >
-              <span className="block text-[11px] leading-tight font-medium">
-                {item.zh}
-              </span>
-              <span className="block font-mono text-[9px] opacity-75 mt-0.5 truncate">
-                {item.id}
-              </span>
               {isCurrent ? (
-                <span
+                <motion.span
+                  layoutId="verb-tab-bg"
                   aria-hidden
-                  className="absolute -bottom-1 left-1/2 -translate-x-1/2 size-1 rounded-full bg-accent"
+                  className="absolute inset-0 rounded bg-ink shadow-xs"
+                  transition={
+                    reduce ? { duration: 0 } : { duration: 0.22, ease: EASE }
+                  }
                 />
               ) : null}
+              <span className="relative block text-[11px] leading-tight font-medium">
+                {item.zh}
+              </span>
+              <span className="relative block font-mono text-[9px] opacity-75 mt-0.5 truncate">
+                {item.id}
+              </span>
             </button>
           )
         })}
