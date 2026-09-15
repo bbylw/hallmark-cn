@@ -25,7 +25,7 @@ const CASE_DOSSIERS: CaseDossier[] = [
     dispute: '二房东以“翻新公共楼道”为由单方加租 38%（月增 ¥1,300），并扬言逾期停水换锁。',
     outcome: '裁定加租无效，依照老旧管网自然折旧标准锁定年涨幅 3.5%，补签 3 年租住安定契约。',
     days: 11,
-    savedAmount: '¥ 15,600 /年',
+    savedAmount: '¥15,600/年',
     legalArticle: '《第六街区租住安定备忘》第四条 · 不得利用基础修缮变相暴利加租',
     summary: '联盟派出两名志愿核算员进场审计，调取该栋楼 1988 年原始图纸，证明所谓“管道改造”属于市政免费雨污分流工程，二房东无权向租客摊派改造成本。',
   },
@@ -36,7 +36,7 @@ const CASE_DOSSIERS: CaseDossier[] = [
     dispute: '物业管理方引进连锁餐饮，勒令已租住 12 年的社区豆腐坊十日内清退并加租 60%。',
     outcome: '启动街区便民微业态保护条例，全街区 182 名街坊连署请愿，维持原租金续签。',
     days: 18,
-    savedAmount: '¥ 38,000 /年',
+    savedAmount: '¥38,000/年',
     legalArticle: '《社区生活微业态地役权保护协定》第十二条 · 历史商户优先续租权',
     summary: '豆腐坊承载了整条街早起长辈的日常口粮。联盟通过召开公共听证会，证明引入外来连锁将破坏街区人行道烟火气，最终街道居委会与房东达成租金补贴共识。',
   },
@@ -47,7 +47,7 @@ const CASE_DOSSIERS: CaseDossier[] = [
     dispute: '房东因私人物业出售，在租期尚有 8 个月的情况下擅自切断电表并扣留全额押金。',
     outcome: '向住建与治安部门调取执法见证，房东全额退还押金并依据合同法支付双倍解约违约金。',
     days: 4,
-    savedAmount: '¥ 7,600',
+    savedAmount: '¥7,600',
     legalArticle: '民法典第七百二十五条 · 买卖不破租赁原则',
     summary: '房产所有权转让绝不影响原有效租约履行。联盟法律小组半小时内到达现场拍摄电箱封条证据，出具正式律师催告函，迫使违约房东当场低头道歉。',
   },
@@ -58,7 +58,7 @@ const CASE_DOSSIERS: CaseDossier[] = [
     dispute: '租期满两年退租时，中介以“踢脚线微磨损、白墙光照色差”为由克扣全部押金 ¥4,500。',
     outcome: '经对照联盟《自然物理损耗鉴定白皮书》，全额无损追回押金。',
     days: 6,
-    savedAmount: '¥ 4,500',
+    savedAmount: '¥4,500',
     legalArticle: '《民法典》第七百一十条 · 承租人按照约定的方法使用致使租赁物受到损耗的不承担赔偿责任',
     summary: '阳光自然照晒引起的墙面白漆泛黄属于不可避免的自然物理折旧，中介试图以新房交付标准苛求退租客属于典型敲诈。出示入住前照片对照表后全额追讨成功。',
   },
@@ -149,13 +149,13 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
   const STATS = [
     ['124', '去年收到加租通知的户数', '平均涨三成二，没有一户拿到书面理由'],
     [signed ? '68' : '67', '现在在联盟里的户数', signed ? '感谢你的签署，你已加入街区连署名册（编号 #D06-068）' : '我们不提供法律意见，我们提供彼此的名字和电话号码'],
-    ['¥ 184k', '街坊互助诉讼兜底基金', '全部来自社区义卖与随喜捐助，专款专用支持穷租客'],
+    ['¥184k', '街坊互助诉讼兜底基金', '全部来自社区义卖与随喜捐助，专款专用支持穷租客'],
   ]
 
   return (
     <main
       id="main"
-      className="relative pb-32 overflow-x-clip"
+      className="relative pb-20 overflow-x-clip"
       style={{
         backgroundColor: 'var(--hm-paper)',
         color: 'var(--hm-ink)',
@@ -168,8 +168,8 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
           style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}
         >
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-accent text-accent-ink font-bold">
-              <span className="size-2 rounded-full bg-white animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-accent text-accent-ink font-bold">
+              <span className="size-2 rounded-full bg-accent-ink animate-pulse" />
               SOLIDARITY WATCH · ACTIVE
             </span>
             <span className="text-muted hidden md:inline">|</span>
@@ -177,7 +177,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
             <span className="text-muted hidden lg:inline">|</span>
             <span className="text-muted hidden lg:inline">调解胜诉率：96.4%</span>
           </div>
-          <div className="flex items-center gap-4 text-ink-2">
+          <div className="flex items-center gap-4 text-ink-2 tabular-nums">
             <span>指导红线：年涨幅 ≤ 5%</span>
             <span className="text-accent-line font-bold">已连署：{signed ? 68 : 67} 户</span>
           </div>
@@ -199,10 +199,10 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
         </div>
 
         <h1
-          className="display mt-auto pt-10 text-ink font-bold"
+          className="display mt-auto pt-10 text-ink text-balance"
           style={{
             fontSize: 'clamp(3.5rem, 14vw, 10.5rem)',
-            lineHeight: 0.92,
+            lineHeight: 0.98,
             letterSpacing: 'var(--hm-tracking-display)',
             overflowWrap: 'break-word',
           }}
@@ -226,7 +226,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
             THE SOLIDARITY MANIFESTO · 核心信条
           </div>
           <p
-            className="display font-bold"
+            className="display"
             style={{
               color: 'var(--hm-accent-ink)',
               fontSize: 'clamp(1.75rem, 4.6vw, 3.25rem)',
@@ -248,13 +248,13 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
         className="px-(--page-gutter) pt-16"
         style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}
       >
-        <div className="border-2 border-ink bg-paper p-6 sm:p-8 shadow-sm">
+        <div className="border-2 border-ink bg-paper p-6 sm:p-8">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-ink pb-4">
             <div>
               <span className="meta font-mono font-bold text-accent-line">
                 DEVICE 01 · RENT HIKE LEGALITY AUDIT
               </span>
-              <h2 id={`${uid}-calc-title`} className="display text-2xl sm:text-3xl font-bold text-ink mt-1">
+              <h2 id={`${uid}-calc-title`} className="display text-2xl sm:text-3xl text-ink mt-1">
                 装置 · 街坊租金合规自查台
               </h2>
             </div>
@@ -267,10 +267,10 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
           <div className="mt-8 grid gap-8 lg:grid-cols-12 items-stretch">
             {/* 左侧：双输入滑块控制区 */}
             <div className="lg:col-span-6 space-y-6">
-              <label className="block bg-paper-2/60 p-4 border border-rule">
-                <div className="flex items-center justify-between">
+              <label className="block bg-paper-2/60 p-4 sm:p-5 border border-rule">
+                <div className="flex items-center justify-between gap-3">
                   <span className="font-bold text-ink text-sm">当前每月合同租金</span>
-                  <span className="font-mono text-base font-bold text-ink">¥ {rent} /月</span>
+                  <span className="font-mono text-base font-bold text-ink tabular-nums">¥{rent.toLocaleString('en-US')} /月</span>
                 </div>
                 <input
                   type="range"
@@ -281,18 +281,19 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
                   onChange={(e) => setRent(Number(e.target.value))}
                   className="mt-3 min-h-11 w-full cursor-pointer accent-accent"
                   aria-label="输入当前月租金"
+                  aria-valuetext={`每月租金 ¥${rent.toLocaleString('en-US')}`}
                 />
-                <div className="flex justify-between text-[11px] font-mono text-muted mt-1">
-                  <span>¥1,500 (合租单间)</span>
-                  <span>¥5,000 (标准套房)</span>
-                  <span>¥12,000 (商住临街)</span>
+                <div className="mt-1.5 flex justify-between gap-2 text-[11px] font-mono text-muted">
+                  <span>¥1,500（合租单间）</span>
+                  <span className="hidden sm:inline">¥5,000（标准套房）</span>
+                  <span>¥12,000（商住临街）</span>
                 </div>
               </label>
 
-              <label className="block bg-paper-2/60 p-4 border border-rule">
-                <div className="flex items-center justify-between">
+              <label className="block bg-paper-2/60 p-4 sm:p-5 border border-rule">
+                <div className="flex items-center justify-between gap-3">
                   <span className="font-bold text-ink text-sm">房东要求的加租幅度</span>
-                  <span className="font-mono text-base font-bold text-accent-line">+{hike}%</span>
+                  <span className="font-mono text-base font-bold text-accent-line tabular-nums">+{hike}%</span>
                 </div>
                 <input
                   type="range"
@@ -303,12 +304,13 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
                   onChange={(e) => setHike(Number(e.target.value))}
                   className="mt-3 min-h-11 w-full cursor-pointer accent-accent"
                   aria-label="输入房东要求的加租幅度百分比"
+                  aria-valuetext={`加租幅度 ${hike}%`}
                 />
-                <div className="flex justify-between text-[11px] font-mono text-muted mt-1">
-                  <span>0% (平盘)</span>
-                  <span className="text-ink font-bold">5% (法定保护线)</span>
-                  <span className="text-accent-line font-bold">25% (严重违规)</span>
-                  <span>50% (恶意逼迁)</span>
+                <div className="mt-1.5 flex justify-between gap-2 text-[11px] font-mono text-muted">
+                  <span>0%（平盘）</span>
+                  <span className="text-ink font-bold">5%（法定保护线）</span>
+                  <span className="text-accent-line font-bold">25%（严重违规）</span>
+                  <span>50%（恶意逼迁）</span>
                 </div>
               </label>
             </div>
@@ -316,38 +318,40 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
             {/* 右侧：法务审计计算结果与证据天平 */}
             <div className="lg:col-span-6 flex flex-col justify-between border-2 border-rule bg-paper-2/40 p-5 sm:p-6">
               <div>
-                <div className="flex items-center justify-between border-b border-rule/70 pb-3">
+                <div className="flex items-center justify-between gap-3 border-b border-rule/70 pb-3 tabular-nums">
                   <span className="text-xs font-mono uppercase text-muted font-bold">月度收支差额</span>
-                  <span className="font-mono text-xl font-bold text-accent-line">+ ¥ {hikeAmount} /月</span>
+                  <span className="font-mono text-xl font-bold text-accent-line">+¥{hikeAmount.toLocaleString('en-US')} /月</span>
                 </div>
-                <div className="mt-3 flex items-center justify-between">
+                <div className="mt-3 flex items-center justify-between gap-3 tabular-nums">
                   <span className="text-xs font-mono uppercase text-muted font-bold">新租金总额</span>
-                  <span className="font-mono text-lg font-bold text-ink">¥ {newRent} /月</span>
+                  <span className="font-mono text-lg font-bold text-ink">¥{newRent.toLocaleString('en-US')} /月</span>
                 </div>
-                <div className="mt-2 flex items-center justify-between text-xs text-muted font-mono">
+                <div className="mt-2 flex items-center justify-between gap-3 text-xs text-muted font-mono tabular-nums">
                   <span>全年将额外向房东多付：</span>
-                  <span className="text-accent-line font-bold">¥ {hikeAmount * 12} /年</span>
+                  <span className="text-accent-line font-bold">¥{(hikeAmount * 12).toLocaleString('en-US')} /年</span>
                 </div>
               </div>
 
               {/* 法律指导红线警告面板 */}
               <div className="mt-6 border-t-2 border-rule pt-4">
                 {isSevere ? (
-                  <div className="rounded border-2 border-accent bg-accent/15 p-4 text-xs leading-relaxed text-ink">
-                    <span className="font-bold text-accent-line text-sm block mb-1">
-                      🚨 涨幅达 +{hike}%，已触碰恶意逼迁红线！
+                  <div className="border-2 border-accent bg-accent/15 p-4 text-xs text-ink text-pretty" style={{ lineHeight: 1.8 }}>
+                    <span className="font-bold text-accent-line text-sm block mb-1 tabular-nums">
+                      <span aria-hidden="true" className="mr-1.5 inline-block size-2.5 bg-accent" style={{ clipPath: 'polygon(50% 0, 100% 100%, 0 100%)' }} />
+                      涨幅达 +{hike}%，已触碰恶意逼迁红线！
                     </span>
                     《第六街区租住安定指导备忘》第四条明确规定：年涨幅超过 15% 属于推定逼迁行为。房东无权单方毁约换锁，联盟将为你提供免费全程陪同协商与民法典抗辩证据包。
                   </div>
                 ) : isExcessive ? (
-                  <div className="rounded border-2 border-accent/60 bg-accent/10 p-4 text-xs leading-relaxed text-ink">
+                  <div className="border-2 border-accent/60 bg-accent/10 p-4 text-xs text-ink text-pretty" style={{ lineHeight: 1.8 }}>
                     <span className="font-bold text-accent-line text-sm block mb-1">
-                      ⚠️ 涨幅超过法定指导线 5%
+                      <span aria-hidden="true" className="mr-1.5 inline-block size-2.5 rotate-45 bg-accent-line" />
+                      涨幅超过法定指导线 5%
                     </span>
                     房东依法必须提前 60 天出具由注册造价师签字的修缮通胀核算审计明细，并经租户书面同意方可调整，否则租客有权继续按原租金标准通过银行转账支付。
                   </div>
                 ) : (
-                  <div className="rounded border border-rule bg-paper p-4 text-xs leading-relaxed text-muted">
+                  <div className="border border-rule bg-paper p-4 text-xs text-muted text-pretty" style={{ lineHeight: 1.8 }}>
                     <span className="font-bold text-ink text-sm block mb-1">
                       ✓ 处于常规通胀指导区间
                     </span>
@@ -373,7 +377,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
             <span className="meta font-mono font-bold text-accent-line">
               DEVICE 02 · COLLECTIVE ARBITRATION DOSSIERS
             </span>
-            <h2 id={`${uid}-case-title`} className="display text-2xl sm:text-3xl font-bold text-ink mt-1">
+            <h2 id={`${uid}-case-title`} className="display text-2xl sm:text-3xl text-ink mt-1">
               街坊集体抗辩结案案卷 · 实录档案
             </h2>
           </div>
@@ -393,15 +397,15 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
                 onClick={() => setActiveCaseId(c.id)}
                 className={`min-h-18 p-4 text-left transition-all border-2 flex flex-col justify-between ${
                   active
-                    ? 'border-accent bg-accent/20 text-ink font-bold shadow-sm'
+                    ? 'border-accent bg-accent/20 text-ink font-bold'
                     : 'border-rule bg-paper-2/60 text-ink-2 hover:border-rule-2 hover:text-ink'
                 }`}
               >
-                <div className="flex items-center justify-between w-full">
+                <div className="flex items-center justify-between w-full tabular-nums">
                   <span className="font-mono text-xs text-accent-line font-bold">{c.id}</span>
                   <span className="text-[11px] font-mono text-muted">{c.days} 天调解结案</span>
                 </div>
-                <div className="text-xs font-bold mt-1 line-clamp-1">{c.title}</div>
+                <div className="text-xs font-bold mt-1.5 leading-snug line-clamp-2">{c.title}</div>
               </button>
             )
           })}
@@ -412,35 +416,35 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-rule/80 pb-4">
             <div>
               <span className="font-mono text-xs text-accent-line font-bold">{activeCase.id} · {activeCase.location}</span>
-              <h3 className="display text-xl sm:text-2xl font-bold text-ink mt-1">
+              <h3 className="display text-xl sm:text-2xl text-ink mt-1">
                 {activeCase.title}
               </h3>
             </div>
-            <div className="rounded bg-accent/15 px-3 py-1.5 border border-accent/40 font-mono text-xs text-accent-line font-bold">
+            <div className="bg-accent/15 px-3 py-1.5 border border-accent/40 font-mono text-xs text-accent-line font-bold">
               为街坊挽回直接损失：{activeCase.savedAmount}
             </div>
           </div>
 
-          <div className="mt-6 grid gap-6 md:grid-cols-2 text-xs leading-relaxed">
+          <div className="mt-6 grid gap-5 md:grid-cols-2 text-[13px]">
             <div className="space-y-4">
               <div>
-                <span className="font-mono text-muted font-bold block mb-1 uppercase">争议原发事实</span>
-                <p className="text-ink-2 bg-paper p-3 border border-rule">{activeCase.dispute}</p>
+                <span className="font-mono text-[11px] text-muted font-bold block mb-1.5 uppercase tracking-wider">争议原发事实</span>
+                <p className="text-ink-2 bg-paper p-3.5 border border-rule text-pretty" style={{ lineHeight: 1.8 }}>{activeCase.dispute}</p>
               </div>
               <div>
-                <span className="font-mono text-accent-line font-bold block mb-1 uppercase">最终调解协议</span>
-                <p className="text-ink bg-paper p-3 border border-accent/40 font-medium">{activeCase.outcome}</p>
+                <span className="font-mono text-[11px] text-accent-line font-bold block mb-1.5 uppercase tracking-wider">最终调解协议</span>
+                <p className="text-ink bg-paper p-3.5 border border-accent/40 font-medium text-pretty" style={{ lineHeight: 1.8 }}>{activeCase.outcome}</p>
               </div>
             </div>
 
             <div className="space-y-4">
               <div>
-                <span className="font-mono text-muted font-bold block mb-1 uppercase">抗辩法定依据</span>
-                <p className="text-ink-2 bg-paper p-3 border border-rule font-mono">{activeCase.legalArticle}</p>
+                <span className="font-mono text-[11px] text-muted font-bold block mb-1.5 uppercase tracking-wider">抗辩法定依据</span>
+                <p className="text-ink-2 bg-paper p-3.5 border border-rule font-mono text-pretty" style={{ lineHeight: 1.8 }}>{activeCase.legalArticle}</p>
               </div>
               <div>
-                <span className="font-mono text-muted font-bold block mb-1 uppercase">调解纪要手记</span>
-                <p className="text-ink-2 bg-paper p-3 border border-rule">{activeCase.summary}</p>
+                <span className="font-mono text-[11px] text-muted font-bold block mb-1.5 uppercase tracking-wider">调解纪要手记</span>
+                <p className="text-ink-2 bg-paper p-3.5 border border-rule text-pretty" style={{ lineHeight: 1.8 }}>{activeCase.summary}</p>
               </div>
             </div>
           </div>
@@ -460,7 +464,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
             <span className="meta font-mono font-bold text-accent-line">
               DEVICE 03 · LEASE AGREEMENT DEFENSE MANUAL
             </span>
-            <h2 id={`${uid}-terms-title`} className="display text-2xl sm:text-3xl font-bold text-ink mt-1">
+            <h2 id={`${uid}-terms-title`} className="display text-2xl sm:text-3xl text-ink mt-1">
               租约六大霸王条款自检指南 · 避坑对照
             </h2>
           </div>
@@ -480,6 +484,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
                 <button
                   type="button"
                   onClick={() => setExpandedClauseId(isExpanded ? null : term.id)}
+                  aria-expanded={isExpanded}
                   className="w-full p-4 text-left flex flex-wrap items-center justify-between gap-3 min-h-13"
                 >
                   <div className="flex items-center gap-3">
@@ -492,13 +497,13 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
                 </button>
 
                 {isExpanded && (
-                  <div className="px-4 pb-4 pt-2 border-t border-rule/60 grid gap-4 sm:grid-cols-2 text-xs leading-relaxed">
-                    <div className="p-3 bg-red-950/30 border border-red-800/40 text-red-200">
-                      <span className="font-bold text-red-400 block mb-1">【法律瑕疵剖析】</span>
+                  <div className="px-4 pb-4 pt-3 border-t border-rule/60 grid gap-3 sm:grid-cols-2 text-xs">
+                    <div className="p-3.5 bg-accent/15 border border-accent/40 text-ink text-pretty" style={{ lineHeight: 1.8 }}>
+                      <span className="font-bold text-accent-line block mb-1.5">【法律瑕疵剖析】</span>
                       {term.lawFlaw}
                     </div>
-                    <div className="p-3 bg-emerald-950/30 border border-emerald-800/40 text-emerald-200">
-                      <span className="font-bold text-emerald-400 block mb-1">【联盟推荐修改示范条款】</span>
+                    <div className="p-3.5 bg-paper border border-rule text-ink-2 text-pretty" style={{ lineHeight: 1.8 }}>
+                      <span className="font-bold text-ink block mb-1.5">【联盟推荐修改示范条款】</span>
                       {term.fixProposal}
                     </div>
                   </div>
@@ -515,7 +520,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
           button:has-text("在线连署支持宣言") -> text=68
           ──────────────────────────────────────────────────────────── */}
       <section
-        className="px-(--page-gutter) pt-20"
+        className="px-(--page-gutter) pt-16"
         style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}
       >
         <div className="grid gap-x-14 gap-y-12 lg:grid-cols-12 items-start">
@@ -534,7 +539,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <p
-                  className="display text-ink font-bold"
+                  className="display text-ink"
                   style={{
                     fontSize: 'clamp(1.35rem, 2.8vw, 2.15rem)',
                     lineHeight: 1.22,
@@ -565,7 +570,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
                 {STATS.map(([n, k, d]) => (
                   <div key={k} className="py-4 first:pt-0">
                     <div
-                      className="display font-bold text-accent-line"
+                      className="display text-accent-line"
                       style={{
                         fontSize: 'clamp(2.8rem, 6.5vw, 4.5rem)',
                         lineHeight: 0.9,
@@ -593,18 +598,18 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
                   className={`min-h-12 w-full px-4 py-3 font-mono text-sm font-bold transition-all border-2 flex items-center justify-center gap-2 ${
                     signed
                       ? 'border-accent bg-accent/20 text-accent-line'
-                      : 'border-accent bg-accent text-accent-ink hover:opacity-90 shadow-md'
+                      : 'border-accent bg-accent text-accent-ink hover:opacity-90'
                   }`}
                   aria-pressed={signed}
                 >
                   {signed ? '✓ 已连署名册 (户数 +1)' : '在线连署支持宣言'}
                 </button>
 
-                <div className="pt-2">
+                <div className="pt-2 [&_.btn]:w-full">
                   <Cta label={page.cta || '进店'} done="✓ 已为你预留听证席位" />
                 </div>
 
-                <div className="rounded border border-rule bg-paper p-3 text-xs text-muted leading-relaxed font-mono">
+                <div className="border border-rule bg-paper p-3.5 text-xs text-muted font-mono" style={{ lineHeight: 1.8 }}>
                   下周三晚七点，社区中心二楼会议室，请带好纸质租约与房东历次微信催租记录，有备而来。
                 </div>
               </div>
@@ -613,15 +618,6 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
         </div>
       </section>
 
-      {/* 底部标准生产印章 (Hallmark Stamp 58/58) */}
-      <footer className="mt-24 border-t-2 border-rule pt-6 text-center text-xs font-mono text-muted">
-        <p>
-          DISTRICT 06 TENANTS UNION · TENANT SOLIDARITY MANIFESTO · NO EXCESSIVE RENT
-        </p>
-        <p className="mt-1.5 text-accent-line font-bold">
-          critique: P5 H5 E5 S5 R5 V5 · slop test: 58/58 ✓
-        </p>
-      </footer>
     </main>
   )
 }
