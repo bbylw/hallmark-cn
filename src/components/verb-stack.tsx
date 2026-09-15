@@ -43,7 +43,7 @@ export function VerbStack() {
               aria-selected={isCurrent}
               aria-controls={`panel-verb-${item.id}`}
               onClick={() => setActiveIdx(idx)}
-              className={`tap flex-col justify-center relative rounded px-1.5 py-1.5 text-center text-xs transition-colors duration-150 ${
+              className={`tap flex-col justify-center relative rounded px-1.5 py-2 text-center transition-colors duration-150 ${
                 isCurrent
                   ? 'text-paper font-bold'
                   : 'text-muted hover:text-ink hover:bg-paper-3/40'
@@ -59,10 +59,10 @@ export function VerbStack() {
                   }
                 />
               ) : null}
-              <span className="relative block text-[11px] leading-tight font-medium">
+              <span className="relative block text-xs leading-snug font-medium">
                 {item.zh}
               </span>
-              <span className="relative block font-mono text-[9px] opacity-75 mt-0.5 truncate">
+              <span className="relative block font-mono text-[10px] opacity-75 mt-1 truncate">
                 {item.id}
               </span>
             </button>
@@ -79,16 +79,16 @@ export function VerbStack() {
         initial={reduce ? false : { opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-        className="mt-2.5 rounded-lg p-3 text-xs"
+        className="mt-3 rounded-lg p-4"
         style={{
           backgroundColor: 'var(--hm-paper-2)',
           border: 'var(--hm-rule-card) solid var(--hm-rule)',
         }}
       >
-        <div className="flex items-center justify-between gap-2 border-b border-rule/50 pb-2">
+        <div className="flex items-center justify-between gap-2 border-b border-rule/50 pb-2.5">
           <div className="flex items-center gap-1.5 min-w-0">
             <span className="text-accent-line font-mono font-bold select-none">$</span>
-            <code className="font-mono text-xs font-bold text-ink truncate select-all">
+            <code className="font-mono text-[13px] font-bold text-ink truncate select-all">
               <span className="text-accent-line">hallmark</span>
               {v.cmd.replace('hallmark', '') ? (
                 <span className="text-ink"> {v.cmd.replace('hallmark', '').trim()}</span>
@@ -103,21 +103,23 @@ export function VerbStack() {
         </div>
 
         <p
-          className="mt-2 text-ink-2 text-xs leading-relaxed"
+          className="mt-3 text-ink-2 text-[13px] text-pretty"
+          style={{ lineHeight: 1.8 }}
         >
           {v.detail}
         </p>
 
-        <ul className="mt-2.5 flex flex-col gap-1.5">
+        <ul className="mt-2 flex flex-col divide-y divide-rule/50">
           {v.points.map((p) => (
-            <li key={p} className="flex items-baseline gap-2">
+            <li key={p} className="flex items-start gap-2.5 py-2.5">
               <span
                 aria-hidden
-                className="size-1 shrink-0 rounded-full mt-1.5"
+                className="size-1 shrink-0 rounded-full mt-2"
                 style={{ backgroundColor: 'var(--hm-accent)' }}
               />
               <span
-                className="text-[11px] text-muted leading-normal"
+                className="text-xs text-muted text-pretty"
+                style={{ lineHeight: 1.75 }}
               >
                 {p}
               </span>
@@ -125,7 +127,7 @@ export function VerbStack() {
           ))}
         </ul>
 
-        <div className="meta mt-2.5 pt-2 border-t border-rule/40 flex items-center justify-between text-[11px]">
+        <div className="meta mt-3 pt-2.5 border-t border-rule/40 flex items-center justify-between text-xs">
           <span className="text-accent-line font-medium">产出交付物</span>
           <span className="font-mono text-ink font-semibold px-2 py-0.5 rounded bg-paper border border-rule/50 shadow-2xs">
             {v.output}

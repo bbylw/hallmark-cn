@@ -111,10 +111,10 @@ export function IndexPage() {
 
               <motion.h1
                 variants={fadeUp}
-                className="display mt-5 text-ink text-balance"
+                className="display mt-6 text-ink text-balance"
                 style={{
                   fontSize: 'clamp(2rem, 1.6vw + 1.3rem, 2.75rem)',
-                  lineHeight: 1.2,
+                  lineHeight: 1.32,
                   letterSpacing: 'var(--hm-tracking-display)',
                 }}
               >
@@ -134,13 +134,21 @@ export function IndexPage() {
 
               <motion.p
                 variants={fadeUp}
-                className="mt-5 max-w-[34em] text-[15.5px] text-ink-2 text-pretty"
-                style={{ lineHeight: 1.8 }}
+                className="mt-6 max-w-[32em] text-base text-ink-2 text-pretty"
+                style={{ lineHeight: 1.95 }}
               >
                 专为 <span className="font-semibold text-ink">Claude Code</span>、
                 <span className="font-semibold text-ink">Cursor</span> 和
                 <span className="font-semibold text-ink">Codex</span>{' '}
-                打造的设计 skill。拒绝居中大圆角卡片与紫蓝渐变那一套，为每个真实需求定制宏观骨架，严格套用{' '}
+                打造的设计 skill。
+              </motion.p>
+
+              <motion.p
+                variants={fadeUp}
+                className="mt-3 max-w-[32em] text-base text-ink-2 text-pretty"
+                style={{ lineHeight: 1.95 }}
+              >
+                拒绝居中大圆角卡片与紫蓝渐变那一套，为每个真实需求定制宏观骨架，严格套用{' '}
                 <span className="font-semibold text-ink underline decoration-accent-line/60 decoration-[1.5px] underline-offset-[4px]">
                   21 套独立主题
                 </span>{' '}
@@ -154,7 +162,7 @@ export function IndexPage() {
               {/* 三格数据带：数字用展示体，标签用等宽，Grid 的表格美学 */}
               <motion.div
                 variants={fadeUp}
-                className="mt-7 grid grid-cols-3 border-y border-rule/70"
+                className="mt-8 grid grid-cols-3 border-y border-rule/70"
                 role="list"
                 aria-label="Hallmark 规模：21 套主题，21 种结构，58 道关卡"
               >
@@ -166,21 +174,24 @@ export function IndexPage() {
                   <div
                     key={s.d}
                     role="listitem"
-                    className={`flex flex-col gap-1.5 px-4 py-3.5 first:pl-0 last:pr-0 ${
+                    className={`flex flex-col gap-2 px-4 py-4 first:pl-0 last:pr-0 ${
                       i > 0 ? 'border-l border-rule/70' : ''
                     }`}
                   >
                     <span
                       className="display text-ink tabular-nums"
-                      style={{ fontSize: '1.65rem', lineHeight: 1 }}
+                      style={{ fontSize: '1.8rem', lineHeight: 1 }}
                     >
                       {s.v}
                       <span className="text-accent-line" aria-hidden>
                         .
                       </span>
                     </span>
-                    <span className="font-mono text-[10px] tracking-[0.12em] text-muted uppercase">
-                      {s.k} · {s.d}
+                    <span className="flex flex-col gap-0.5">
+                      <span className="text-xs text-ink-2">{s.k}</span>
+                      <span className="font-mono text-[10px] tracking-[0.14em] text-muted uppercase">
+                        {s.d}
+                      </span>
                     </span>
                   </div>
                 ))}
@@ -255,7 +266,7 @@ export function IndexPage() {
 
                 <div className="flex items-center justify-between gap-3 py-1.5">
                   <div className="min-w-0 flex-1 overflow-x-auto scrollbar-none py-1">
-                    <div className="flex items-center gap-2.5 font-mono text-[13px] text-ink whitespace-nowrap sm:text-sm">
+                    <div className="flex items-center gap-2.5 font-mono text-sm text-ink whitespace-nowrap sm:text-[15px]">
                       <span
                         className="flex size-5 shrink-0 items-center justify-center font-bold text-paper"
                         style={{ backgroundColor: 'var(--hm-accent-line)' }}
@@ -286,18 +297,18 @@ export function IndexPage() {
               </motion.div>
 
               {/* 四个核心动词 */}
-              <motion.div variants={fadeUp} className="mt-10">
+              <motion.div variants={fadeUp} className="mt-12">
                 <VerbStack />
               </motion.div>
 
               {/* 58 道关卡标尺 */}
-              <motion.div variants={fadeUp} className="hairline mt-10 pt-7">
+              <motion.div variants={fadeUp} className="hairline mt-12 pt-8">
                 <GateScale />
               </motion.div>
 
               {/* 底部链接与令牌规范说明 */}
-              <motion.div variants={fadeUp} className="hairline mt-10 pt-6">
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs">
+              <motion.div variants={fadeUp} className="hairline mt-12 pt-7">
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-[13px]">
                   <Link
                     to="/custom"
                     className="tap group font-semibold text-ink-2 hover:text-accent-line transition-colors"
@@ -324,12 +335,12 @@ export function IndexPage() {
                   </Link>
                 </div>
                 <p
-                  className="mt-3.5 text-xs text-muted font-mono"
-                  style={{ lineHeight: 1.7 }}
+                  className="mt-4 text-[13px] text-muted font-mono"
+                  style={{ lineHeight: 1.8 }}
                 >
                   21 套主题取自 Hallmark 官方 tokens.css，在 OKLCH 空间互不相邻。
                 </p>
-                <div className="mt-4 flex items-center gap-2.5 text-xs text-muted">
+                <div className="mt-4 flex items-center gap-2.5 text-[13px] text-muted">
                   <kbd className="kbd">T</kbd>
                   <span className="font-mono">随时按下，21 套主题即刻流转</span>
                 </div>

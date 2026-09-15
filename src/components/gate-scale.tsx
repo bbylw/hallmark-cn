@@ -26,7 +26,7 @@ export function GateScale() {
 
       {/* 58 道刻度尺 */}
       <div
-        className="mt-3 flex h-9 items-end gap-0.5 rounded p-1"
+        className="mt-4 flex h-10 items-end gap-[3px] rounded p-1.5"
         role="img"
         aria-label={`${totalGates} 道关卡的刻度，其中 ${CITED.length} 道为重点检查项`}
         style={{ backgroundColor: 'var(--hm-paper-2)' }}
@@ -52,7 +52,7 @@ export function GateScale() {
       </div>
 
       {/* 族群标签行：水平滑动或折行 */}
-      <div className="mt-3 flex flex-wrap gap-1">
+      <div className="mt-4 flex flex-wrap gap-1.5">
         {gateGroups.map((g) => {
           const isCurrent = g.id === selectedId
           return (
@@ -61,7 +61,7 @@ export function GateScale() {
               type="button"
               onClick={() => setSelectedId(g.id)}
               aria-pressed={isCurrent}
-              className="tap flex items-center gap-1.5 rounded px-2 py-0.5 text-[11px] transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-focus"
+              className="tap flex items-center gap-1.5 rounded px-2.5 py-1 text-xs transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-focus"
               style={{
                 backgroundColor: isCurrent ? 'var(--hm-paper-3)' : 'transparent',
                 color: isCurrent ? 'var(--hm-ink)' : 'var(--hm-muted)',
@@ -86,34 +86,34 @@ export function GateScale() {
         initial={reduce ? false : { opacity: 0, y: 4 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2, ease: EASE }}
-        className="mt-2.5 rounded-lg p-2.5 text-xs"
+        className="mt-3 rounded-lg p-3.5"
         style={{
           backgroundColor: 'var(--hm-paper-2)',
           border: 'var(--hm-rule-card) solid var(--hm-rule)',
         }}
       >
-        <div className="font-medium text-ink-2 text-xs" style={{ lineHeight: 'var(--lh-normal)' }}>
+        <div className="font-medium text-ink-2 text-[13px] text-pretty" style={{ lineHeight: 1.75 }}>
           {currentGroup.blurb}
         </div>
-        <ul className="mt-2 flex flex-col gap-1">
+        <ul className="mt-1.5 flex flex-col divide-y divide-rule/50">
           {currentGroup.samples.slice(0, 2).map((s, idx) => (
-            <li key={idx} className="flex items-baseline gap-2 text-muted">
+            <li key={idx} className="flex items-start gap-2.5 py-2.5 text-muted">
               {s.no ? (
-                <span className="font-mono text-[11px] font-bold text-accent-line shrink-0">
+                <span className="font-mono text-xs font-bold text-accent-line shrink-0 mt-0.5">
                   gate {s.no}
                 </span>
               ) : (
-                <span className="size-1 rounded-full shrink-0 mt-1" style={{ backgroundColor: 'var(--hm-rule-2)' }} />
+                <span className="size-1 rounded-full shrink-0 mt-2" style={{ backgroundColor: 'var(--hm-rule-2)' }} />
               )}
-              <span className="text-[11px]" style={{ lineHeight: 'var(--lh-normal)' }}>{s.text}</span>
+              <span className="text-xs text-pretty" style={{ lineHeight: 1.75 }}>{s.text}</span>
             </li>
           ))}
         </ul>
       </motion.div>
 
       <p
-        className="mt-2 text-[11px] text-muted font-mono"
-        style={{ lineHeight: 'var(--lh-normal)' }}
+        className="mt-2.5 text-xs text-muted font-mono"
+        style={{ lineHeight: 1.75 }}
       >
         八大族群共 {totalGates} 道硬检验，交付前逐条过，任何一条判负必须推翻重改。
       </p>

@@ -17,7 +17,7 @@ function Reveal({
   const reduce = useReducedMotion()
   return (
     <motion.div
-      className="mb-4 break-inside-avoid"
+      className="mb-5 break-inside-avoid"
       initial={reduce ? false : { opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-24px' }}
@@ -568,25 +568,25 @@ export function ContactSheet() {
 
   return (
     <div>
-      <div className="flex flex-wrap items-baseline justify-between gap-2">
+      <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
         <div>
-          <div className="meta flex items-center gap-1.5 text-muted">
+          <div className="meta flex items-center gap-2 text-muted">
             <span className="inline-block size-1.5 rounded-full bg-accent animate-pulse" />
-            <span>打样台 · 21 主题 + 2 独立分支</span>
+            <span className="tracking-[0.12em]">打样台 · 21 主题 + 2 独立分支</span>
           </div>
           <h2
-            className="display mt-1 text-ink"
-            style={{ fontSize: 'var(--text-xl)' }}
+            className="display mt-3 text-ink text-balance"
+            style={{ fontSize: 'clamp(1.6rem, 1vw + 1.3rem, 2rem)', lineHeight: 1.15 }}
           >
             真实小样流
           </h2>
         </div>
-        <div className="hidden sm:flex flex-col items-end gap-2">
-          <span className="font-mono text-[11px] text-muted">
+        <div className="hidden sm:flex flex-col items-end gap-2.5 pb-1">
+          <span className="font-mono text-[11px] tracking-[0.08em] text-muted uppercase">
             OKLCH 色彩空间 · 4 大体裁覆盖
           </span>
           {/* 21 色速览：每个色点都是该主题自己的强调色，点击直达 */}
-          <span className="flex items-center gap-[3px]" aria-label="21 套主题强调色速览">
+          <span className="flex items-center gap-1" aria-label="21 套主题强调色速览">
             {themes.map((t) => (
               <Link
                 key={t.id}
@@ -594,7 +594,7 @@ export function ContactSheet() {
                 data-theme={t.id}
                 title={`${t.name} · ${t.zh}`}
                 aria-label={`查看 ${t.name} 主题`}
-                className="size-2.5 rounded-[1px] transition-transform duration-150 hover:scale-[1.6]"
+                className="size-3 rounded-[2px] transition-transform duration-150 hover:scale-[1.5] hover:z-10"
                 style={{ backgroundColor: 'var(--hm-accent)' }}
               />
             ))}
@@ -604,7 +604,7 @@ export function ContactSheet() {
 
       {/* 体裁筛选标签行 */}
       <div
-        className="mt-4 flex flex-wrap gap-1.5"
+        className="mt-6 flex flex-wrap gap-2"
         role="tablist"
         aria-label="主题体裁筛选"
       >
@@ -629,15 +629,15 @@ export function ContactSheet() {
       </div>
 
       <p
-        className="mt-3 max-w-[56ch] text-sm text-ink-2"
-        style={{ lineHeight: 'var(--lh-relaxed)' }}
+        className="mt-5 max-w-[54ch] text-[15px] text-ink-2 text-pretty"
+        style={{ lineHeight: 1.8 }}
       >
         每张小样都是一整页独立实现。卡片严格套用该主题自身的设计令牌与字体栈，底纸色、圆角与色相真实呈现，点击即刻进入全尺寸交互装置。
       </p>
 
       <div
-        className="mt-8 gap-4 sm:columns-2 xl:columns-3"
-        style={{ columnGap: '1rem' }}
+        className="mt-10 gap-5 sm:columns-2 xl:columns-3"
+        style={{ columnGap: '1.25rem' }}
       >
           {list.map((t, i) => {
             const page = themePages.find((p) => p.theme === t.id)
@@ -648,7 +648,7 @@ export function ContactSheet() {
               <Link
                 to={`/themes/${t.id}`}
                 data-theme={t.id}
-                className="group block overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-focus"
+                className="group block overflow-hidden transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:[border-color:var(--hm-accent-line)] focus-visible:outline-2 focus-visible:outline-focus"
                 style={{
                   border: 'var(--hm-rule-card) solid var(--hm-rule)',
                   borderRadius: 'var(--hm-radius-card)',
@@ -662,13 +662,15 @@ export function ContactSheet() {
                     backgroundColor: 'var(--hm-paper-2)',
                   }}
                 >
-                  {/* 宏观结构蓝图底稿：21 页 21 种结构 */}
-                  <MiniMacro macro={page?.macro} />
+                  {/* 宏观结构蓝图底稿：21 页 21 种结构，悬停时微微放大 */}
+                  <span className="absolute inset-0 block transition-transform duration-500 ease-out group-hover:scale-[1.04]">
+                    <MiniMacro macro={page?.macro} />
+                  </span>
 
                   {/* 顶部元数据标签：体裁 + 纸色 */}
-                  <span className="absolute left-3 top-3 flex items-center gap-1.5 z-10">
+                  <span className="absolute left-3.5 top-3.5 flex items-center gap-1.5 z-10">
                     <span
-                      className="meta rounded px-1.5 py-0.5 text-[9px] font-mono"
+                      className="meta rounded px-2 py-1 text-[9px] font-mono shadow-2xs"
                       style={{
                         backgroundColor: 'var(--hm-paper)',
                         color: 'var(--hm-ink-2)',
@@ -678,8 +680,11 @@ export function ContactSheet() {
                       {genreObj?.zh}
                     </span>
                     <span
-                      className="meta rounded px-1 py-0.5 text-[9px] font-mono text-muted"
-                      style={{ backgroundColor: 'var(--hm-paper-3)' }}
+                      className="meta rounded px-2 py-1 text-[9px] font-mono text-muted shadow-2xs"
+                      style={{
+                        backgroundColor: 'var(--hm-paper)',
+                        border: '1px solid var(--hm-rule)',
+                      }}
                     >
                       {t.band}纸
                     </span>
@@ -688,39 +693,31 @@ export function ContactSheet() {
                   {/* 各主题专属物态饰纹 */}
                   <ThemeOrnament themeId={t.id} />
 
-                  <span
-                    className="display absolute inset-x-4 bottom-4 text-ink transition-colors group-hover:text-accent-line"
-                    style={{
-                      fontSize: tall
-                        ? 'clamp(1.5rem, 2.6vw, 2.25rem)'
-                        : 'clamp(1.1rem, 2vw, 1.6rem)',
-                      lineHeight: 1.06,
-                      letterSpacing: 'var(--hm-tracking-display)',
-                    }}
-                  >
-                    {t.name}
-                  </span>
-
-                  {tall ? (
+                  {/* 左下标题组：宏观结构编号 + 主题名，悬停时主题名染信号色 */}
+                  <span className="absolute inset-x-5 bottom-5 flex flex-col gap-1.5">
+                    <span className="font-mono text-[10px] tracking-[0.14em] text-muted uppercase">
+                      {page ? `${String(page.macroNo).padStart(2, '0')} · ${page.macroZh}` : t.zh}
+                    </span>
                     <span
-                      aria-hidden
-                      className="absolute right-4 top-4"
+                      className="display text-ink transition-colors group-hover:text-accent-line"
                       style={{
-                        width: '0.75rem',
-                        height: '0.75rem',
-                        backgroundColor: 'var(--hm-accent)',
-                        borderRadius: 'var(--hm-radius-input)',
-                        boxShadow: '0 0 0 2px var(--hm-paper)',
+                        fontSize: tall
+                          ? 'clamp(1.6rem, 2.6vw, 2.35rem)'
+                          : 'clamp(1.2rem, 2vw, 1.7rem)',
+                        lineHeight: 1.04,
+                        letterSpacing: 'var(--hm-tracking-display)',
                       }}
-                    />
-                  ) : null}
+                    >
+                      {t.name}
+                    </span>
+                  </span>
 
                   {/* 底部四色分割发丝条：悬停时微微隆起 */}
                   <span aria-hidden className="absolute inset-x-0 bottom-0 flex">
                     {SEPS.map((c, k) => (
                       <span
                         key={k}
-                        className="h-1 flex-1 transition-all duration-300 group-hover:h-[5px]"
+                        className="h-[3px] flex-1 transition-all duration-300 group-hover:h-[6px]"
                         style={{ backgroundColor: c }}
                       />
                     ))}
@@ -736,6 +733,7 @@ export function ContactSheet() {
                       className="display min-w-0 text-ink group-hover:text-accent-line transition-colors"
                       style={{
                         fontSize: '1.15rem',
+                        lineHeight: 1.25,
                         letterSpacing: 'var(--hm-tracking-display)',
                       }}
                     >
@@ -743,13 +741,16 @@ export function ContactSheet() {
                     </span>
                     <span className="meta shrink-0 text-accent-line flex items-center gap-1 font-mono text-xs">
                       <span>{page?.macroZh ?? ''}</span>
-                      <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                      <span
+                        aria-hidden
+                        className="transition-all sm:opacity-0 sm:group-hover:opacity-100 sm:group-hover:translate-x-0.5"
+                      >
                         →
                       </span>
                     </span>
                   </span>
-                  <div className="meta mt-1.5 flex items-center gap-1.5 text-muted flex-wrap">
-                    <span className="inline-flex items-center gap-1">
+                  <span className="meta mt-1.5 flex items-center gap-2 text-muted flex-wrap">
+                    <span className="inline-flex items-center gap-1.5">
                       <span
                         aria-hidden
                         className="inline-block size-1.5 rounded-full shrink-0"
@@ -757,12 +758,14 @@ export function ContactSheet() {
                       />
                       <span>{t.accentName}</span>
                     </span>
-                    <span>·</span>
+                    <span aria-hidden>·</span>
                     <span>{t.zh}</span>
-                    <span>·</span>
+                    <span aria-hidden>·</span>
                     <span>{t.displayFace}</span>
-                  </div>
-                  <p className="mt-2 text-[11px] text-ink-2/80 line-clamp-1 leading-normal font-sans">
+                  </span>
+                  <p className="mt-2 text-xs text-ink-2 line-clamp-1 font-sans"
+                    style={{ lineHeight: 1.6 }}
+                  >
                     {t.note}
                   </p>
                 </span>
@@ -776,7 +779,7 @@ export function ContactSheet() {
                 <Reveal key={p.to} index={list.length + si}>
                 <Link
                   to={p.to}
-                  className="group block overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-focus"
+                  className="group block overflow-hidden transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:[border-color:var(--hm-accent-line)] focus-visible:outline-2 focus-visible:outline-focus"
                   style={{
                     border: 'var(--hm-rule-card) solid var(--hm-rule)',
                     borderRadius: 'var(--hm-radius-card)',
@@ -790,13 +793,13 @@ export function ContactSheet() {
                       backgroundColor: 'var(--hm-paper-2)',
                     }}
                   >
-                    <span className="absolute left-3 top-3 meta rounded px-1.5 py-0.5 text-[9px] font-mono border border-rule/60 bg-paper text-accent-line">
+                    <span className="absolute left-3.5 top-3.5 meta rounded px-2 py-1 text-[9px] font-mono border border-rule/60 bg-paper text-accent-line shadow-2xs">
                       独立分支
                     </span>
                     <span
-                      className="display absolute inset-x-4 bottom-4 text-ink group-hover:text-accent-line transition-colors"
+                      className="display absolute inset-x-5 bottom-5 text-ink group-hover:text-accent-line transition-colors"
                       style={{
-                        fontSize: 'clamp(1.5rem, 2.6vw, 2.35rem)',
+                        fontSize: 'clamp(1.6rem, 2.6vw, 2.35rem)',
                         lineHeight: 1.02,
                         letterSpacing: 'var(--hm-tracking-display)',
                       }}
@@ -807,7 +810,7 @@ export function ContactSheet() {
                       {['var(--hm-rule-2)', 'var(--hm-ink-2)'].map((c, k) => (
                         <span
                           key={k}
-                          className="h-1 flex-1"
+                          className="h-[3px] flex-1 transition-all duration-300 group-hover:h-[6px]"
                           style={{ backgroundColor: c }}
                         />
                       ))}
@@ -824,16 +827,20 @@ export function ContactSheet() {
                         className="display block text-ink group-hover:text-accent-line transition-colors"
                         style={{
                           fontSize: '1.15rem',
+                          lineHeight: 1.25,
                           letterSpacing: 'var(--hm-tracking-display)',
                         }}
                       >
                         {p.v}
                       </span>
-                      <span className="meta text-accent-line font-mono text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                      <span
+                        aria-hidden
+                        className="meta text-accent-line font-mono text-xs transition-all sm:opacity-0 sm:group-hover:opacity-100 sm:group-hover:translate-x-0.5"
+                      >
                         →
                       </span>
                     </span>
-                    <span className="meta mt-1.5 block text-muted">{p.d}</span>
+                    <span className="meta mt-1.5 block text-muted" style={{ lineHeight: 1.6 }}>{p.d}</span>
                   </span>
                 </Link>
                 </Reveal>
@@ -865,7 +872,7 @@ function Chip({
       aria-selected={active}
       onClick={onClick}
       title={title}
-      className={`btn tap relative px-2.5 py-1 text-xs rounded-lg transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-focus flex items-center gap-1.5 ${
+      className={`btn tap relative px-3.5 py-2 text-[13px] rounded-lg transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-focus flex items-center gap-2 ${
         active ? 'font-semibold' : 'hover:bg-paper-2'
       }`}
       style={{

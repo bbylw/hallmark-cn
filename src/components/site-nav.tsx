@@ -21,18 +21,18 @@ export function SiteNav() {
   return (
     <header className="sticky top-0 z-40 border-b border-rule bg-paper/85 backdrop-blur-md">
       <div
-        className="mx-auto flex h-16 items-center gap-6 px-(--page-gutter)"
+        className="mx-auto flex h-16 items-center gap-4 px-(--page-gutter) sm:gap-6"
         style={{ maxWidth: 'var(--page-max)' }}
       >
         <Link to="/" className="tap group flex shrink-0 items-baseline gap-2">
           <span className="display text-lg transition-colors duration-200 group-hover:text-accent-line">
             Hallmark
           </span>
-          <span className="meta text-muted">24 页</span>
+          <span className="meta hidden text-muted min-[420px]:inline">24 页</span>
         </Link>
         <nav
           aria-label="站内导航"
-          className="ml-auto flex items-center gap-6 sm:gap-7"
+          className="ml-auto flex items-center gap-4 sm:gap-7"
         >
           {links.map((l) => {
             const active = isActive(l.href)
@@ -41,7 +41,7 @@ export function SiteNav() {
                 key={l.href}
                 to={l.href}
                 aria-current={active ? 'page' : undefined}
-                className={`tap relative text-sm transition-colors duration-200 ${
+                className={`tap relative whitespace-nowrap text-[13px] transition-colors duration-200 sm:text-sm ${
                   active
                     ? 'font-semibold text-ink'
                     : 'text-ink-2 hover:text-accent-line'
