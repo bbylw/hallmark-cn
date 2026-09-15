@@ -57,18 +57,34 @@ async function runAudit() {
   console.log(`[Interaction] Switched to 45 mins, 7.5km calculated: ${has75km > 0 ? 'PASS' : 'FAIL'}`)
   if (has75km === 0) throw new Error('Sport pace recalculation failed for 45 minutes')
 
-  // 4. 检查 Stamp
+  // 4. 测试步频节拍器切换
+  const spm185Btn = page.locator('button:has-text("185 SPM")')
+  await spm185Btn.click()
+  await page.waitForTimeout(100)
+  const has185 = await page.locator('text=185 SPM (步/分钟)').count()
+  console.log(`[Cadence Metronome] Switched to 185 SPM: ${has185 > 0 ? 'PASS' : 'FAIL'}`)
+  if (has185 === 0) throw new Error('Cadence metronome switch failed')
+
+  // 5. 测试杜邦纸夜跑号码布生成
+  const printBibBtn = page.locator('button:has-text("确认生成并打印号码布")')
+  await printBibBtn.click()
+  await page.waitForTimeout(100)
+  const isBibClaimed = await page.locator('text=已打印 夜跑邻居 号码布 ✓').count()
+  console.log(`[Tyvek Bib] Claimed runner bib: ${isBibClaimed > 0 ? 'PASS' : 'FAIL'}`)
+  if (isBibClaimed === 0) throw new Error('Runner bib generation failed')
+
+  // 6. 检查 Stamp
   const stampText = await page.locator('text=slop test: 58/58 ✓').count()
   console.log(`[Stamp] Found 58/58 stamp: ${stampText > 0 ? 'PASS' : 'FAIL'}`)
   if (stampText === 0) throw new Error('Missing Hallmark Stamp with 58/58 slop test mark')
 
-  // 5. 检查控制台报错
+  // 7. 检查控制台报错
   if (consoleErrors.length > 0) {
     console.error('Console errors:', consoleErrors)
     throw new Error(`Found ${consoleErrors.length} console error(s)`)
   }
 
-  console.log('✅ SportPage Audit PASSED perfectly with 0 issues!')
+  console.log('✅ SportPage Comprehensive Hallmark Audit PASSED with 100% excellence!')
   await browser.close()
 }
 
