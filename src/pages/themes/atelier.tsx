@@ -114,22 +114,64 @@ const BESPOKE_STEPS = [
   },
 ]
 
-/** 手工与机缝工艺解剖对比 */
+/** 手作与机缝工艺解剖对比数据 */
 const ANATOMY_CRAFT = [
   {
+    part: '01 / CHEST & LAPEL CANVAS · 翻驳头与胸衬骨架',
     title: '手工八字绗缝 (Pad Stitching) vs 工业机压粘合衬',
-    hand: '用极细丝线以 45° 交叉八字针脚将胸衬与面料固定，针脚线道微松，面料可在微观层面随人体呼吸自由滑移，历经数十年干洗绝不脱胶起泡。',
-    machine: '工厂使用高温压烫机将热熔胶化学胶衬粘在面料背面，初期虽平整，但在洗涤数次后胶质老化，翻领产生波浪状不可逆起泡破损。',
+    summary: '决定大衣胸廓是随人体呼吸起伏挺括，还是数次干洗后扁平起泡',
+    hand: {
+      label: '工坊手工 Bespoke 手法',
+      french: 'Pad Stitching (Point d’Arrêt)',
+      materials: '蒙古纯马尾毛衬 · 粗亚麻布 · 天然生丝线',
+      desc: '用极细丝线以 45° 交叉八字针脚将胸衬与面料固定，针脚线道微松，面料可在微观层面随人体呼吸自由滑移，历经数十年干洗绝不脱胶起泡。',
+      trait: '45° 活络斜针 · 纯天然纤维 · 历久弥挺',
+    },
+    machine: {
+      label: '工业流水线机缝手段',
+      french: 'Fused Interlining (Thermopress)',
+      materials: '聚酯化纤无纺布 · EVA/PA 高温热熔胶',
+      desc: '工厂使用高温压烫机将热熔胶化学胶衬粘在面料背面，初期虽平整，但在洗涤数次后胶质老化，翻领产生波浪状不可逆起泡破损。',
+      trait: '高温粘死 · 胶质易脆化 · 僵硬起泡',
+    },
   },
   {
+    part: '02 / LAPEL BOUTONNIÈRE · 驳头插花眼',
     title: '纯手缝米兰眼 (Milanese Hole) vs 电脑锁眼机',
-    hand: '内部嵌入一道预拉紧的加固棉绳，裁缝持针用真丝粗线在其表面精密环形缠绕，扣眼凸起如雕塑般立体，斜度与驳头角度保持严密 18° 平行。',
-    machine: '电脑机针一分钟冲压打孔锁线，线迹扁平死板，边缘容易磨损抽丝，缺乏手工高浮雕的立体阴影感。',
+    summary: '高定翻驳头最具辨识度的灵魂印记，单个需耗费 45 分钟手挑高浮雕编织',
+    hand: {
+      label: '工坊手工 Bespoke 手法',
+      french: 'Milanese Boutonnière (Broderie Main)',
+      materials: '预拉紧真丝线心 · 极细捻制生丝粗线',
+      desc: '内部嵌入一道预拉紧的加固棉绳，裁缝持针用真丝粗线在其表面精密环形缠绕，扣眼凸起如雕塑般立体，斜度与驳头角度保持严密 18° 平行。',
+      trait: '45min 精工 · 浮雕立体光影 · 18° 绝对平行',
+    },
+    machine: {
+      label: '工业流水线机缝手段',
+      french: 'Automated Keyhole Punching',
+      materials: '涤纶化纤锁线 · 电脑机械冲头',
+      desc: '电脑机针一分钟冲压打孔锁线，线迹扁平死板，边缘容易磨损抽丝，缺乏手工高浮雕的立体阴影感。',
+      trait: '1秒机械冲压 · 扁平无光影 · 易磨损抽丝',
+    },
   },
   {
+    part: '03 / HEM & LINING SUSPENSION · 下摆与里布悬挂',
     title: '活里布手缝绷缝 (Floating Basting) vs 机器四边封死',
-    hand: '下摆与袖口内衬留出 1.5cm “蓄量”，手工点针挑缝，外层大衣垂坠重力不受轻薄内衬牵绊，走动时裙摆与下摆自然荡开。',
-    machine: '里布与面料直接四边死缝，受外界干湿度膨胀率不同影响，极易发生里布拉扯导致大衣外沿翻翘走形。',
+    summary: '决定走动转身时大衣下摆能否优雅垂荡、绝无外翻拉扯的核心所在',
+    hand: {
+      label: '工坊手工 Bespoke 手法',
+      french: 'Floating Basting (Ourlet Flottant)',
+      materials: '160g 铜氨丝里布 · 弹性生丝挑线',
+      desc: '下摆与袖口内衬留出 1.5cm “蓄量”，手工点针挑缝，外层大衣垂坠重力不受轻薄内衬牵绊，走动时裙摆与下摆自然荡开。',
+      trait: '1.5cm 自由蓄量 · 独立悬挂 · 动态波浪垂荡',
+    },
+    machine: {
+      label: '工业流水线机缝手段',
+      french: 'Machine Blindstitch Sealing',
+      materials: '普通涤塔夫里料 · 双针缝纫机死线',
+      desc: '里布与面料直接四边死缝，受外界干湿度膨胀率不同影响，极易发生里布拉扯导致大衣外沿翻翘走形。',
+      trait: '四边刚性封死 · 胀缩失衡 · 边缘外翻走形',
+    },
   },
 ]
 
@@ -431,37 +473,104 @@ export function AtelierPage({ page }: { page: ThemePage }) {
         </div>
 
         {/* 手作与机缝工艺解剖对比 */}
-        <div className={`${wrap} mt-20`} style={{ maxWidth: 'var(--page-max)' }}>
-          <div className="rounded-xl border border-rule bg-paper/80 p-6 sm:p-8 shadow-sm">
-            <div className="border-b border-rule/60 pb-4">
-              <span className="font-mono text-xs font-bold tracking-wider text-accent-line uppercase">
-                BESPOKE CRAFT ANATOMY · 细节决定寿命
-              </span>
-              <h3 className="text-xl font-bold text-ink mt-0.5">纯手工全麻衬与流水线机缝的本质区别</h3>
+        <div className={`${wrap} mt-24`} style={{ maxWidth: 'var(--page-max)' }}>
+          <div className="border border-rule bg-paper p-6 sm:p-10 shadow-sm">
+            {/* 顶栏手记档案标头 */}
+            <div className="border-b border-rule pb-6">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-accent-line">
+                  <span className="inline-block h-1.5 w-1.5 bg-ink rotate-45" />
+                  <span>SARTORIAL ANATOMY · 高定工艺解剖台账</span>
+                </div>
+                <span className="font-mono text-[11px] text-muted tracking-wider">
+                  DOSSIER N° 08 · BESPOKE vs READY-TO-WEAR
+                </span>
+              </div>
+              <h3 className="mt-3 text-2xl sm:text-3xl font-bold tracking-tight text-ink font-serif">
+                纯手工全麻衬与流水线机缝的本质区别
+              </h3>
+              <p className="mt-2 text-sm sm:text-base text-ink-2 max-w-[64ch]" style={{ lineHeight: 'var(--lh-relaxed)' }}>
+                真正的高级定制生命力隐藏在衣料夹层与衬芯之间。外表看似相仿的两件羊毛大衣，内部工法的分野决定了是陪伴您数十年历久弥新，还是数次洗涤后起泡走形。
+              </p>
             </div>
 
-            <div className="mt-6 divide-y divide-rule/60">
+            {/* 对比条目流 */}
+            <div className="mt-8 divide-y divide-rule/70">
               {ANATOMY_CRAFT.map((craft, idx) => (
-                <div key={idx} className="py-6 first:pt-0 last:pb-0">
-                  <h4 className="text-base font-bold text-ink mb-4">{craft.title}</h4>
-                  <div className="grid gap-6 sm:grid-cols-2">
-                    <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-5">
-                      <div className="flex items-center gap-2 font-mono text-xs font-bold text-emerald-700 dark:text-emerald-300 uppercase mb-2">
-                        <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                        工坊手工 Bespoke 手法
-                      </div>
-                      <p className="text-sm text-ink-2" style={{ lineHeight: 'var(--lh-relaxed)' }}>
-                        {craft.hand}
-                      </p>
+                <div key={idx} className="py-8 first:pt-2 last:pb-0">
+                  {/* 工艺章节小标头 */}
+                  <div className="flex flex-wrap items-baseline justify-between gap-2 mb-5">
+                    <div>
+                      <span className="font-mono text-[11px] font-bold text-accent-line tracking-wider uppercase block">
+                        {craft.part}
+                      </span>
+                      <h4 className="text-base sm:text-lg font-bold text-ink mt-0.5">
+                        {craft.title}
+                      </h4>
                     </div>
-                    <div className="rounded-xl border border-rose-500/20 bg-rose-500/5 p-5">
-                      <div className="flex items-center gap-2 font-mono text-xs font-bold text-rose-700 dark:text-rose-300 uppercase mb-2">
-                        <span className="h-2 w-2 rounded-full bg-rose-500" />
-                        工业流水线机缝手段
+                    <span className="font-mono text-xs text-muted">
+                      {craft.summary}
+                    </span>
+                  </div>
+
+                  {/* 双栏对比 Specimen Plate */}
+                  <div className="grid gap-6 lg:grid-cols-2">
+                    {/* 左栏：工坊手工 Bespoke */}
+                    <div className="relative border border-ink/20 bg-paper-2/40 p-6 transition-all duration-300 hover:border-ink/50 hover:bg-paper-2/70">
+                      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-rule/70 pb-3 mb-4">
+                        <div className="flex items-center gap-2">
+                          <span className="inline-block h-2 w-2 rounded-none bg-ink rotate-45" />
+                          <span className="font-mono text-xs font-bold text-ink tracking-wider uppercase">
+                            {craft.hand.label}
+                          </span>
+                        </div>
+                        <span className="font-serif italic text-xs text-muted">
+                          {craft.hand.french}
+                        </span>
                       </div>
+
+                      <div className="mb-3 font-mono text-[11px] text-accent-line">
+                        <span className="text-muted">天然介质：</span>
+                        <span className="font-semibold">{craft.hand.materials}</span>
+                      </div>
+
                       <p className="text-sm text-ink-2" style={{ lineHeight: 'var(--lh-relaxed)' }}>
-                        {craft.machine}
+                        {craft.hand.desc}
                       </p>
+
+                      <div className="mt-5 border-t border-rule/60 pt-3 flex items-center justify-between font-mono text-[11px]">
+                        <span className="text-muted">物理特性：</span>
+                        <span className="font-bold text-ink">{craft.hand.trait}</span>
+                      </div>
+                    </div>
+
+                    {/* 右栏：工业流水线机缝 */}
+                    <div className="relative border border-rule bg-paper-2/20 p-6 opacity-90 transition-opacity hover:opacity-100">
+                      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-rule/70 pb-3 mb-4">
+                        <div className="flex items-center gap-2">
+                          <span className="inline-block h-2 w-2 rounded-none bg-neutral-400" />
+                          <span className="font-mono text-xs font-bold text-muted tracking-wider uppercase">
+                            {craft.machine.label}
+                          </span>
+                        </div>
+                        <span className="font-mono text-xs text-muted">
+                          {craft.machine.french}
+                        </span>
+                      </div>
+
+                      <div className="mb-3 font-mono text-[11px] text-muted">
+                        <span>工业介质：</span>
+                        <span>{craft.machine.materials}</span>
+                      </div>
+
+                      <p className="text-sm text-muted" style={{ lineHeight: 'var(--lh-relaxed)' }}>
+                        {craft.machine.desc}
+                      </p>
+
+                      <div className="mt-5 border-t border-rule/60 pt-3 flex items-center justify-between font-mono text-[11px] text-muted">
+                        <span>工业局限：</span>
+                        <span className="font-medium text-neutral-600 dark:text-neutral-400">{craft.machine.trait}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
