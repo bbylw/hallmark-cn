@@ -327,18 +327,19 @@ export function AuroraPage({ page }: { page: ThemePage }) {
         color: 'var(--hm-ink)',
       }}
     >
-      {/* 极光背景微环境光晕装饰 (CSS 纯渐变，0 性能开销，带 subtle blur) */}
+      {/* 极光背景微环境光晕装饰 (CSS 纯渐变，0 性能开销，绝对 0 视口溢出) */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 overflow-hidden opacity-30 select-none"
       >
         <div
-          className="absolute -top-[20%] left-1/4 h-[550px] w-[550px] rounded-full blur-[140px]"
-          style={{ background: 'radial-gradient(circle, oklch(72% 0.17 200 / 0.45), transparent 70%)' }}
-        />
-        <div
-          className="absolute top-[35%] -right-[10%] h-[480px] w-[480px] rounded-full blur-[160px]"
-          style={{ background: 'radial-gradient(circle, oklch(65% 0.18 165 / 0.35), transparent 70%)' }}
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              radial-gradient(circle at 25% 10%, oklch(72% 0.17 200 / 0.45) 0%, transparent 50%),
+              radial-gradient(circle at 90% 40%, oklch(65% 0.18 165 / 0.35) 0%, transparent 45%)
+            `,
+          }}
         />
       </div>
 

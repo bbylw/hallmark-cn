@@ -23,7 +23,7 @@ function Shot({
         alt={alt}
         width={1440}
         height={wide ? 960 : 2160}
-        loading={eager ? undefined : 'lazy'}
+        loading="eager"
         decoding="async"
         className={`${ratio} w-full min-w-0 object-cover transition-transform duration-700 hover:scale-[1.015]`}
       />
