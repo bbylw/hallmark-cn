@@ -141,6 +141,79 @@ function ThemeOrnament({ themeId }: { themeId: string }) {
           Aa Bb 72pt
         </span>
       )
+    case 'studio':
+      return (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute right-3 top-3 font-mono text-[9px] text-muted tracking-tight flex items-center gap-1"
+        >
+          <span className="inline-block size-1.5 rounded-full border border-current" />
+          <span>⌖ REF:400</span>
+        </span>
+      )
+    case 'garden':
+      return (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute right-3 top-3 font-mono text-[9px] text-accent-line font-medium tracking-wide flex items-center gap-1"
+        >
+          <span>❀ FLORA·12</span>
+        </span>
+      )
+    case 'brutal':
+      return (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute right-3 top-3 font-mono text-[9px] font-black text-paper bg-ink px-1.5 py-0.5 tracking-tighter"
+        >
+          RAW // 0-RAD
+        </span>
+      )
+    case 'editorial':
+      return (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute right-3 top-3 font-mono text-[9px] text-muted uppercase tracking-widest border-b border-rule/60 pb-0.5"
+        >
+          § 01 · FOLIO
+        </span>
+      )
+    case 'bloom':
+      return (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -right-5 -top-5 size-16 rounded-full blur-lg opacity-40"
+          style={{ backgroundColor: 'var(--hm-accent)' }}
+        />
+      )
+    case 'midnight':
+      return (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute right-3 top-3 font-mono text-[9px] text-muted tracking-wider flex items-center gap-1 opacity-85"
+        >
+          <span className="inline-block size-1.5 rounded-full bg-accent-line" />
+          <span>00:00 · 11%</span>
+        </span>
+      )
+    case 'coral':
+      return (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute right-3 top-3 font-mono text-[9px] text-accent-line font-bold bg-paper px-1.5 py-0.5 rounded-full border border-rule/50 shadow-2xs"
+        >
+          SaaS·v2.4
+        </span>
+      )
+    case 'hum':
+      return (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute right-3 top-3 font-mono text-[9px] font-bold text-ink bg-accent/20 px-1.5 py-0.5 rounded-full"
+        >
+          ☺ PLAY·20px
+        </span>
+      )
     default:
       return null
   }
@@ -153,14 +226,24 @@ export function ContactSheet() {
 
   return (
     <div id="main">
-      <div>
-        <div className="meta text-muted">打样台 · 21 主题 + 2 独立分支</div>
-        <h2
-          className="display mt-1 text-ink"
-          style={{ fontSize: 'var(--text-xl)' }}
-        >
-          真实小样流
-        </h2>
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <div>
+          <div className="meta flex items-center gap-1.5 text-muted">
+            <span className="inline-block size-1.5 rounded-full bg-accent animate-pulse" />
+            <span>打样台 · 21 主题 + 2 独立分支</span>
+          </div>
+          <h2
+            className="display mt-1 text-ink"
+            style={{ fontSize: 'var(--text-xl)' }}
+          >
+            真实小样流
+          </h2>
+        </div>
+        <div className="hidden sm:block text-right">
+          <span className="font-mono text-[11px] text-muted">
+            OKLCH 色彩空间 · 4 大体裁覆盖
+          </span>
+        </div>
       </div>
 
       {/* 体裁筛选标签行 */}
@@ -190,10 +273,10 @@ export function ContactSheet() {
       </div>
 
       <p
-        className="mt-3 max-w-[54ch] text-sm text-ink-2"
+        className="mt-3 max-w-[56ch] text-sm text-ink-2"
         style={{ lineHeight: 'var(--lh-relaxed)' }}
       >
-        每张小样都是一整页独立实现。卡片的底色、字体、圆角与色相严格渲染该主题自身的设计令牌，点击即刻进入全尺寸交互装置。
+        每张小样都是一整页独立实现。卡片严格套用该主题自身的设计令牌与字体栈，底纸色、圆角与色相真实呈现，点击即刻进入全尺寸交互装置。
       </p>
 
       <div
@@ -306,9 +389,23 @@ export function ContactSheet() {
                       </span>
                     </span>
                   </span>
-                  <span className="meta mt-1.5 block text-muted">
-                    {t.zh} · {t.displayFace} ({t.displayStyle})
-                  </span>
+                  <div className="meta mt-1.5 flex items-center gap-1.5 text-muted flex-wrap">
+                    <span className="inline-flex items-center gap-1">
+                      <span
+                        aria-hidden
+                        className="inline-block size-1.5 rounded-full shrink-0"
+                        style={{ backgroundColor: 'var(--hm-accent)' }}
+                      />
+                      <span>{t.accentName}</span>
+                    </span>
+                    <span>·</span>
+                    <span>{t.zh}</span>
+                    <span>·</span>
+                    <span>{t.displayFace}</span>
+                  </div>
+                  <p className="mt-2 text-[11px] text-ink-2/80 line-clamp-1 leading-normal font-sans">
+                    {t.note}
+                  </p>
                 </span>
               </Link>
             )
@@ -333,6 +430,9 @@ export function ContactSheet() {
                       backgroundColor: 'var(--hm-paper-2)',
                     }}
                   >
+                    <span className="absolute left-3 top-3 meta rounded px-1.5 py-0.5 text-[9px] font-mono border border-rule/60 bg-paper text-accent-line">
+                      独立分支
+                    </span>
                     <span
                       className="display absolute inset-x-4 bottom-4 text-ink group-hover:text-accent-line transition-colors"
                       style={{
@@ -359,14 +459,19 @@ export function ContactSheet() {
                       borderTop: 'var(--hm-rule-card) solid var(--hm-rule)',
                     }}
                   >
-                    <span
-                      className="display block text-ink group-hover:text-accent-line transition-colors"
-                      style={{
-                        fontSize: '1.15rem',
-                        letterSpacing: 'var(--hm-tracking-display)',
-                      }}
-                    >
-                      {p.v}
+                    <span className="flex items-baseline justify-between gap-3">
+                      <span
+                        className="display block text-ink group-hover:text-accent-line transition-colors"
+                        style={{
+                          fontSize: '1.15rem',
+                          letterSpacing: 'var(--hm-tracking-display)',
+                        }}
+                      >
+                        {p.v}
+                      </span>
+                      <span className="meta text-accent-line font-mono text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                        →
+                      </span>
                     </span>
                     <span className="meta mt-1.5 block text-muted">{p.d}</span>
                   </span>

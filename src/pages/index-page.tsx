@@ -47,43 +47,52 @@ export function IndexPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="meta flex items-center gap-2 text-accent-line">
+              <div className="meta inline-flex items-center gap-2 rounded-full px-2.5 py-1 bg-paper-2 border border-rule/70 text-accent-line text-[11px] font-mono shadow-2xs">
                 <span className="inline-block size-2 rounded-full bg-accent animate-pulse" />
-                <span className="font-mono font-bold tracking-wide">Hallmark v1.1.0 · Anti-AI-Slop Skill</span>
+                <span className="font-bold tracking-wide">Hallmark v1.1.0</span>
+                <span className="text-rule-2">/</span>
+                <span className="text-ink-2 font-medium">Anti-AI-Slop Skill</span>
               </div>
 
               <h1
-                className="display mt-2.5 text-ink tracking-tight"
+                className="display mt-3 text-ink tracking-tight"
                 style={{
                   fontSize: 'clamp(1.9rem, 3.2vw, 2.75rem)',
                   lineHeight: 1.08,
                   letterSpacing: 'var(--hm-tracking-display)',
                 }}
               >
-                让 AI 写出来的界面，看起来像是人做的
+                让 AI 写出来的界面，
+                <span className="text-accent-line block sm:inline">看起来像是人做的</span>
               </h1>
 
               <p
                 className="mt-3.5 text-sm text-ink-2"
                 style={{ lineHeight: 'var(--lh-relaxed)' }}
               >
-                专为 Claude Code、Cursor 和 Codex 打造的设计 skill。
-                它拒绝大模型默认的居中大圆角卡片与紫蓝渐变套路，为每个真实需求定制宏观骨架，严格套用 21 套独立主题与 58 道关卡。
+                专为 <span className="font-semibold text-ink">Claude Code</span>、<span className="font-semibold text-ink">Cursor</span> 和 <span className="font-semibold text-ink">Codex</span> 打造的设计 skill。
+                它拒绝大模型默认的居中大圆角卡片与紫蓝渐变套路，为每个真实需求定制宏观骨架，严格套用 <span className="font-semibold text-ink">21 套独立主题</span> 与 <span className="font-semibold text-ink">58 道关卡</span>。
               </p>
 
-              {/* 开发者 CLI 安装命令台：支持包管理器切换、终端前缀与彻底杜绝移动端断词折行 */}
+              {/* 开发者 CLI 安装命令台 */}
               <div
-                className="mt-5 p-3 sm:p-3.5 transition-all shadow-xs"
+                className="mt-5 p-3.5 transition-all shadow-xs"
                 style={{
                   border: 'var(--hm-rule-card) solid var(--hm-rule)',
                   borderRadius: 'var(--hm-radius-card)',
                   backgroundColor: 'var(--hm-paper-2)',
                 }}
               >
-                <div className="flex items-center justify-between gap-2 border-b border-rule/50 pb-2 mb-2">
-                  <div className="meta flex items-center gap-1.5 text-[10px] text-muted font-mono font-semibold">
-                    <span className="inline-block size-1.5 rounded-full bg-accent-line" />
-                    <span>INSTALL CLI</span>
+                <div className="flex items-center justify-between gap-2 border-b border-rule/50 pb-2 mb-2.5">
+                  <div className="flex items-center gap-2">
+                    <span className="flex items-center gap-1">
+                      <span className="size-2 rounded-full bg-rule-2" />
+                      <span className="size-2 rounded-full bg-rule-2" />
+                      <span className="size-2 rounded-full bg-rule-2" />
+                    </span>
+                    <span className="meta text-[10px] text-muted font-mono font-bold tracking-wider">
+                      INSTALL CLI
+                    </span>
                   </div>
                   <div className="flex items-center gap-1">
                     {PM_OPTIONS.map((pm) => (
@@ -93,7 +102,7 @@ export function IndexPage() {
                         onClick={() => setActivePm(pm.id)}
                         className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors ${
                           activePm === pm.id
-                            ? 'bg-ink text-paper font-bold'
+                            ? 'bg-ink text-paper font-bold shadow-2xs'
                             : 'text-muted hover:text-ink'
                         }`}
                       >
@@ -108,15 +117,22 @@ export function IndexPage() {
                     <div className="flex items-center gap-2 font-mono text-xs sm:text-[13px] text-ink whitespace-nowrap">
                       <span className="text-accent-line select-none font-bold">$</span>
                       <code className="select-all font-semibold tracking-tight">
-                        {currentCmd}
+                        <span className="text-accent-line">{activePm === 'pnpm' ? 'pnpm dlx' : activePm}</span>{' '}
+                        <span className="text-muted">skills add</span>{' '}
+                        <span className="text-ink font-bold">nutlope/hallmark</span>
                       </code>
                     </div>
                   </div>
                   <CopyButton
                     value={currentCmd}
                     ariaLabel={`复制 ${activePm} 安装命令`}
-                    className="btn-primary shrink-0 px-3 py-1.5 text-xs font-mono"
+                    className="btn-primary shrink-0 px-3 py-1.5 text-xs font-mono shadow-xs"
                   />
+                </div>
+
+                <div className="mt-2.5 pt-2 border-t border-rule/30 flex items-center justify-between text-[9.5px] sm:text-[10px] font-mono text-muted">
+                  <span>✓ 零外部依赖</span>
+                  <span>21 套 Tokens · 58 关卡约束</span>
                 </div>
               </div>
 

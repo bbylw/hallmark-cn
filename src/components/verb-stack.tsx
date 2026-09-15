@@ -44,7 +44,7 @@ export function VerbStack() {
               className={`tap flex-col justify-center relative rounded px-1.5 py-1.5 text-center text-xs transition-all ${
                 isCurrent
                   ? 'bg-ink text-paper font-bold shadow-xs'
-                  : 'text-muted hover:text-ink'
+                  : 'text-muted hover:text-ink hover:bg-paper-3/40'
               }`}
             >
               <span className="block text-[11px] leading-tight font-medium">
@@ -53,6 +53,12 @@ export function VerbStack() {
               <span className="block font-mono text-[9px] opacity-75 mt-0.5 truncate">
                 {item.id}
               </span>
+              {isCurrent ? (
+                <span
+                  aria-hidden
+                  className="absolute -bottom-1 left-1/2 -translate-x-1/2 size-1 rounded-full bg-accent"
+                />
+              ) : null}
             </button>
           )
         })}
@@ -75,15 +81,18 @@ export function VerbStack() {
       >
         <div className="flex items-center justify-between gap-2 border-b border-rule/50 pb-2">
           <div className="flex items-center gap-1.5 min-w-0">
-            <span className="text-accent-line font-mono font-bold">$</span>
-            <code className="font-mono text-xs font-bold text-ink truncate">
-              {v.cmd}
+            <span className="text-accent-line font-mono font-bold select-none">$</span>
+            <code className="font-mono text-xs font-bold text-ink truncate select-all">
+              <span className="text-accent-line">hallmark</span>
+              {v.cmd.replace('hallmark', '') ? (
+                <span className="text-ink"> {v.cmd.replace('hallmark', '').trim()}</span>
+              ) : null}
             </code>
           </div>
           <CopyButton
             value={v.cmd}
             ariaLabel={`复制指令 ${v.cmd}`}
-            className="btn shrink-0 px-2 py-1 text-[11px] font-mono border border-rule/60"
+            className="btn shrink-0 px-2 py-1 text-[11px] font-mono border border-rule/60 hover:bg-paper"
           />
         </div>
 
@@ -112,7 +121,9 @@ export function VerbStack() {
 
         <div className="meta mt-2.5 pt-2 border-t border-rule/40 flex items-center justify-between text-[11px]">
           <span className="text-accent-line font-medium">产出交付物</span>
-          <span className="font-mono text-ink font-semibold">{v.output}</span>
+          <span className="font-mono text-ink font-semibold px-2 py-0.5 rounded bg-paper border border-rule/50 shadow-2xs">
+            {v.output}
+          </span>
         </div>
       </motion.div>
     </div>
