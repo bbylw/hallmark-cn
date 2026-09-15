@@ -41,7 +41,7 @@ function GlobalThemeWatcher() {
 
 function RouteFallback() {
   return (
-    <div className="mx-auto min-h-[50vh] animate-pulse px-[var(--page-gutter)] py-24" style={{ maxWidth: 'var(--page-max)' }}>
+    <div className="mx-auto min-h-[50vh] animate-pulse px-(--page-gutter) py-24" style={{ maxWidth: 'var(--page-max)' }}>
       <div className="h-4 w-24 rounded" style={{ backgroundColor: 'var(--hm-rule-2)' }} />
       <div className="mt-6 h-10 w-2/3 rounded" style={{ backgroundColor: 'var(--hm-paper-3)' }} />
     </div>

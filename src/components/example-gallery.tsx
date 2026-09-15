@@ -45,7 +45,7 @@ export function ExampleGallery() {
                 href={e.url}
                 target="_blank"
                 rel="noreferrer"
-                className="block overflow-hidden transition-all duration-300 group-hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hm-focus)]"
+                className="block overflow-hidden transition-all duration-300 group-hover:shadow-md focus-visible:outline-2 focus-visible:outline-(--hm-focus)"
                 style={{
                   borderRadius: 'var(--hm-radius-card)',
                   border: 'var(--hm-rule-card) solid var(--hm-rule)',

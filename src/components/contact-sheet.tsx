@@ -292,7 +292,7 @@ export function ContactSheet() {
                 key={t.id}
                 to={`/themes/${t.id}`}
                 data-theme={t.id}
-                className="group mb-4 block break-inside-avoid overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hm-focus)]"
+                className="group mb-4 block break-inside-avoid overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-(--hm-focus)"
                 style={{
                   border: 'var(--hm-rule-card) solid var(--hm-rule)',
                   borderRadius: 'var(--hm-radius-card)',
@@ -416,7 +416,7 @@ export function ContactSheet() {
                 <Link
                   key={p.to}
                   to={p.to}
-                  className="group mb-4 block break-inside-avoid overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hm-focus)]"
+                  className="group mb-4 block break-inside-avoid overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-(--hm-focus)"
                   style={{
                     border: 'var(--hm-rule-card) solid var(--hm-rule)',
                     borderRadius: 'var(--hm-radius-card)',
@@ -503,7 +503,7 @@ function Chip({
       aria-selected={active}
       onClick={onClick}
       title={title}
-      className={`btn tap px-2.5 py-1 text-xs rounded-lg transition-all duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hm-focus)] flex items-center gap-1.5 ${
+      className={`btn tap px-2.5 py-1 text-xs rounded-lg transition-all duration-150 focus-visible:outline-2 focus-visible:outline-(--hm-focus) flex items-center gap-1.5 ${
         active ? 'shadow-xs font-semibold' : 'hover:bg-paper-2'
       }`}
       style={{
