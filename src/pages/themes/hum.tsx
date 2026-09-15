@@ -109,8 +109,8 @@ export function HumPage({ page }: { page: ThemePage }) {
   const fontVarSettings = `"wght" ${w}`
 
   return (
-    <main id="main" className="px-[var(--page-gutter)] pb-24 pt-8 sm:pt-12 text-ink selection:bg-accent selection:text-ink">
-      <div className="mx-auto max-w-[var(--page-max)] min-w-0">
+    <main id="main" className="px-(--page-gutter) pb-24 pt-8 sm:pt-12 text-ink selection:bg-accent selection:text-ink">
+      <div className="mx-auto max-w-(--page-max) min-w-0">
         
         {/* 顶部微状态公报条 */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-3 font-mono text-xs text-muted">
@@ -216,7 +216,7 @@ export function HumPage({ page }: { page: ThemePage }) {
                 step={10}
                 value={w}
                 onChange={(e) => setW(Number(e.target.value))}
-                className="mt-2 w-full cursor-pointer min-h-[44px]"
+                className="mt-2 w-full cursor-pointer min-h-11"
                 aria-label="调整字重"
               />
               {/* 关键测试契约胶囊按键：必须包含 700 */}
@@ -227,7 +227,7 @@ export function HumPage({ page }: { page: ThemePage }) {
                     type="button"
                     onClick={() => setW(s)}
                     aria-pressed={w === s}
-                    className="flex-1 min-h-[44px] rounded border px-1 py-1.5 font-mono text-xs font-bold transition-all"
+                    className="flex-1 min-h-11 rounded border px-1 py-1.5 font-mono text-xs font-bold transition-all"
                     style={{
                       backgroundColor: w === s ? 'var(--hm-cta-bg)' : 'transparent',
                       color: w === s ? 'var(--hm-cta-fg)' : 'var(--hm-ink-2)',
@@ -253,7 +253,7 @@ export function HumPage({ page }: { page: ThemePage }) {
                 step={1}
                 value={wdth}
                 onChange={(e) => setWdth(Number(e.target.value))}
-                className="mt-2 w-full cursor-pointer min-h-[44px]"
+                className="mt-2 w-full cursor-pointer min-h-11"
                 aria-label="调整字宽"
               />
               <div className="mt-1 flex justify-between font-mono text-[10px] text-muted">
@@ -276,7 +276,7 @@ export function HumPage({ page }: { page: ThemePage }) {
                 step={1}
                 value={slnt}
                 onChange={(e) => setSlnt(Number(e.target.value))}
-                className="mt-2 w-full cursor-pointer min-h-[44px]"
+                className="mt-2 w-full cursor-pointer min-h-11"
                 aria-label="调整倾斜度"
               />
               <div className="mt-1 flex justify-between font-mono text-[10px] text-muted">
@@ -299,7 +299,7 @@ export function HumPage({ page }: { page: ThemePage }) {
                 step={5}
                 value={roundness}
                 onChange={(e) => setRoundness(Number(e.target.value))}
-                className="mt-2 w-full cursor-pointer min-h-[44px]"
+                className="mt-2 w-full cursor-pointer min-h-11"
                 aria-label="调整软糖圆润度"
               />
               {/* 动态圆角胶囊视觉演示条 */}
@@ -336,7 +336,7 @@ export function HumPage({ page }: { page: ThemePage }) {
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id as any)}
-              className={`min-h-[44px] rounded-lg px-4 py-2 font-mono text-xs font-bold transition-colors ${
+              className={`min-h-11 rounded-lg px-4 py-2 font-mono text-xs font-bold transition-colors ${
                 activeTab === tab.id
                   ? 'bg-ink text-paper'
                   : 'bg-paper-2 text-ink-2 hover:bg-rule/50'
@@ -368,7 +368,7 @@ export function HumPage({ page }: { page: ThemePage }) {
                     key={idx}
                     type="button"
                     onClick={() => setUserText(sample.text)}
-                    className="min-h-[32px] rounded border border-rule px-2.5 py-1 font-mono text-[11px] text-ink-2 hover:bg-paper-2 transition-colors"
+                    className="min-h-8 rounded border border-rule px-2.5 py-1 font-mono text-[11px] text-ink-2 hover:bg-paper-2 transition-colors"
                   >
                     {sample.label}
                   </button>
@@ -411,7 +411,7 @@ export function HumPage({ page }: { page: ThemePage }) {
                   step={2}
                   value={fontSize}
                   onChange={(e) => setFontSize(Number(e.target.value))}
-                  className="mt-2 w-full cursor-pointer min-h-[44px]"
+                  className="mt-2 w-full cursor-pointer min-h-11"
                   aria-label="试字字号"
                 />
               </div>
@@ -429,7 +429,7 @@ export function HumPage({ page }: { page: ThemePage }) {
                   step={0.01}
                   value={tracking}
                   onChange={(e) => setTracking(Number(e.target.value))}
-                  className="mt-2 w-full cursor-pointer min-h-[44px]"
+                  className="mt-2 w-full cursor-pointer min-h-11"
                   aria-label="试字字距"
                 />
               </div>
@@ -447,7 +447,7 @@ export function HumPage({ page }: { page: ThemePage }) {
                   step={0.02}
                   value={lineHeight}
                   onChange={(e) => setLineHeight(Number(e.target.value))}
-                  className="mt-2 w-full cursor-pointer min-h-[44px]"
+                  className="mt-2 w-full cursor-pointer min-h-11"
                   aria-label="试字行高"
                 />
               </div>
@@ -459,7 +459,7 @@ export function HumPage({ page }: { page: ThemePage }) {
                   <button
                     type="button"
                     onClick={() => setLiga(!liga)}
-                    className={`flex-1 min-h-[44px] rounded border px-2 py-1 font-mono text-xs font-bold transition-all ${
+                    className={`flex-1 min-h-11 rounded border px-2 py-1 font-mono text-xs font-bold transition-all ${
                       liga ? 'bg-accent/20 border-accent-line text-accent-line' : 'border-rule text-muted'
                     }`}
                   >
@@ -468,7 +468,7 @@ export function HumPage({ page }: { page: ThemePage }) {
                   <button
                     type="button"
                     onClick={() => setTnum(!tnum)}
-                    className={`flex-1 min-h-[44px] rounded border px-2 py-1 font-mono text-xs font-bold transition-all ${
+                    className={`flex-1 min-h-11 rounded border px-2 py-1 font-mono text-xs font-bold transition-all ${
                       tnum ? 'bg-accent/20 border-accent-line text-accent-line' : 'border-rule text-muted'
                     }`}
                   >
@@ -514,7 +514,7 @@ export function HumPage({ page }: { page: ThemePage }) {
                     key={idx}
                     type="button"
                     onClick={() => setSelectedAnatomy(idx)}
-                    className={`min-h-[44px] min-w-[44px] rounded border px-3 py-1 font-mono text-sm font-bold transition-all ${
+                    className={`min-h-11 min-w-11 rounded border px-3 py-1 font-mono text-sm font-bold transition-all ${
                       selectedAnatomy === idx
                         ? 'border-ink bg-ink text-paper'
                         : 'border-rule bg-paper-2 text-ink-2 hover:border-ink/50'

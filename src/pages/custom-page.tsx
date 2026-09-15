@@ -80,7 +80,7 @@ export function CustomPage() {
 }`
 
   return (
-    <div className="min-h-[100dvh] bg-paper" style={live}>
+    <div className="min-h-dvh bg-paper" style={live}>
       {/* 调色台的两根滑轨：轨道画成本身的意义——色相那根是全色谱，
           浓度那根从灰到饱和，读数直接长在轨道上 */}
       <style>{`
@@ -136,7 +136,7 @@ export function CustomPage() {
       <SiteNav />
       <main
         id="main"
-        className="mx-auto px-[var(--page-gutter)] py-20 sm:py-24"
+        className="mx-auto px-(--page-gutter) py-20 sm:py-24"
         style={{ maxWidth: 'var(--page-max)' }}
       >
         <Reveal>
@@ -188,7 +188,7 @@ export function CustomPage() {
                     setHue(p.hue)
                     setChroma(p.chroma)
                   }}
-                  className={`min-h-[36px] rounded-md px-3 py-1.5 font-mono text-xs transition-all ${
+                  className={`min-h-9 rounded-md px-3 py-1.5 font-mono text-xs transition-all ${
                     active
                       ? 'bg-ink text-paper shadow-sm ring-2 ring-accent-line'
                       : 'border border-rule bg-paper/60 text-ink-2 hover:border-ink hover:text-ink'

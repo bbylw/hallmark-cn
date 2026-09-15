@@ -321,7 +321,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
   return (
     <main
       id="main"
-      className="relative px-[var(--page-gutter)] pb-32 pt-10 sm:pt-14 overflow-x-clip"
+      className="relative px-(--page-gutter) pb-32 pt-10 sm:pt-14 overflow-x-clip"
       style={{
         backgroundColor: 'var(--hm-paper)',
         color: 'var(--hm-ink)',
@@ -441,7 +441,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                   key={s.step}
                   type="button"
                   onClick={() => setStepIndex(idx)}
-                  className={`min-h-[44px] px-3.5 py-2 rounded-lg text-xs font-mono transition-all border ${
+                  className={`min-h-11 px-3.5 py-2 rounded-lg text-xs font-mono transition-all border ${
                     active
                       ? 'border-accent-line bg-accent/20 text-accent-line font-bold shadow-sm shadow-accent/10'
                       : 'border-rule bg-paper/60 text-ink-2 hover:border-rule-2 hover:text-ink'
@@ -635,7 +635,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                   key={p.id}
                   type="button"
                   onClick={() => setCameraPresetId(p.id)}
-                  className={`min-h-[56px] p-3 rounded-lg text-left transition-all border flex flex-col justify-between ${
+                  className={`min-h-14 p-3 rounded-lg text-left transition-all border flex flex-col justify-between ${
                     active
                       ? 'border-accent-line bg-accent/15 text-ink font-bold shadow-sm'
                       : 'border-rule bg-paper/50 text-ink-2 hover:border-rule-2 hover:text-ink'
@@ -747,7 +747,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                 type="button"
                 onClick={triggerSimulation}
                 disabled={isSimulating}
-                className="min-h-[44px] rounded-lg border border-accent/40 bg-accent/15 px-4 py-2 font-mono text-xs text-accent-line hover:bg-accent/25 hover:border-accent font-bold transition-all"
+                className="min-h-11 rounded-lg border border-accent/40 bg-accent/15 px-4 py-2 font-mono text-xs text-accent-line hover:bg-accent/25 hover:border-accent font-bold transition-all"
               >
                 {isSimulating ? '计算中...' : '测试排队演练'}
               </button>
@@ -832,7 +832,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                       key={r}
                       type="button"
                       onClick={() => setResolution(r)}
-                      className={`min-h-[44px] rounded border text-xs font-mono transition-all ${
+                      className={`min-h-11 rounded border text-xs font-mono transition-all ${
                         resolution === r
                           ? 'border-accent-line bg-accent/20 text-accent-line font-bold'
                           : 'border-rule bg-paper text-ink-2 hover:border-rule-2'
@@ -853,7 +853,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                       key={d}
                       type="button"
                       onClick={() => setVideoDuration(d)}
-                      className={`min-h-[44px] rounded border text-xs font-mono transition-all ${
+                      className={`min-h-11 rounded border text-xs font-mono transition-all ${
                         videoDuration === d
                           ? 'border-accent-line bg-accent/20 text-accent-line font-bold'
                           : 'border-rule bg-paper text-ink-2 hover:border-rule-2'
@@ -874,7 +874,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                       key={p}
                       type="button"
                       onClick={() => setPriorityTier(p)}
-                      className={`min-h-[44px] rounded border text-xs font-mono transition-all ${
+                      className={`min-h-11 rounded border text-xs font-mono transition-all ${
                         priorityTier === p
                           ? 'border-accent-line bg-accent/20 text-accent-line font-bold'
                           : 'border-rule bg-paper text-ink-2 hover:border-rule-2'
@@ -954,7 +954,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                         aria-controls="faq-panel"
                         onClick={() => setPick(i)}
                         onKeyDown={(e) => onQuestionKeyDown(e, i)}
-                        className={`flex w-full items-baseline gap-4 py-4 text-left transition-all min-h-[52px] ${
+                        className={`flex w-full items-baseline gap-4 py-4 text-left transition-all min-h-13 ${
                           on
                             ? 'border-l-4 border-accent-line bg-paper-2/90 pl-4 font-semibold shadow-sm'
                             : 'border-l-4 border-transparent pl-4 text-ink-2 hover:bg-paper-2/40 hover:text-ink'
@@ -1055,7 +1055,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
                   <button
                     type="button"
                     onClick={handleCopyApi}
-                    className="min-h-[36px] px-3 py-1 rounded border border-rule bg-paper-2 text-ink hover:border-ink transition-all"
+                    className="min-h-9 px-3 py-1 rounded border border-rule bg-paper-2 text-ink hover:border-ink transition-all"
                   >
                     {apiCopied ? '✓ 已复制请求' : '复制 API 请求'}
                   </button>

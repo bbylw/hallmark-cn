@@ -265,7 +265,7 @@ export function StudioPage({ page }: { page: ThemePage }) {
         >
           <div
             className={`overflow-hidden ${
-              size === 'lg' ? 'aspect-[4/3]' : 'aspect-[16/9]'
+              size === 'lg' ? 'aspect-[4/3]' : 'aspect-video'
             }`}
           >
             <Img slug={shotOf(w.slot) ?? ''} alt={w.client} variant="fill" />
@@ -279,7 +279,7 @@ export function StudioPage({ page }: { page: ThemePage }) {
   return (
     <main
       id="main"
-      className="relative px-[var(--page-gutter)] pb-32 pt-10 sm:pt-14 overflow-x-clip"
+      className="relative px-(--page-gutter) pb-32 pt-10 sm:pt-14 overflow-x-clip"
       style={{
         backgroundColor: 'var(--hm-paper)',
         color: 'var(--hm-ink)',
@@ -340,7 +340,7 @@ export function StudioPage({ page }: { page: ThemePage }) {
                 type="button"
                 aria-pressed={cat === c}
                 onClick={() => setCat(c)}
-                className="btn min-h-[44px] px-4 py-2 text-xs font-mono font-bold transition-all"
+                className="btn min-h-11 px-4 py-2 text-xs font-mono font-bold transition-all"
                 style={{
                   backgroundColor: cat === c ? 'var(--hm-cta-bg)' : 'transparent',
                   color: cat === c ? 'var(--hm-cta-fg)' : 'var(--hm-ink-2)',
@@ -390,7 +390,7 @@ export function StudioPage({ page }: { page: ThemePage }) {
                     <button
                       type="button"
                       onClick={() => setActiveProject(null)}
-                      className="min-h-[36px] px-3 py-1 rounded border border-rule bg-paper text-xs font-mono text-ink-2 hover:text-ink hover:border-ink transition-all"
+                      className="min-h-9 px-3 py-1 rounded border border-rule bg-paper text-xs font-mono text-ink-2 hover:text-ink hover:border-ink transition-all"
                       aria-label="关闭项目详情"
                     >
                       关闭档案 ✕
@@ -466,7 +466,7 @@ export function StudioPage({ page }: { page: ThemePage }) {
                   key={swatch.id}
                   type="button"
                   onClick={() => setActiveSwatchId(swatch.id)}
-                  className={`min-h-[56px] p-3 rounded-lg text-left transition-all border flex flex-col justify-between ${
+                  className={`min-h-14 p-3 rounded-lg text-left transition-all border flex flex-col justify-between ${
                     active
                       ? 'border-accent-line bg-accent/15 text-ink font-bold shadow-sm'
                       : 'border-rule bg-paper/60 text-ink-2 hover:border-rule-2 hover:text-ink'

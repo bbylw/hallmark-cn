@@ -57,7 +57,7 @@ export function GateScale() {
               type="button"
               onClick={() => setSelectedId(g.id)}
               aria-pressed={isCurrent}
-              className="tap flex items-center gap-1.5 rounded px-2 py-0.5 text-[11px] transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-(--hm-focus)"
+              className="tap flex items-center gap-1.5 rounded px-2 py-0.5 text-[11px] transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-focus"
               style={{
                 backgroundColor: isCurrent ? 'var(--hm-paper-3)' : 'transparent',
                 color: isCurrent ? 'var(--hm-ink)' : 'var(--hm-muted)',

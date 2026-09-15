@@ -181,7 +181,7 @@ const ANATOMY_CRAFT = [
  * 采用长画卷流式展现：顶级天然面料显微检视台（常驻）、全定制 6 阶段工艺拓扑、手工八字缝解剖、58/58 印章。
  */
 export function AtelierPage({ page }: { page: ThemePage }) {
-  const wrap = 'mx-auto px-[var(--page-gutter)]'
+  const wrap = 'mx-auto px-(--page-gutter)'
   const [hero, lookA, lookB, detail] = page.images ?? []
   const [selectedFabric, setSelectedFabric] = useState<'cashmere' | 'wool' | 'silk'>('cashmere')
   const [activeStep, setActiveStep] = useState<number>(0)
@@ -203,10 +203,10 @@ export function AtelierPage({ page }: { page: ThemePage }) {
 
   return (
     <main id="main" className="pb-24 pt-8 text-ink selection:bg-accent selection:text-ink">
-      <div className="mx-auto max-w-[var(--page-max)] min-w-0">
+      <div className="mx-auto max-w-(--page-max) min-w-0">
         
         {/* 顶部微状态公报条 */}
-        <div className="px-[var(--page-gutter)] flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-3 font-mono text-xs text-muted">
+        <div className="px-(--page-gutter) flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-3 font-mono text-xs text-muted">
           <div className="flex items-center gap-2">
             <span className="inline-block h-2.5 w-2.5 rounded-full bg-amber-600 animate-pulse" />
             <span className="font-bold text-ink tracking-wider">ATELIER MARCEAU · PARIS VIII</span>
@@ -229,7 +229,7 @@ export function AtelierPage({ page }: { page: ThemePage }) {
         {/* 首屏巨幅主图与影像主导版式 */}
         {hero && (
           <figure className="mt-8">
-            <div className="px-[var(--page-gutter)]">
+            <div className="px-(--page-gutter)">
               <Shot
                 slug={hero}
                 eager
@@ -331,7 +331,7 @@ export function AtelierPage({ page }: { page: ThemePage }) {
                 <button
                   type="button"
                   onClick={() => setSelectedFabric('cashmere')}
-                  className={`min-h-[44px] rounded-lg px-4 py-2 font-mono text-xs font-bold transition-all ${
+                  className={`min-h-11 rounded-lg px-4 py-2 font-mono text-xs font-bold transition-all ${
                     selectedFabric === 'cashmere'
                       ? 'bg-ink text-paper shadow-sm'
                       : 'border border-rule bg-paper-2 text-ink-2 hover:border-ink/50'
@@ -343,7 +343,7 @@ export function AtelierPage({ page }: { page: ThemePage }) {
                 <button
                   type="button"
                   onClick={() => setSelectedFabric('wool')}
-                  className={`min-h-[44px] rounded-lg px-4 py-2 font-mono text-xs font-bold transition-all ${
+                  className={`min-h-11 rounded-lg px-4 py-2 font-mono text-xs font-bold transition-all ${
                     selectedFabric === 'wool'
                       ? 'bg-ink text-paper shadow-sm'
                       : 'border border-rule bg-paper-2 text-ink-2 hover:border-ink/50'
@@ -355,7 +355,7 @@ export function AtelierPage({ page }: { page: ThemePage }) {
                 <button
                   type="button"
                   onClick={() => setSelectedFabric('silk')}
-                  className={`min-h-[44px] rounded-lg px-4 py-2 font-mono text-xs font-bold transition-all ${
+                  className={`min-h-11 rounded-lg px-4 py-2 font-mono text-xs font-bold transition-all ${
                     selectedFabric === 'silk'
                       ? 'bg-ink text-paper shadow-sm'
                       : 'border border-rule bg-paper-2 text-ink-2 hover:border-ink/50'
@@ -434,7 +434,7 @@ export function AtelierPage({ page }: { page: ThemePage }) {
                   key={step.step}
                   type="button"
                   onClick={() => setActiveStep(idx)}
-                  className={`min-h-[48px] rounded-xl border p-3 text-left transition-all ${
+                  className={`min-h-12 rounded-xl border p-3 text-left transition-all ${
                     activeStep === idx
                       ? 'border-ink bg-ink text-paper shadow-sm'
                       : 'border-rule bg-paper-2 text-ink hover:border-ink/50'
@@ -582,7 +582,7 @@ export function AtelierPage({ page }: { page: ThemePage }) {
         {/* 细节通栏大图 */}
         {detail && (
           <figure className="mt-20">
-            <div className="px-[var(--page-gutter)]">
+            <div className="px-(--page-gutter)">
               <Shot
                 slug={detail}
                 wide

@@ -11,7 +11,7 @@ export function Footer() {
   return (
     <footer className="hairline">
       <div
-        className="mx-auto flex flex-wrap items-end justify-between gap-8 py-14 px-[var(--page-gutter)]"
+        className="mx-auto flex flex-wrap items-end justify-between gap-8 py-14 px-(--page-gutter)"
         style={{ maxWidth: 'var(--page-max)' }}
       >
         <div>

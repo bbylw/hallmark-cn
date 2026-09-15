@@ -24,11 +24,11 @@ export function AboutPage() {
   useThemeAttr('almanac')
 
   return (
-    <div className="min-h-[100dvh] bg-paper">
+    <div className="min-h-dvh bg-paper">
       <SiteNav />
       <main
         id="main"
-        className="mx-auto px-[var(--page-gutter)] py-16 sm:py-24"
+        className="mx-auto px-(--page-gutter) py-16 sm:py-24"
         style={{ maxWidth: 'var(--page-max)' }}
       >
         <Reveal>

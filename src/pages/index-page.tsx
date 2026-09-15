@@ -29,12 +29,12 @@ export function IndexPage() {
   const currentCmd = PM_OPTIONS.find((p) => p.id === activePm)?.cmd ?? PM_OPTIONS[0].cmd
 
   return (
-    <div className="min-h-[100dvh] bg-paper">
+    <div className="min-h-dvh bg-paper">
       <SiteNav />
 
       <main
         id="main"
-        className="mx-auto px-[var(--page-gutter)]"
+        className="mx-auto px-(--page-gutter)"
         style={{ maxWidth: 'var(--page-max)' }}
       >
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">

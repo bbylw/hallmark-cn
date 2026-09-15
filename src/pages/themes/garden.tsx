@@ -216,7 +216,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
   return (
     <main
       id="main"
-      className="relative px-[var(--page-gutter)] pb-32 pt-10 sm:pt-14 overflow-x-clip"
+      className="relative px-(--page-gutter) pb-32 pt-10 sm:pt-14 overflow-x-clip"
       style={{
         backgroundColor: 'var(--hm-paper)',
         color: 'var(--hm-ink)',
@@ -378,7 +378,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
                   key={mode}
                   type="button"
                   onClick={() => setCellMode(mode)}
-                  className={`min-h-[44px] px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all border ${
+                  className={`min-h-11 px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all border ${
                     cellMode === mode
                       ? 'border-accent-line bg-accent/20 text-accent-line font-bold'
                       : 'border-rule bg-paper text-ink-2 hover:border-rule-2'
@@ -575,7 +575,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
                 step="0.1"
                 value={baume}
                 onChange={(e) => setBaume(parseFloat(e.target.value))}
-                className="w-full accent-accent cursor-pointer min-h-[36px]"
+                className="w-full accent-accent cursor-pointer min-h-9"
               />
               <div className="flex justify-between text-[10px] font-mono text-muted mt-1">
                 <span>38.0°Be (水蜜/易酸败)</span>
@@ -590,14 +590,14 @@ export function GardenPage({ page }: { page: ThemePage }) {
               <button
                 type="button"
                 onClick={() => setBaume(38.2)}
-                className="min-h-[44px] px-3 py-1.5 rounded border border-rule bg-paper text-xs font-mono text-ink-2 hover:border-ink"
+                className="min-h-11 px-3 py-1.5 rounded border border-rule bg-paper text-xs font-mono text-ink-2 hover:border-ink"
               >
                 未成熟水蜜 (38.2°)
               </button>
               <button
                 type="button"
                 onClick={() => setBaume(42.5)}
-                className="min-h-[44px] px-3.5 py-1.5 rounded border border-accent/40 bg-accent/15 text-xs font-mono text-accent-line font-bold hover:bg-accent/25"
+                className="min-h-11 px-3.5 py-1.5 rounded border border-accent/40 bg-accent/15 text-xs font-mono text-accent-line font-bold hover:bg-accent/25"
               >
                 我们只卖 (42.5°)
               </button>
@@ -972,7 +972,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
                   type="button"
                   onClick={() => setReserved(true)}
                   disabled={reserved}
-                  className={`w-full min-h-[44px] rounded-lg font-mono text-xs font-bold transition-all ${
+                  className={`w-full min-h-11 rounded-lg font-mono text-xs font-bold transition-all ${
                     reserved
                       ? 'bg-accent/20 text-accent-line border border-accent/40'
                       : 'bg-accent text-accent-ink hover:opacity-90 shadow'

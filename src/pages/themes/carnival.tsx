@@ -174,7 +174,7 @@ export function CarnivalPage({ page }: { page: ThemePage }) {
   }
 
   return (
-    <main id="main" className="px-[var(--page-gutter)] pb-28 pt-8 sm:pt-14">
+    <main id="main" className="px-(--page-gutter) pb-28 pt-8 sm:pt-14">
       <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}>
         
         {/* 顶部厂牌出版公报微状态条 */}
@@ -285,7 +285,7 @@ export function CarnivalPage({ page }: { page: ThemePage }) {
               <button
                 type="button"
                 onClick={() => setIsPlaying((v) => !v)}
-                className={`min-h-[44px] rounded-lg px-5 py-2 font-mono text-xs font-bold transition-all shadow-sm ${
+                className={`min-h-11 rounded-lg px-5 py-2 font-mono text-xs font-bold transition-all shadow-sm ${
                   isPlaying
                     ? 'bg-ink text-paper ring-2 ring-accent-line shadow-md'
                     : 'border-2 border-rule bg-paper text-ink hover:border-ink hover:bg-paper-2'
@@ -493,7 +493,7 @@ export function CarnivalPage({ page }: { page: ThemePage }) {
                   tabIndex={axis === a.id ? 0 : -1}
                   onClick={() => setAxis(a.id)}
                   onKeyDown={onTabKey}
-                  className="btn min-h-[44px] px-5 py-2 text-sm font-semibold transition-all rounded-lg"
+                  className="btn min-h-11 px-5 py-2 text-sm font-semibold transition-all rounded-lg"
                   style={{
                     backgroundColor:
                       axis === a.id ? 'var(--hm-cta-bg)' : 'transparent',

@@ -173,7 +173,7 @@ export function LumenPage({ page }: { page: ThemePage }) {
   return (
     <main
       id="main"
-      className="relative px-[var(--page-gutter)] pb-28 pt-10 sm:pt-14 overflow-x-clip"
+      className="relative px-(--page-gutter) pb-28 pt-10 sm:pt-14 overflow-x-clip"
       style={{
         backgroundColor: 'var(--hm-paper)',
         color: 'var(--hm-ink)',
@@ -225,7 +225,7 @@ export function LumenPage({ page }: { page: ThemePage }) {
               type="button"
               onClick={runSimulation}
               disabled={isRunning}
-              className={`min-h-[44px] rounded-lg border px-4 py-2 font-mono text-xs font-bold transition-all shadow-sm cursor-pointer flex items-center gap-2 ${
+              className={`min-h-11 rounded-lg border px-4 py-2 font-mono text-xs font-bold transition-all shadow-sm cursor-pointer flex items-center gap-2 ${
                 isRunning
                   ? 'bg-ink text-paper border-ink animate-pulse'
                   : 'border-accent-line bg-accent/10 text-ink hover:bg-accent/20'
@@ -340,7 +340,7 @@ export function LumenPage({ page }: { page: ThemePage }) {
                   type="button"
                   onClick={() => setPick(i)}
                   aria-pressed={pick === i}
-                  className={`flex w-full gap-4 p-4 text-left transition-all rounded-lg border min-h-[56px] ${
+                  className={`flex w-full gap-4 p-4 text-left transition-all rounded-lg border min-h-14 ${
                     pick === i
                       ? 'border-accent-line bg-accent/15 font-semibold'
                       : 'border-rule bg-paper-2/40'
@@ -446,7 +446,7 @@ export function LumenPage({ page }: { page: ThemePage }) {
             <button
               type="button"
               onClick={() => setShowThinkingProcess(!showThinkingProcess)}
-              className="min-h-[44px] px-3 py-1 rounded border border-rule bg-paper text-xs font-mono font-bold text-ink-2 hover:text-ink cursor-pointer"
+              className="min-h-11 px-3 py-1 rounded border border-rule bg-paper text-xs font-mono font-bold text-ink-2 hover:text-ink cursor-pointer"
             >
               {showThinkingProcess ? '收起思考流 [-]' : '展开完整思考流 [+]'}
             </button>

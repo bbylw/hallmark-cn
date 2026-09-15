@@ -102,7 +102,7 @@ export function MidnightPage({ page }: { page: ThemePage }) {
   return (
     <main
       id="main"
-      className="relative px-[var(--page-gutter)] pb-28 pt-10 sm:pt-14 overflow-x-clip"
+      className="relative px-(--page-gutter) pb-28 pt-10 sm:pt-14 overflow-x-clip"
       style={{
         backgroundColor: 'var(--hm-paper)',
         color: 'var(--hm-ink)',
@@ -168,7 +168,7 @@ export function MidnightPage({ page }: { page: ThemePage }) {
                   key={p}
                   type="button"
                   onClick={() => setPercentile(p)}
-                  className={`min-h-[44px] min-w-[56px] rounded px-3 py-1 font-bold transition-all cursor-pointer flex items-center justify-center ${
+                  className={`min-h-11 min-w-14 rounded px-3 py-1 font-bold transition-all cursor-pointer flex items-center justify-center ${
                     percentile === p
                       ? 'bg-ink text-paper ring-1 ring-accent-line shadow-sm'
                       : 'text-muted hover:text-ink hover:bg-paper-2'
@@ -237,7 +237,7 @@ export function MidnightPage({ page }: { page: ThemePage }) {
                     onMouseEnter={() => setPick(i)}
                     onFocus={() => setPick(i)}
                     onClick={() => setPick(i)}
-                    className={`flex w-full items-center gap-3 py-3 px-2 text-left transition-colors min-h-[44px] rounded-lg cursor-pointer ${
+                    className={`flex w-full items-center gap-3 py-3 px-2 text-left transition-colors min-h-11 rounded-lg cursor-pointer ${
                       on ? 'bg-accent/15' : 'hover:bg-paper-2/60'
                     }`}
                   >

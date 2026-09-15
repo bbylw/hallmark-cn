@@ -8,7 +8,7 @@ import { THEME_PAGE_COMPONENTS } from './themes'
 function ThemeSkeleton() {
   return (
     <div
-      className="mx-auto min-h-[60vh] animate-pulse px-[var(--page-gutter)] py-20"
+      className="mx-auto min-h-[60vh] animate-pulse px-(--page-gutter) py-20"
       style={{ maxWidth: 'var(--page-max)' }}
       aria-busy="true"
       aria-label="正在加载主题装置..."
@@ -46,7 +46,7 @@ export function ThemePage() {
   const Body = THEME_PAGE_COMPONENTS[page.theme]
 
   return (
-    <div className="min-h-[100dvh] bg-paper">
+    <div className="min-h-dvh bg-paper">
       <Nav page={page} />
       <Suspense fallback={<ThemeSkeleton />}>
         {Body ? <Body page={page} /> : null}

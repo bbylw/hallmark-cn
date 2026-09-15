@@ -27,7 +27,7 @@ export function Img({
         className={
           fill
             ? 'h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]'
-            : 'aspect-[16/10] w-full object-cover'
+            : 'aspect-16/10 w-full object-cover'
         }
       />
     </picture>
@@ -171,7 +171,7 @@ export function Nav({ page }: { page: ThemePage }) {
   }
   return (
     <header
-      className="mx-auto px-[var(--page-gutter)]"
+      className="mx-auto px-(--page-gutter)"
       style={{ maxWidth: 'var(--page-max)' }}
     >
       {base[page.nav]}
@@ -276,7 +276,7 @@ export function Footer({ page }: { page: ThemePage }) {
   }
   return (
     <footer
-      className="mx-auto border-t border-rule px-[var(--page-gutter)]"
+      className="mx-auto border-t border-rule px-(--page-gutter)"
       style={{ maxWidth: 'var(--page-max)' }}
     >
       {body[page.footer]}

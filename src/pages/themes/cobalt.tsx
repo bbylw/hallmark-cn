@@ -121,7 +121,7 @@ export function CobaltPage({ page }: { page: ThemePage }) {
   )
 
   return (
-    <main id="main" className="px-[var(--page-gutter)] pb-28 pt-8 sm:pt-14">
+    <main id="main" className="px-(--page-gutter) pb-28 pt-8 sm:pt-14">
       <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}>
         
         {/* 顶部企业级文档处理引擎公报条 */}

@@ -252,7 +252,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
   return (
     <main
       id="main"
-      className="relative px-[var(--page-gutter)] pb-32 pt-8 sm:pt-12 text-ink selection:bg-accent-line selection:text-paper"
+      className="relative px-(--page-gutter) pb-32 pt-8 sm:pt-12 text-ink selection:bg-accent-line selection:text-paper"
       style={{ overflowX: 'clip' }}
     >
       {/* 全局微弱纸张噪点叠加层（孔版未涂布纸专属物态触感） */}
@@ -264,7 +264,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-[var(--page-max)]">
+      <div className="relative z-10 mx-auto max-w-(--page-max)">
         {/* 顶部报头标定 (Masthead strip) */}
         <header className="border-b border-rule pb-4">
           <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-xs text-muted">
@@ -347,7 +347,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
               <Cta label={page.cta} done="工坊预约号与展位手册已发送至邮箱" />
               <a
                 href="#paper-lab"
-                className="inline-flex min-h-[44px] items-center gap-2 rounded border border-rule px-4 py-2 font-mono text-xs font-bold text-ink hover:border-ink transition-colors"
+                className="inline-flex min-h-11 items-center gap-2 rounded border border-rule px-4 py-2 font-mono text-xs font-bold text-ink hover:border-ink transition-colors"
               >
                 探索特种纸标本 ↓
               </a>
@@ -378,7 +378,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
                       key={p.name}
                       type="button"
                       onClick={() => setDrumIdx(i)}
-                      className={`min-h-[32px] rounded px-2.5 py-1 font-bold transition-all ${
+                      className={`min-h-8 rounded px-2.5 py-1 font-bold transition-all ${
                         drumIdx === i
                           ? 'bg-ink text-paper ring-1 ring-accent-line'
                           : 'border border-rule text-muted hover:border-ink hover:text-ink'
@@ -428,7 +428,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
 
               {/* 核心画布：真实孔版叠印与半调网点模拟区 */}
               <div
-                className="relative mt-5 aspect-[16/10] w-full overflow-hidden rounded border border-rule select-none"
+                className="relative mt-5 aspect-16/10 w-full overflow-hidden rounded border border-rule select-none"
                 style={{
                   backgroundColor: currentPaper.color,
                   boxShadow: 'inset 0 0 20px rgba(0,0,0,0.04)',
@@ -638,7 +638,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
                       step={0.5}
                       value={offX}
                       onChange={(e) => setOffX(Number(e.target.value))}
-                      className="mt-1.5 min-h-[44px] w-full cursor-pointer accent-accent-line"
+                      className="mt-1.5 min-h-11 w-full cursor-pointer accent-accent-line"
                       aria-label="调整水平走纸偏移量"
                     />
                   </label>
@@ -655,7 +655,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
                       step={0.5}
                       value={offY}
                       onChange={(e) => setOffY(Number(e.target.value))}
-                      className="mt-1.5 min-h-[44px] w-full cursor-pointer accent-accent-line"
+                      className="mt-1.5 min-h-11 w-full cursor-pointer accent-accent-line"
                       aria-label="调整垂直进纸偏移量"
                     />
                   </label>
@@ -674,7 +674,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
                           setStampWord(w)
                           setPatternMode('type')
                         }}
-                        className={`min-h-[32px] rounded px-2.5 py-1 font-mono text-xs font-bold transition-all ${
+                        className={`min-h-8 rounded px-2.5 py-1 font-mono text-xs font-bold transition-all ${
                           patternMode === 'type' && stampWord === w
                             ? 'bg-ink text-paper'
                             : 'border border-rule text-muted hover:border-ink hover:text-ink'
@@ -691,7 +691,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
                     <button
                       type="button"
                       onClick={() => setPatternMode('geo')}
-                      className={`min-h-[32px] rounded px-2 py-1 font-mono text-xs transition-all ${
+                      className={`min-h-8 rounded px-2 py-1 font-mono text-xs transition-all ${
                         patternMode === 'geo'
                           ? 'bg-ink text-paper font-bold'
                           : 'border border-rule text-muted hover:border-ink'
@@ -702,7 +702,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
                     <button
                       type="button"
                       onClick={() => setPatternMode('botanical')}
-                      className={`min-h-[32px] rounded px-2 py-1 font-mono text-xs transition-all ${
+                      className={`min-h-8 rounded px-2 py-1 font-mono text-xs transition-all ${
                         patternMode === 'botanical'
                           ? 'bg-ink text-paper font-bold'
                           : 'border border-rule text-muted hover:border-ink'
@@ -713,7 +713,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
                     <button
                       type="button"
                       onClick={() => setPatternMode('zine')}
-                      className={`min-h-[32px] rounded px-2 py-1 font-mono text-xs transition-all ${
+                      className={`min-h-8 rounded px-2 py-1 font-mono text-xs transition-all ${
                         patternMode === 'zine'
                           ? 'bg-ink text-paper font-bold'
                           : 'border border-rule text-muted hover:border-ink'
@@ -903,7 +903,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
                   key={stock.id}
                   type="button"
                   onClick={() => setActivePaper(stock.id)}
-                  className={`w-full text-left rounded border p-4 transition-all min-h-[44px] flex items-center justify-between ${
+                  className={`w-full text-left rounded border p-4 transition-all min-h-11 flex items-center justify-between ${
                     activePaper === stock.id
                       ? 'border-ink bg-paper shadow-[3px_3px_0px_var(--hm-ink)]'
                       : 'border-rule bg-paper/40 hover:border-ink/60'
@@ -1001,7 +1001,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
                   key={tab.id}
                   type="button"
                   onClick={() => setGalleryFilter(tab.id as any)}
-                  className={`min-h-[36px] rounded px-3 py-1 font-mono text-xs font-bold transition-all ${
+                  className={`min-h-9 rounded px-3 py-1 font-mono text-xs font-bold transition-all ${
                     galleryFilter === tab.id
                       ? 'bg-ink text-paper ring-1 ring-accent-line'
                       : 'border border-rule text-muted hover:border-ink hover:text-ink'
@@ -1136,7 +1136,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
                             key={sess.id}
                             type="button"
                             onClick={() => setTicketSession(sess.id as any)}
-                            className={`min-h-[44px] rounded border p-2 text-left transition-all ${
+                            className={`min-h-11 rounded border p-2 text-left transition-all ${
                               ticketSession === sess.id
                                 ? 'border-ink bg-paper-2 shadow-[2px_2px_0px_var(--hm-ink)]'
                                 : 'border-rule hover:border-ink'
@@ -1158,7 +1158,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
                       type="button"
                       onClick={() => setIsBooked(true)}
                       disabled={isBooked}
-                      className={`min-h-[44px] rounded px-5 py-2 font-mono text-xs font-bold uppercase transition-all ${
+                      className={`min-h-11 rounded px-5 py-2 font-mono text-xs font-bold uppercase transition-all ${
                         isBooked
                           ? 'bg-accent-line text-paper cursor-default'
                           : 'bg-ink text-paper hover:bg-accent-line hover:text-paper active:translate-y-0.5'
@@ -1171,8 +1171,8 @@ export function RisoPage({ page }: { page: ThemePage }) {
 
                 {/* 齿孔虚线分割线 (Perforated tear line) */}
                 <div className="relative hidden md:flex flex-col items-center justify-between border-l-2 border-dashed border-ink/40 py-2 -ml-px">
-                  <div className="absolute -top-3.5 -left-3.5 h-7 w-7 rounded-full bg-[var(--hm-paper)] border-2 border-ink" />
-                  <div className="absolute -bottom-3.5 -left-3.5 h-7 w-7 rounded-full bg-[var(--hm-paper)] border-2 border-ink" />
+                  <div className="absolute -top-3.5 -left-3.5 h-7 w-7 rounded-full bg-(--hm-paper) border-2 border-ink" />
+                  <div className="absolute -bottom-3.5 -left-3.5 h-7 w-7 rounded-full bg-(--hm-paper) border-2 border-ink" />
                 </div>
 
                 {/* 票券副联 / 存根 (4列) */}

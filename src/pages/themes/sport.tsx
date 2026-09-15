@@ -144,10 +144,10 @@ export function SportPage({ page }: { page: ThemePage }) {
   return (
     <main
       id="main"
-      className="relative px-[var(--page-gutter)] pb-32 pt-8 sm:pt-12 text-ink selection:bg-accent-line selection:text-paper"
+      className="relative px-(--page-gutter) pb-32 pt-8 sm:pt-12 text-ink selection:bg-accent-line selection:text-paper"
       style={{ overflowX: 'clip' }}
     >
-      <div className="relative z-10 mx-auto max-w-[var(--page-max)]">
+      <div className="relative z-10 mx-auto max-w-(--page-max)">
         {/* 顶部田径跑道发车台条带 (Track Staging Strip) */}
         <header className="border-b-2 border-ink pb-4">
           <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-xs text-muted">
@@ -213,7 +213,7 @@ export function SportPage({ page }: { page: ThemePage }) {
                 <Cta label={page.cta} done="名额已锁定，今晚 19:30 哨所发车见" />
                 <a
                   href="#elevation"
-                  className="inline-flex min-h-[44px] items-center gap-2 border border-rule px-4 py-2 font-mono text-xs font-bold text-ink hover:border-ink transition-colors"
+                  className="inline-flex min-h-11 items-center gap-2 border border-rule px-4 py-2 font-mono text-xs font-bold text-ink hover:border-ink transition-colors"
                 >
                   查看沿江补给哨所地图 ↓
                 </a>
@@ -275,7 +275,7 @@ export function SportPage({ page }: { page: ThemePage }) {
                   key={mins}
                   type="button"
                   onClick={() => setDurationMinutes(mins)}
-                  className={`min-h-[36px] px-3 py-1 font-mono text-xs font-bold transition-all ${
+                  className={`min-h-9 px-3 py-1 font-mono text-xs font-bold transition-all ${
                     durationMinutes === mins
                       ? 'bg-ink text-paper ring-2 ring-accent-line'
                       : 'border border-rule bg-paper text-ink hover:border-ink'
@@ -425,7 +425,7 @@ export function SportPage({ page }: { page: ThemePage }) {
                       key={spm}
                       type="button"
                       onClick={() => setActiveCadence(spm)}
-                      className={`min-h-[44px] border p-2 font-bold transition-all ${
+                      className={`min-h-11 border p-2 font-bold transition-all ${
                         activeCadence === spm
                           ? 'border-ink bg-ink text-paper'
                           : 'border-rule hover:border-ink text-ink'
@@ -579,7 +579,7 @@ export function SportPage({ page }: { page: ThemePage }) {
                   type="text"
                   value={runnerName}
                   onChange={(e) => setRunnerName(e.target.value)}
-                  className="min-h-[44px] w-full border border-rule p-2 font-mono text-sm bg-paper-2 font-bold text-ink"
+                  className="min-h-11 w-full border border-rule p-2 font-mono text-sm bg-paper-2 font-bold text-ink"
                   aria-label="选手昵称"
                 />
               </div>
@@ -587,7 +587,7 @@ export function SportPage({ page }: { page: ThemePage }) {
                 <label className="block text-muted text-[10px] uppercase mb-1">
                   存包柜分配预留:
                 </label>
-                <div className="min-h-[44px] border border-rule p-2.5 bg-paper-2/40 flex items-center justify-between font-bold text-ink">
+                <div className="min-h-11 border border-rule p-2.5 bg-paper-2/40 flex items-center justify-between font-bold text-ink">
                   <span>LOCKER # B-{currentLane.lane}09</span>
                   <span className="text-accent-line">已锁定</span>
                 </div>
@@ -602,7 +602,7 @@ export function SportPage({ page }: { page: ThemePage }) {
                 type="button"
                 onClick={() => setIsBibClaimed(true)}
                 disabled={isBibClaimed}
-                className={`min-h-[44px] px-6 py-2 font-mono text-xs font-bold uppercase transition-all ${
+                className={`min-h-11 px-6 py-2 font-mono text-xs font-bold uppercase transition-all ${
                   isBibClaimed
                     ? 'bg-accent-line text-paper cursor-default'
                     : 'bg-ink text-paper hover:bg-accent-line'

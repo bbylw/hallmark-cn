@@ -28,7 +28,7 @@ export function MacroRail() {
   return (
     <section
       id="shapes"
-      className="mx-auto px-[var(--page-gutter)] py-20 sm:py-24"
+      className="mx-auto px-(--page-gutter) py-20 sm:py-24"
       style={{ maxWidth: 'var(--page-max)' }}
     >
       <Reveal className="flex flex-wrap items-end justify-between gap-6">

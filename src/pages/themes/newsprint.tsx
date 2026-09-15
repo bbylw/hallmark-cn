@@ -231,7 +231,7 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
   return (
     <main
       id="main"
-      className="relative px-[var(--page-gutter)] pb-32 pt-8 sm:pt-12 text-ink selection:bg-accent-line selection:text-paper"
+      className="relative px-(--page-gutter) pb-32 pt-8 sm:pt-12 text-ink selection:bg-accent-line selection:text-paper"
       style={{ overflowX: 'clip' }}
     >
       {/* 骨色报纸背景纸纹 */}
@@ -243,7 +243,7 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-[var(--page-max)]">
+      <div className="relative z-10 mx-auto max-w-(--page-max)">
         {/* 印刷台裁切规线与标度标靶 (Press marks / Crop lines) */}
         <div className="flex items-center justify-between font-mono text-[10px] text-muted border-b border-rule pb-2" aria-hidden="true">
           <div className="flex items-center gap-2">
@@ -427,7 +427,7 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
                   key={diag.id}
                   type="button"
                   onClick={() => setActiveDiag(diag.id)}
-                  className={`w-full text-left rounded-none border-2 p-4 transition-all min-h-[44px] flex items-center justify-between ${
+                  className={`w-full text-left rounded-none border-2 p-4 transition-all min-h-11 flex items-center justify-between ${
                     activeDiag === diag.id
                       ? 'border-ink bg-paper shadow-sm'
                       : 'border-rule bg-paper/60 hover:border-ink/80'
@@ -680,7 +680,7 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
                     <button
                       type="button"
                       onClick={() => setActiveTab('fixed')}
-                      className={`min-h-[36px] rounded-none px-3 py-1 font-bold font-mono transition-all ${
+                      className={`min-h-9 rounded-none px-3 py-1 font-bold font-mono transition-all ${
                         activeTab === 'fixed'
                           ? 'border-2 border-ink bg-ink text-paper'
                           : 'border border-rule text-muted hover:border-ink hover:text-ink'
@@ -692,7 +692,7 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
                     <button
                       type="button"
                       onClick={() => setActiveTab('unfixable')}
-                      className={`min-h-[36px] rounded-none px-3 py-1 font-bold font-mono transition-all ${
+                      className={`min-h-9 rounded-none px-3 py-1 font-bold font-mono transition-all ${
                         activeTab === 'unfixable'
                           ? 'border-2 border-ink bg-ink text-paper'
                           : 'border border-rule text-muted hover:border-ink hover:text-ink'

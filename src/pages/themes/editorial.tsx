@@ -178,7 +178,7 @@ export function EditorialPage({ page }: { page: ThemePage }) {
   return (
     <main
       id="main"
-      className="relative px-[var(--page-gutter)] pb-32 pt-10 sm:pt-14 overflow-x-clip"
+      className="relative px-(--page-gutter) pb-32 pt-10 sm:pt-14 overflow-x-clip"
       style={{
         backgroundColor: 'var(--hm-paper)',
         color: 'var(--hm-ink)',
@@ -339,7 +339,7 @@ export function EditorialPage({ page }: { page: ThemePage }) {
                       <button
                         type="button"
                         onClick={() => setActiveArticle(it.v)}
-                        className={`group flex w-full items-baseline gap-3 sm:gap-4 py-4 text-left transition-all min-h-[52px] ${
+                        className={`group flex w-full items-baseline gap-3 sm:gap-4 py-4 text-left transition-all min-h-13 ${
                           isSelected ? 'bg-accent/10 pl-3 rounded-md font-semibold' : 'hover:pl-2'
                         }`}
                       >
@@ -456,7 +456,7 @@ export function EditorialPage({ page }: { page: ThemePage }) {
                   key={b.id}
                   type="button"
                   onClick={() => setActiveBindingId(b.id)}
-                  className={`min-h-[52px] p-3 rounded-lg text-left transition-all border flex flex-col justify-between ${
+                  className={`min-h-13 p-3 rounded-lg text-left transition-all border flex flex-col justify-between ${
                     active
                       ? 'border-accent-line bg-accent/15 text-ink font-bold shadow-sm'
                       : 'border-rule bg-paper/60 text-ink-2 hover:border-rule-2 hover:text-ink'

@@ -74,12 +74,12 @@ export function GridPage({ page }: { page: ThemePage }) {
   const currentTic = activeInksList.reduce((acc, ink) => acc + Math.round(ink.density * 45), 0)
 
   return (
-    <main id="main" className="px-[var(--page-gutter)] pb-24 pt-8 sm:pt-12 text-ink selection:bg-accent selection:text-ink relative">
+    <main id="main" className="px-(--page-gutter) pb-24 pt-8 sm:pt-12 text-ink selection:bg-accent selection:text-ink relative">
       {/* 瑞士 12 栏辅助参考线层 (可切换) */}
       {showGridLines && (
         <div
           aria-hidden="true"
-          className="pointer-events-none fixed inset-0 z-40 mx-auto max-w-[var(--page-max)] px-[var(--page-gutter)]"
+          className="pointer-events-none fixed inset-0 z-40 mx-auto max-w-(--page-max) px-(--page-gutter)"
         >
           <div className="grid h-full grid-cols-12 gap-x-4">
             {Array.from({ length: 12 }).map((_, i) => (
@@ -92,7 +92,7 @@ export function GridPage({ page }: { page: ThemePage }) {
         </div>
       )}
 
-      <div className="mx-auto max-w-[var(--page-max)] min-w-0">
+      <div className="mx-auto max-w-(--page-max) min-w-0">
         
         {/* 顶部微状态公报条 */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-3 font-mono text-xs text-muted">
@@ -130,7 +130,7 @@ export function GridPage({ page }: { page: ThemePage }) {
               <button
                 type="button"
                 onClick={() => setShowGridLines((v) => !v)}
-                className={`min-h-[44px] rounded-lg px-3 py-1.5 font-mono text-xs font-bold transition-all ${
+                className={`min-h-11 rounded-lg px-3 py-1.5 font-mono text-xs font-bold transition-all ${
                   showGridLines
                     ? 'border border-cyan-500 bg-cyan-500/15 text-cyan-800 dark:text-cyan-200'
                     : 'border border-rule bg-paper-2 text-ink-2 hover:border-ink/50'
@@ -144,7 +144,7 @@ export function GridPage({ page }: { page: ThemePage }) {
               <button
                 type="button"
                 onClick={() => setMisregistration((v) => !v)}
-                className={`min-h-[44px] rounded-lg px-4 py-1.5 font-mono text-xs font-bold transition-all ${
+                className={`min-h-11 rounded-lg px-4 py-1.5 font-mono text-xs font-bold transition-all ${
                   misregistration
                     ? 'bg-ink text-paper shadow-sm'
                     : 'border border-rule bg-paper-2 text-ink-2 hover:border-ink/50'
@@ -189,7 +189,7 @@ export function GridPage({ page }: { page: ThemePage }) {
                     key={s.code}
                     type="button"
                     onClick={() => toggleInk(s.code)}
-                    className={`flex items-center gap-2 rounded-lg border px-3 py-2 min-h-[44px] transition-all ${
+                    className={`flex items-center gap-2 rounded-lg border px-3 py-2 min-h-11 transition-all ${
                       enabled
                         ? 'border-rule bg-paper shadow-xs hover:border-ink/50'
                         : 'border-transparent bg-paper-2/60 opacity-40 hover:opacity-70'

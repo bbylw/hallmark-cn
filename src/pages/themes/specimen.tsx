@@ -78,7 +78,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
   const [activeAnatomy, setActiveAnatomy] = useState(0)
 
   return (
-    <main id="main" className="px-[var(--page-gutter)] pb-28 pt-8 sm:pt-14">
+    <main id="main" className="px-(--page-gutter) pb-28 pt-8 sm:pt-14">
       <div
         style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}
         className="grid gap-x-10 gap-y-12 lg:grid-cols-12"
@@ -181,7 +181,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
                   step={10}
                   value={w}
                   onChange={(e) => setW(Number(e.target.value))}
-                  className="min-h-[44px] w-full max-w-md cursor-pointer flex-1"
+                  className="min-h-11 w-full max-w-md cursor-pointer flex-1"
                   aria-label="调整展示字重"
                 />
                 <span className="font-mono text-xs text-muted">200 ~ 900 连续无级轴</span>
@@ -206,7 +206,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
                       step={2}
                       value={fontSize}
                       onChange={(e) => setFontSize(Number(e.target.value))}
-                      className="min-h-[44px] w-28 sm:w-36 cursor-pointer"
+                      className="min-h-11 w-28 sm:w-36 cursor-pointer"
                       aria-label="调整试字字号"
                     />
                     <span className="text-ink font-bold w-10">{fontSize}px</span>
@@ -221,7 +221,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
                       step={0.05}
                       value={lineHeight}
                       onChange={(e) => setLineHeight(Number(e.target.value))}
-                      className="min-h-[44px] w-20 cursor-pointer"
+                      className="min-h-11 w-20 cursor-pointer"
                       aria-label="调整行高"
                     />
                     <span className="text-ink font-bold">{lineHeight.toFixed(2)}</span>
@@ -236,7 +236,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
                       step={0.01}
                       value={letterSpacing}
                       onChange={(e) => setLetterSpacing(Number(e.target.value))}
-                      className="min-h-[44px] w-20 cursor-pointer"
+                      className="min-h-11 w-20 cursor-pointer"
                       aria-label="调整字距"
                     />
                     <span className="text-ink font-bold">{letterSpacing.toFixed(2)}</span>
@@ -247,7 +247,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
                   <button
                     type="button"
                     onClick={() => setTabularNums((v) => !v)}
-                    className={`min-h-[44px] rounded px-3 py-1 font-mono text-xs transition-colors ${
+                    className={`min-h-11 rounded px-3 py-1 font-mono text-xs transition-colors ${
                       tabularNums
                         ? 'bg-ink text-paper font-bold'
                         : 'border border-rule text-muted hover:border-ink hover:text-ink'
@@ -260,7 +260,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
                   <button
                     type="button"
                     onClick={() => setLiga((v) => !v)}
-                    className={`min-h-[44px] rounded px-3 py-1 font-mono text-xs transition-colors ${
+                    className={`min-h-11 rounded px-3 py-1 font-mono text-xs transition-colors ${
                       liga
                         ? 'bg-ink text-paper font-bold'
                         : 'border border-rule text-muted hover:border-ink hover:text-ink'
@@ -274,7 +274,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
                   <button
                     type="button"
                     onClick={() => setTestText('天地玄黄，宇宙洪荒。日月盈昃，辰宿列张。寒来暑往，秋收冬藏。')}
-                    className="min-h-[44px] rounded border-2 border-rule px-3.5 py-1 font-mono text-xs font-bold text-ink hover:border-accent-line hover:text-accent-line bg-paper-2/60 transition-colors"
+                    className="min-h-11 rounded border-2 border-rule px-3.5 py-1 font-mono text-xs font-bold text-ink hover:border-accent-line hover:text-accent-line bg-paper-2/60 transition-colors"
                   >
                     载入千字文
                   </button>
@@ -282,7 +282,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
                   <button
                     type="button"
                     onClick={() => setTestText('The quick brown fox jumps over the lazy dog 1234567890.')}
-                    className="min-h-[44px] rounded border border-rule px-3 py-1 font-mono text-xs text-muted hover:text-ink hover:border-ink"
+                    className="min-h-11 rounded border border-rule px-3 py-1 font-mono text-xs text-muted hover:text-ink hover:border-ink"
                   >
                     西文全字母
                   </button>

@@ -197,7 +197,7 @@ export function CoralPage({ page }: { page: ThemePage }) {
   return (
     <main
       id="main"
-      className="relative px-[var(--page-gutter)] pb-28 pt-10 sm:pt-14 overflow-x-clip"
+      className="relative px-(--page-gutter) pb-28 pt-10 sm:pt-14 overflow-x-clip"
       style={{
         backgroundColor: 'var(--hm-paper)',
         color: 'var(--hm-ink)',
@@ -278,7 +278,7 @@ export function CoralPage({ page }: { page: ThemePage }) {
                         type="button"
                         aria-pressed={on}
                         onClick={() => setStep(i)}
-                        className={`flex w-full gap-4 py-4 text-left transition-all min-h-[56px] ${
+                        className={`flex w-full gap-4 py-4 text-left transition-all min-h-14 ${
                           on
                             ? 'border-l-4 border-accent-line bg-paper-2/80 pl-3 font-semibold'
                             : 'border-l-4 border-transparent pl-3 text-ink-2 hover:bg-paper-2/40'
@@ -438,7 +438,7 @@ export function CoralPage({ page }: { page: ThemePage }) {
                         <button
                           type="button"
                           onClick={() => setResolvedFee(true)}
-                          className="min-h-[44px] rounded-md bg-accent-line text-paper px-3 py-1.5 font-mono text-xs font-bold shadow hover:opacity-90 transition-opacity cursor-pointer flex items-center gap-1.5"
+                          className="min-h-11 rounded-md bg-accent-line text-paper px-3 py-1.5 font-mono text-xs font-bold shadow hover:opacity-90 transition-opacity cursor-pointer flex items-center gap-1.5"
                         >
                           <span>⚡</span>
                           <span>一键确认为账户管理费</span>
@@ -527,7 +527,7 @@ export function CoralPage({ page }: { page: ThemePage }) {
                   key={inv.id}
                   type="button"
                   onClick={() => setActiveInvoiceId(inv.id)}
-                  className={`min-h-[52px] p-3 rounded-lg text-left transition-all border flex flex-col justify-between ${
+                  className={`min-h-13 p-3 rounded-lg text-left transition-all border flex flex-col justify-between ${
                     active
                       ? 'border-accent-line bg-accent/15 text-ink font-bold shadow-sm'
                       : 'border-rule bg-paper/60 text-ink-2 hover:border-rule-2 hover:text-ink'

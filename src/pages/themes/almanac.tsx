@@ -179,8 +179,8 @@ export function AlmanacPage({ page }: { page: ThemePage }) {
   const safePercentage = Math.round((safeCropsCount / ROWS.length) * 100)
 
   return (
-    <main id="main" className="px-[var(--page-gutter)] pb-24 pt-8 sm:pt-12 text-ink selection:bg-accent selection:text-ink">
-      <div className="mx-auto max-w-[var(--page-max)] min-w-0">
+    <main id="main" className="px-(--page-gutter) pb-24 pt-8 sm:pt-12 text-ink selection:bg-accent selection:text-ink">
+      <div className="mx-auto max-w-(--page-max) min-w-0">
         
         {/* 顶部高寒保育站微状态公报条 */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-3 font-mono text-xs text-muted">
@@ -251,7 +251,7 @@ export function AlmanacPage({ page }: { page: ThemePage }) {
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id as any)}
-              className={`min-h-[44px] rounded-lg px-4 py-2 font-mono text-xs font-bold transition-colors ${
+              className={`min-h-11 rounded-lg px-4 py-2 font-mono text-xs font-bold transition-colors ${
                 activeTab === tab.id
                   ? 'bg-ink text-paper'
                   : 'bg-paper-2 text-ink-2 hover:bg-rule/50'
@@ -293,7 +293,7 @@ export function AlmanacPage({ page }: { page: ThemePage }) {
                   step={1}
                   value={localTemp}
                   onChange={(e) => setLocalTemp(Number(e.target.value))}
-                  className="min-h-[44px] w-full cursor-pointer"
+                  className="min-h-11 w-full cursor-pointer"
                   aria-label="拖动设定你所在地区的冬季预期最低温"
                 />
               </div>
@@ -415,7 +415,7 @@ export function AlmanacPage({ page }: { page: ThemePage }) {
                             type="button"
                             aria-pressed={on}
                             onClick={() => setPick(on ? null : r.code)}
-                            className={`flex w-full flex-wrap items-center gap-x-4 gap-y-2 py-3.5 px-3 text-left transition-all min-h-[48px] rounded-lg ${
+                            className={`flex w-full flex-wrap items-center gap-x-4 gap-y-2 py-3.5 px-3 text-left transition-all min-h-12 rounded-lg ${
                               on ? 'bg-accent/15' : 'hover:bg-paper-2/60'
                             }`}
                           >
@@ -526,7 +526,7 @@ export function AlmanacPage({ page }: { page: ThemePage }) {
                   key={term.term}
                   type="button"
                   onClick={() => setSelectedTerm(idx)}
-                  className={`min-h-[48px] rounded-xl border p-3 text-left transition-all ${
+                  className={`min-h-12 rounded-xl border p-3 text-left transition-all ${
                     selectedTerm === idx
                       ? 'border-ink bg-ink text-paper shadow-sm'
                       : 'border-rule bg-paper-2 text-ink hover:border-ink/50'
@@ -599,7 +599,7 @@ export function AlmanacPage({ page }: { page: ThemePage }) {
                     key={model.id}
                     type="button"
                     onClick={() => setSelectedAnatomy(idx)}
-                    className={`min-h-[44px] rounded-lg border px-3 py-1.5 font-mono text-xs font-bold transition-all ${
+                    className={`min-h-11 rounded-lg border px-3 py-1.5 font-mono text-xs font-bold transition-all ${
                       selectedAnatomy === idx
                         ? 'border-ink bg-ink text-paper'
                         : 'border-rule bg-paper-2 text-ink-2 hover:border-ink/50'

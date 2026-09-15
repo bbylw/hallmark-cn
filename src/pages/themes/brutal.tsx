@@ -127,7 +127,7 @@ export function BrutalPage({ page }: { page: ThemePage }) {
       }}
     >
       {/* 首屏巨字海报区 */}
-      <section className="px-[var(--page-gutter)] pb-16 pt-10 sm:pt-14">
+      <section className="px-(--page-gutter) pb-16 pt-10 sm:pt-14">
         <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}>
           <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-ink pb-4">
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-muted">
@@ -138,7 +138,7 @@ export function BrutalPage({ page }: { page: ThemePage }) {
               <button
                 type="button"
                 onClick={() => setOutlineMode('stroke')}
-                className={`min-h-[36px] border-2 px-3 py-1 font-mono text-xs font-bold transition-all ${
+                className={`min-h-9 border-2 px-3 py-1 font-mono text-xs font-bold transition-all ${
                   outlineMode === 'stroke'
                     ? 'border-ink bg-ink text-paper'
                     : 'border-rule text-muted hover:border-ink'
@@ -150,7 +150,7 @@ export function BrutalPage({ page }: { page: ThemePage }) {
               <button
                 type="button"
                 onClick={() => setOutlineMode('solid')}
-                className={`min-h-[36px] border-2 px-3 py-1 font-mono text-xs font-bold transition-all ${
+                className={`min-h-9 border-2 px-3 py-1 font-mono text-xs font-bold transition-all ${
                   outlineMode === 'solid'
                     ? 'border-ink bg-ink text-paper'
                     : 'border-rule text-muted hover:border-ink'
@@ -209,7 +209,7 @@ export function BrutalPage({ page }: { page: ThemePage }) {
 
       {/* 硬核红色通栏信息带 */}
       <section
-        className="px-[var(--page-gutter)] border-t-2 border-b-2 border-ink"
+        className="px-(--page-gutter) border-t-2 border-b-2 border-ink"
         style={{ backgroundColor: 'var(--hm-accent)' }}
       >
         <div
@@ -240,7 +240,7 @@ export function BrutalPage({ page }: { page: ThemePage }) {
           保留原有 audit_brutal.mjs 依赖：
           button:has-text("8.25\"") -> text=144mm 支架
           ──────────────────────────────────────────────────────────── */}
-      <section aria-labelledby={`${uid}-tool1-title`} className="px-[var(--page-gutter)] pt-16">
+      <section aria-labelledby={`${uid}-tool1-title`} className="px-(--page-gutter) pt-16">
         <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}>
           <div className="border-2 border-ink bg-paper p-6 sm:p-8 shadow-sm">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-ink pb-4">
@@ -258,7 +258,7 @@ export function BrutalPage({ page }: { page: ThemePage }) {
                     key={width}
                     type="button"
                     onClick={() => setSelectedWidth(width)}
-                    className={`min-h-[44px] px-4 py-2 font-mono text-xs font-bold transition-all border-2 ${
+                    className={`min-h-11 px-4 py-2 font-mono text-xs font-bold transition-all border-2 ${
                       selectedWidth === width
                         ? 'border-ink bg-ink text-paper shadow-sm'
                         : 'border-ink/40 bg-paper text-ink hover:border-ink'
@@ -313,7 +313,7 @@ export function BrutalPage({ page }: { page: ThemePage }) {
       {/* ────────────────────────────────────────────────────────────
           装置 2：7 层加拿大硬岩枫木板层物理剖切仪 (7-Ply Maple Anatomy)
           ──────────────────────────────────────────────────────────── */}
-      <section aria-labelledby={`${uid}-maple-title`} className="px-[var(--page-gutter)] pt-16">
+      <section aria-labelledby={`${uid}-maple-title`} className="px-(--page-gutter) pt-16">
         <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}>
           <div className="border-2 border-ink bg-paper p-6 sm:p-8">
             <div className="flex flex-wrap items-baseline justify-between gap-4 border-b-2 border-ink pb-4">
@@ -345,7 +345,7 @@ export function BrutalPage({ page }: { page: ThemePage }) {
                       key={ply.ply}
                       type="button"
                       onClick={() => setActivePlyIndex(idx)}
-                      className={`w-full min-h-[44px] px-3.5 py-2 text-left transition-all border-2 flex items-center justify-between ${
+                      className={`w-full min-h-11 px-3.5 py-2 text-left transition-all border-2 flex items-center justify-between ${
                         active
                           ? 'border-accent bg-accent/20 text-ink font-bold shadow-sm'
                           : 'border-rule bg-paper-2/60 text-ink-2 hover:border-ink hover:text-ink'
@@ -406,7 +406,7 @@ export function BrutalPage({ page }: { page: ThemePage }) {
       {/* ────────────────────────────────────────────────────────────
           装置 3：聚氨酯轮子杜氏硬度与回弹试验台 (Wheel Durometer Tester)
           ──────────────────────────────────────────────────────────── */}
-      <section aria-labelledby={`${uid}-wheel-title`} className="px-[var(--page-gutter)] pt-16">
+      <section aria-labelledby={`${uid}-wheel-title`} className="px-(--page-gutter) pt-16">
         <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}>
           <div className="border-2 border-ink bg-paper p-6 sm:p-8">
             <div className="flex flex-wrap items-baseline justify-between gap-4 border-b-2 border-ink pb-4">
@@ -435,7 +435,7 @@ export function BrutalPage({ page }: { page: ThemePage }) {
                 step={1}
                 value={durometer}
                 onChange={(e) => setDurometer(Number(e.target.value))}
-                className="w-full min-h-[44px] cursor-pointer accent-accent"
+                className="w-full min-h-11 cursor-pointer accent-accent"
                 aria-label="调节滑板轮硬度"
               />
               <div className="flex justify-between text-[11px] font-mono text-muted mt-1">
@@ -470,7 +470,7 @@ export function BrutalPage({ page }: { page: ThemePage }) {
       {/* ────────────────────────────────────────────────────────────
           价目清单与终身断板免费移植服务
           ──────────────────────────────────────────────────────────── */}
-      <section className="px-[var(--page-gutter)] pb-24 pt-16">
+      <section className="px-(--page-gutter) pb-24 pt-16">
         <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}>
           <div className="border-b-2 border-ink pb-3 flex flex-wrap items-baseline justify-between gap-4">
             <span className="font-mono text-xs font-bold text-ink uppercase tracking-wider">

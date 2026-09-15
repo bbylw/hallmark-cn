@@ -162,7 +162,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
       }}
     >
       {/* 顶部街区红线状态条 */}
-      <div className="border-b-2 border-rule bg-paper-2/90 px-[var(--page-gutter)] py-2 text-xs font-mono">
+      <div className="border-b-2 border-rule bg-paper-2/90 px-(--page-gutter) py-2 text-xs font-mono">
         <div
           className="flex flex-wrap items-center justify-between gap-3"
           style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}
@@ -186,7 +186,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
 
       {/* 首屏：极具张力的海报版式，字压在左下 */}
       <section
-        className="flex min-h-[52dvh] flex-col px-[var(--page-gutter)] pt-12 sm:pt-16 pb-10"
+        className="flex min-h-[52dvh] flex-col px-(--page-gutter) pt-12 sm:pt-16 pb-10"
         style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}
       >
         <div className="flex flex-wrap items-baseline justify-between gap-4 border-b-2 border-rule pb-4">
@@ -215,7 +215,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
 
       {/* 红条：全页唯一一句巨幅导语 */}
       <section
-        className="px-[var(--page-gutter)]"
+        className="px-(--page-gutter)"
         style={{ backgroundColor: 'var(--hm-accent)' }}
       >
         <div
@@ -245,7 +245,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
           ──────────────────────────────────────────────────────────── */}
       <section
         aria-labelledby={`${uid}-calc-title`}
-        className="px-[var(--page-gutter)] pt-16"
+        className="px-(--page-gutter) pt-16"
         style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}
       >
         <div className="border-2 border-ink bg-paper p-6 sm:p-8 shadow-sm">
@@ -279,7 +279,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
                   step={100}
                   value={rent}
                   onChange={(e) => setRent(Number(e.target.value))}
-                  className="mt-3 min-h-[44px] w-full cursor-pointer accent-accent"
+                  className="mt-3 min-h-11 w-full cursor-pointer accent-accent"
                   aria-label="输入当前月租金"
                 />
                 <div className="flex justify-between text-[11px] font-mono text-muted mt-1">
@@ -301,7 +301,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
                   step={1}
                   value={hike}
                   onChange={(e) => setHike(Number(e.target.value))}
-                  className="mt-3 min-h-[44px] w-full cursor-pointer accent-accent"
+                  className="mt-3 min-h-11 w-full cursor-pointer accent-accent"
                   aria-label="输入房东要求的加租幅度百分比"
                 />
                 <div className="flex justify-between text-[11px] font-mono text-muted mt-1">
@@ -365,7 +365,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
           ──────────────────────────────────────────────────────────── */}
       <section
         aria-labelledby={`${uid}-case-title`}
-        className="px-[var(--page-gutter)] pt-16"
+        className="px-(--page-gutter) pt-16"
         style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}
       >
         <div className="flex flex-wrap items-baseline justify-between gap-4 border-b-2 border-rule pb-3">
@@ -452,7 +452,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
           ──────────────────────────────────────────────────────────── */}
       <section
         aria-labelledby={`${uid}-terms-title`}
-        className="px-[var(--page-gutter)] pt-16"
+        className="px-(--page-gutter) pt-16"
         style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}
       >
         <div className="flex flex-wrap items-baseline justify-between gap-4 border-b-2 border-rule pb-3">
@@ -480,7 +480,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
                 <button
                   type="button"
                   onClick={() => setExpandedClauseId(isExpanded ? null : term.id)}
-                  className="w-full p-4 text-left flex flex-wrap items-center justify-between gap-3 min-h-[52px]"
+                  className="w-full p-4 text-left flex flex-wrap items-center justify-between gap-3 min-h-13"
                 >
                   <div className="flex items-center gap-3">
                     <span className="font-mono text-xs font-bold text-accent-line">{term.id}</span>
@@ -515,7 +515,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
           button:has-text("在线连署支持宣言") -> text=68
           ──────────────────────────────────────────────────────────── */}
       <section
-        className="px-[var(--page-gutter)] pt-20"
+        className="px-(--page-gutter) pt-20"
         style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}
       >
         <div className="grid gap-x-14 gap-y-12 lg:grid-cols-12 items-start">
@@ -590,7 +590,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
                   type="button"
                   onClick={() => setSigned(true)}
                   disabled={signed}
-                  className={`min-h-[48px] w-full px-4 py-3 font-mono text-sm font-bold transition-all border-2 flex items-center justify-center gap-2 ${
+                  className={`min-h-12 w-full px-4 py-3 font-mono text-sm font-bold transition-all border-2 flex items-center justify-center gap-2 ${
                     signed
                       ? 'border-accent bg-accent/20 text-accent-line'
                       : 'border-accent bg-accent text-accent-ink hover:opacity-90 shadow-md'

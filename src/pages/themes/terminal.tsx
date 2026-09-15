@@ -354,7 +354,7 @@ export function TerminalPage({ page }: { page: ThemePage }) {
   return (
     <main
       id="main"
-      className="px-[var(--page-gutter)] pb-28 pt-8 sm:pt-14 relative"
+      className="px-(--page-gutter) pb-28 pt-8 sm:pt-14 relative"
       style={{
         backgroundColor: crtStyles.paper,
         backgroundImage: scanlines

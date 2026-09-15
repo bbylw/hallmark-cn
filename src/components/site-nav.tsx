@@ -14,7 +14,7 @@ export function SiteNav() {
   return (
     <header className="sticky top-0 z-40 border-b border-rule bg-paper">
       <div
-        className="mx-auto flex h-16 items-center gap-6 px-[var(--page-gutter)]"
+        className="mx-auto flex h-16 items-center gap-6 px-(--page-gutter)"
         style={{ maxWidth: 'var(--page-max)' }}
       >
         <Link to="/" className="tap flex shrink-0 items-baseline gap-2">

@@ -11,7 +11,7 @@ export function ExampleGallery() {
   return (
     <section
       id="work"
-      className="mx-auto px-[var(--page-gutter)] py-20 sm:py-24"
+      className="mx-auto px-(--page-gutter) py-20 sm:py-24"
       style={{ maxWidth: 'var(--page-max)' }}
     >
       <Reveal>
@@ -45,7 +45,7 @@ export function ExampleGallery() {
                 href={e.url}
                 target="_blank"
                 rel="noreferrer"
-                className="block overflow-hidden transition-all duration-300 group-hover:shadow-md focus-visible:outline-2 focus-visible:outline-(--hm-focus)"
+                className="block overflow-hidden transition-all duration-300 group-hover:shadow-md focus-visible:outline-2 focus-visible:outline-focus"
                 style={{
                   borderRadius: 'var(--hm-radius-card)',
                   border: 'var(--hm-rule-card) solid var(--hm-rule)',
@@ -65,7 +65,7 @@ export function ExampleGallery() {
                     height={600}
                     loading="lazy"
                     decoding="async"
-                    className="aspect-[16/10] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    className="aspect-16/10 w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                   />
                 </picture>
               </a>

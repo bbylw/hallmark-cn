@@ -114,10 +114,10 @@ export function BloomPage({ page }: { page: ThemePage }) {
   return (
     <main
       id="main"
-      className="relative px-[var(--page-gutter)] pb-32 pt-8 sm:pt-12 text-ink selection:bg-accent-line selection:text-paper"
+      className="relative px-(--page-gutter) pb-32 pt-8 sm:pt-12 text-ink selection:bg-accent-line selection:text-paper"
       style={{ overflowX: 'clip' }}
     >
-      <div className="relative z-10 mx-auto max-w-[var(--page-max)]">
+      <div className="relative z-10 mx-auto max-w-(--page-max)">
         {/* 顶部海洋水文环境探针 (Marine Hydro Station) */}
         <header className="rounded-2xl border border-rule bg-paper-2/60 p-4 sm:p-5">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule/70 pb-3">
@@ -196,7 +196,7 @@ export function BloomPage({ page }: { page: ThemePage }) {
               <Cta label={page.cta} done="已为您匹配今日潮位最优时段席位" />
               <a
                 href="#protocol"
-                className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-rule px-5 py-2 font-mono text-xs font-bold text-ink hover:border-ink transition-colors"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-rule px-5 py-2 font-mono text-xs font-bold text-ink hover:border-ink transition-colors"
               >
                 到场静息动线 ↓
               </a>
@@ -281,7 +281,7 @@ export function BloomPage({ page }: { page: ThemePage }) {
                     key={s.h}
                     type="button"
                     onClick={() => setPick(idx)}
-                    className={`rounded-2xl border p-3.5 text-left transition-all min-h-[44px] flex flex-col justify-between ${
+                    className={`rounded-2xl border p-3.5 text-left transition-all min-h-11 flex flex-col justify-between ${
                       pick === idx
                         ? 'border-accent-line bg-paper-2 shadow-sm ring-1 ring-accent-line'
                         : 'border-rule hover:border-ink/60 bg-paper-2/30'
@@ -483,7 +483,7 @@ export function BloomPage({ page }: { page: ThemePage }) {
                 type="button"
                 onClick={() => setIsBooked(true)}
                 disabled={isBooked}
-                className={`min-h-[44px] rounded-full px-6 py-2 font-mono text-xs font-bold uppercase transition-all ${
+                className={`min-h-11 rounded-full px-6 py-2 font-mono text-xs font-bold uppercase transition-all ${
                   isBooked
                     ? 'bg-accent-line text-paper cursor-default'
                     : 'bg-ink text-paper hover:bg-accent-line active:translate-y-0.5'
