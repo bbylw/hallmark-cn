@@ -594,7 +594,7 @@ export function ContactSheet() {
                 data-theme={t.id}
                 title={`${t.name} · ${t.zh}`}
                 aria-label={`查看 ${t.name} 主题`}
-                className="size-3 rounded-[2px] transition-transform duration-150 hover:scale-[1.5] hover:z-10"
+                className="size-3 rounded-xs transition-transform duration-150 hover:scale-[1.5] hover:z-10"
                 style={{ backgroundColor: 'var(--hm-accent)' }}
               />
             ))}
@@ -648,7 +648,7 @@ export function ContactSheet() {
               <Link
                 to={`/themes/${t.id}`}
                 data-theme={t.id}
-                className="group block overflow-hidden transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:[border-color:var(--hm-accent-line)] focus-visible:outline-2 focus-visible:outline-focus"
+                className="group block overflow-hidden transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-accent-line focus-visible:outline-2 focus-visible:outline-focus"
                 style={{
                   border: 'var(--hm-rule-card) solid var(--hm-rule)',
                   borderRadius: 'var(--hm-radius-card)',
@@ -717,7 +717,7 @@ export function ContactSheet() {
                     {SEPS.map((c, k) => (
                       <span
                         key={k}
-                        className="h-[3px] flex-1 transition-all duration-300 group-hover:h-[6px]"
+                        className="h-0.75 flex-1 transition-all duration-300 group-hover:h-1.5"
                         style={{ backgroundColor: c }}
                       />
                     ))}
@@ -779,7 +779,7 @@ export function ContactSheet() {
                 <Reveal key={p.to} index={list.length + si}>
                 <Link
                   to={p.to}
-                  className="group block overflow-hidden transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:[border-color:var(--hm-accent-line)] focus-visible:outline-2 focus-visible:outline-focus"
+                  className="group block overflow-hidden transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-accent-line focus-visible:outline-2 focus-visible:outline-focus"
                   style={{
                     border: 'var(--hm-rule-card) solid var(--hm-rule)',
                     borderRadius: 'var(--hm-radius-card)',
@@ -810,7 +810,7 @@ export function ContactSheet() {
                       {['var(--hm-rule-2)', 'var(--hm-ink-2)'].map((c, k) => (
                         <span
                           key={k}
-                          className="h-[3px] flex-1 transition-all duration-300 group-hover:h-[6px]"
+                          className="h-0.75 flex-1 transition-all duration-300 group-hover:h-1.5"
                           style={{ backgroundColor: c }}
                         />
                       ))}

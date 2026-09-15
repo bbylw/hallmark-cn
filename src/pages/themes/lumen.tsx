@@ -244,7 +244,7 @@ export function LumenPage({ page }: { page: ThemePage }) {
               ) : (
                 <span
                   aria-hidden
-                  className="border-y-[5px] border-l-[8px] border-y-transparent border-l-current"
+                  className="border-y-[5px] border-l-8 border-y-transparent border-l-current"
                 />
               )}
               <span>{isRunning ? '推理推演进行中…' : '模拟完整思维链推演'}</span>

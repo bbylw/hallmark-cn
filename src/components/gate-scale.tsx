@@ -26,7 +26,7 @@ export function GateScale() {
 
       {/* 58 道刻度尺 */}
       <div
-        className="mt-4 flex h-10 items-end gap-[3px] rounded p-1.5"
+        className="mt-4 flex h-10 items-end gap-0.75 rounded p-1.5"
         role="img"
         aria-label={`${totalGates} 道关卡的刻度，其中 ${CITED.length} 道为重点检查项`}
         style={{ backgroundColor: 'var(--hm-paper-2)' }}

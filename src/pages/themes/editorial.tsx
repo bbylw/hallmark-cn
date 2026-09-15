@@ -287,7 +287,7 @@ export function EditorialPage({ page }: { page: ThemePage }) {
                     <span className="font-mono text-xs font-bold px-2 py-0.5 bg-accent/20 text-accent-line border border-accent/40">
                       EXCERPT · 版芯试读
                     </span>
-                    <span className="font-bold text-sm text-ink break-words">
+                    <span className="font-bold text-sm text-ink wrap-break-word">
                       《{activeArticle}》
                     </span>
                   </div>
@@ -464,8 +464,8 @@ export function EditorialPage({ page }: { page: ThemePage }) {
                       : 'border-rule bg-paper/60 text-ink-2 hover:border-rule-2 hover:text-ink'
                   }`}
                 >
-                  <span className="text-xs font-bold break-words">{b.name.split('(')[0]}</span>
-                  <span className="text-xs font-mono text-muted mt-1 whitespace-normal break-words">{b.tag}</span>
+                  <span className="text-xs font-bold wrap-break-word">{b.name.split('(')[0]}</span>
+                  <span className="text-xs font-mono text-muted mt-1 whitespace-normal wrap-break-word">{b.tag}</span>
                 </button>
               )
             })}

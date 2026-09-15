@@ -286,7 +286,7 @@ export function GridPage({ page }: { page: ThemePage }) {
                 {SPECS.map(([k, v]) => (
                   <div key={k} className="flex items-baseline justify-between py-2 text-xs">
                     <span className="text-muted shrink-0 mr-2">{k}</span>
-                    <span className="font-mono text-right text-ink-2 font-medium break-words">{v}</span>
+                    <span className="font-mono text-right text-ink-2 font-medium wrap-break-word">{v}</span>
                   </div>
                 ))}
               </div>

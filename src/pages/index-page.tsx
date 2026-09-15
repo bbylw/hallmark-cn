@@ -48,7 +48,7 @@ export function IndexPage() {
         {/* 图纸底纹：淡方格网自上而下淡出，呼应「打样台」的制图语义 */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-[42rem] opacity-50"
+          className="pointer-events-none absolute inset-x-0 top-0 h-168 opacity-50"
           style={{
             backgroundImage:
               'linear-gradient(color-mix(in oklab, var(--hm-rule) 70%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--hm-rule) 70%, transparent) 1px, transparent 1px)',
@@ -149,11 +149,11 @@ export function IndexPage() {
                 style={{ lineHeight: 1.95 }}
               >
                 拒绝居中大圆角卡片与紫蓝渐变那一套，为每个真实需求定制宏观骨架，严格套用{' '}
-                <span className="font-semibold text-ink underline decoration-accent-line/60 decoration-[1.5px] underline-offset-[4px]">
+                <span className="font-semibold text-ink underline decoration-accent-line/60 decoration-[1.5px] underline-offset-4">
                   21 套独立主题
                 </span>{' '}
                 与{' '}
-                <span className="font-semibold text-ink underline decoration-accent-line/60 decoration-[1.5px] underline-offset-[4px]">
+                <span className="font-semibold text-ink underline decoration-accent-line/60 decoration-[1.5px] underline-offset-4">
                   58 道关卡
                 </span>
                 。
@@ -209,7 +209,7 @@ export function IndexPage() {
               >
                 <span
                   aria-hidden
-                  className="absolute -top-px left-8 h-[3px] w-10 bg-accent-line"
+                  className="absolute -top-px left-8 h-0.75 w-10 bg-accent-line"
                 />
                 <div className="flex items-center justify-between gap-2 border-b border-rule pb-3 mb-4">
                   <div className="flex items-center gap-2.5">
