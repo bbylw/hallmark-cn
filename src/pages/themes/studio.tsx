@@ -593,7 +593,7 @@ export function StudioPage({ page }: { page: ThemePage }) {
               </span>
               <span className="font-mono text-xs text-muted">{featured.length} 件主选</span>
             </div>
-            <div className="mt-6 grid gap-x-6 gap-y-10 sm:grid-cols-[repeat(3,minmax(0,1fr))]">
+            <div className="mt-6 grid gap-x-6 gap-y-10 sm:grid-cols-3">
               {featured.map((w) => (
                 <Tile key={w.client} w={w} size="lg" />
               ))}
@@ -613,7 +613,7 @@ export function StudioPage({ page }: { page: ThemePage }) {
               </span>
               <span className="font-mono text-xs text-muted">{rest.length} 件归档</span>
             </div>
-            <div className="mt-6 grid gap-x-6 gap-y-8 sm:grid-cols-[repeat(3,minmax(0,1fr))]">
+            <div className="mt-6 grid gap-x-6 gap-y-8 sm:grid-cols-3">
               {rest.map((w) => (
                 <Tile key={w.client} w={w} size="sm" />
               ))}

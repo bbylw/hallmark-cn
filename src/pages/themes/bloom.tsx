@@ -413,7 +413,7 @@ export function BloomPage({ page }: { page: ThemePage }) {
               <div key={f.t} className="relative pl-6 sm:pl-8">
                 {/* 节点圆形指示灯 */}
                 <span
-                  className="absolute -left-[9px] top-1.5 h-4 w-4 rounded-full border-2 border-paper bg-accent-line"
+                  className="absolute -left-2.25 top-1.5 h-4 w-4 rounded-full border-2 border-paper bg-accent-line"
                   aria-hidden
                 />
 

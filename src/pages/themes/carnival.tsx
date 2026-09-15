@@ -142,7 +142,7 @@ export function CarnivalPage({ page }: { page: ThemePage }) {
     const gStyle = GENRE_STYLES[r.genre] ?? GENRE_STYLES['后摇']
     return (
       <li
-        className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-3.5 transition-colors hover:bg-ink/[0.03] px-3 rounded-lg"
+        className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-3.5 transition-colors hover:bg-ink/3 px-3 rounded-lg"
         style={{ borderBottom: '1px solid var(--hm-rule)' }}
       >
         <div className="flex items-baseline gap-4 min-w-0">

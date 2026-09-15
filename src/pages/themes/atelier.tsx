@@ -295,7 +295,7 @@ export function AtelierPage({ page }: { page: ThemePage }) {
         {/* 双联竖幅 LOOKBOOK */}
         {LOOKS.length > 0 && (
           <div className={`${wrap} mt-20`} style={{ maxWidth: 'var(--page-max)' }}>
-            <div className="grid gap-x-6 gap-y-10 sm:grid-cols-[repeat(2,minmax(0,1fr))]">
+            <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2">
               {LOOKS.map((l) => (
                 <figure key={l.slug} className="min-w-0">
                   <Shot

@@ -328,7 +328,7 @@ export function CoralPage({ page }: { page: ThemePage }) {
               className="overflow-hidden rounded-xl shadow-sm border border-rule bg-paper"
             >
               <div className="overflow-x-auto">
-                <div className="min-w-[34rem]">
+                <div className="min-w-136">
                   {/* 表头控制条 */}
                   <div
                     className="flex flex-wrap items-center justify-between gap-3 px-5 py-3.5 border-b border-rule bg-paper-2"

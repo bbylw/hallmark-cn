@@ -391,7 +391,7 @@ export function ManifestoPage({ page }: { page: ThemePage }) {
                 key={c.id}
                 type="button"
                 onClick={() => setActiveCaseId(c.id)}
-                className={`min-h-[72px] p-4 text-left transition-all border-2 flex flex-col justify-between ${
+                className={`min-h-18 p-4 text-left transition-all border-2 flex flex-col justify-between ${
                   active
                     ? 'border-accent bg-accent/20 text-ink font-bold shadow-sm'
                     : 'border-rule bg-paper-2/60 text-ink-2 hover:border-rule-2 hover:text-ink'

@@ -614,7 +614,7 @@ export function HumPage({ page }: { page: ThemePage }) {
                     <span>{step.px}px / {(step.px / 16).toFixed(2)}rem</span>
                   </div>
                   <div
-                    className="text-ink transition-all duration-150 break-words"
+                    className="text-ink transition-all duration-150 wrap-break-word"
                     style={{
                       fontSize: `clamp(${Math.min(step.px, 20)}px, ${step.px / 10}vw, ${step.px}px)`,
                       lineHeight: 1.15,

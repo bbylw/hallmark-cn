@@ -335,7 +335,7 @@ export function CustomPage() {
                       <span className="meta ml-1.5 text-accent-line font-bold">算</span>
                     ) : null}
                   </span>
-                  <span className="order-last w-full min-w-0 truncate font-mono text-xs text-muted sm:order-none sm:w-auto">
+                  <span className="order-last w-full min-w-0 truncate font-mono text-xs text-muted sm:order-0 sm:w-auto">
                     {t.v}
                   </span>
                   <span className="hidden font-mono text-[11px] text-muted sm:block">

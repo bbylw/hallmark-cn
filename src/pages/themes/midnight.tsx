@@ -317,7 +317,7 @@ export function MidnightPage({ page }: { page: ThemePage }) {
                   key={sp.id}
                   type="button"
                   onClick={() => setSelectedSpanId(sp.id)}
-                  className={`w-full p-3.5 rounded-lg border text-left transition-all cursor-pointer min-h-[50px] flex flex-col sm:flex-row sm:items-center justify-between gap-2 ${
+                  className={`w-full p-3.5 rounded-lg border text-left transition-all cursor-pointer min-h-12.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 ${
                     active
                       ? 'border-accent-line bg-accent/15 text-ink shadow-sm'
                       : 'border-rule bg-paper text-ink-2 hover:border-rule-2 hover:bg-paper-2'

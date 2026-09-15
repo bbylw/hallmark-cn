@@ -123,7 +123,7 @@ function DropLine() {
     <span aria-hidden className="ml-[2.4rem] flex h-6 items-center">
       <span className="block h-full w-px bg-rule-2" />
       <span
-        className="ml-[-3px] size-[6px] rotate-45"
+        className="-ml-0.75 size-1.5 rotate-45"
         style={{
           borderBottom: '1px solid var(--hm-rule-2)',
           borderRight: '1px solid var(--hm-rule-2)',
@@ -261,7 +261,7 @@ export function LumenPage({ page }: { page: ThemePage }) {
                   type="button"
                   aria-pressed={isSelected}
                   onClick={() => setPick(i)}
-                  className={`relative p-4 text-left transition-all rounded-xl border min-h-[140px] flex flex-col justify-between cursor-pointer ${
+                  className={`relative p-4 text-left transition-all rounded-xl border min-h-35 flex flex-col justify-between cursor-pointer ${
                     isSelected
                       ? 'border-accent-line bg-accent/15 shadow-md ring-2 ring-accent-line/50'
                       : 'border-rule bg-paper-2/50 hover:border-rule-2 hover:bg-paper-2'

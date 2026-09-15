@@ -522,7 +522,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
                         mixBlendMode: 'multiply',
                       }}
                     >
-                      <div className="relative h-44 w-44 rounded-full border-[18px] border-current opacity-85">
+                      <div className="relative h-44 w-44 rounded-full border-18 border-current opacity-85">
                         <div className="absolute inset-2 border-4 border-dashed border-current rounded-full" />
                       </div>
                     </div>
@@ -535,7 +535,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
                         mixBlendMode: 'multiply',
                       }}
                     >
-                      <div className="h-44 w-44 rotate-45 border-[16px] border-current opacity-85">
+                      <div className="h-44 w-44 rotate-45 border-16 border-current opacity-85">
                         <div className="h-full w-full bg-current opacity-25" />
                       </div>
                     </div>
@@ -1023,7 +1023,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
                 <div>
                   {/* 模拟折页封面图样 */}
                   <div
-                    className="relative aspect-[4/3] w-full overflow-hidden rounded border border-rule/80 bg-paper-2 p-4 flex flex-col justify-between transition-transform group-hover:scale-[1.01]"
+                    className="relative aspect-4/3 w-full overflow-hidden rounded border border-rule/80 bg-paper-2 p-4 flex flex-col justify-between transition-transform group-hover:scale-[1.01]"
                     style={{
                       backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 0.8px, transparent 0.8px)`,
                       backgroundSize: '8px 8px',
@@ -1073,7 +1073,7 @@ export function RisoPage({ page }: { page: ThemePage }) {
                   </div>
                   <div className="flex items-center justify-between">
                     <span>用纸标明:</span>
-                    <span className="text-ink truncate max-w-[170px]">{item.paper}</span>
+                    <span className="text-ink truncate max-w-42.5">{item.paper}</span>
                   </div>
                 </div>
               </article>

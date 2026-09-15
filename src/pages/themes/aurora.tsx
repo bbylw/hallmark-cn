@@ -385,7 +385,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
           </div>
 
           {/* 实时安全与工业规格四联指标徽章 */}
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full md:w-auto min-w-[280px]">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full md:w-auto min-w-70">
             <div className="rounded-lg border border-rule bg-paper-2/60 p-3.5 backdrop-blur">
               <div className="text-[11px] font-mono text-muted uppercase">GPU Cluster Load</div>
               <div className="mt-1 font-mono text-xl font-bold text-accent-line">98.4%</div>
@@ -456,7 +456,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
           {/* 去噪画布与物理剖析双栏 */}
           <div className="mt-6 grid gap-6 lg:grid-cols-12 items-stretch">
             {/* 左：动态合成视觉视窗 (基于 step 渲染不同潜空间状态) */}
-            <div className="lg:col-span-7 rounded-lg border border-rule bg-black/60 p-4 relative overflow-hidden flex flex-col justify-between min-h-[320px]">
+            <div className="lg:col-span-7 rounded-lg border border-rule bg-black/60 p-4 relative overflow-hidden flex flex-col justify-between min-h-80">
               {/* 顶部元数据 HUD */}
               <div className="flex items-center justify-between text-[11px] font-mono text-accent-line/90 z-10">
                 <span>STAGE: {currentStep.phase}</span>
@@ -467,7 +467,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
               <div className="my-auto py-6 flex items-center justify-center relative">
                 {/* Step 0: 白噪声 */}
                 {stepIndex === 0 && (
-                  <div className="w-full h-44 rounded border border-rule/50 flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br from-cyan-950/40 via-black to-blue-950/40">
+                  <div className="w-full h-44 rounded border border-rule/50 flex flex-col items-center justify-center relative overflow-hidden bg-linear-to-br from-cyan-950/40 via-black to-blue-950/40">
                     <svg className="w-full h-full opacity-60 absolute inset-0" xmlns="http://www.w3.org/2000/svg">
                       <filter id="noiseFilter">
                         <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch" />
@@ -483,7 +483,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
 
                 {/* Step 5: 低频骨架 */}
                 {stepIndex === 1 && (
-                  <div className="w-full h-44 rounded border border-rule/50 flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-b from-cyan-950/60 via-slate-950 to-black">
+                  <div className="w-full h-44 rounded border border-rule/50 flex flex-col items-center justify-center relative overflow-hidden bg-linear-to-b from-cyan-950/60 via-slate-950 to-black">
                     <svg className="w-full h-full opacity-70 absolute inset-0" viewBox="0 0 400 160">
                       <path d="M 0 120 Q 100 80, 200 100 T 400 70 L 400 160 L 0 160 Z" fill="oklch(25% 0.08 200 / 0.5)" />
                       <path d="M 0 60 Q 120 30, 240 50 T 400 30" stroke="oklch(70% 0.15 190 / 0.4)" strokeWidth="4" fill="none" strokeDasharray="6 4" />
@@ -498,7 +498,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
 
                 {/* Step 10: 语义与深度 */}
                 {stepIndex === 2 && (
-                  <div className="w-full h-44 rounded border border-rule/50 flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-b from-cyan-950/80 via-slate-900 to-black">
+                  <div className="w-full h-44 rounded border border-rule/50 flex flex-col items-center justify-center relative overflow-hidden bg-linear-to-b from-cyan-950/80 via-slate-900 to-black">
                     <svg className="w-full h-full absolute inset-0" viewBox="0 0 400 160">
                       {/* 极光微光带 */}
                       <path d="M 0 45 C 80 15, 180 60, 260 25 S 360 40, 400 20" stroke="oklch(78% 0.17 175 / 0.6)" strokeWidth="16" fill="none" filter="blur(6px)" />
@@ -514,7 +514,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
 
                 {/* Step 15: 微表面材质 */}
                 {stepIndex === 3 && (
-                  <div className="w-full h-44 rounded border border-rule/50 flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-b from-sky-950 via-slate-900 to-black">
+                  <div className="w-full h-44 rounded border border-rule/50 flex flex-col items-center justify-center relative overflow-hidden bg-linear-to-b from-sky-950 via-slate-900 to-black">
                     <svg className="w-full h-full absolute inset-0" viewBox="0 0 400 160">
                       {/* 双层极光柔和光幕 */}
                       <path d="M 0 35 C 100 5, 200 55, 300 20 S 380 40, 400 15" stroke="oklch(76% 0.18 160 / 0.7)" strokeWidth="24" fill="none" filter="blur(8px)" />
@@ -535,7 +535,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
 
                 {/* Step 20: 4K 最终帧 */}
                 {stepIndex === 4 && (
-                  <div className="w-full h-44 rounded border border-accent-line/60 flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-b from-sky-950 via-slate-900 to-black shadow-lg shadow-accent/15">
+                  <div className="w-full h-44 rounded border border-accent-line/60 flex flex-col items-center justify-center relative overflow-hidden bg-linear-to-b from-sky-950 via-slate-900 to-black shadow-lg shadow-accent/15">
                     <svg className="w-full h-full absolute inset-0" viewBox="0 0 400 160">
                       {/* 绚烂极光电离层 */}
                       <defs>
@@ -654,7 +654,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
           {/* 视锥体轨迹 3D 模拟与参数细节 */}
           <div className="mt-6 grid gap-6 lg:grid-cols-12 items-stretch">
             {/* 3D 相机视锥体 SVG 视觉示意 */}
-            <div className="lg:col-span-6 rounded-lg border border-rule bg-black/50 p-5 flex flex-col justify-between min-h-[260px] relative overflow-hidden">
+            <div className="lg:col-span-6 rounded-lg border border-rule bg-black/50 p-5 flex flex-col justify-between min-h-65 relative overflow-hidden">
               <div className="flex items-center justify-between text-xs font-mono text-accent-line">
                 <span>CAMERA FRUSTUM · {currentPreset.focal}</span>
                 <span>SHUTTER: 180° (1/120s)</span>
@@ -662,7 +662,7 @@ export function AuroraPage({ page }: { page: ThemePage }) {
 
               {/* 交互视锥体矢量图 */}
               <div className="my-auto py-4 flex items-center justify-center">
-                <svg className="w-full max-w-[360px] h-36" viewBox="0 0 360 140">
+                <svg className="w-full max-w-90 h-36" viewBox="0 0 360 140">
                   {/* 网格参考地面 */}
                   <line x1="30" y1="120" x2="330" y2="120" stroke="oklch(35% 0.02 200)" strokeWidth="1" />
                   <line x1="80" y1="120" x2="40" y2="140" stroke="oklch(30% 0.02 200)" strokeWidth="1" />

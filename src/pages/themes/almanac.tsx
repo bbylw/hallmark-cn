@@ -422,9 +422,9 @@ export function AlmanacPage({ page }: { page: ThemePage }) {
                             <span className="w-16 shrink-0 font-mono text-xs text-muted font-bold">
                               {r.code}
                             </span>
-                            <div className="min-w-[140px] flex-1">
+                            <div className="min-w-35 flex-1">
                               <span className="text-sm font-bold text-ink">{r.name}</span>
-                              <span className="block font-mono text-[11px] text-muted italic hidden sm:block">
+                              <span className="hidden sm:block font-mono text-[11px] text-muted italic">
                                 {r.scientific}
                               </span>
                             </div>

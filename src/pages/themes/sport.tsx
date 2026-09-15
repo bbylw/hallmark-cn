@@ -293,7 +293,7 @@ export function SportPage({ page }: { page: ThemePage }) {
             <div className="flex flex-wrap items-center gap-x-4 py-2 font-mono text-xs text-muted border-b-2 border-ink">
               <span className="w-10 shrink-0 font-bold">道次</span>
               <span className="w-24 shrink-0 font-bold">配速 (分:秒)</span>
-              <span className="min-w-[8rem] flex-1 font-bold">
+              <span className="min-w-32 flex-1 font-bold">
                 {durationMinutes} 分钟预期跑动距离
               </span>
               <span className="hidden w-32 shrink-0 font-bold sm:block">破风领跑兔子</span>
@@ -325,7 +325,7 @@ export function SportPage({ page }: { page: ThemePage }) {
                   </span>
 
                   {/* 进度条与距离展示 */}
-                  <span aria-hidden className="flex min-w-[8rem] flex-1 items-center gap-3">
+                  <span aria-hidden className="flex min-w-32 flex-1 items-center gap-3">
                     <span className="h-3.5 flex-1 bg-paper-2 border border-rule overflow-hidden">
                       <span
                         className="block h-full transition-all duration-300"

@@ -85,7 +85,7 @@ export function GridPage({ page }: { page: ThemePage }) {
             {Array.from({ length: 12 }).map((_, i) => (
               <div
                 key={i}
-                className="h-full border-x border-cyan-500/15 bg-cyan-500/[0.02]"
+                className="h-full border-x border-cyan-500/15 bg-cyan-500/2"
               />
             ))}
           </div>
@@ -313,7 +313,7 @@ export function GridPage({ page }: { page: ThemePage }) {
                 return (
                   <div
                     key={it.v}
-                    className={`${c.span} group relative flex min-h-[10.5rem] flex-col justify-between p-6 transition-transform duration-200 hover:z-10`}
+                    className={`${c.span} group relative flex min-h-42 flex-col justify-between p-6 transition-transform duration-200 hover:z-10`}
                     style={{
                       backgroundColor: accent
                         ? 'var(--hm-accent)'
@@ -389,7 +389,7 @@ export function GridPage({ page }: { page: ThemePage }) {
                 来自苏黎世当代印艺档案馆的高分辨率扫描打样。讲座中所强调的“错位的那一毫米”，在套准微错位时呈现令人着迷的双影与微渗墨边缘。
               </p>
             </div>
-            <div className="grid gap-6 sm:grid-cols-[repeat(2,minmax(0,1fr))]">
+            <div className="grid gap-6 sm:grid-cols-2">
               {page.images.slice(0, 2).map((s) => (
                 <div
                   key={s}

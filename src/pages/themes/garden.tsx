@@ -228,11 +228,11 @@ export function GardenPage({ page }: { page: ThemePage }) {
         className="pointer-events-none absolute inset-0 overflow-hidden opacity-25 select-none"
       >
         <div
-          className="absolute -top-[15%] right-1/4 h-[500px] w-[500px] rounded-full blur-[140px]"
+          className="absolute top-[-15%] right-1/4 h-125 w-125 rounded-full blur-[140px]"
           style={{ background: 'radial-gradient(circle, oklch(65% 0.15 130 / 0.35), transparent 70%)' }}
         />
         <div
-          className="absolute top-[40%] -left-[10%] h-[450px] w-[450px] rounded-full blur-[160px]"
+          className="absolute top-[40%] left-[-10%] h-112.5 w-112.5 rounded-full blur-[160px]"
           style={{ background: 'radial-gradient(circle, oklch(75% 0.16 85 / 0.25), transparent 70%)' }}
         />
       </div>
@@ -392,7 +392,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
 
           <div className="mt-6 grid gap-6 lg:grid-cols-12 items-stretch">
             {/* 左侧：蜂巢脾六边形晶格与显微剖切面 SVG */}
-            <div className="lg:col-span-7 rounded-lg border border-rule bg-stone-900/90 p-5 flex flex-col justify-between min-h-[300px] text-stone-200 relative overflow-hidden">
+            <div className="lg:col-span-7 rounded-lg border border-rule bg-stone-900/90 p-5 flex flex-col justify-between min-h-75 text-stone-200 relative overflow-hidden">
               <div className="flex items-center justify-between text-xs font-mono text-amber-300 z-10">
                 <span>
                   {cellMode === 'capped'
@@ -406,7 +406,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
 
               {/* 六角形蜂房几何交互切面 */}
               <div className="my-auto py-4 flex items-center justify-center">
-                <svg className="w-full max-w-[420px] h-48" viewBox="0 0 420 180">
+                <svg className="w-full max-w-105 h-48" viewBox="0 0 420 180">
                   <defs>
                     <pattern id="hexGrid" width="40" height="69.28" patternUnits="userSpaceOnUse" patternTransform="scale(0.8)">
                       <path
@@ -563,7 +563,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
 
           {/* 波美度滑块 */}
           <div className="mt-6 flex flex-wrap items-center gap-4">
-            <div className="flex-1 min-w-[240px]">
+            <div className="flex-1 min-w-60">
               <div className="flex items-center justify-between text-xs font-mono mb-1.5">
                 <span className="text-muted">波美度刻度 (Baumé Scale)：</span>
                 <span className="text-accent-line font-bold text-sm">{baume.toFixed(1)} °Be</span>
@@ -607,7 +607,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
           {/* 折射计目镜视窗与生化指标对照 */}
           <div className="mt-6 grid gap-6 lg:grid-cols-12 items-stretch">
             {/* 折射计圆形目镜视窗 */}
-            <div className="lg:col-span-5 rounded-lg border border-rule bg-stone-950 p-5 flex flex-col items-center justify-center min-h-[260px] relative overflow-hidden">
+            <div className="lg:col-span-5 rounded-lg border border-rule bg-stone-950 p-5 flex flex-col items-center justify-center min-h-65 relative overflow-hidden">
               <span className="text-[11px] font-mono text-stone-400 absolute top-3 left-4">
                 RETICLE EYEPIECE · REFRACTIVE VIEW
               </span>
@@ -722,7 +722,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
                   onClick={() => setSelectedMonth(i)}
                   onMouseEnter={() => setHoveredMonth(i)}
                   onMouseLeave={() => setHoveredMonth(null)}
-                  className="group flex flex-col cursor-pointer focus:outline-none min-h-[58px]"
+                  className="group flex flex-col cursor-pointer focus:outline-none min-h-14.5"
                   aria-label={`${m.name}：${hasWork ? '摇蜜月份' : '自然休养'}`}
                   aria-pressed={isSelected}
                 >
@@ -842,7 +842,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
                   key={hive.id}
                   type="button"
                   onClick={() => setSelectedHiveId(hive.id)}
-                  className={`min-h-[64px] p-3 rounded-lg text-left transition-all border flex flex-col justify-between ${
+                  className={`min-h-16 p-3 rounded-lg text-left transition-all border flex flex-col justify-between ${
                     active
                       ? 'border-accent-line bg-accent/20 text-ink font-bold shadow-sm'
                       : 'border-rule bg-paper text-ink-2 hover:border-rule-2 hover:text-ink'
@@ -956,7 +956,7 @@ export function GardenPage({ page }: { page: ThemePage }) {
             </div>
 
             {/* 预约动作栏 */}
-            <div className="lg:col-span-5 rounded-lg border border-rule bg-paper p-6 flex flex-col justify-between min-h-[220px]">
+            <div className="lg:col-span-5 rounded-lg border border-rule bg-paper p-6 flex flex-col justify-between min-h-55">
               <div>
                 <span className="text-xs font-mono font-bold text-accent-line uppercase">RESERVATION PROTOCOL</span>
                 <h3 className="display text-lg font-bold text-ink mt-1">

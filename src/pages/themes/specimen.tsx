@@ -600,7 +600,7 @@ export function SpecimenPage({ page }: { page: ThemePage }) {
           <section id="sec-language" className="scroll-mt-24">
             <SectionHead no="09" name="语言 · CHARSETS & ENCODING" />
             <p
-              className="mt-6 break-words text-lg text-ink-2 bg-paper p-5 rounded border border-rule shadow-sm"
+              className="mt-6 wrap-break-word text-lg text-ink-2 bg-paper p-5 rounded border border-rule shadow-sm"
               style={{ lineHeight: 'var(--lh-relaxed)', wordSpacing: '0.3em' }}
             >
               {GLYPHS}
