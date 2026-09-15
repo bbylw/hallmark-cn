@@ -182,19 +182,22 @@ export function LumenPage({ page }: { page: ThemePage }) {
       <div style={{ maxWidth: 'var(--page-max)', margin: '0 auto' }}>
 
         {/* 顶部推理集群状态条 */}
-        <header className="flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-3.5 text-xs font-mono">
+        <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2.5 border-b border-rule pb-3.5 text-xs font-mono">
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-accent/15 text-accent-line font-bold border border-accent/30">
-              <span className="size-2 rounded-full bg-accent-line animate-pulse" />
+            <span
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-accent/15 text-accent-line font-bold border border-accent/30"
+              style={{ borderRadius: 'var(--hm-radius-pill)' }}
+            >
+              <span className="size-1.5 rounded-full bg-accent-line animate-pulse" />
               LUMEN COGNITIVE REASONING PIPELINE · V4
             </span>
-            <span className="text-muted hidden md:inline">|</span>
+            <span className="text-muted hidden md:inline" aria-hidden>|</span>
             <span className="text-muted">确定性思维链留痕</span>
-            <span className="text-muted hidden lg:inline">|</span>
+            <span className="text-muted hidden lg:inline" aria-hidden>|</span>
             <span className="text-muted hidden lg:inline">可验证哈希归因</span>
           </div>
-          <div className="flex items-center gap-4 text-ink-2">
-            <span>语义熵率：0.12 (高确定性)</span>
+          <div className="flex items-center gap-4 text-ink-2 tabular-nums">
+            <span>语义熵率：0.12（高确定性）</span>
             <span className="text-accent-line font-bold">端到端延迟：1.42 s</span>
           </div>
         </header>
@@ -206,16 +209,20 @@ export function LumenPage({ page }: { page: ThemePage }) {
               {page.discipline} · VISIBLE REASONING TRACE & VERIFIABILITY
             </span>
             <h1
-              className="display mt-3 text-ink font-bold"
+              className="display mt-3 text-ink text-balance"
               style={{
                 fontSize: 'clamp(2.2rem, 5vw, 3.6rem)',
-                lineHeight: 1.05,
+                lineHeight: 1.12,
                 letterSpacing: 'var(--hm-tracking-display)',
+                fontWeight: 'var(--hm-display-weight)',
               }}
             >
               {page.title}
             </h1>
-            <p className="mt-4 text-base sm:text-lg text-ink-2 leading-relaxed">
+            <p
+              className="mt-4 max-w-[36em] text-base sm:text-lg text-ink-2 text-pretty"
+              style={{ lineHeight: 1.8 }}
+            >
               {page.standfirst}
             </p>
           </div>
@@ -225,14 +232,22 @@ export function LumenPage({ page }: { page: ThemePage }) {
               type="button"
               onClick={runSimulation}
               disabled={isRunning}
-              className={`min-h-11 rounded-lg border px-4 py-2 font-mono text-xs font-bold transition-all shadow-sm cursor-pointer flex items-center gap-2 ${
+              className={`min-h-11 border px-5 py-2 font-mono text-xs font-bold transition-all cursor-pointer flex items-center gap-2.5 ${
                 isRunning
-                  ? 'bg-ink text-paper border-ink animate-pulse'
+                  ? 'bg-ink text-paper border-ink'
                   : 'border-accent-line bg-accent/10 text-ink hover:bg-accent/20'
               }`}
+              style={{ borderRadius: 'var(--hm-radius-pill)' }}
             >
-              <span>{isRunning ? '⏳' : '▶'}</span>
-              <span>{isRunning ? '推理推演进行中...' : '模拟完整思维链推演'}</span>
+              {isRunning ? (
+                <span aria-hidden className="size-2 animate-pulse bg-current" />
+              ) : (
+                <span
+                  aria-hidden
+                  className="border-y-[5px] border-l-[8px] border-y-transparent border-l-current"
+                />
+              )}
+              <span>{isRunning ? '推理推演进行中…' : '模拟完整思维链推演'}</span>
             </button>
             <span className="font-mono text-xs text-muted">
               支持点击任意节点查看单步张量输入与守门规程
@@ -244,11 +259,23 @@ export function LumenPage({ page }: { page: ThemePage }) {
             装置 1：五步认知拓扑图 (宽屏横排五列 + 窄屏竖向连线)
             ──────────────────────────────────────────────────────────── */}
         <section aria-labelledby={`${uid}-topo-title`} className="mt-12">
-          <h2 id={`${uid}-topo-title`} className="sr-only">推理认知拓扑管线</h2>
+          <div className="flex flex-wrap items-end justify-between gap-3 border-b border-rule/80 pb-4">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
+                DEVICE 01 · COGNITIVE TOPOLOGY PIPELINE
+              </span>
+              <h2 id={`${uid}-topo-title`} className="display text-xl sm:text-2xl text-ink mt-1">
+                五步认知拓扑管线
+              </h2>
+            </div>
+            <span className="font-mono text-xs text-muted tabular-nums">
+              5 NODES · 1 ROLLBACK EDGE
+            </span>
+          </div>
 
           {/* 宽屏五列网格 */}
           <div
-            className="hidden lg:grid gap-4"
+            className="mt-6 hidden lg:grid gap-4"
             style={{
               gridTemplateColumns: 'repeat(5, minmax(0, 1fr))',
             }}
@@ -261,14 +288,15 @@ export function LumenPage({ page }: { page: ThemePage }) {
                   type="button"
                   aria-pressed={isSelected}
                   onClick={() => setPick(i)}
-                  className={`relative p-4 text-left transition-all rounded-xl border min-h-35 flex flex-col justify-between cursor-pointer ${
+                  className={`relative p-4 text-left transition-all border min-h-35 flex flex-col justify-between cursor-pointer ${
                     isSelected
-                      ? 'border-accent-line bg-accent/15 shadow-md ring-2 ring-accent-line/50'
+                      ? 'border-accent-line bg-accent/15 shadow-[0_12px_40px_-16px_var(--hm-accent)] ring-1 ring-accent-line/60'
                       : 'border-rule bg-paper-2/50 hover:border-rule-2 hover:bg-paper-2'
                   }`}
+                  style={{ borderRadius: 'var(--hm-radius-card)' }}
                 >
                   <div>
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between tabular-nums">
                       <span
                         className="font-mono text-xs font-bold"
                         style={{
@@ -283,12 +311,13 @@ export function LumenPage({ page }: { page: ThemePage }) {
                         {STEP_DETAILS[i]?.latency}
                       </span>
                     </div>
-                    <span className="display mt-1.5 block text-lg font-bold text-ink">
+                    <span className="display mt-1.5 block text-lg text-ink">
                       {s.t}
                     </span>
                     <span
-                      className="mt-1 block text-xs leading-normal"
+                      className="mt-1 block text-xs"
                       style={{
+                        lineHeight: 1.7,
                         color: isSelected
                           ? 'var(--hm-ink)'
                           : 'var(--hm-muted)',
@@ -298,11 +327,30 @@ export function LumenPage({ page }: { page: ThemePage }) {
                     </span>
                   </div>
 
-                  <div className="mt-3 pt-2 border-t border-rule/50 flex items-center justify-between font-mono text-[10px] text-muted">
-                    <span>置信度</span>
-                    <span className="text-accent-line font-bold">
-                      {STEP_DETAILS[i]?.confidence}
-                    </span>
+                  <div className="mt-3 pt-2.5 border-t border-rule/50 font-mono text-[10px] text-muted">
+                    <div className="flex items-center justify-between tabular-nums">
+                      <span>置信度</span>
+                      <span className="text-accent-line font-bold">
+                        {STEP_DETAILS[i]?.confidence}
+                      </span>
+                    </div>
+                    <div
+                      aria-hidden
+                      className="mt-1.5 h-1 w-full overflow-hidden"
+                      style={{
+                        backgroundColor: 'var(--hm-rule)',
+                        borderRadius: 'var(--hm-radius-pill)',
+                      }}
+                    >
+                      <div
+                        className="h-full"
+                        style={{
+                          width: STEP_DETAILS[i]?.confidence ?? '0%',
+                          backgroundColor: 'var(--hm-accent)',
+                          borderRadius: 'var(--hm-radius-pill)',
+                        }}
+                      />
+                    </div>
                   </div>
 
                   {/* 节点间前进箭头 */}
@@ -320,45 +368,52 @@ export function LumenPage({ page }: { page: ThemePage }) {
           </div>
 
           {/* 回退边：第 4 步自检不通过则回退至第 2 步重新采样 */}
-          <div className="mt-3 hidden lg:block" aria-hidden>
+          <div className="relative mt-5 hidden lg:block" aria-hidden>
             <div
-              className="flex items-center gap-3 pl-[32%] text-xs text-accent-line font-mono font-bold py-1.5"
-              style={{ borderTop: '2px dashed var(--hm-accent)' }}
-            >
-              <span className="size-2 rotate-45 border-b-2 border-l-2 border-accent-line -mt-0.5" />
-              <span>
-                ↺ 反思自检若发现逻辑跳跃或未经证实断言，触发回退至第 2 步重新扩大证据采样 · 最大重试 3 次
+              className="border-t-2 border-dashed"
+              style={{ borderColor: 'var(--hm-accent)' }}
+            />
+            <div className="absolute inset-x-0 -top-3 flex justify-center">
+              <span
+                className="px-3 font-mono text-xs font-bold"
+                style={{
+                  backgroundColor: 'var(--hm-paper)',
+                  color: 'var(--hm-accent-line)',
+                }}
+              >
+                ↺ 自检未达标回退至第 2 步重采样 · 最大重试 3 次
               </span>
             </div>
           </div>
 
           {/* 窄屏竖向连线展示 */}
-          <ol className="mt-8 lg:hidden space-y-1">
+          <ol className="mt-6 lg:hidden space-y-1">
             {steps.map((s, i) => (
               <li key={s.t}>
                 <button
                   type="button"
                   onClick={() => setPick(i)}
                   aria-pressed={pick === i}
-                  className={`flex w-full gap-4 p-4 text-left transition-all rounded-lg border min-h-14 ${
+                  className={`flex w-full gap-4 p-4 text-left transition-all border min-h-14 ${
                     pick === i
                       ? 'border-accent-line bg-accent/15 font-semibold'
                       : 'border-rule bg-paper-2/40'
                   }`}
+                  style={{ borderRadius: 'var(--hm-radius-card)' }}
                 >
                   <span className="meta w-14 shrink-0 font-mono font-bold text-accent-line text-xs">
                     第 {i + 1} 步
                   </span>
                   <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between">
-                      <span className="display block text-base font-bold text-ink">
+                    <div className="flex items-center justify-between gap-2 tabular-nums">
+                      <span className="display block text-base text-ink">
                         {s.t}
                       </span>
-                      <span className="text-[10px] font-mono text-muted">
-                        {STEP_DETAILS[i]?.latency}
+                      <span className="shrink-0 text-[10px] font-mono text-muted">
+                        {STEP_DETAILS[i]?.latency} · {STEP_DETAILS[i]?.confidence}
                       </span>
                     </div>
-                    <span className="mt-0.5 block text-xs text-muted">
+                    <span className="mt-1 block text-xs text-muted" style={{ lineHeight: 1.7 }}>
                       {s.d}
                     </span>
                   </div>
@@ -378,53 +433,68 @@ export function LumenPage({ page }: { page: ThemePage }) {
         {/* ────────────────────────────────────────────────────────────
             当前选中节点的输入/输出张量与守门准则剖析
             ──────────────────────────────────────────────────────────── */}
-        <section className="mt-8 rounded-xl border border-rule bg-paper-2 p-6 sm:p-7 shadow-xs">
-          <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule pb-3.5 font-mono text-xs">
-            <div className="flex items-center gap-2">
-              <span className="font-bold text-accent-line">
+        <section
+          className="mt-8 border border-rule bg-paper-2 p-6 sm:p-7"
+          style={{ borderRadius: 'var(--hm-radius-card)' }}
+        >
+          <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 border-b border-rule pb-3.5 font-mono text-xs">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+              <span className="font-bold text-accent-line tabular-nums">
                 第 {pick + 1} 步节点详情 · {curPlane?.t}
               </span>
-              <span className="text-muted hidden sm:inline">|</span>
+              <span className="text-muted hidden sm:inline" aria-hidden>|</span>
               <span className="text-ink-2">{curDetail.subtitle}</span>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 tabular-nums">
               <span className="text-muted">延迟：{curDetail.latency}</span>
-              <span className="px-2 py-0.5 rounded bg-paper border border-rule text-ink font-bold">
+              <span
+                className="px-2 py-0.5 bg-paper border border-rule text-ink font-bold"
+                style={{ borderRadius: 'var(--hm-radius-input)' }}
+              >
                 消耗：{curDetail.tokens}
               </span>
             </div>
           </div>
 
-          <div className="mt-5 grid gap-x-8 gap-y-4 lg:grid-cols-12 text-xs font-mono">
-            <div className="lg:col-span-5 p-4 rounded-lg bg-paper border border-rule/80">
-              <span className="text-muted block text-[10px] uppercase font-bold">
+          <div className="mt-5 grid gap-4 lg:grid-cols-12 text-xs font-mono">
+            <div
+              className="lg:col-span-5 p-4 bg-paper border border-rule/80"
+              style={{ borderRadius: 'var(--hm-radius-input)' }}
+            >
+              <span className="text-muted block text-[10px] uppercase font-bold tracking-wider">
                 输入张量 / 上游实体 (Tensor In)
               </span>
-              <p className="text-ink font-bold mt-1 leading-relaxed">
+              <p className="text-ink font-bold mt-1.5" style={{ lineHeight: 1.75 }}>
                 {curDetail.tensorIn}
               </p>
             </div>
 
-            <div className="lg:col-span-4 p-4 rounded-lg bg-paper border border-rule/80">
-              <span className="text-muted block text-[10px] uppercase font-bold">
+            <div
+              className="lg:col-span-4 p-4 bg-paper border border-rule/80"
+              style={{ borderRadius: 'var(--hm-radius-input)' }}
+            >
+              <span className="text-muted block text-[10px] uppercase font-bold tracking-wider">
                 输出交付物 / 确定性中间态 (Tensor Out)
               </span>
-              <p className="text-ink font-bold mt-1 leading-relaxed">
+              <p className="text-ink font-bold mt-1.5" style={{ lineHeight: 1.75 }}>
                 {curDetail.tensorOut}
               </p>
             </div>
 
-            <div className="lg:col-span-3 p-4 rounded-lg bg-accent/10 border border-accent/30 flex flex-col justify-between">
+            <div
+              className="lg:col-span-3 p-4 bg-accent/10 border border-accent/30 flex flex-col justify-between"
+              style={{ borderRadius: 'var(--hm-radius-input)' }}
+            >
               <div>
-                <span className="text-accent-line block text-[10px] uppercase font-bold">
+                <span className="text-accent-line block text-[10px] uppercase font-bold tracking-wider">
                   守门硬指标 (Guardrail)
                 </span>
-                <p className="text-ink font-bold mt-1">
+                <p className="text-ink font-bold mt-1.5" style={{ lineHeight: 1.75 }}>
                   {curDetail.guardrail}
                 </p>
               </div>
-              <span className="text-[10px] text-muted block mt-2">
-                状态：经过严密断言验证 · 可重放
+              <span className="text-[10px] text-muted block mt-2.5">
+                状态：断言验证通过 · 可重放
               </span>
             </div>
           </div>
@@ -433,50 +503,67 @@ export function LumenPage({ page }: { page: ThemePage }) {
         {/* ────────────────────────────────────────────────────────────
             装置 2：真实思维链轨迹追踪仪 (Chain-of-Thought Trace)
             ──────────────────────────────────────────────────────────── */}
-        <section aria-labelledby={`${uid}-cot-title`} className="mt-14 rounded-xl border border-rule bg-paper-2/50 p-6 sm:p-8 backdrop-blur-md">
-          <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-rule/80 pb-4">
+        <section
+          aria-labelledby={`${uid}-cot-title`}
+          className="mt-14 border border-rule bg-paper-2/50 p-6 sm:p-8"
+          style={{ borderRadius: 'var(--hm-radius-card)' }}
+        >
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule/80 pb-4">
             <div>
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
                 DEVICE 02 · REAL-TIME CHAIN-OF-THOUGHT TRACE INSPECTOR
               </span>
-              <h2 id={`${uid}-cot-title`} className="display text-xl sm:text-2xl font-bold text-ink mt-1">
+              <h2 id={`${uid}-cot-title`} className="display text-xl sm:text-2xl text-ink mt-1.5">
                 思考过程流式轨迹 · &lt;think&gt; 内部反思展开
               </h2>
             </div>
             <button
               type="button"
               onClick={() => setShowThinkingProcess(!showThinkingProcess)}
-              className="min-h-11 px-3 py-1 rounded border border-rule bg-paper text-xs font-mono font-bold text-ink-2 hover:text-ink cursor-pointer"
+              aria-expanded={showThinkingProcess}
+              className="min-h-11 px-4 py-1.5 border border-rule bg-paper text-xs font-mono font-bold text-ink-2 hover:text-ink hover:border-rule-2 cursor-pointer"
+              style={{ borderRadius: 'var(--hm-radius-pill)' }}
             >
-              {showThinkingProcess ? '收起思考流 [-]' : '展开完整思考流 [+]'}
+              {showThinkingProcess ? '收起思考流 [–]' : '展开完整思考流 [+]'}
             </button>
           </div>
 
           {showThinkingProcess && (
-            <div className="mt-5 rounded-lg border border-rule bg-paper p-5 sm:p-6 font-mono text-xs leading-relaxed">
-              <div className="flex items-center justify-between border-b border-rule/60 pb-2.5 text-[11px] text-muted">
-                <span className="text-accent-line font-bold">&lt;think&gt; 内部推理流 (4,820 Thinking Tokens)</span>
-                <span>自回归注意力熵: 0.12 · 漂移度: 0.00%</span>
+            <div
+              className="mt-5 border border-rule bg-paper p-5 sm:p-6 font-mono text-xs"
+              style={{ borderRadius: 'var(--hm-radius-input)', lineHeight: 1.8 }}
+            >
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-rule/60 pb-2.5 text-[11px] text-muted tabular-nums">
+                <span className="text-accent-line font-bold">&lt;think&gt; 内部推理流（4,820 Thinking Tokens）</span>
+                <span>自回归注意力熵：0.12 · 漂移度：0.00%</span>
               </div>
 
-              <div className="mt-4 space-y-3 text-ink-2">
+              <div className="mt-4 space-y-3.5 text-ink-2 [&_p]:max-w-none">
                 <p>
-                  <strong className="text-ink">1. 目标解构：</strong> 用户查询核心问题涉及多步数理证明与分布式系统容错逻辑。先识别必须依赖的原始论文定义（ArXiv:2401.08291）。
+                  <strong className="text-ink">1 · 目标解构 —</strong> 用户查询涉及多步数理证明与分布式系统容错逻辑，先识别必须依赖的原始论文定义（ArXiv:2401.08291）。
                 </p>
                 <p>
-                  <strong className="text-ink">2. 检索证据验证：</strong> 召回 32 条候选切片，经 Cross-Encoder 打分，切片 #1 得分 0.964，切片 #2 得分 0.942。确认证据链完整，覆盖定理假设前提。
+                  <strong className="text-ink">2 · 检索证据验证 —</strong> 召回 32 条候选切片，经 Cross-Encoder 打分，切片 #1 得分 0.964，切片 #2 得分 0.942，确认证据链覆盖定理假设前提。
                 </p>
-                <p className="p-2.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200">
-                  ⚠️ <strong>自检触发反思 (Step 4 回测)：</strong> 在生成临时结论时，初步假设曾尝试断言“所有无状态节点无需配置持久日志”，经回测切片 #3 RFC-019 发现冲突——RFC 明确规定关键决策需记录注意力熵。立即推翻并剔除该断言，更正为“决策节点需维持确定性中间态散列”。
+                <p
+                  className="p-3.5 bg-accent/10 border border-accent/40 text-ink"
+                  style={{
+                    borderRadius: 'var(--hm-radius-input)',
+                    borderLeftWidth: '3px',
+                    borderLeftColor: 'var(--hm-accent-line)',
+                  }}
+                >
+                  <strong className="text-accent-line">STEP 4 回测 · 自检触发反思 —</strong>
+                  初步假设曾断言“所有无状态节点无需配置持久日志”，回测切片 #3 RFC-019 发现冲突：RFC 明确规定关键决策需记录注意力熵。已推翻该断言，更正为“决策节点需维持确定性中间态散列”。
                 </p>
                 <p>
-                  <strong className="text-ink">3. 结论收敛：</strong> 剔除潜在幻觉，所有断言均与证据库形成 1-to-1 引用绑定，逻辑链闭环成立。
+                  <strong className="text-ink">3 · 结论收敛 —</strong> 剔除潜在幻觉，所有断言均与证据库形成 1-to-1 引用绑定，逻辑链闭环成立。
                 </p>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-rule/60 flex items-center justify-between text-[11px] text-muted">
+              <div className="mt-4 pt-3 border-t border-rule/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-muted">
                 <span>&lt;/think&gt; 思考完成，切换至最终报告交付格式</span>
-                <span className="text-emerald-700 dark:text-emerald-400 font-bold">校验状态：逻辑验证通过 ✓</span>
+                <span className="text-accent-line font-bold">校验状态：逻辑验证通过 ✓</span>
               </div>
             </div>
           )}
@@ -485,43 +572,57 @@ export function LumenPage({ page }: { page: ThemePage }) {
         {/* ────────────────────────────────────────────────────────────
             装置 3：检索证据切片库与相似度雷达 (Evidence Chunks Radar)
             ──────────────────────────────────────────────────────────── */}
-        <section aria-labelledby={`${uid}-ev-title`} className="mt-14 rounded-xl border border-rule bg-paper-2/40 p-6 sm:p-8">
-          <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-rule/80 pb-4">
+        <section
+          aria-labelledby={`${uid}-ev-title`}
+          className="mt-14 border border-rule bg-paper-2/40 p-6 sm:p-8"
+          style={{ borderRadius: 'var(--hm-radius-card)' }}
+        >
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule/80 pb-4">
             <div>
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-line">
                 DEVICE 03 · DENSE EMBEDDING & EVIDENCE RADAR
               </span>
-              <h2 id={`${uid}-ev-title`} className="display text-xl sm:text-2xl font-bold text-ink mt-1">
+              <h2 id={`${uid}-ev-title`} className="display text-xl sm:text-2xl text-ink mt-1.5">
                 检索增强证据切片库与 Cross-Encoder 打分
               </h2>
             </div>
-            <span className="font-mono text-xs text-muted">
-              精选 Top 4 事实切片 · 杜绝黑盒无据生成
+            <span className="font-mono text-xs text-muted tabular-nums">
+              TOP 4 事实切片 · 杜绝黑盒无据生成
             </span>
           </div>
 
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-            {EVIDENCE_CHUNKS.map((ev) => (
+            {EVIDENCE_CHUNKS.map((ev, i) => (
               <div
                 key={ev.id}
-                className="p-4 rounded-lg border border-rule bg-paper flex flex-col justify-between"
+                className="p-4 sm:p-5 border border-rule bg-paper flex flex-col justify-between transition-colors hover:border-rule-2"
+                style={{ borderRadius: 'var(--hm-radius-input)' }}
               >
                 <div>
-                  <div className="flex items-center justify-between font-mono text-xs border-b border-rule/60 pb-2">
-                    <span className="font-bold text-ink truncate pr-2">{ev.source}</span>
-                    <span className="px-1.5 py-0.5 rounded bg-accent/15 text-accent-line font-bold shrink-0">
-                      Score: {ev.score}
+                  <div className="flex items-start justify-between gap-3 font-mono text-xs border-b border-rule/60 pb-2.5">
+                    <span className="font-bold text-ink" style={{ lineHeight: 1.7 }}>
+                      <span className="text-accent-line mr-1.5">#{i + 1}</span>
+                      {ev.source}
+                    </span>
+                    <span
+                      className="px-2 py-0.5 bg-accent/15 text-accent-line font-bold shrink-0 tabular-nums"
+                      style={{ borderRadius: 'var(--hm-radius-input)' }}
+                    >
+                      {ev.score}
                     </span>
                   </div>
-                  <p className="mt-3 text-xs sm:text-sm text-ink-2 leading-relaxed">
+                  <p
+                    className="mt-3 text-xs sm:text-sm text-ink-2 text-pretty"
+                    style={{ lineHeight: 1.8 }}
+                  >
                     “{ev.content}”
                   </p>
                 </div>
 
-                <div className="mt-4 pt-2 border-t border-rule/50 flex items-center justify-between font-mono text-[11px] text-muted">
+                <div className="mt-4 pt-2.5 border-t border-rule/50 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] text-muted">
                   <span>位置：{ev.docId}</span>
-                  <span className="text-emerald-700 dark:text-emerald-400 font-bold">
-                    引用状态：已校验通过
+                  <span className="text-accent-line font-bold">
+                    引用已校验 ✓
                   </span>
                 </div>
               </div>
@@ -530,14 +631,14 @@ export function LumenPage({ page }: { page: ThemePage }) {
         </section>
 
         {/* 底部 Cta 与行动引导 */}
-        <div className="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-rule pt-8">
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-x-8 gap-y-5 border-t border-rule pt-8">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
             <Cta label={page.cta} done="已加载推理引擎沙盒环境" />
-            <span className="text-xs text-muted font-mono max-w-[50ch]">
+            <span className="text-xs text-muted font-mono max-w-[52ch]" style={{ lineHeight: 1.8 }}>
               每一个推理跳跃均附带原始文献哈希引用，不确定的部分会被标出来，绝不混在结论里。
             </span>
           </div>
-          <span className="font-mono text-xs text-muted">
+          <span className="font-mono text-[11px] tracking-[0.12em] text-muted">
             LUMEN ENGINE · VERIFIABLE PROOF ARTIFACTS
           </span>
         </div>
