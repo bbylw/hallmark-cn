@@ -261,24 +261,45 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
         </div>
 
         {/* ════════════════════════════════════════════════════════════
-            MASTHEAD: 经典四栏大报报头 (Broadsheet Masthead)
+            MASTHEAD: 经典四栏大报报头 (Broadsheet Masthead with Ears)
             ════════════════════════════════════════════════════════════ */}
-        <header className="mt-4 border-b-2 border-ink pb-5">
-          <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-muted">
-            <span className="font-bold text-ink tracking-wider">
-              {page.brand || 'THE MEND ASSEMBLY'} · 街坊修缮月刊
-            </span>
-            <span>二〇二六年十月第十二周 · 第 142 期</span>
-            <span>晴转微雨 · 免费传阅 / 看完请留给下一个人</span>
+        <header className="mt-4 border-b-4 border-double border-ink pb-6">
+          {/* 报头顶线信息条与经典报眼 (The Ears of the Masthead) */}
+          <div className="grid grid-cols-1 md:grid-cols-12 border-b border-ink pb-4 text-xs font-mono text-muted items-stretch">
+            {/* 左报眼 (Left Ear: 物候与气象) */}
+            <div className="md:col-span-3 border-b md:border-b-0 md:border-r border-rule pb-2 md:pb-0 md:pr-4 flex flex-col justify-between">
+              <span className="font-bold text-ink tracking-wider uppercase text-[11px]">【物候与检修黄历】</span>
+              <p className="mt-1 font-serif text-[11px] text-ink-2 leading-tight">
+                二〇二六年十月 · 晴转微雨<br />
+                宜通电测阻 · 宜熬胶紧榫 · 忌暴力撬壳
+              </p>
+            </div>
+
+            {/* 报头中段主名标 */}
+            <div className="md:col-span-6 py-2 md:py-0 md:px-6 text-center flex flex-col justify-center">
+              <div className="font-serif tracking-[0.25em] text-[11px] uppercase text-accent-line font-bold">
+                A BROADSHEET FOR THINGS WORTH KEEPING · ESTABLISHED ON A WORKBENCH
+              </div>
+              <div className="font-serif font-black tracking-tight text-ink text-2xl sm:text-3xl mt-1 uppercase">
+                {page.brand || 'THE MEND ASSEMBLY'} · 街坊修缮公报
+              </div>
+            </div>
+
+            {/* 右报眼 (Right Ear: 期号与公阅信约) */}
+            <div className="md:col-span-3 border-t md:border-t-0 md:border-l border-rule pt-2 md:pt-0 md:pl-4 flex flex-col justify-between text-left md:text-right">
+              <span className="font-bold text-ink tracking-wider uppercase text-[11px]">第 142 期 · 街坊公阅</span>
+              <p className="mt-1 font-serif text-[11px] text-ink-2 leading-tight">
+                免费传阅 · 阅毕请留给下一位街坊<br />
+                工坊常驻：卷帘门右侧工作台
+              </p>
+            </div>
           </div>
 
-          <div className="mt-4 text-center">
-            <div className="font-serif tracking-widest text-xs uppercase text-accent-line font-bold">
-              A BROADSHEET FOR THINGS WORTH KEEPING · ESTABLISHED ON A WORKBENCH
-            </div>
+          {/* 头版主标题 */}
+          <div className="mt-6 text-center">
             <h1
               id="newsprint-heading"
-              className="display mt-2 font-black tracking-tight text-ink"
+              className="display font-black tracking-tight text-ink"
               style={{
                 fontSize: 'clamp(2.5rem, 6.2vw, 4.5rem)',
                 lineHeight: 1.05,
@@ -291,8 +312,8 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
             </p>
           </div>
 
-          {/* 报头下三栏快速信条 */}
-          <div className="mt-6 grid grid-cols-3 border-t border-rule pt-3 text-center font-mono text-xs text-muted divide-x divide-rule">
+          {/* 报头下三栏工坊信条与粗细双线 */}
+          <div className="mt-6 grid grid-cols-3 border-t-2 border-b border-ink py-2.5 text-center font-mono text-xs text-muted divide-x divide-rule">
             <div>
               <span className="font-bold text-ink block">免预约</span>
               <span>直接搬来卷帘门</span>
@@ -313,25 +334,27 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
             ════════════════════════════════════════════════════════════ */}
         <section className="mt-10 border-b-2 border-ink pb-12" aria-labelledby="fold-manifesto">
           <div className="grid gap-10 lg:grid-cols-12 items-start">
-            {/* 左侧：头版宣言海报折面 (The Poster Slab) */}
-            <div className="lg:col-span-6 rounded border-2 border-ink bg-paper p-6 sm:p-8 shadow-[4px_4px_0px_var(--hm-ink)]">
-              <span className="font-mono text-xs font-bold text-accent-line tracking-wider uppercase">
-                THE MANIFESTO · 我们的信条
-              </span>
-              <div
-                className="display mt-4 font-black tracking-tight text-ink leading-none select-none"
-                style={{ fontSize: 'clamp(3rem, 7.5vw, 5.5rem)' }}
-              >
-                <div>能修，</div>
-                <div className="text-accent-line">就别扔。</div>
-              </div>
-              <p className="mt-6 font-serif text-base text-ink-2 leading-relaxed">
-                一只坏了的电水壶不是垃圾。它只是一只坏了一个弹片的电水壶，和一段还没讲完的生活。每月第一个周六，我们在工作台摆好螺丝刀与烙铁，搬来板凳，和你一起修——不是替你修，是我们陪你拆。
-              </p>
+            {/* 左侧：头版宣言框版面 (The Editorial Framed Manifesto) */}
+            <div className="lg:col-span-6 rounded-none border-2 border-ink bg-paper p-1">
+              <div className="border border-ink p-6 sm:p-7">
+                <span className="font-mono text-xs font-bold text-accent-line tracking-wider uppercase block border-b border-rule pb-2">
+                  THE MANIFESTO · 卷帘门下共同信条
+                </span>
+                <div
+                  className="display mt-4 font-black tracking-tight text-ink leading-none select-none"
+                  style={{ fontSize: 'clamp(3rem, 7.5vw, 5.5rem)' }}
+                >
+                  <div>能修，</div>
+                  <div className="text-accent-line">就别扔。</div>
+                </div>
+                <p className="mt-6 font-serif text-base text-ink-2 leading-relaxed">
+                  一只坏了的电水壶不是垃圾。它只是一只坏了一个弹片的电水壶，和一段还没讲完的生活。每月第一个周六，我们在工作台摆好螺丝刀与烙铁，搬来板凳，和你一起修——不是替你修，是我们陪你拆。
+                </p>
 
-              <div className="mt-6 pt-4 border-t border-rule flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
-                <span className="text-muted">卷帘门右侧工坊 · 10:00–16:00</span>
-                <Cta label={page.cta} done="记下了，周六见" ghost />
+                <div className="mt-6 pt-4 border-t-2 border-double border-ink flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+                  <span className="text-muted">卷帘门右侧工坊 · 10:00–16:00</span>
+                  <Cta label={page.cta} done="记下了，周六见" ghost />
+                </div>
               </div>
             </div>
 
@@ -364,13 +387,13 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
                   desc: '修好的东西我们继续用；用不着的，修得体体面面送给刚搬来的年轻住户。没有任何完好的器物应该沦为垃圾。',
                 },
               ].map((plank) => (
-                <div key={plank.no} className="border-b border-rule pb-3 flex items-start gap-4">
-                  <span className="display text-xl font-bold text-accent-line shrink-0 font-mono">
+                <div key={plank.no} className="border-b border-rule pb-3.5 flex items-start gap-4">
+                  <span className="display text-xl font-bold text-accent-line shrink-0 font-mono border-b border-accent-line pb-0.5">
                     {plank.no}
                   </span>
                   <div>
                     <h3 className="text-base font-bold text-ink">{plank.tit}</h3>
-                    <p className="mt-1 text-xs text-ink-2 leading-relaxed">{plank.desc}</p>
+                    <p className="mt-1 text-xs sm:text-sm text-ink-2 leading-relaxed">{plank.desc}</p>
                   </div>
                 </div>
               ))}
@@ -404,10 +427,10 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
                   key={diag.id}
                   type="button"
                   onClick={() => setActiveDiag(diag.id)}
-                  className={`w-full text-left rounded border p-4 transition-all min-h-[44px] flex items-center justify-between ${
+                  className={`w-full text-left rounded-none border-2 p-4 transition-all min-h-[44px] flex items-center justify-between ${
                     activeDiag === diag.id
-                      ? 'border-ink bg-paper shadow-[3px_3px_0px_var(--hm-ink)]'
-                      : 'border-rule bg-paper/50 hover:border-ink/70'
+                      ? 'border-ink bg-paper shadow-sm'
+                      : 'border-rule bg-paper/60 hover:border-ink/80'
                   }`}
                   aria-pressed={activeDiag === diag.id}
                 >
@@ -416,12 +439,12 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
                     <div className="font-serif text-xs text-muted mt-0.5">{diag.symptom}</div>
                   </div>
                   <span
-                    className={`font-mono text-xs px-2 py-0.5 rounded shrink-0 ml-2 font-bold ${
+                    className={`font-mono text-xs px-2 py-0.5 rounded-none shrink-0 ml-2 font-bold ${
                       diag.difficulty === '新手友好'
-                        ? 'bg-emerald-100 text-emerald-800'
+                        ? 'border border-ink bg-paper text-ink shadow-sm'
                         : diag.difficulty === '需要老匠人'
-                        ? 'bg-amber-100 text-amber-800'
-                        : 'bg-rose-100 text-rose-800'
+                        ? 'border border-accent-line bg-accent/15 text-accent-line'
+                        : 'border border-rule text-muted line-through opacity-80'
                     }`}
                   >
                     {diag.difficulty}
@@ -431,13 +454,13 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
             </div>
 
             {/* 右侧工作台诊断详情卡 */}
-            <div className="rounded border-2 border-ink bg-paper p-6 lg:col-span-7 flex flex-col justify-between">
+            <div className="rounded-none border-2 border-ink bg-paper p-6 sm:p-7 lg:col-span-7 flex flex-col justify-between">
               <div>
                 <div className="flex flex-wrap items-center justify-between gap-2 border-b border-rule pb-3">
                   <div className="font-mono text-xs font-bold text-ink uppercase">
                     WORKBENCH TEARDOWN SHEET · 拆解诊断明细
                   </div>
-                  <span className="font-mono text-xs rounded bg-accent-line text-paper px-2.5 py-0.5 font-bold">
+                  <span className="font-mono text-xs rounded-none border border-accent-line bg-accent-line text-paper px-2.5 py-0.5 font-bold">
                     可救回率: {currentDiag.canRepairRate}
                   </span>
                 </div>
@@ -450,7 +473,7 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
                 </div>
 
                 {/* 拆解排查步骤清单 */}
-                <div className="mt-5 rounded border border-rule bg-paper-2/40 p-4">
+                <div className="mt-5 rounded-none border border-rule bg-paper-2/40 p-4">
                   <div className="font-mono text-xs font-bold text-ink uppercase mb-2">
                     工坊拆解检测三步法:
                   </div>
@@ -485,7 +508,7 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
                   ].map((tool) => (
                     <label
                       key={tool.id}
-                      className="flex items-center gap-2 rounded border border-rule p-2 cursor-pointer hover:border-ink"
+                      className="flex items-center gap-2 rounded-none border border-rule p-2 cursor-pointer hover:border-ink bg-paper-2/20"
                     >
                       <input
                         type="checkbox"
@@ -493,7 +516,7 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
                         onChange={(e) =>
                           setToolCheck((prev) => ({ ...prev, [tool.id]: e.target.checked }))
                         }
-                        className="h-4 w-4 rounded accent-ink"
+                        className="h-4 w-4 rounded-none accent-ink"
                       />
                       <span className="truncate">{tool.label}</span>
                     </label>
@@ -522,34 +545,36 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
               {salutation}
             </p>
 
-            {/* 首段：严格首字下沉 */}
-            <p
-              className="mt-6 text-base sm:text-lg text-ink-2 font-serif"
+            {/* 首段：严格首字下沉（修复首字重复问题） */}
+            <div
+              className="mt-6 text-base sm:text-lg text-ink-2 font-serif text-justify"
               style={{ lineHeight: 'var(--lh-relaxed)' }}
             >
               <span
-                className="display float-left mr-4 mt-1 select-none font-serif text-ink font-black"
-                style={{ fontSize: '4.25rem', lineHeight: 0.8 }}
+                className="display float-left mr-3.5 mt-0.5 select-none font-serif text-ink font-black border-2 border-ink bg-paper px-2.5 py-1 text-center"
+                style={{ fontSize: '3.5rem', lineHeight: 0.85 }}
                 aria-hidden
               >
                 {lead?.slice(0, 1)}
               </span>
-              {lead}
-            </p>
+              <span>{lead?.slice(1)}</span>
+            </div>
 
             {mid.map((p, idx) => (
               <p
                 key={idx}
-                className="mt-5 text-base text-ink-2 font-serif"
+                className="mt-5 text-base text-ink-2 font-serif text-justify"
                 style={{ lineHeight: 'var(--lh-relaxed)' }}
               >
                 {p}
               </p>
             ))}
 
-            {/* 结尾金句大字呈现 */}
-            <blockquote className="my-8 border-y-2 border-ink py-4 font-serif text-lg sm:text-xl text-ink font-medium leading-relaxed">
+            {/* 结尾金句大字呈现：经典报刊 Oxford 引文框 */}
+            <blockquote className="my-8 border-y-2 border-double border-ink py-4 text-center font-serif text-lg sm:text-xl text-ink font-bold leading-relaxed">
+              <span className="text-accent-line mr-2">❦</span>
               “{closing}”
+              <span className="text-accent-line ml-2">❦</span>
             </blockquote>
 
             {/* 署名印记 */}
@@ -558,21 +583,21 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
                 <div className="font-bold text-sm text-ink">{page.brand}</div>
                 <div className="text-muted mt-0.5">{page.discipline} · 卷帘门右侧工坊</div>
               </div>
-              <div className="rounded border border-ink/40 px-2 py-1 text-center">
-                <span className="block text-[10px] text-muted">公信力印鉴</span>
-                <span className="font-bold text-accent-line text-xs">MEND 142</span>
+              <div className="rounded-none border-2 border-ink px-2.5 py-1 text-center bg-paper">
+                <span className="block text-[10px] text-muted uppercase tracking-wider">公信力印鉴</span>
+                <span className="font-bold text-accent-line text-xs font-mono">MEND 142</span>
               </div>
             </div>
           </article>
 
           {/* 右栏：本月公开台账与坏件档案抽屉 (5列) */}
           <aside className="lg:col-span-5">
-            <div className="rounded border-2 border-ink bg-paper p-5 sm:p-6 shadow-[3px_3px_0px_var(--hm-ink)]">
-              <div className="flex items-center justify-between border-b border-rule pb-3">
+            <div className="rounded-none border-2 border-ink bg-paper p-5 sm:p-6">
+              <div className="flex items-center justify-between border-b-2 border-ink pb-3">
                 <span className="font-mono text-xs font-bold text-ink uppercase tracking-wider">
                   THE OPEN LEDGER · 本月实名账目
                 </span>
-                <span className="font-mono text-[10px] text-accent-line font-bold">
+                <span className="font-mono text-[10px] text-accent-line font-bold uppercase border border-accent-line px-1.5 py-0.5">
                   实物造册
                 </span>
               </div>
@@ -602,9 +627,9 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
                     <button
                       type="button"
                       onClick={() => setActiveTab('fixed')}
-                      className={`min-h-[36px] rounded px-3 py-1 font-bold transition-all ${
+                      className={`min-h-[36px] rounded-none px-3 py-1 font-bold font-mono transition-all ${
                         activeTab === 'fixed'
-                          ? 'bg-ink text-paper ring-1 ring-accent-line'
+                          ? 'border-2 border-ink bg-ink text-paper'
                           : 'border border-rule text-muted hover:border-ink hover:text-ink'
                       }`}
                       aria-pressed={activeTab === 'fixed'}
@@ -614,9 +639,9 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
                     <button
                       type="button"
                       onClick={() => setActiveTab('unfixable')}
-                      className={`min-h-[36px] rounded px-3 py-1 font-bold transition-all ${
+                      className={`min-h-[36px] rounded-none px-3 py-1 font-bold font-mono transition-all ${
                         activeTab === 'unfixable'
-                          ? 'bg-ink text-paper ring-1 ring-accent-line'
+                          ? 'border-2 border-ink bg-ink text-paper'
                           : 'border border-rule text-muted hover:border-ink hover:text-ink'
                       }`}
                       aria-pressed={activeTab === 'unfixable'}
@@ -630,11 +655,11 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
                   {currentStories.map((story) => (
                     <div
                       key={story.id}
-                      className="rounded border border-rule/80 bg-paper-2/40 p-3.5 transition-all hover:border-ink"
+                      className="rounded-none border border-rule/80 bg-paper-2/40 p-3.5 transition-all hover:border-ink hover:bg-paper-2/70"
                     >
                       <div className="flex items-center justify-between font-mono text-xs">
                         <span className="font-bold text-ink">{story.name}</span>
-                        <span className="text-[10px] text-accent-line font-bold">{story.id}</span>
+                        <span className="text-[10px] text-accent-line font-bold font-mono">{story.id}</span>
                       </div>
                       <div className="mt-1 font-mono text-[11px] text-muted">
                         邻居：{story.neighbour} · 耗时：{story.timeSpent}
@@ -709,8 +734,8 @@ export function NewsprintPage({ page }: { page: ThemePage }) {
             <div>
               © 2026 THE MEND ASSEMBLY · BROADSHEET GAZETTE NO. 142 · HALLMARK CERTIFIED
             </div>
-            <div className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-emerald-600" />
+            <div className="flex items-center gap-2 border border-rule px-3 py-1 bg-paper shadow-sm">
+              <span className="inline-block h-2 w-2 rounded-none bg-emerald-600 rotate-45" />
               <span className="font-bold text-ink">slop test: 58/58 ✓</span>
             </div>
           </div>
